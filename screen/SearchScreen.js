@@ -1,9 +1,10 @@
 import React,{useEffect,useState,useCallback} from 'react';
-import {View,StyleSheet, TextInput} from 'react-native';
+import {View,StyleSheet, TextInput,Keyboard} from 'react-native';
 import ShareMenu, { ShareMenuReactView } from "react-native-share-menu";
 import { Item , Input , Label , Icon , Button, Container, Footer, Content, Text	} from 'native-base';
 import {connect} from 'react-redux';
-import {searchLinkAction} from '../redux/actions';
+import {searchLinkAction,cleanStoreAction,saveSearchedLinkAction} from '../redux/actions';
+import {getIngredients} from '../api/fetch';
 
 const styles=StyleSheet.create({
 	view:{
@@ -14,7 +15,7 @@ const styles=StyleSheet.create({
 	}
 })
 
-function SearchScreen({navigation,searchLinkAction}){
+function SearchScreen({navigation,searchLinkAction,cleanStoreAction}){
 	const [inputBox, setInputBox] = useState('')
 
 	const shareTextHandler = useCallback((sharedItem)=>{
@@ -32,7 +33,10 @@ function SearchScreen({navigation,searchLinkAction}){
   	},[])
   	useEffect(()=>{
   		const shareListener = ShareMenu.addNewShareListener(shareTextHandler)
-  		return ()=>shareListener.remove()
+  		return ()=>{
+  			shareListener.remove()
+  			cleanStoreAction();
+  		}
   	},[])
 
 	const resetInputBox=()=>{
@@ -42,23 +46,38 @@ function SearchScreen({navigation,searchLinkAction}){
 		//validation input
 		setInputBox(t)
 	}
-	const confirmInput=()=>{
-		searchLinkAction(inputBox)
-		navigation.navigate('ResultScreen')
+
+//qui verra chiamata la api e ricevera recipe, che verra salvata nello store (al posti di link e basta) per poi essere
+//recuperata da resultScreen. Cosi da gestire anche loadgingPage
+	const confirmInput=()=>{	
+	//validation input, un po qui un po in fetch.js
+		cleanStoreAction();
+		Keyboard.dismiss();
+		getIngredients(inputBox)
+			.then(result=>{
+				saveSearchedLinkAction(result)
+				searchLinkAction(result)
+				navigation.navigate('ResultScreen')
+			})
+			.catch(err=>console.log(err))
 	}
 	return (
 		<Container>
 			<Content contentContainerStyle={styles.view}>
 				<Item rounded>
-					<Input placeholder='Qui va link ricetta o lista ingredienti' value={inputBox} onChangeText = {inputHandler} />
+					<Input placeholder='Qui va link ricetta o lista ingredienti' value={inputBox} onChangeText = {inputHandler}
+						  onSubmitEditing={confirmInput}/>
 					<Icon active name='md-close-outline' onPress={resetInputBox}/>
 				</Item>	
 				<Button rounded block transparent large onPress={confirmInput}>
 					<Text >Leggi ricetta</Text>
+				</Button>
+				<Button rounded block transparent large onPress={()=>{navigation.navigate('ResultScreen')}}>
+					<Text >Result Screen</Text>
 				</Button>
 			</Content>
 			<Footer></Footer>
 		</Container>
 		);
 }
-export default connect(null,{searchLinkAction})(SearchScreen)
+export default connect(null,{searchLinkAction,cleanStoreAction,saveSearchedLinkAction})(SearchScreen)

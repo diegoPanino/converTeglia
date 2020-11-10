@@ -2,8 +2,9 @@ import {createStore,combineReducers,applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
 import {persistStore,persistReducer} from 'redux-persist';
 import AsyncStorage from '@react-native-community/async-storage';
-import {addContactReducer,addUserReducer} from './reducers.js';
-import {linkReducer} from './reducers.js'
+import {linkReducer,historyReducer} from './reducers.js';
+import {CLEAN_STORE} from './actions.js';
+import {composeWithDevTools} from 'redux-devtools-extension';
 
 const persistConfig ={
 	key:'root',
@@ -11,8 +12,16 @@ const persistConfig ={
 	timeout:null,
 }
 const reducers = combineReducers({
-	searchEntries: linkReducer
+	result: linkReducer,
+	history: historyReducer
 })
-const persistedReducer = persistReducer(persistConfig,reducers);
-export const store = createStore(persistedReducer,applyMiddleware(thunk));
+const rootReducer = (state={},action)=>{
+	if(action.type === CLEAN_STORE){
+		state.result = undefined
+	}
+	return reducers(state,action)
+}
+
+const persistedReducer = persistReducer(persistConfig,rootReducer);
+export const store = createStore(rootReducer,composeWithDevTools(applyMiddleware(thunk)));
 export const persistor = persistStore(store);

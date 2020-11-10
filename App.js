@@ -12,13 +12,13 @@ import {searchLinkAction} from './redux/actions';
 import {Provider} from 'react-redux';
 import {PersistGate} from 'redux-persist/integration/react';
 
+
 const Stack = createStackNavigator();
 
 export default function App(){
-  persistor.purge();
   return (
     <Provider store = {store} >
-      <PersistGate loading={null} persistor={persistor} >
+     
         <NavigationContainer>
           <Stack.Navigator  
                         initialRouteName = {SearchScreen}
@@ -33,7 +33,7 @@ export default function App(){
             <Stack.Screen name='HistoryScreen' component={HistoryScreen} />
           </Stack.Navigator>
         </NavigationContainer>
-      </PersistGate>
+      
     </Provider>  
     );
 }

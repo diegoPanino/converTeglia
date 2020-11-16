@@ -182,6 +182,7 @@ function getAmount(ings,title,url,portions){
 //funzioni helper per la normalizzazione dei dati, restituisce recipe se tutto ok
 //oppure restituisce valore errore
 export async function getIngredients(url){
+ resetRecipe();
  switch(true){
  	case (RegExp(/blog.giallozafferano/g).test(url)):{
    		try{

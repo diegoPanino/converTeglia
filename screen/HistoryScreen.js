@@ -1,23 +1,21 @@
 import React from 'react';
 import {View,Text,StyleSheet,ScrollView} from 'react-native';
 import {connect} from 'react-redux';
+import HistoryList from '../presentational/HistoryList';
 
 const styles=StyleSheet.create({
 	view:{
 		flex:1,
-		justifyContent:'center',
-		alignItems:'center'
+		flexDirection:'column-reverse'
 	}
 })
 
-function HistoryScreen({history}){
-	console.log('History: ',history)
-	return <Text>HistoryScreen</Text>
-	/*return (
-		<ScrollView style={styles.view}>
-			{history}
-		</ScrollView>
-		);*/
+function HistoryScreen({history,navigation}){
+	return (
+		<View>
+			<HistoryList list = {history} navigation = {navigation}/>
+		</View>
+	)
 }
 const mapStateToProps=(state)=>({
 	history:state.history

@@ -1,7 +1,11 @@
-import {SEARCH_LINK,searchLinkAction,
+import {CLEAN_STORE,
+		SEARCH_LINK,searchLinkAction,
 		SAVE_SEARCHED_LINK,saveSearchedLinkAction,
-		BOOKMARK_SEARCH,bookmarkSearchAction
+		BOOKMARK_SEARCH,bookmarkSearchAction,
+		DELETE_SEARCHED_LINK, deleteSearchedLinkAction
 } from './actions'; 
+
+const day = 86400000
 
 export const linkReducer = (state = {} ,action) =>{
 	switch(action.type){
@@ -9,10 +13,20 @@ export const linkReducer = (state = {} ,action) =>{
 		default: return state;
 	}
 }
-export const historyReducer = (state=[],action) =>{
+export const historyReducer = (state= [] ,action) =>{
 	switch(action.type){
-		case BOOKMARK_SEARCH: return [...state,{...action.payload,favourite:true}]
-		case SAVE_SEARCHED_LINK:{ console.log('historyReducers: ',action.payload); return [...state,action.payload]}
+		case SAVE_SEARCHED_LINK: return [...state,{...action.payload,favourite:false,date:Date.now(),key:Date.now()}]
+		case DELETE_SEARCHED_LINK: return state.filter(el=> el.date !== action.payload)
+		case BOOKMARK_SEARCH: {
+			const index = state.findIndex(el => el.date === action.payload)
+			const newState = [...state]
+			const checkFav = newState[index].hasOwnProperty('favourite')
+			let toggleFav;
+			checkFav ? toggleFav = !newState[index].favourite : toggleFav = true
+			newState[index] = {...newState[index],favourite:toggleFav}
+			return newState
+		}
+
 		default: return state;
 	}
 }

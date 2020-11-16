@@ -15,8 +15,9 @@ const styles=StyleSheet.create({
 	}
 })
 
-function SearchScreen({navigation,searchLinkAction,cleanStoreAction}){
+function SearchScreen({navigation,searchLinkAction,cleanStoreAction,saveSearchedLinkAction}){
 	const [inputBox, setInputBox] = useState('')
+	//const [enableConfirmForm,setEnableConfirmForm] = useState(false)
 
 	const shareTextHandler = useCallback((sharedItem)=>{
     if(!sharedItem) return
@@ -44,6 +45,7 @@ function SearchScreen({navigation,searchLinkAction,cleanStoreAction}){
 	}
 	const inputHandler=t=>{
 		//validation input
+		//setEnableConfirmForm(true);
 		setInputBox(t)
 	}
 
@@ -55,9 +57,12 @@ function SearchScreen({navigation,searchLinkAction,cleanStoreAction}){
 		Keyboard.dismiss();
 		getIngredients(inputBox)
 			.then(result=>{
-				saveSearchedLinkAction(result)
-				searchLinkAction(result)
-				navigation.navigate('ResultScreen')
+				cleanStoreAction();
+				if(!result.hasOwnProperty('err'))
+					saveSearchedLinkAction(result)
+
+				searchLinkAction(result);
+				navigation.navigate('ResultScreen');
 			})
 			.catch(err=>console.log(err))
 	}
@@ -69,7 +74,7 @@ function SearchScreen({navigation,searchLinkAction,cleanStoreAction}){
 						  onSubmitEditing={confirmInput}/>
 					<Icon active name='md-close-outline' onPress={resetInputBox}/>
 				</Item>	
-				<Button rounded block transparent large onPress={confirmInput}>
+				<Button rounded block transparent large onPress={confirmInput} >
 					<Text >Leggi ricetta</Text>
 				</Button>
 				<Button rounded block transparent large onPress={()=>{navigation.navigate('ResultScreen')}}>

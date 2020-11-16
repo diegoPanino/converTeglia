@@ -10,6 +10,7 @@ const persistConfig ={
 	key:'root',
 	storage:AsyncStorage,
 	timeout:null,
+	whitelist:['history'],
 }
 const reducers = combineReducers({
 	result: linkReducer,
@@ -23,5 +24,5 @@ const rootReducer = (state={},action)=>{
 }
 
 const persistedReducer = persistReducer(persistConfig,rootReducer);
-export const store = createStore(rootReducer,composeWithDevTools(applyMiddleware(thunk)));
+export const store = createStore(persistedReducer,composeWithDevTools(applyMiddleware(thunk)));
 export const persistor = persistStore(store);

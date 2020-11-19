@@ -7,18 +7,15 @@ const styles = StyleSheet.create({
 	card:{
 		height:200,
 		width:200,
-		borderWidth:1,
-		borderColor:'black',
+
 	},
 	img:{
-		borderWidth:1,
-		borderColor:'green',
+
 		height:150,
 		width:200,
 	},
 	input:{
 		flex:1,
-		backgroundColor:'yellow'
 	}
 })
 
@@ -46,11 +43,6 @@ export default function ({type}){
 	return (
 		<View style = {styles.card}>
 			<Image source = {trays[type]} style = {styles.img}/>
-			<View style = {styles.input}>
-				<Fade visible={visible} direction='down' duration={15000} >
-					<Text>{`Tipo teglia: ${type}`}</Text>
-				</Fade>
-			</View>
 		</View>
 		)
 }

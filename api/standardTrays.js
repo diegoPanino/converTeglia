@@ -2,7 +2,7 @@ export const stdTrays = {
 	circle:[
 	{dim:18,servs:6,key:0},
 	{dim:20,servs:8,key:1},
-	{dim:22,servs:10,key:2},
+	{dim:22,servs:10,selected:true,key:2},
 	{dim:24,servs:12,key:3},
 	{dim:26,servs:14,key:4},
 	{dim:28,servs:16,key:5},

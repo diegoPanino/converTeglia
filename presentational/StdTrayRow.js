@@ -1,19 +1,35 @@
-import React from 'react';
-import {Text,View,StyleSheet} from 'react-native';
+import React,{useState} from 'react';
+import {Text,View,StyleSheet,TouchableOpacity} from 'react-native';
+import {Icon} from 'native-base';
 
-export default function StdTrayRow({dim,servs}){
+export default React.memo(function StdTrayRow({dim,servs,selected=false}){
+
 	const styles = StyleSheet.create({
 		row:{
-			flex:1,
+			height:25,
 			flexDirection:'row',
-			justifyContent:'space-between',
-			margin:10,
+			alignItems:'center',
+			justifyContent:'space-evenly',
+		},
+		rowEl:{
+			width:'30%',
+		},
+		rowIcon:{
+			width:50,
+			height:25,
 		}
 	})
+
 	return (
 		<View style={styles.row}>
-			<Text>Dimension: {dim}</Text>
-			<Text>Persone: {servs}</Text>
+			<Text style={styles.rowEl}>{dim}cm</Text>
+			<Text style={styles.rowEl}>{servs}</Text>
+			<View styles={styles.rowIcon}>
+				{(selected && <Icon name='restaurant-outline'/>) || 
+								<TouchableOpacity style={styles.rowIcon} 
+									onPress={()=>console.log('touch')}>
+								</TouchableOpacity> }
+			</View>
 		</View>
 		);
-}
+})

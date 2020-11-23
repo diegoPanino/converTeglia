@@ -1,6 +1,6 @@
 import React from 'react';
 
-const expiredTime = 1000*60*60*24*7
+const expiredTime = 1000*60*60*24*7 //1000 ms * 60s * 60m * 24h * 7d
 
 export default function filterHistory(history){
 	const deleteableSelection = history.filter(el=>{

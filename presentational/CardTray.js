@@ -23,15 +23,6 @@ const rectTray = require('../img/rettangolare.png');
 const circleTray = require('../img/rotonda.png');
 const trays = [rectTray,circleTray,squareTray]
 
-/*const InputTray = ({type}) =>{
-	switch(type){
-		case 'rectTray': return <Input placeholder='Quanto misurano i 2 lati della teglia?' />
-		case 'squareTray': return <Input placeholder='Quale è il lato della teglia?' />
-		case 'circleTray': return <Input placeholder='Che diametro ha la teglia ?' />
-		default: return <Text>Tipo teglia non trovato. C'è un errore</Text>
-	}
-}*/
-
 export default function ({type}){
 	const [visible,setVisible] = useState(false)
 	useEffect(()=>{

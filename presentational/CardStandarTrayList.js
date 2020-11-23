@@ -25,10 +25,15 @@ function CardTrayList({type,stdTrays}){
 										   selected={item.selected} trayKey={item.key} />}}
 					ListHeaderComponent={()=>{
 						return(
-							<View style={styles.row}>
-								<Text style={styles.rowEl}>Dimensioni</Text>
-								<Text style={styles.rowEl}>Persone</Text>
-								<Text style={styles.rowEl}>Scelta</Text>								
+							<View>
+								<View style={styles.row}>
+									<Text style={styles.rowEl}>Teglie standard</Text>								
+								</View>
+								<View style={styles.row}>
+									<Text style={styles.rowEl}>Dimensioni</Text>
+									<Text style={styles.rowEl}>Persone</Text>
+									<Text style={styles.rowEl}>Scelta</Text>								
+								</View>
 							</View>
 							)
 					}}

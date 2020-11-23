@@ -11,14 +11,14 @@ backButton:{
 		height:75,
 	}
 })
-export default function BackButton({navigation}){
+export default function BackButton({navigation,blurRadius}){
 	if(!navigation.canGoBack()){
 		return null
 	}
 	else{
 		return(
 			<TouchableOpacity style={styles.backButton} onPress={()=>navigation.goBack()}>
-				<Image source={bckBtn} style = {styles.backButton} />
+				<Image blurRadius={blurRadius} source={bckBtn} style = {styles.backButton} />
 			</TouchableOpacity>	
 		);
 	}

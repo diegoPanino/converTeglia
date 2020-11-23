@@ -4,10 +4,19 @@ import {CLEAN_STORE,
 		BOOKMARK_SEARCH,bookmarkSearchAction,
 		DELETE_SEARCHED_LINK, deleteSearchedLinkAction,
 		SET_MY_TRAY,setMyTrayAction,
+		TOGGLE_BLUR,toggleBlurAction,
+		ADD_TRAY,addTrayAction,
 } from './actions'; 
 import {stdTrays} from '../api/standardTrays';
 
 const day = 86400000
+
+export const systemReducer = (state = {...state,blur:false},action) =>{
+	switch(action.type){
+		case TOGGLE_BLUR: return {...state,blur:!state.blur} 
+		default: return state;
+	}
+}
 
 export const linkReducer = (state = {} ,action) =>{
 	switch(action.type){
@@ -37,7 +46,7 @@ export const settingsReducer = (state = stdTrays,action) =>{
 		case SET_MY_TRAY: {
 			const traysTypes = Object.keys(state.trays)
 			const trayIndex = Math.trunc(action.payload)
-			let newState = {...state}
+			let newState = Object.assign({},state)
 			traysTypes.map(type => {
 				newState.trays[type].map(tray=>{
 					if(tray.selected === true)
@@ -48,6 +57,14 @@ export const settingsReducer = (state = stdTrays,action) =>{
 					}
 				})
 			})
+			return newState;
+		}
+		case ADD_TRAY:{
+			const {type,name,dim,servs,key} = action.payload
+			const tray = {name,dim,servs,selected:false,key}
+			let newState = {...state}
+			const ctKeyArr = Object.keys(state.customTrays)
+			newState.customTrays[type].push(tray) 
 			return newState;
 		}
 		default: return state

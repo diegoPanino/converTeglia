@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.12.1",
+    "@react-native-community/blur": "^3.6.0",
     "@react-native-community/cli": "^4.13.0",
     "@react-native-community/cli-platform-android": "^4.13.0",
     "@react-native-community/clipboard": "^1.5.1",
@@ -35,6 +36,7 @@
     "react-native-cheerio": "^1.0.0-rc.4",
     "react-native-elements": "^3.0.0-alpha.1",
     "react-native-gesture-handler": "^1.8.0",
+    "react-native-paper": "^4.4.1",
     "react-native-reanimated": "^1.13.1",
     "react-native-safe-area-context": "^3.1.8",
     "react-native-screens": "^2.12.0",

@@ -25,5 +25,10 @@ export const stdTrays = {
 			{dim:23,servs:14,selected:false,key:2.4},
 			{dim:25,servs:16,selected:false,key:2.5},
 			],
+	},
+	customTrays:{
+		circle:[],
+		rect:[],
+		square:[],
 	}
 }

@@ -5,6 +5,8 @@ export const BOOKMARK_SEARCH = 'BOOKMARK_SEARCH'; //SAVE A SEARCH TO BE STORE LI
 export const SAVE_SEARCHED_LINK = 'SAVE_SEARCHED_LINK'; //KEEP TRACK OF THE SEARCHES
 export const DELETE_SEARCHED_LINK = 'DELETE_SEARCHED_LINK'; //DELETE A RESEARCH FROM THE NORMAL HISTORY
 export const SET_MY_TRAY = 'SET_MY_TRAY'; // SELECT THE DESTINATION TRAY FOR CONVERSIONS
+export const TOGGLE_BLUR = 'TOGGLE_BLUR'; //SYSTEM TOGGLE BLUR
+export const ADD_TRAY = 'ADD_TRAY'; //CREATE A NEW PERSONAL TRAY
 //ACTION MAKER
 
 export const searchLinkAction= recipe =>({
@@ -29,4 +31,11 @@ export const deleteSearchedLinkAction = date =>({
 export const setMyTrayAction = trayKey => ({
 	type:SET_MY_TRAY,
 	payload:trayKey
+})
+export const toggleBlurAction = () =>({
+	type:TOGGLE_BLUR
+})
+export const addTrayAction = tray =>({
+	type:ADD_TRAY,
+	payload:tray
 })

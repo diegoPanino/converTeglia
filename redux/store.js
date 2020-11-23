@@ -2,7 +2,7 @@ import {createStore,combineReducers,applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
 import {persistStore,persistReducer} from 'redux-persist';
 import AsyncStorage from '@react-native-community/async-storage';
-import {linkReducer,historyReducer,settingsReducer} from './reducers.js';
+import {linkReducer,historyReducer,settingsReducer,systemReducer} from './reducers.js';
 import {CLEAN_STORE} from './actions.js';
 import {composeWithDevTools} from 'redux-devtools-extension';
 
@@ -15,7 +15,8 @@ const persistConfig ={
 const reducers = combineReducers({
 	result: linkReducer,
 	history: historyReducer,
-	settings: settingsReducer
+	settings: settingsReducer,
+	system:systemReducer,
 })
 const rootReducer = (state={},action)=>{
 	if(action.type === CLEAN_STORE){

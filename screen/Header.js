@@ -1,6 +1,5 @@
 import React from 'react';
 import {Dimensions, View, Text, StyleSheet, Button, Image, TouchableOpacity} from 'react-native';
-import {useFocusEffect} from '@react-navigation/native';
 import {withBadge,Icon} from 'react-native-elements';
 import {connect} from 'react-redux';
 import BackButton from '../presentational/backButton';
@@ -25,7 +24,7 @@ const styles = StyleSheet.create({
 		shadowOpacity: 0.25,
 		shadowRadius: 3.84,
 		elevation: 5,
-		backgroundColor:'transparent'
+		backgroundColor:'transparent',
 	},
 	logo:{
 		resizeMode:'stretch',
@@ -51,17 +50,14 @@ const styles = StyleSheet.create({
 	selected:{
 		backgroundColor:'yellow'
 	},
-	bagde:{
-		backgroundColor:'blue'
-	}
 })
 
-function Header({scene,previous,navigation,settings}){
+function Header({scene,previous,navigation,settings,system}){
 
 	const select = settings.selection
 	const trayIndex = Math.trunc(select.key)
 	const option = scene.descriptor
-	
+	const blur = system.blur ? 3 : 0
 	const BadgedImage = withBadge(`${select.servs} pers`,
 		{top:22,right:5,badgeStyle:{backgroundColor:'gray'}})(Image)
 	const BadgedImg = withBadge(`${select.dim}cm`,
@@ -69,20 +65,21 @@ function Header({scene,previous,navigation,settings}){
 	
 	return (
 		<View style={styles.header}>
-			<Image source = {logo} style = {styles.logo} />
-			<BackButton navigation={navigation} />
+			<Image blurRadius={blur} source = {logo} style = {styles.logo} />
+			<BackButton blurRadius={blur} navigation={navigation} />
 			<View style = {styles.rightMenu}>
 				<TouchableOpacity onPress={()=>navigation.navigate('HistoryScreen')}> 
-					<Image source={historyBtn} style = {styles.historyBtn} />	
+					<Image blurRadius={blur} source={historyBtn} style = {styles.historyBtn} />	
 				</TouchableOpacity>
 				<TouchableOpacity onPress={()=>navigation.navigate('MyTrayScreen')}> 
-					<BadgedImg source={trays[trayIndex]} style = {styles.myTrayBtn}/>	
+					<BadgedImg blurRadius={blur} source={trays[trayIndex]} style = {styles.myTrayBtn}/>	
 				</TouchableOpacity>
 			</View>
 		</View>
 		);
 }
 mapStateToProps = state => ({
-	settings: state.settings	
+	settings: state.settings,
+	system: state.system	
 })
 export default connect(mapStateToProps)(Header);

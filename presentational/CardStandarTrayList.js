@@ -1,7 +1,7 @@
 import React from 'react';
 import {FlatList,View,Text,StyleSheet} from 'react-native';
-import {stdTrays} from '../api/standardTrays';
 import StdTrayRow from './StdTrayRow';
+import {connect} from 'react-redux';
 
 const styles = StyleSheet.create({
 	row:{
@@ -14,13 +14,15 @@ const styles = StyleSheet.create({
 	},
 })
 
-export default function CardTrayList({type}){
+function CardTrayList({type,stdTrays}){
 	const typeText = ['rect','circle','square']
 	return (
 			<View>
 				<FlatList
-					data={stdTrays[typeText[type]]}
-					renderItem={({item})=>{return <StdTrayRow dim={item.dim} servs={item.servs} selected={item?.selected} />}}
+					data={stdTrays.trays[typeText[type]]}
+					renderItem={({item})=>{
+						return <StdTrayRow dim={item.dim} servs={item.servs} 
+										   selected={item.selected} trayKey={item.key} />}}
 					ListHeaderComponent={()=>{
 						return(
 							<View style={styles.row}>
@@ -35,3 +37,7 @@ export default function CardTrayList({type}){
 			</View>
 		);
 }
+mapStateToProps= state =>({
+	stdTrays : state.settings
+})
+export default connect(mapStateToProps)(CardTrayList)

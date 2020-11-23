@@ -5,10 +5,10 @@ import {Icon,Button,Item,Input,Form,Label} from 'native-base';
 const styles = StyleSheet.create({
 	modalView:{
 		position:'absolute',
-		top:'20%',
+		top:'25%',
 		width:'100%',
-		height:'80%',
-		backgroundColor: 'white',
+		height:'50%',
+		backgroundColor: 'rgba(144, 149, 153,0.5)',
 	},
 	btnRow:{
 		flexDirection:'row',
@@ -20,12 +20,12 @@ export default function NewTrayModal(props){
 	const {hide} = props
 
 	const onSave=()=>{
+		hide()
 		console.log('save')
-		hide();
 	}
 	const onCancel=()=>{
+		hide()
 		console.log('cancel')
-		hide();
 	}
 
 	return (

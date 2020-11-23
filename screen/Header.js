@@ -1,5 +1,8 @@
-import React,{useState} from 'react';
+import React from 'react';
 import {Dimensions, View, Text, StyleSheet, Button, Image, TouchableOpacity} from 'react-native';
+import {useFocusEffect} from '@react-navigation/native';
+import {withBadge,Icon} from 'react-native-elements';
+import {connect} from 'react-redux';
 import BackButton from '../presentational/backButton';
 
 const logo = require('../img/logo.png');
@@ -7,6 +10,7 @@ const historyBtn = require ('../img/history.png');
 const squareTray = require ('../img/quadrata.png');
 const rectTray = require('../img/rettangolare.png');
 const circleTray = require('../img/rotonda.png');
+const trays = [circleTray,rectTray,squareTray];
 const {height,width} = Dimensions.get('screen');
 const styles = StyleSheet.create({
 	header:{
@@ -45,12 +49,20 @@ const styles = StyleSheet.create({
 	},
 	selected:{
 		backgroundColor:'yellow'
+	},
+	bagde:{
 	}
 })
 
-export default function Header({scene,previous,navigation}){
-	const [trayType,setTrayType] = useState(rectTray)
+function Header({scene,previous,navigation,settings}){
+
+	const select = settings.selection
+	const trayIndex = Math.trunc(select.key)
 	const option = scene.descriptor
+	const BadgedImage = withBadge(`${select.servs} pers`,
+		{status:'primary',top:22,right:5})(Image)
+	const BadgedImg = withBadge(`${select.dim}cm`,
+		{status:'success',right:5})(BadgedImage)
 	return (
 		<View style={styles.header}>
 			<Image source = {logo} style = {styles.logo} />
@@ -60,9 +72,13 @@ export default function Header({scene,previous,navigation}){
 					<Image source={historyBtn} style = {styles.historyBtn} />	
 				</TouchableOpacity>
 				<TouchableOpacity onPress={()=>navigation.navigate('MyTrayScreen')}> 
-					<Image source={trayType} style = {styles.myTrayBtn} />	
+					<BadgedImg source={trays[trayIndex]} style = {styles.myTrayBtn} />	
 				</TouchableOpacity>
 			</View>
 		</View>
 		);
 }
+mapStateToProps = state => ({
+	settings: state.settings	
+})
+export default connect(mapStateToProps)(Header);

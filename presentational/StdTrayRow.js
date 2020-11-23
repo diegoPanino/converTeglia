@@ -1,8 +1,10 @@
 import React,{useState} from 'react';
 import {Text,View,StyleSheet,TouchableOpacity} from 'react-native';
 import {Icon} from 'native-base';
+import {connect} from 'react-redux';
+import {setMyTrayAction} from '../redux/actions';
 
-export default React.memo(function StdTrayRow({dim,servs,selected=false}){
+function StdTrayRow({trayKey,dim,servs,selected,setMyTrayAction}){
 
 	const styles = StyleSheet.create({
 		row:{
@@ -20,6 +22,10 @@ export default React.memo(function StdTrayRow({dim,servs,selected=false}){
 		}
 	})
 
+	const choiceHandler=()=>{
+		setMyTrayAction(trayKey)
+	}
+
 	return (
 		<View style={styles.row}>
 			<Text style={styles.rowEl}>{dim}cm</Text>
@@ -27,9 +33,10 @@ export default React.memo(function StdTrayRow({dim,servs,selected=false}){
 			<View styles={styles.rowIcon}>
 				{(selected && <Icon name='restaurant-outline'/>) || 
 								<TouchableOpacity style={styles.rowIcon} 
-									onPress={()=>console.log('touch')}>
+									onPress={()=>choiceHandler()}>
 								</TouchableOpacity> }
 			</View>
 		</View>
 		);
-})
+}
+export default connect(null,{setMyTrayAction})(StdTrayRow)

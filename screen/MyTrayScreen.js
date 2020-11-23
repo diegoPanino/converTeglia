@@ -1,6 +1,8 @@
 import React,{useState,useRef} from 'react';
 import {View,Text,StyleSheet,TextInput,useWindowDimensions,Modal} from 'react-native';
 import {Button,Icon} from 'native-base';
+import { useFocusEffect } from '@react-navigation/native';
+import BlurOverlay,{closeOverlay,openOverlay} from 'react-native-blur-overlay';
 import Carousel from 'react-native-snap-carousel';
 import CardTray from '../presentational/CardTray';
 import CardTrayList from '../presentational/CardStandarTrayList';
@@ -9,8 +11,9 @@ import NewTrayModal from '../presentational/MakeNewTray';
 
 const background = require('../img/backgroundPink.jpeg');
 
-export default function MyTrayScreen(){
-	
+export default function MyTrayScreen({navigation}){
+
+let blur = {};	
 const styles=StyleSheet.create({
 	view:{
 		flex:1,
@@ -40,6 +43,7 @@ const styles=StyleSheet.create({
 		position:'absolute',
 		right:0,
 	},
+	absolute:blur
 })
 
 	const [tray,setTray] = useState('Rotonda');
@@ -51,6 +55,11 @@ const styles=StyleSheet.create({
 	const windowWidth = useWindowDimensions().width;
 	const windowHeight = useWindowDimensions().height;
 
+	useFocusEffect(()=>{
+
+		return ()=>{}
+	})
+
 	function onSnapToItemHandler(index){
 		setTray(data[index])
 		refStdTrays.current.snapToItem(index,true)
@@ -58,6 +67,16 @@ const styles=StyleSheet.create({
 
 	return (
 		<View style={styles.view}>
+		<BlurOverlay
+                    radius={14}
+                    downsampling={2}
+                    brightness={10}
+                    onPress={() => {
+                        closeOverlay();
+                    }}
+                    
+                    children={<NewTrayModal />}
+                />
 			<Carousel 
 				contentContainerStyle={styles.ccs}
 				containerCustomStyle={styles.carouselImg}
@@ -101,3 +120,7 @@ const styles=StyleSheet.create({
 		</View>
 		);
 }
+
+/*
+
+*/

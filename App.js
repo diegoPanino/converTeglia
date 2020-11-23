@@ -21,7 +21,7 @@ export default function App(){
     <Provider store = {store} >
       <PersistGate loading={null} persistor={persistor}>   
         <NavigationContainer>
-          <Stack.Navigator  
+          <Stack.Navigator
                         initialRouteName = {SearchScreen}
                         headerMode = 'screen'
                         screenOptions = {{

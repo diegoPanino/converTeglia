@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
 		top:'25%',
 		width:'100%',
 		height:'50%',
-		backgroundColor: 'rgba(144, 149, 153,0.5)',
+		backgroundColor: 'rgb(144, 149, 153)',
 	},
 	btnRow:{
 		flexDirection:'row',

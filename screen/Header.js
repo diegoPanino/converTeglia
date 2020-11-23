@@ -25,6 +25,7 @@ const styles = StyleSheet.create({
 		shadowOpacity: 0.25,
 		shadowRadius: 3.84,
 		elevation: 5,
+		backgroundColor:'transparent'
 	},
 	logo:{
 		resizeMode:'stretch',
@@ -51,6 +52,7 @@ const styles = StyleSheet.create({
 		backgroundColor:'yellow'
 	},
 	bagde:{
+		backgroundColor:'blue'
 	}
 })
 
@@ -59,10 +61,12 @@ function Header({scene,previous,navigation,settings}){
 	const select = settings.selection
 	const trayIndex = Math.trunc(select.key)
 	const option = scene.descriptor
+	
 	const BadgedImage = withBadge(`${select.servs} pers`,
-		{status:'primary',top:22,right:5})(Image)
+		{top:22,right:5,badgeStyle:{backgroundColor:'gray'}})(Image)
 	const BadgedImg = withBadge(`${select.dim}cm`,
-		{status:'success',right:5})(BadgedImage)
+		{right:5,badgeStyle:{backgroundColor:'gray'}})(BadgedImage)
+	
 	return (
 		<View style={styles.header}>
 			<Image source = {logo} style = {styles.logo} />
@@ -72,7 +76,7 @@ function Header({scene,previous,navigation,settings}){
 					<Image source={historyBtn} style = {styles.historyBtn} />	
 				</TouchableOpacity>
 				<TouchableOpacity onPress={()=>navigation.navigate('MyTrayScreen')}> 
-					<BadgedImg source={trays[trayIndex]} style = {styles.myTrayBtn} />	
+					<BadgedImg source={trays[trayIndex]} style = {styles.myTrayBtn}/>	
 				</TouchableOpacity>
 			</View>
 		</View>

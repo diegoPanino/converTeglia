@@ -1,7 +1,6 @@
 import React,{useEffect,useState} from 'react';
 import {View,Text,Image,StyleSheet,TextInput,Dimensions} from 'react-native';
 import {Item , Input , Label , Button} from 'native-base';
-import Fade from 'react-native-fade';
 
 const styles = StyleSheet.create({
 	card:{

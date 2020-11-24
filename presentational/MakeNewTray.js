@@ -1,10 +1,11 @@
 import React,{useState,useEffect} from 'react';
 import {View,Text,StyleSheet, Image, TouchableOpacity, 
 		TextInput, TouchableWithoutFeedback, Keyboard} from 'react-native';
-import {Icon,Button,Item,Input,Form,Label} from 'native-base';
-import { RadioButton } from 'react-native-paper';
 import {connect} from 'react-redux';
-import {toggleBlurAction} from '../redux/actions';
+import {Label} from 'native-base';
+import {toggleBlurAction,addTrayAction} from '../redux/actions';
+import {Picker} from '@react-native-picker/picker';
+
 
 const squareIco = require ('../img/quadrata.png');
 const rectIco = require('../img/rettangolare.png');
@@ -55,7 +56,12 @@ const styles = StyleSheet.create({
 	},
 	measurement:{
 		justifyContent:'center',
+		
+		
 		borderBottomWidth:1,
+		
+		marginBottom:25,
+		paddingBottom:25,
 		
 	},
 	label:{
@@ -76,37 +82,75 @@ const styles = StyleSheet.create({
 	imgRow:{
 		alignItems:'center',
 		justifyContent:'center'
+	},
+	dimInput:{
+		flexDirection:'row',
+		alignItems:'center',
+	},
+	picker:{
+		flex:1,
+	},
+	pickerText:{
+		flex:1,
+	},
+	sidePicker:{
+		flex:1,
+	},
+	sideView:{
+		flexDirection:'row',
+		alignItems:'center'
+	},
+	sideText:{
+		flex:3,
+		textAlign:'center',
+
 	}
 })
 
 function NewTrayModal(props){
 	const [type,setType] = useState('circle')
-	const [dim,setDim] = useState(20)
+  	const [dim, setDim] = useState(22)
+  	const [a,setA] = useState(22)
+  	const [b,setB] = useState(20)
 	const [servs,setServs] = useState()
 	const [name,setName] = useState()
-	const {hide,toggleBlurAction} = props
+	const {hide,toggleBlurAction,addTrayAction} = props
+		
+	let nums=[];
+	for(let i = 1;i<=40;i++){
+		nums.push(i)
+	}
+	const pickers = nums.map(i=>{
+		return <Picker.Item style={styles.pickerItem} label={`${i}`} value={i} key={i}/>
+	})
 
 	const onSave=()=>{
+		const tray = {type:'',name:'',dim:'',serv:'',key:''}
 		toggleBlurAction();
 		hide()
-		console.log('save')
 	}
 	const onCancel=()=>{
 		toggleBlurAction();
 		hide()
 		console.log('cancel')
 	}
+	const onFirstSide=(val)=>{
+		const value = val + 'x' + b
+	}
+	const onSecondSide=(val)=>{
+		const value = a + 'x' + val
+	}
 
 	return (
 		<TouchableWithoutFeedback onPress={()=>Keyboard.dismiss()} >
 		<View style={styles.mainView} >
-			<Form style={styles.contentView}>
+			<View style={styles.contentView}>
 				<View style={styles.nameInput}>
              		 <Label style={styles.label}>Nome</Label>
              		 <TextInput placeholder='Scrivi qui un nome alla tua teglia!'
              		 		autoFocus={true} clearButtonMode='while-editing'
              		 		maxLength={32} returnKeyType='done' textAlign='center'
-             		 		onEndEditing={()=>console.log('textInput blur')}
+             		 		onChangeText={text=>setName(text)} value = {name}
              		 />
             	</View>
 				<View style = {styles.type}>
@@ -132,20 +176,44 @@ function NewTrayModal(props){
 				{type === 'rect' 
 					? 	<View style = {styles.measurement}>
 							<Label style={styles.label}>Misure</Label>
+							<View style={styles.dimInput}>
+							    <Picker style={styles.picker}
+							    		selectedValue={a} mode='dropdown'
+							    		onValueChange={(value)=>setA(value)}>
+							    			{pickers}
+							    </Picker>
+							    <Text style={styles.pickerText}>X</Text>
+							    <Picker style={styles.picker}
+							    		selectedValue={b} mode='dropdown'
+							    		onValueChange={(value)=>setB(value)}>
+							    			{pickers}
+							    </Picker>
+							    <Text style={styles.pickerText}>cm</Text>
+							</View>
 						</View>
-					: <Label>Misura:</Label>
+					: 	<View style = {styles.measurement}>
+					 		<Label style={styles.label}>Misura:</Label>
+							<View style={styles.sideView}>
+								<Text style={styles.sideText}>Diametro/Lato:</Text>
+								<Picker style={styles.sidePicker}
+							    		selectedValue={dim} mode='dropdown'
+							    		onValueChange={(value)=>setDim(value)}>
+							    			{pickers}
+							    </Picker>
+							</View>
+						</View>
 				}
 				<View style={styles.btnRow}>
-					<Button large transparent onPress={()=>onSave()}>
+					<TouchableOpacity large transparent onPress={()=>onSave()}>
 						<Text>SALVA TEGLIA</Text>
-					</Button>
-					<Button  large transparent onPress={()=>onCancel()}>
+					</TouchableOpacity>
+					<TouchableOpacity  large transparent onPress={()=>onCancel()}>
 						<Text>TORNA INDIETRO</Text>
-					</Button>
+					</TouchableOpacity>
 				</View>
-			</Form>
+			</View>
 		</View>
 		</TouchableWithoutFeedback>
 		);
 }
-export default connect(null,{toggleBlurAction})(NewTrayModal)
+export default connect(null,{toggleBlurAction,addTrayAction})(NewTrayModal)

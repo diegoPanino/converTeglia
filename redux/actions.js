@@ -7,6 +7,7 @@ export const DELETE_SEARCHED_LINK = 'DELETE_SEARCHED_LINK'; //DELETE A RESEARCH 
 export const SET_MY_TRAY = 'SET_MY_TRAY'; // SELECT THE DESTINATION TRAY FOR CONVERSIONS
 export const TOGGLE_BLUR = 'TOGGLE_BLUR'; //SYSTEM TOGGLE BLUR
 export const ADD_TRAY = 'ADD_TRAY'; //CREATE A NEW PERSONAL TRAY
+export const DELETE_TRAY = 'DELETE_TRAY'; //ERASE CUSTOM TRAY
 //ACTION MAKER
 
 export const searchLinkAction= recipe =>({
@@ -38,4 +39,8 @@ export const toggleBlurAction = () =>({
 export const addTrayAction = tray =>({
 	type:ADD_TRAY,
 	payload:tray
+})
+export const deleteTrayAction = trayKey =>({
+	type:DELETE_TRAY,
+	payload:trayKey
 })

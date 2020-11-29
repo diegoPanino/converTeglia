@@ -6,6 +6,7 @@ import {CLEAN_STORE,
 		SET_MY_TRAY,setMyTrayAction,
 		TOGGLE_BLUR,toggleBlurAction,
 		ADD_TRAY,addTrayAction,
+		DELETE_TRAY,deleteTrayAction,
 } from './actions'; 
 import {stdTrays} from '../api/standardTrays';
 
@@ -56,6 +57,14 @@ export const settingsReducer = (state = stdTrays,action) =>{
 						newState = {...state,selection:tray}
 					}
 				})
+				newState.customTrays[type].map(tray=>{
+					if(tray.selected === true)
+						tray.selected = false
+					if(tray.key === action.payload){
+						tray.selected = true
+						newState = {...state,selection:tray}
+					}
+				})
 			})
 			return newState;
 		}
@@ -65,6 +74,13 @@ export const settingsReducer = (state = stdTrays,action) =>{
 			let newState = {...state}
 			const ctKeyArr = Object.keys(state.customTrays)
 			newState.customTrays[type].push(tray) 
+			return newState;
+		}
+		case DELETE_TRAY: {
+			const type = Object.keys(state.customTrays)
+			const array = state.customTrays[type[Math.trunc(action.payload)]]
+			const newState = {...state}
+			newState.customTrays[type[Math.trunc(action.payload)]] = array.filter(el=>el.key !== action.payload)
 			return newState;
 		}
 		default: return state

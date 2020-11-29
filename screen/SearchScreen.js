@@ -20,14 +20,14 @@ function SearchScreen({navigation,searchLinkAction,cleanStoreAction,saveSearched
 	//const [enableConfirmForm,setEnableConfirmForm] = useState(false)
 
 	const shareTextHandler = useCallback((sharedItem)=>{
-    if(!sharedItem) return
+	if(!sharedItem) return
 
     const {mimeType,data} = sharedItem;
-    if(mimeType === 'text/plain')
-      setInputBox(data);
-    else
-      console.log('share type no good')
-  },[])
+	    if(mimeType === 'text/plain')
+    	  setInputBox(data);
+  	  	else
+  		    console.log('share type no good')
+  	},[])
 
   	useEffect(()=>{
   		 ShareMenu.getInitialShare(shareTextHandler)
@@ -72,7 +72,7 @@ function SearchScreen({navigation,searchLinkAction,cleanStoreAction,saveSearched
 				<Item rounded>
 					<Input placeholder='Qui va link ricetta o lista ingredienti' value={inputBox} onChangeText = {inputHandler}
 						  onSubmitEditing={confirmInput}/>
-					<Icon active name='md-close-outline' onPress={resetInputBox}/>
+					<Icon active name='close' onPress={resetInputBox}/>
 				</Item>	
 				<Button rounded block transparent large onPress={confirmInput} >
 					<Text >Leggi ricetta</Text>

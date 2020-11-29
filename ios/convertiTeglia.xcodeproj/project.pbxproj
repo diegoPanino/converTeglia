@@ -14,24 +14,16 @@
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		2D69DD447918F616EFEC06BF /* libPods-convertiTeglia.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B30332795A1A7E17ADE37760 /* libPods-convertiTeglia.a */; };
 		2DCD954D1E0B4F2C00145EB5 /* convertiTegliaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* convertiTegliaTests.m */; };
+		507175196317DAF78A431602 /* libPods-ShareMenuExtensione.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 349E1CFCE3399C69EEE8FB83 /* libPods-ShareMenuExtensione.a */; };
+		54647D4CC5797FD7131D8CEF /* libPods-convertiTeglia-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E91392EA76B426A70D77F9C /* libPods-convertiTeglia-tvOSTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		1403FE07998548458192D059 /* AntDesign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B476D53B659949B98F43A924 /* AntDesign.ttf */; };
-		45682F56BB1B492283725DBD /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D19B3B9F19D4440AB570D211 /* Entypo.ttf */; };
-		3D0C4F65E4C14E4E9C82ECA2 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1AF02CD2ACB040C5BAACCD08 /* EvilIcons.ttf */; };
-		E3D03525DCC94C2C90BAB562 /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4D85388A706F49A1B77A7CD5 /* Feather.ttf */; };
-		4963D45FF9A245C39EA7EDE5 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 714E236C6D814BAB84B1E3CE /* FontAwesome.ttf */; };
-		A2449E462D104E87AB3CA333 /* FontAwesome5_Brands.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CD243EB2239041E78ECD6173 /* FontAwesome5_Brands.ttf */; };
-		270E4EF59D8C485688305A38 /* FontAwesome5_Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8A82AABBC7D0441EB49ED147 /* FontAwesome5_Regular.ttf */; };
-		2038E394BFED4AD2AEE3A6F9 /* FontAwesome5_Solid.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D23D52254EB9423B9F3941B0 /* FontAwesome5_Solid.ttf */; };
-		2B84D0AD75F447DBAD23178E /* Fontisto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 14ABF80DA1B9412387BDFB6F /* Fontisto.ttf */; };
-		009FE347069B495BB2E97AB4 /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8120FEDD8B0B4EAF9A23C53F /* Foundation.ttf */; };
-		B1BAC66857CB45BD9DD6FCDD /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0DA4A0CFB0EC4BA99C2C0C29 /* Ionicons.ttf */; };
-		63FA7B1F885747B4A0989932 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C23DA56CAA8C4437B4B8C45B /* MaterialCommunityIcons.ttf */; };
-		0EF5993ECF9847939C2A83D8 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 68BF1DCE4A974A4282A6CD7E /* MaterialIcons.ttf */; };
-		7D3A9E85894D4EE7B6289C70 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 983019ACBDCB4E3099A750F9 /* Octicons.ttf */; };
-		BA296181919B419183F2B725 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2592A98E2646434B8B911C91 /* SimpleLineIcons.ttf */; };
-		FC24C95AE08E47969CA4F878 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9E13E7CE223744DAAA1BB83D /* Zocial.ttf */; };
+		AA0D5BBCFC7F2D90DC7062DE /* libPods-convertiTeglia-convertiTegliaTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46F6AA06CDE89DF730C45F92 /* libPods-convertiTeglia-convertiTegliaTests.a */; };
+		C5FB9332257286F9004B006A /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5FB9330257286F9004B006A /* MainInterface.storyboard */; };
+		C5FB9336257286F9004B006A /* ShareMenuExtensione.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C5FB932C257286F8004B006A /* ShareMenuExtensione.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		C5FB933E2572929F004B006A /* ReactShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FB933D2572929E004B006A /* ReactShareViewController.swift */; };
+		F118341CEDA1C5FBCC399D45 /* libPods-convertiTeglia-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A390BCE64140CF4DD18C0EC5 /* libPods-convertiTeglia-tvOS.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,13 +41,36 @@
 			remoteGlobalIDString = 2D02E47A1E0B4A5D006451C7;
 			remoteInfo = "convertiTeglia-tvOS";
 		};
+		C5FB9334257286F9004B006A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C5FB932B257286F8004B006A;
+			remoteInfo = ShareMenuExtensione;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C5FB933A257286FA004B006A /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				C5FB9336257286F9004B006A /* ShareMenuExtensione.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
 		00E356EE1AD99517003FC87E /* convertiTegliaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = convertiTegliaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* convertiTegliaTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = convertiTegliaTests.m; sourceTree = "<group>"; };
+		0ADD49BC57AE6BC41F397E99 /* Pods-ShareMenuExtensione.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShareMenuExtensione.release.xcconfig"; path = "Target Support Files/Pods-ShareMenuExtensione/Pods-ShareMenuExtensione.release.xcconfig"; sourceTree = "<group>"; };
+		0E91392EA76B426A70D77F9C /* libPods-convertiTeglia-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-convertiTeglia-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07F961A680F5B00A75B9A /* convertiTeglia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = convertiTeglia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = convertiTeglia/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = convertiTeglia/AppDelegate.m; sourceTree = "<group>"; };
@@ -64,25 +79,26 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = convertiTeglia/main.m; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* convertiTeglia-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "convertiTeglia-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* convertiTeglia-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "convertiTeglia-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		349E1CFCE3399C69EEE8FB83 /* libPods-ShareMenuExtensione.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ShareMenuExtensione.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		377F07B018447035FF33B8A5 /* Pods-convertiTeglia-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-convertiTeglia-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-convertiTeglia-tvOS/Pods-convertiTeglia-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
+		46F6AA06CDE89DF730C45F92 /* libPods-convertiTeglia-convertiTegliaTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-convertiTeglia-convertiTegliaTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		470C06628D83CE33546002BA /* Pods-convertiTeglia-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-convertiTeglia-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-convertiTeglia-tvOSTests/Pods-convertiTeglia-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		54E93AC6E409D13CE4EB38BE /* Pods-convertiTeglia-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-convertiTeglia-tvOS.release.xcconfig"; path = "Target Support Files/Pods-convertiTeglia-tvOS/Pods-convertiTeglia-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = convertiTeglia/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		8BCF63EB393D3CCD11604B40 /* Pods-convertiTeglia.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-convertiTeglia.debug.xcconfig"; path = "Target Support Files/Pods-convertiTeglia/Pods-convertiTeglia.debug.xcconfig"; sourceTree = "<group>"; };
+		8EA4B17FFAFE06F90384BDD9 /* Pods-convertiTeglia-convertiTegliaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-convertiTeglia-convertiTegliaTests.debug.xcconfig"; path = "Target Support Files/Pods-convertiTeglia-convertiTegliaTests/Pods-convertiTeglia-convertiTegliaTests.debug.xcconfig"; sourceTree = "<group>"; };
+		A390BCE64140CF4DD18C0EC5 /* libPods-convertiTeglia-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-convertiTeglia-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B30332795A1A7E17ADE37760 /* libPods-convertiTeglia.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-convertiTeglia.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B62406BBC09D00C5C0BC337E /* Pods-ShareMenuExtensione.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShareMenuExtensione.debug.xcconfig"; path = "Target Support Files/Pods-ShareMenuExtensione/Pods-ShareMenuExtensione.debug.xcconfig"; sourceTree = "<group>"; };
+		C5FB932C257286F8004B006A /* ShareMenuExtensione.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ShareMenuExtensione.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		C5FB9331257286F9004B006A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		C5FB9333257286F9004B006A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C5FB933D2572929E004B006A /* ReactShareViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReactShareViewController.swift; path = "../../node_modules/react-native-share-menu/ios/ReactShareViewController.swift"; sourceTree = "<group>"; };
+		C650BAB808E8AFF464A2CF55 /* Pods-convertiTeglia-convertiTegliaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-convertiTeglia-convertiTegliaTests.release.xcconfig"; path = "Target Support Files/Pods-convertiTeglia-convertiTegliaTests/Pods-convertiTeglia-convertiTegliaTests.release.xcconfig"; sourceTree = "<group>"; };
+		E21325F7087BB515B1DC2316 /* Pods-convertiTeglia.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-convertiTeglia.release.xcconfig"; path = "Target Support Files/Pods-convertiTeglia/Pods-convertiTeglia.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
-		B476D53B659949B98F43A924 /* AntDesign.ttf */ = {isa = PBXFileReference; name = "AntDesign.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		D19B3B9F19D4440AB570D211 /* Entypo.ttf */ = {isa = PBXFileReference; name = "Entypo.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		1AF02CD2ACB040C5BAACCD08 /* EvilIcons.ttf */ = {isa = PBXFileReference; name = "EvilIcons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		4D85388A706F49A1B77A7CD5 /* Feather.ttf */ = {isa = PBXFileReference; name = "Feather.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		714E236C6D814BAB84B1E3CE /* FontAwesome.ttf */ = {isa = PBXFileReference; name = "FontAwesome.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		CD243EB2239041E78ECD6173 /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; name = "FontAwesome5_Brands.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		8A82AABBC7D0441EB49ED147 /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; name = "FontAwesome5_Regular.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		D23D52254EB9423B9F3941B0 /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; name = "FontAwesome5_Solid.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		14ABF80DA1B9412387BDFB6F /* Fontisto.ttf */ = {isa = PBXFileReference; name = "Fontisto.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		8120FEDD8B0B4EAF9A23C53F /* Foundation.ttf */ = {isa = PBXFileReference; name = "Foundation.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		0DA4A0CFB0EC4BA99C2C0C29 /* Ionicons.ttf */ = {isa = PBXFileReference; name = "Ionicons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		C23DA56CAA8C4437B4B8C45B /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; name = "MaterialCommunityIcons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		68BF1DCE4A974A4282A6CD7E /* MaterialIcons.ttf */ = {isa = PBXFileReference; name = "MaterialIcons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		983019ACBDCB4E3099A750F9 /* Octicons.ttf */ = {isa = PBXFileReference; name = "Octicons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		2592A98E2646434B8B911C91 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; name = "SimpleLineIcons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		9E13E7CE223744DAAA1BB83D /* Zocial.ttf */ = {isa = PBXFileReference; name = "Zocial.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		F3025A934CB8BDC222A8725D /* Pods-convertiTeglia-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-convertiTeglia-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-convertiTeglia-tvOSTests/Pods-convertiTeglia-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +106,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA0D5BBCFC7F2D90DC7062DE /* libPods-convertiTeglia-convertiTegliaTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -97,6 +114,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D69DD447918F616EFEC06BF /* libPods-convertiTeglia.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -104,6 +122,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F118341CEDA1C5FBCC399D45 /* libPods-convertiTeglia-tvOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,6 +130,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				54647D4CC5797FD7131D8CEF /* libPods-convertiTeglia-tvOSTests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C5FB9329257286F8004B006A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				507175196317DAF78A431602 /* libPods-ShareMenuExtensione.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -153,8 +181,30 @@
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
+				B30332795A1A7E17ADE37760 /* libPods-convertiTeglia.a */,
+				46F6AA06CDE89DF730C45F92 /* libPods-convertiTeglia-convertiTegliaTests.a */,
+				A390BCE64140CF4DD18C0EC5 /* libPods-convertiTeglia-tvOS.a */,
+				0E91392EA76B426A70D77F9C /* libPods-convertiTeglia-tvOSTests.a */,
+				349E1CFCE3399C69EEE8FB83 /* libPods-ShareMenuExtensione.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		69613692FB1146C278E60EB5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8BCF63EB393D3CCD11604B40 /* Pods-convertiTeglia.debug.xcconfig */,
+				E21325F7087BB515B1DC2316 /* Pods-convertiTeglia.release.xcconfig */,
+				8EA4B17FFAFE06F90384BDD9 /* Pods-convertiTeglia-convertiTegliaTests.debug.xcconfig */,
+				C650BAB808E8AFF464A2CF55 /* Pods-convertiTeglia-convertiTegliaTests.release.xcconfig */,
+				377F07B018447035FF33B8A5 /* Pods-convertiTeglia-tvOS.debug.xcconfig */,
+				54E93AC6E409D13CE4EB38BE /* Pods-convertiTeglia-tvOS.release.xcconfig */,
+				F3025A934CB8BDC222A8725D /* Pods-convertiTeglia-tvOSTests.debug.xcconfig */,
+				470C06628D83CE33546002BA /* Pods-convertiTeglia-tvOSTests.release.xcconfig */,
+				B62406BBC09D00C5C0BC337E /* Pods-ShareMenuExtensione.debug.xcconfig */,
+				0ADD49BC57AE6BC41F397E99 /* Pods-ShareMenuExtensione.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
@@ -170,9 +220,11 @@
 				13B07FAE1A68108700A75B9A /* convertiTeglia */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* convertiTegliaTests */,
+				C5FB932D257286F9004B006A /* ShareMenuExtensione */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				E11CF7038D5F4D8FA22F0418 /* Resources */,
+				69613692FB1146C278E60EB5 /* Pods */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -186,33 +238,27 @@
 				00E356EE1AD99517003FC87E /* convertiTegliaTests.xctest */,
 				2D02E47B1E0B4A5D006451C7 /* convertiTeglia-tvOS.app */,
 				2D02E4901E0B4A5D006451C7 /* convertiTeglia-tvOSTests.xctest */,
+				C5FB932C257286F8004B006A /* ShareMenuExtensione.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		E11CF7038D5F4D8FA22F0418 /* Resources */ = {
-			isa = "PBXGroup";
+		C5FB932D257286F9004B006A /* ShareMenuExtensione */ = {
+			isa = PBXGroup;
 			children = (
-				B476D53B659949B98F43A924 /* AntDesign.ttf */,
-				D19B3B9F19D4440AB570D211 /* Entypo.ttf */,
-				1AF02CD2ACB040C5BAACCD08 /* EvilIcons.ttf */,
-				4D85388A706F49A1B77A7CD5 /* Feather.ttf */,
-				714E236C6D814BAB84B1E3CE /* FontAwesome.ttf */,
-				CD243EB2239041E78ECD6173 /* FontAwesome5_Brands.ttf */,
-				8A82AABBC7D0441EB49ED147 /* FontAwesome5_Regular.ttf */,
-				D23D52254EB9423B9F3941B0 /* FontAwesome5_Solid.ttf */,
-				14ABF80DA1B9412387BDFB6F /* Fontisto.ttf */,
-				8120FEDD8B0B4EAF9A23C53F /* Foundation.ttf */,
-				0DA4A0CFB0EC4BA99C2C0C29 /* Ionicons.ttf */,
-				C23DA56CAA8C4437B4B8C45B /* MaterialCommunityIcons.ttf */,
-				68BF1DCE4A974A4282A6CD7E /* MaterialIcons.ttf */,
-				983019ACBDCB4E3099A750F9 /* Octicons.ttf */,
-				2592A98E2646434B8B911C91 /* SimpleLineIcons.ttf */,
-				9E13E7CE223744DAAA1BB83D /* Zocial.ttf */,
+				C5FB933D2572929E004B006A /* ReactShareViewController.swift */,
+				C5FB9330257286F9004B006A /* MainInterface.storyboard */,
+				C5FB9333257286F9004B006A /* Info.plist */,
+			);
+			path = ShareMenuExtensione;
+			sourceTree = "<group>";
+		};
+		E11CF7038D5F4D8FA22F0418 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
 			);
 			name = Resources;
 			sourceTree = "<group>";
-			path = "";
 		};
 /* End PBXGroup section */
 
@@ -221,9 +267,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "convertiTegliaTests" */;
 			buildPhases = (
+				77DDCCE075E359CB16AEAA88 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
+				47EDE76A3C21727BB0F3D430 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -239,15 +287,19 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "convertiTeglia" */;
 			buildPhases = (
+				CAE9B56A89BBEEBE33D49114 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
+				8C7780C0830FF75B38E79308 /* [CP] Copy Pods Resources */,
+				C5FB933A257286FA004B006A /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				C5FB9335257286F9004B006A /* PBXTargetDependency */,
 			);
 			name = convertiTeglia;
 			productName = convertiTeglia;
@@ -258,6 +310,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "convertiTeglia-tvOS" */;
 			buildPhases = (
+				89A646D6202095D924104808 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F122414F3F0027D42C /* Start Packager */,
 				2D02E4771E0B4A5D006451C7 /* Sources */,
 				2D02E4781E0B4A5D006451C7 /* Frameworks */,
@@ -277,6 +330,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "convertiTeglia-tvOSTests" */;
 			buildPhases = (
+				F4FCCEF720A2B827D2EA6A67 /* [CP] Check Pods Manifest.lock */,
 				2D02E48C1E0B4A5D006451C7 /* Sources */,
 				2D02E48D1E0B4A5D006451C7 /* Frameworks */,
 				2D02E48E1E0B4A5D006451C7 /* Resources */,
@@ -291,20 +345,43 @@
 			productReference = 2D02E4901E0B4A5D006451C7 /* convertiTeglia-tvOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		C5FB932B257286F8004B006A /* ShareMenuExtensione */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C5FB9337257286FA004B006A /* Build configuration list for PBXNativeTarget "ShareMenuExtensione" */;
+			buildPhases = (
+				994B0ACBA2AAD5317CD41B85 /* [CP] Check Pods Manifest.lock */,
+				C5FB9328257286F8004B006A /* Sources */,
+				C5FB9329257286F8004B006A /* Frameworks */,
+				C5FB932A257286F8004B006A /* Resources */,
+				E319A2C19907ACC888FEF21C /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ShareMenuExtensione;
+			productName = ShareMenuExtensione;
+			productReference = C5FB932C257286F8004B006A /* ShareMenuExtensione.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 1000;
 				LastUpgradeCheck = 1130;
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
 						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = 6WNU3C7G3F;
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
+						DevelopmentTeam = 6WNU3C7G3F;
 						LastSwiftMigration = 1120;
+						ProvisioningStyle = Automatic;
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -314,6 +391,12 @@
 						CreatedOnToolsVersion = 8.2.1;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 2D02E47A1E0B4A5D006451C7;
+					};
+					C5FB932B257286F8004B006A = {
+						CreatedOnToolsVersion = 10.0;
+						DevelopmentTeam = 6WNU3C7G3F;
+						LastSwiftMigration = 1000;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -334,6 +417,7 @@
 				00E356ED1AD99517003FC87E /* convertiTegliaTests */,
 				2D02E47A1E0B4A5D006451C7 /* convertiTeglia-tvOS */,
 				2D02E48F1E0B4A5D006451C7 /* convertiTeglia-tvOSTests */,
+				C5FB932B257286F8004B006A /* ShareMenuExtensione */,
 			);
 		};
 /* End PBXProject section */
@@ -352,22 +436,6 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				1403FE07998548458192D059 /* AntDesign.ttf in Resources */,
-				45682F56BB1B492283725DBD /* Entypo.ttf in Resources */,
-				3D0C4F65E4C14E4E9C82ECA2 /* EvilIcons.ttf in Resources */,
-				E3D03525DCC94C2C90BAB562 /* Feather.ttf in Resources */,
-				4963D45FF9A245C39EA7EDE5 /* FontAwesome.ttf in Resources */,
-				A2449E462D104E87AB3CA333 /* FontAwesome5_Brands.ttf in Resources */,
-				270E4EF59D8C485688305A38 /* FontAwesome5_Regular.ttf in Resources */,
-				2038E394BFED4AD2AEE3A6F9 /* FontAwesome5_Solid.ttf in Resources */,
-				2B84D0AD75F447DBAD23178E /* Fontisto.ttf in Resources */,
-				009FE347069B495BB2E97AB4 /* Foundation.ttf in Resources */,
-				B1BAC66857CB45BD9DD6FCDD /* Ionicons.ttf in Resources */,
-				63FA7B1F885747B4A0989932 /* MaterialCommunityIcons.ttf in Resources */,
-				0EF5993ECF9847939C2A83D8 /* MaterialIcons.ttf in Resources */,
-				7D3A9E85894D4EE7B6289C70 /* Octicons.ttf in Resources */,
-				BA296181919B419183F2B725 /* SimpleLineIcons.ttf in Resources */,
-				FC24C95AE08E47969CA4F878 /* Zocial.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -383,6 +451,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C5FB932A257286F8004B006A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C5FB9332257286F9004B006A /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -416,6 +492,234 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
+		};
+		47EDE76A3C21727BB0F3D430 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-convertiTeglia-convertiTegliaTests/Pods-convertiTeglia-convertiTegliaTests-resources.sh",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Entypo.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Feather.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Foundation.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Octicons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Zocial.ttf",
+				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AntDesign.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Entypo.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/EvilIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Feather.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Brands.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Regular.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Solid.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Fontisto.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Foundation.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Ionicons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialCommunityIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Octicons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SimpleLineIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Zocial.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AccessibilityResources.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-convertiTeglia-convertiTegliaTests/Pods-convertiTeglia-convertiTegliaTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		77DDCCE075E359CB16AEAA88 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-convertiTeglia-convertiTegliaTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		89A646D6202095D924104808 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-convertiTeglia-tvOS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8C7780C0830FF75B38E79308 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-convertiTeglia/Pods-convertiTeglia-resources.sh",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Entypo.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Feather.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Foundation.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Octicons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Zocial.ttf",
+				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AntDesign.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Entypo.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/EvilIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Feather.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Brands.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Regular.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Solid.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Fontisto.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Foundation.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Ionicons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialCommunityIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Octicons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SimpleLineIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Zocial.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AccessibilityResources.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-convertiTeglia/Pods-convertiTeglia-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		994B0ACBA2AAD5317CD41B85 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ShareMenuExtensione-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CAE9B56A89BBEEBE33D49114 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-convertiTeglia-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E319A2C19907ACC888FEF21C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ShareMenuExtensione/Pods-ShareMenuExtensione-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AccessibilityResources.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ShareMenuExtensione/Pods-ShareMenuExtensione-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F4FCCEF720A2B827D2EA6A67 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-convertiTeglia-tvOSTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
 		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -492,6 +796,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C5FB9328257286F8004B006A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C5FB933E2572929F004B006A /* ReactShareViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -505,13 +817,31 @@
 			target = 2D02E47A1E0B4A5D006451C7 /* convertiTeglia-tvOS */;
 			targetProxy = 2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */;
 		};
+		C5FB9335257286F9004B006A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C5FB932B257286F8004B006A /* ShareMenuExtensione */;
+			targetProxy = C5FB9334257286F9004B006A /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		C5FB9330257286F9004B006A /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C5FB9331257286F9004B006A /* Base */,
+			);
+			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8EA4B17FFAFE06F90384BDD9 /* Pods-convertiTeglia-convertiTegliaTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 6WNU3C7G3F;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -532,9 +862,11 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C650BAB808E8AFF464A2CF55 /* Pods-convertiTeglia-convertiTegliaTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = 6WNU3C7G3F;
 				INFOPLIST_FILE = convertiTegliaTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -551,10 +883,15 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8BCF63EB393D3CCD11604B40 /* Pods-convertiTeglia.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6WNU3C7G3F;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = convertiTeglia/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -565,6 +902,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = convertiTeglia;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -573,10 +911,15 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E21325F7087BB515B1DC2316 /* Pods-convertiTeglia.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6WNU3C7G3F;
 				INFOPLIST_FILE = convertiTeglia/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -586,6 +929,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = convertiTeglia;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -593,6 +937,7 @@
 		};
 		2D02E4971E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 377F07B018447035FF33B8A5 /* Pods-convertiTeglia-tvOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -620,6 +965,7 @@
 		};
 		2D02E4981E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 54E93AC6E409D13CE4EB38BE /* Pods-convertiTeglia-tvOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -647,6 +993,7 @@
 		};
 		2D02E4991E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F3025A934CB8BDC222A8725D /* Pods-convertiTeglia-tvOSTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -673,6 +1020,7 @@
 		};
 		2D02E49A1E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 470C06628D83CE33546002BA /* Pods-convertiTeglia-tvOSTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -810,6 +1158,67 @@
 			};
 			name = Release;
 		};
+		C5FB9338257286FA004B006A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B62406BBC09D00C5C0BC337E /* Pods-ShareMenuExtensione.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 6WNU3C7G3F;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = ShareMenuExtensione/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.example.convertiTeglia.ShareMenuExtensione;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C5FB9339257286FA004B006A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0ADD49BC57AE6BC41F397E99 /* Pods-ShareMenuExtensione.release.xcconfig */;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 6WNU3C7G3F;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = ShareMenuExtensione/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.example.convertiTeglia.ShareMenuExtensione;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -854,6 +1263,15 @@
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,
 				83CBBA211A601CBA00E9B192 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C5FB9337257286FA004B006A /* Build configuration list for PBXNativeTarget "ShareMenuExtensione" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C5FB9338257286FA004B006A /* Debug */,
+				C5FB9339257286FA004B006A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

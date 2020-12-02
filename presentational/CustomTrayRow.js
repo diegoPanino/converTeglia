@@ -8,17 +8,27 @@ const styles = StyleSheet.create({
 		flexDirection:'row',
 	},
 	name:{
-		flex:2,
+		flex:3,
+		justifyContent:'center',
 	},
 	dim:{
-		flex:1,
+		flex:2,
+		justifyContent:'center',
 	},
 	servs:{
 		flex:1,
+		flexDirection:'row',
+		alignItems:'center',
+		justifyContent:'flex-end'
 	},
 	choice:{
 		flex:2,
+		flexDirection:'row',
+		justifyContent:'flex-end'
 	},
+	servIco:{
+		fontSize:15,
+	}
 })
 
 export default function CustomTrayRow({tray,onErase,onSelect}){
@@ -35,16 +45,20 @@ export default function CustomTrayRow({tray,onErase,onSelect}){
 	return (
 		<View>
 		<TouchableOpacity style={styles.rowContainer} onPress={()=>onSelect(key)}>
-			<Text style={styles.name}>{name}</Text>
-			<Text style={styles.dim}>{dim}</Text>
-			<Text style={styles.servs}>{servs}</Text>
-			{(selected && 
-				<Icon name='restaurant-outline'/>) || 
-				<TouchableOpacity style={styles.choice} onPress={()=>onSelect(key)}>
-				</TouchableOpacity>}
-			<TouchableOpacity style={styles.choice} onPress={()=>setShowDelModal(true)}>
-				<Icon name='trash-outline' />
-			</TouchableOpacity>
+			<View style={styles.name}><Text>{name}</Text></View>
+			<View style={styles.dim}><Text>{dim}cm</Text></View>
+			<View style={styles.servs}>
+				<Text>{servs}</Text>
+				<Icon style={styles.servIco} name='md-person' />
+			</View>
+			<View style={styles.choice}>
+				{(	selected && 
+					<Icon style={{marginRight:10}} name='restaurant-outline'/>)
+				}
+				<TouchableOpacity  onPress={()=>setShowDelModal(true)}>
+					<Icon name='trash-outline' />
+				</TouchableOpacity>
+			</View>
 		</TouchableOpacity>
 		<ModalMessage showModal={showDelModal}
 					  message='Sei sicura di eliminare la teglia?'

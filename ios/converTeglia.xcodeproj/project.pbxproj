@@ -7,23 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00E356F31AD99517003FC87E /* convertiTegliaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* convertiTegliaTests.m */; };
+		00E356F31AD99517003FC87E /* converTegliaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* converTegliaTests.m */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		2D69DD447918F616EFEC06BF /* libPods-convertiTeglia.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B30332795A1A7E17ADE37760 /* libPods-convertiTeglia.a */; };
-		2DCD954D1E0B4F2C00145EB5 /* convertiTegliaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* convertiTegliaTests.m */; };
-		507175196317DAF78A431602 /* libPods-ShareMenuExtensione.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 349E1CFCE3399C69EEE8FB83 /* libPods-ShareMenuExtensione.a */; };
-		54647D4CC5797FD7131D8CEF /* libPods-convertiTeglia-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E91392EA76B426A70D77F9C /* libPods-convertiTeglia-tvOSTests.a */; };
+		2DCD954D1E0B4F2C00145EB5 /* converTegliaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* converTegliaTests.m */; };
+		30E38A3051DBAAE1A68D2301 /* libPods-converTeglia-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0686F937412791BECD6F8269 /* libPods-converTeglia-tvOS.a */; };
+		4E86D6935881DA26A7EBFA35 /* libPods-converTeglia-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D7F8C7D235555E02700684F /* libPods-converTeglia-tvOSTests.a */; };
+		7C2FD6ECCF264D7E2B7CD512 /* libPods-converTeglia.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C56A82B67E6C5C2FA3B66BD7 /* libPods-converTeglia.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		AA0D5BBCFC7F2D90DC7062DE /* libPods-convertiTeglia-convertiTegliaTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46F6AA06CDE89DF730C45F92 /* libPods-convertiTeglia-convertiTegliaTests.a */; };
-		C5FB9332257286F9004B006A /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5FB9330257286F9004B006A /* MainInterface.storyboard */; };
-		C5FB9336257286F9004B006A /* ShareMenuExtensione.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C5FB932C257286F8004B006A /* ShareMenuExtensione.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		C5FB933E2572929F004B006A /* ReactShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FB933D2572929E004B006A /* ReactShareViewController.swift */; };
-		F118341CEDA1C5FBCC399D45 /* libPods-convertiTeglia-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A390BCE64140CF4DD18C0EC5 /* libPods-convertiTeglia-tvOS.a */; };
+		C5CA64F12576AC1D00AC77EF /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5CA64EF2576AC1D00AC77EF /* MainInterface.storyboard */; };
+		C5CA64F52576AC1F00AC77EF /* ShareExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C5CA64EB2576AC1A00AC77EF /* ShareExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		C5CA64FC2576AD3C00AC77EF /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CA64FB2576AD3C00AC77EF /* ShareViewController.swift */; };
+		D9966D5628048F47A7370FD2 /* libPods-ShareExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B3CA29E3CCDEE0A8F034D8BE /* libPods-ShareExtension.a */; };
+		FA237590F45FB51D2D1C6DD3 /* libPods-converTeglia-converTegliaTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E45FC224E6D51B3CA9316A9 /* libPods-converTeglia-converTegliaTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,32 +32,32 @@
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
-			remoteInfo = convertiTeglia;
+			remoteInfo = converTeglia;
 		};
 		2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 2D02E47A1E0B4A5D006451C7;
-			remoteInfo = "convertiTeglia-tvOS";
+			remoteInfo = "converTeglia-tvOS";
 		};
-		C5FB9334257286F9004B006A /* PBXContainerItemProxy */ = {
+		C5CA64F32576AC1F00AC77EF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = C5FB932B257286F8004B006A;
-			remoteInfo = ShareMenuExtensione;
+			remoteGlobalIDString = C5CA64EA2576AC1900AC77EF;
+			remoteInfo = ShareExtension;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		C5FB933A257286FA004B006A /* Embed App Extensions */ = {
+		C5CA64F92576AC1F00AC77EF /* Embed App Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				C5FB9336257286F9004B006A /* ShareMenuExtensione.appex in Embed App Extensions */,
+				C5CA64F52576AC1F00AC77EF /* ShareExtension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -66,39 +66,42 @@
 
 /* Begin PBXFileReference section */
 		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
-		00E356EE1AD99517003FC87E /* convertiTegliaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = convertiTegliaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		00E356EE1AD99517003FC87E /* converTegliaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = converTegliaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		00E356F21AD99517003FC87E /* convertiTegliaTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = convertiTegliaTests.m; sourceTree = "<group>"; };
-		0ADD49BC57AE6BC41F397E99 /* Pods-ShareMenuExtensione.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShareMenuExtensione.release.xcconfig"; path = "Target Support Files/Pods-ShareMenuExtensione/Pods-ShareMenuExtensione.release.xcconfig"; sourceTree = "<group>"; };
-		0E91392EA76B426A70D77F9C /* libPods-convertiTeglia-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-convertiTeglia-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		13B07F961A680F5B00A75B9A /* convertiTeglia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = convertiTeglia.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = convertiTeglia/AppDelegate.h; sourceTree = "<group>"; };
-		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = convertiTeglia/AppDelegate.m; sourceTree = "<group>"; };
-		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = convertiTeglia/Images.xcassets; sourceTree = "<group>"; };
-		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = convertiTeglia/Info.plist; sourceTree = "<group>"; };
-		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = convertiTeglia/main.m; sourceTree = "<group>"; };
-		2D02E47B1E0B4A5D006451C7 /* convertiTeglia-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "convertiTeglia-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2D02E4901E0B4A5D006451C7 /* convertiTeglia-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "convertiTeglia-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		349E1CFCE3399C69EEE8FB83 /* libPods-ShareMenuExtensione.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ShareMenuExtensione.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		377F07B018447035FF33B8A5 /* Pods-convertiTeglia-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-convertiTeglia-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-convertiTeglia-tvOS/Pods-convertiTeglia-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
-		46F6AA06CDE89DF730C45F92 /* libPods-convertiTeglia-convertiTegliaTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-convertiTeglia-convertiTegliaTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		470C06628D83CE33546002BA /* Pods-convertiTeglia-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-convertiTeglia-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-convertiTeglia-tvOSTests/Pods-convertiTeglia-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
-		54E93AC6E409D13CE4EB38BE /* Pods-convertiTeglia-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-convertiTeglia-tvOS.release.xcconfig"; path = "Target Support Files/Pods-convertiTeglia-tvOS/Pods-convertiTeglia-tvOS.release.xcconfig"; sourceTree = "<group>"; };
-		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = convertiTeglia/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		8BCF63EB393D3CCD11604B40 /* Pods-convertiTeglia.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-convertiTeglia.debug.xcconfig"; path = "Target Support Files/Pods-convertiTeglia/Pods-convertiTeglia.debug.xcconfig"; sourceTree = "<group>"; };
-		8EA4B17FFAFE06F90384BDD9 /* Pods-convertiTeglia-convertiTegliaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-convertiTeglia-convertiTegliaTests.debug.xcconfig"; path = "Target Support Files/Pods-convertiTeglia-convertiTegliaTests/Pods-convertiTeglia-convertiTegliaTests.debug.xcconfig"; sourceTree = "<group>"; };
-		A390BCE64140CF4DD18C0EC5 /* libPods-convertiTeglia-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-convertiTeglia-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B30332795A1A7E17ADE37760 /* libPods-convertiTeglia.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-convertiTeglia.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B62406BBC09D00C5C0BC337E /* Pods-ShareMenuExtensione.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShareMenuExtensione.debug.xcconfig"; path = "Target Support Files/Pods-ShareMenuExtensione/Pods-ShareMenuExtensione.debug.xcconfig"; sourceTree = "<group>"; };
-		C5FB932C257286F8004B006A /* ShareMenuExtensione.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ShareMenuExtensione.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		C5FB9331257286F9004B006A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
-		C5FB9333257286F9004B006A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C5FB933D2572929E004B006A /* ReactShareViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReactShareViewController.swift; path = "../../node_modules/react-native-share-menu/ios/ReactShareViewController.swift"; sourceTree = "<group>"; };
-		C650BAB808E8AFF464A2CF55 /* Pods-convertiTeglia-convertiTegliaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-convertiTeglia-convertiTegliaTests.release.xcconfig"; path = "Target Support Files/Pods-convertiTeglia-convertiTegliaTests/Pods-convertiTeglia-convertiTegliaTests.release.xcconfig"; sourceTree = "<group>"; };
-		E21325F7087BB515B1DC2316 /* Pods-convertiTeglia.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-convertiTeglia.release.xcconfig"; path = "Target Support Files/Pods-convertiTeglia/Pods-convertiTeglia.release.xcconfig"; sourceTree = "<group>"; };
+		00E356F21AD99517003FC87E /* converTegliaTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = converTegliaTests.m; sourceTree = "<group>"; };
+		0686F937412791BECD6F8269 /* libPods-converTeglia-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-converTeglia-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		09A9843FA8939BB8CDD8E77B /* Pods-converTeglia-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-converTeglia-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-converTeglia-tvOSTests/Pods-converTeglia-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		13B07F961A680F5B00A75B9A /* converTeglia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = converTeglia.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = converTeglia/AppDelegate.h; sourceTree = "<group>"; };
+		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = converTeglia/AppDelegate.m; sourceTree = "<group>"; };
+		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = converTeglia/Images.xcassets; sourceTree = "<group>"; };
+		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = converTeglia/Info.plist; sourceTree = "<group>"; };
+		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = converTeglia/main.m; sourceTree = "<group>"; };
+		2D02E47B1E0B4A5D006451C7 /* converTeglia-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "converTeglia-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D02E4901E0B4A5D006451C7 /* converTeglia-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "converTeglia-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3DA7045ABD672DFCEE3FAD91 /* Pods-converTeglia.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-converTeglia.release.xcconfig"; path = "Target Support Files/Pods-converTeglia/Pods-converTeglia.release.xcconfig"; sourceTree = "<group>"; };
+		54CFFA6AB61A4D93663D3C27 /* Pods-converTeglia.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-converTeglia.debug.xcconfig"; path = "Target Support Files/Pods-converTeglia/Pods-converTeglia.debug.xcconfig"; sourceTree = "<group>"; };
+		7039F0FB5F6D75560A05E440 /* Pods-converTeglia-converTegliaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-converTeglia-converTegliaTests.release.xcconfig"; path = "Target Support Files/Pods-converTeglia-converTegliaTests/Pods-converTeglia-converTegliaTests.release.xcconfig"; sourceTree = "<group>"; };
+		7B42CBFF33DC924AC200E844 /* Pods-converTeglia-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-converTeglia-tvOS.release.xcconfig"; path = "Target Support Files/Pods-converTeglia-tvOS/Pods-converTeglia-tvOS.release.xcconfig"; sourceTree = "<group>"; };
+		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = converTeglia/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		891A81F525E708232F543C11 /* Pods-converTeglia-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-converTeglia-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-converTeglia-tvOSTests/Pods-converTeglia-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		8DF49D05982E956ED5AC3B53 /* Pods-converTeglia-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-converTeglia-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-converTeglia-tvOS/Pods-converTeglia-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
+		9D7F8C7D235555E02700684F /* libPods-converTeglia-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-converTeglia-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9E45FC224E6D51B3CA9316A9 /* libPods-converTeglia-converTegliaTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-converTeglia-converTegliaTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B3CA29E3CCDEE0A8F034D8BE /* libPods-ShareExtension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ShareExtension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C56A82B67E6C5C2FA3B66BD7 /* libPods-converTeglia.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-converTeglia.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C5CA64EB2576AC1A00AC77EF /* ShareExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ShareExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		C5CA64F02576AC1D00AC77EF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		C5CA64F22576AC1F00AC77EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C5CA64FA2576AD3B00AC77EF /* ShareExtension-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ShareExtension-Bridging-Header.h"; sourceTree = "<group>"; };
+		C5CA64FB2576AD3C00AC77EF /* ShareViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShareViewController.swift; path = "../../node_modules/react-native-share-menu/ios/ShareViewController.swift"; sourceTree = "<group>"; };
+		C5CA64FD2576AE8400AC77EF /* converTeglia.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = converTeglia.entitlements; path = converTeglia/converTeglia.entitlements; sourceTree = "<group>"; };
+		C5CA64FE2576AEAE00AC77EF /* ShareExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ShareExtension.entitlements; sourceTree = "<group>"; };
+		C6AF0E46B908A6672CA8DA00 /* Pods-ShareExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShareExtension.debug.xcconfig"; path = "Target Support Files/Pods-ShareExtension/Pods-ShareExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
-		F3025A934CB8BDC222A8725D /* Pods-convertiTeglia-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-convertiTeglia-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-convertiTeglia-tvOSTests/Pods-convertiTeglia-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		F4F3A0D1F9B6D0ABB1E57906 /* Pods-ShareExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShareExtension.release.xcconfig"; path = "Target Support Files/Pods-ShareExtension/Pods-ShareExtension.release.xcconfig"; sourceTree = "<group>"; };
+		F9AAC0923C0181E8968EE188 /* Pods-converTeglia-converTegliaTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-converTeglia-converTegliaTests.debug.xcconfig"; path = "Target Support Files/Pods-converTeglia-converTegliaTests/Pods-converTeglia-converTegliaTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,7 +109,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA0D5BBCFC7F2D90DC7062DE /* libPods-convertiTeglia-convertiTegliaTests.a in Frameworks */,
+				FA237590F45FB51D2D1C6DD3 /* libPods-converTeglia-converTegliaTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -114,7 +117,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2D69DD447918F616EFEC06BF /* libPods-convertiTeglia.a in Frameworks */,
+				7C2FD6ECCF264D7E2B7CD512 /* libPods-converTeglia.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -122,7 +125,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F118341CEDA1C5FBCC399D45 /* libPods-convertiTeglia-tvOS.a in Frameworks */,
+				30E38A3051DBAAE1A68D2301 /* libPods-converTeglia-tvOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -130,28 +133,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				54647D4CC5797FD7131D8CEF /* libPods-convertiTeglia-tvOSTests.a in Frameworks */,
+				4E86D6935881DA26A7EBFA35 /* libPods-converTeglia-tvOSTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C5FB9329257286F8004B006A /* Frameworks */ = {
+		C5CA64E82576AC1900AC77EF /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				507175196317DAF78A431602 /* libPods-ShareMenuExtensione.a in Frameworks */,
+				D9966D5628048F47A7370FD2 /* libPods-ShareExtension.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		00E356EF1AD99517003FC87E /* convertiTegliaTests */ = {
+		00E356EF1AD99517003FC87E /* converTegliaTests */ = {
 			isa = PBXGroup;
 			children = (
-				00E356F21AD99517003FC87E /* convertiTegliaTests.m */,
+				00E356F21AD99517003FC87E /* converTegliaTests.m */,
 				00E356F01AD99517003FC87E /* Supporting Files */,
 			);
-			path = convertiTegliaTests;
+			path = converTegliaTests;
 			sourceTree = "<group>";
 		};
 		00E356F01AD99517003FC87E /* Supporting Files */ = {
@@ -162,9 +165,10 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		13B07FAE1A68108700A75B9A /* convertiTeglia */ = {
+		13B07FAE1A68108700A75B9A /* converTeglia */ = {
 			isa = PBXGroup;
 			children = (
+				C5CA64FD2576AE8400AC77EF /* converTeglia.entitlements */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -173,7 +177,7 @@
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
-			name = convertiTeglia;
+			name = converTeglia;
 			sourceTree = "<group>";
 		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
@@ -181,28 +185,28 @@
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
-				B30332795A1A7E17ADE37760 /* libPods-convertiTeglia.a */,
-				46F6AA06CDE89DF730C45F92 /* libPods-convertiTeglia-convertiTegliaTests.a */,
-				A390BCE64140CF4DD18C0EC5 /* libPods-convertiTeglia-tvOS.a */,
-				0E91392EA76B426A70D77F9C /* libPods-convertiTeglia-tvOSTests.a */,
-				349E1CFCE3399C69EEE8FB83 /* libPods-ShareMenuExtensione.a */,
+				C56A82B67E6C5C2FA3B66BD7 /* libPods-converTeglia.a */,
+				9E45FC224E6D51B3CA9316A9 /* libPods-converTeglia-converTegliaTests.a */,
+				0686F937412791BECD6F8269 /* libPods-converTeglia-tvOS.a */,
+				9D7F8C7D235555E02700684F /* libPods-converTeglia-tvOSTests.a */,
+				B3CA29E3CCDEE0A8F034D8BE /* libPods-ShareExtension.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		69613692FB1146C278E60EB5 /* Pods */ = {
+		4A9465C1D957D8B98781659C /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				8BCF63EB393D3CCD11604B40 /* Pods-convertiTeglia.debug.xcconfig */,
-				E21325F7087BB515B1DC2316 /* Pods-convertiTeglia.release.xcconfig */,
-				8EA4B17FFAFE06F90384BDD9 /* Pods-convertiTeglia-convertiTegliaTests.debug.xcconfig */,
-				C650BAB808E8AFF464A2CF55 /* Pods-convertiTeglia-convertiTegliaTests.release.xcconfig */,
-				377F07B018447035FF33B8A5 /* Pods-convertiTeglia-tvOS.debug.xcconfig */,
-				54E93AC6E409D13CE4EB38BE /* Pods-convertiTeglia-tvOS.release.xcconfig */,
-				F3025A934CB8BDC222A8725D /* Pods-convertiTeglia-tvOSTests.debug.xcconfig */,
-				470C06628D83CE33546002BA /* Pods-convertiTeglia-tvOSTests.release.xcconfig */,
-				B62406BBC09D00C5C0BC337E /* Pods-ShareMenuExtensione.debug.xcconfig */,
-				0ADD49BC57AE6BC41F397E99 /* Pods-ShareMenuExtensione.release.xcconfig */,
+				54CFFA6AB61A4D93663D3C27 /* Pods-converTeglia.debug.xcconfig */,
+				3DA7045ABD672DFCEE3FAD91 /* Pods-converTeglia.release.xcconfig */,
+				F9AAC0923C0181E8968EE188 /* Pods-converTeglia-converTegliaTests.debug.xcconfig */,
+				7039F0FB5F6D75560A05E440 /* Pods-converTeglia-converTegliaTests.release.xcconfig */,
+				8DF49D05982E956ED5AC3B53 /* Pods-converTeglia-tvOS.debug.xcconfig */,
+				7B42CBFF33DC924AC200E844 /* Pods-converTeglia-tvOS.release.xcconfig */,
+				891A81F525E708232F543C11 /* Pods-converTeglia-tvOSTests.debug.xcconfig */,
+				09A9843FA8939BB8CDD8E77B /* Pods-converTeglia-tvOSTests.release.xcconfig */,
+				C6AF0E46B908A6672CA8DA00 /* Pods-ShareExtension.debug.xcconfig */,
+				F4F3A0D1F9B6D0ABB1E57906 /* Pods-ShareExtension.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -217,14 +221,13 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				13B07FAE1A68108700A75B9A /* convertiTeglia */,
+				13B07FAE1A68108700A75B9A /* converTeglia */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
-				00E356EF1AD99517003FC87E /* convertiTegliaTests */,
-				C5FB932D257286F9004B006A /* ShareMenuExtensione */,
+				00E356EF1AD99517003FC87E /* converTegliaTests */,
+				C5CA64EC2576AC1A00AC77EF /* ShareExtension */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
-				E11CF7038D5F4D8FA22F0418 /* Resources */,
-				69613692FB1146C278E60EB5 /* Pods */,
+				4A9465C1D957D8B98781659C /* Pods */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -234,83 +237,78 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* convertiTeglia.app */,
-				00E356EE1AD99517003FC87E /* convertiTegliaTests.xctest */,
-				2D02E47B1E0B4A5D006451C7 /* convertiTeglia-tvOS.app */,
-				2D02E4901E0B4A5D006451C7 /* convertiTeglia-tvOSTests.xctest */,
-				C5FB932C257286F8004B006A /* ShareMenuExtensione.appex */,
+				13B07F961A680F5B00A75B9A /* converTeglia.app */,
+				00E356EE1AD99517003FC87E /* converTegliaTests.xctest */,
+				2D02E47B1E0B4A5D006451C7 /* converTeglia-tvOS.app */,
+				2D02E4901E0B4A5D006451C7 /* converTeglia-tvOSTests.xctest */,
+				C5CA64EB2576AC1A00AC77EF /* ShareExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		C5FB932D257286F9004B006A /* ShareMenuExtensione */ = {
+		C5CA64EC2576AC1A00AC77EF /* ShareExtension */ = {
 			isa = PBXGroup;
 			children = (
-				C5FB933D2572929E004B006A /* ReactShareViewController.swift */,
-				C5FB9330257286F9004B006A /* MainInterface.storyboard */,
-				C5FB9333257286F9004B006A /* Info.plist */,
+				C5CA64FE2576AEAE00AC77EF /* ShareExtension.entitlements */,
+				C5CA64FB2576AD3C00AC77EF /* ShareViewController.swift */,
+				C5CA64EF2576AC1D00AC77EF /* MainInterface.storyboard */,
+				C5CA64F22576AC1F00AC77EF /* Info.plist */,
+				C5CA64FA2576AD3B00AC77EF /* ShareExtension-Bridging-Header.h */,
 			);
-			path = ShareMenuExtensione;
-			sourceTree = "<group>";
-		};
-		E11CF7038D5F4D8FA22F0418 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Resources;
+			path = ShareExtension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		00E356ED1AD99517003FC87E /* convertiTegliaTests */ = {
+		00E356ED1AD99517003FC87E /* converTegliaTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "convertiTegliaTests" */;
+			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "converTegliaTests" */;
 			buildPhases = (
-				77DDCCE075E359CB16AEAA88 /* [CP] Check Pods Manifest.lock */,
+				36E474F57CE870FA5098D382 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				47EDE76A3C21727BB0F3D430 /* [CP] Copy Pods Resources */,
+				702B2980D2D89EC6D403B8D4 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				00E356F51AD99517003FC87E /* PBXTargetDependency */,
 			);
-			name = convertiTegliaTests;
-			productName = convertiTegliaTests;
-			productReference = 00E356EE1AD99517003FC87E /* convertiTegliaTests.xctest */;
+			name = converTegliaTests;
+			productName = converTegliaTests;
+			productReference = 00E356EE1AD99517003FC87E /* converTegliaTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		13B07F861A680F5B00A75B9A /* convertiTeglia */ = {
+		13B07F861A680F5B00A75B9A /* converTeglia */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "convertiTeglia" */;
+			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "converTeglia" */;
 			buildPhases = (
-				CAE9B56A89BBEEBE33D49114 /* [CP] Check Pods Manifest.lock */,
+				795EC996DBC7997A6F77FCB2 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				8C7780C0830FF75B38E79308 /* [CP] Copy Pods Resources */,
-				C5FB933A257286FA004B006A /* Embed App Extensions */,
+				D768599BFE913109D43FCF89 /* [CP] Copy Pods Resources */,
+				C5CA64F92576AC1F00AC77EF /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				C5FB9335257286F9004B006A /* PBXTargetDependency */,
+				C5CA64F42576AC1F00AC77EF /* PBXTargetDependency */,
 			);
-			name = convertiTeglia;
-			productName = convertiTeglia;
-			productReference = 13B07F961A680F5B00A75B9A /* convertiTeglia.app */;
+			name = converTeglia;
+			productName = converTeglia;
+			productReference = 13B07F961A680F5B00A75B9A /* converTeglia.app */;
 			productType = "com.apple.product-type.application";
 		};
-		2D02E47A1E0B4A5D006451C7 /* convertiTeglia-tvOS */ = {
+		2D02E47A1E0B4A5D006451C7 /* converTeglia-tvOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "convertiTeglia-tvOS" */;
+			buildConfigurationList = 2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "converTeglia-tvOS" */;
 			buildPhases = (
-				89A646D6202095D924104808 /* [CP] Check Pods Manifest.lock */,
+				40EAF9EF208C4A4CDD560426 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F122414F3F0027D42C /* Start Packager */,
 				2D02E4771E0B4A5D006451C7 /* Sources */,
 				2D02E4781E0B4A5D006451C7 /* Frameworks */,
@@ -321,16 +319,16 @@
 			);
 			dependencies = (
 			);
-			name = "convertiTeglia-tvOS";
-			productName = "convertiTeglia-tvOS";
-			productReference = 2D02E47B1E0B4A5D006451C7 /* convertiTeglia-tvOS.app */;
+			name = "converTeglia-tvOS";
+			productName = "converTeglia-tvOS";
+			productReference = 2D02E47B1E0B4A5D006451C7 /* converTeglia-tvOS.app */;
 			productType = "com.apple.product-type.application";
 		};
-		2D02E48F1E0B4A5D006451C7 /* convertiTeglia-tvOSTests */ = {
+		2D02E48F1E0B4A5D006451C7 /* converTeglia-tvOSTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "convertiTeglia-tvOSTests" */;
+			buildConfigurationList = 2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "converTeglia-tvOSTests" */;
 			buildPhases = (
-				F4FCCEF720A2B827D2EA6A67 /* [CP] Check Pods Manifest.lock */,
+				00DAB593E56296DD9AA6C3A0 /* [CP] Check Pods Manifest.lock */,
 				2D02E48C1E0B4A5D006451C7 /* Sources */,
 				2D02E48D1E0B4A5D006451C7 /* Frameworks */,
 				2D02E48E1E0B4A5D006451C7 /* Resources */,
@@ -340,28 +338,28 @@
 			dependencies = (
 				2D02E4921E0B4A5D006451C7 /* PBXTargetDependency */,
 			);
-			name = "convertiTeglia-tvOSTests";
-			productName = "convertiTeglia-tvOSTests";
-			productReference = 2D02E4901E0B4A5D006451C7 /* convertiTeglia-tvOSTests.xctest */;
+			name = "converTeglia-tvOSTests";
+			productName = "converTeglia-tvOSTests";
+			productReference = 2D02E4901E0B4A5D006451C7 /* converTeglia-tvOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		C5FB932B257286F8004B006A /* ShareMenuExtensione */ = {
+		C5CA64EA2576AC1900AC77EF /* ShareExtension */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C5FB9337257286FA004B006A /* Build configuration list for PBXNativeTarget "ShareMenuExtensione" */;
+			buildConfigurationList = C5CA64F82576AC1F00AC77EF /* Build configuration list for PBXNativeTarget "ShareExtension" */;
 			buildPhases = (
-				994B0ACBA2AAD5317CD41B85 /* [CP] Check Pods Manifest.lock */,
-				C5FB9328257286F8004B006A /* Sources */,
-				C5FB9329257286F8004B006A /* Frameworks */,
-				C5FB932A257286F8004B006A /* Resources */,
-				E319A2C19907ACC888FEF21C /* [CP] Copy Pods Resources */,
+				78F7AC5FD54A4601490042CB /* [CP] Check Pods Manifest.lock */,
+				C5CA64E72576AC1900AC77EF /* Sources */,
+				C5CA64E82576AC1900AC77EF /* Frameworks */,
+				C5CA64E92576AC1900AC77EF /* Resources */,
+				204F9A0DF4FED17FA6F12534 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = ShareMenuExtensione;
-			productName = ShareMenuExtensione;
-			productReference = C5FB932C257286F8004B006A /* ShareMenuExtensione.appex */;
+			name = ShareExtension;
+			productName = ShareExtension;
+			productReference = C5CA64EB2576AC1A00AC77EF /* ShareExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
@@ -375,13 +373,16 @@
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
 						CreatedOnToolsVersion = 6.2;
-						DevelopmentTeam = 6WNU3C7G3F;
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = 6WNU3C7G3F;
 						LastSwiftMigration = 1120;
-						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -392,15 +393,20 @@
 						ProvisioningStyle = Automatic;
 						TestTargetID = 2D02E47A1E0B4A5D006451C7;
 					};
-					C5FB932B257286F8004B006A = {
+					C5CA64EA2576AC1900AC77EF = {
 						CreatedOnToolsVersion = 10.0;
 						DevelopmentTeam = 6WNU3C7G3F;
 						LastSwiftMigration = 1000;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
-			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "convertiTeglia" */;
+			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "converTeglia" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -413,11 +419,11 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				13B07F861A680F5B00A75B9A /* convertiTeglia */,
-				00E356ED1AD99517003FC87E /* convertiTegliaTests */,
-				2D02E47A1E0B4A5D006451C7 /* convertiTeglia-tvOS */,
-				2D02E48F1E0B4A5D006451C7 /* convertiTeglia-tvOSTests */,
-				C5FB932B257286F8004B006A /* ShareMenuExtensione */,
+				13B07F861A680F5B00A75B9A /* converTeglia */,
+				00E356ED1AD99517003FC87E /* converTegliaTests */,
+				2D02E47A1E0B4A5D006451C7 /* converTeglia-tvOS */,
+				2D02E48F1E0B4A5D006451C7 /* converTeglia-tvOSTests */,
+				C5CA64EA2576AC1900AC77EF /* ShareExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -454,17 +460,39 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C5FB932A257286F8004B006A /* Resources */ = {
+		C5CA64E92576AC1900AC77EF /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C5FB9332257286F9004B006A /* MainInterface.storyboard in Resources */,
+				C5CA64F12576AC1D00AC77EF /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		00DAB593E56296DD9AA6C3A0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-converTeglia-tvOSTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -478,6 +506,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
+		};
+		204F9A0DF4FED17FA6F12534 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ShareExtension/Pods-ShareExtension-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AccessibilityResources.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ShareExtension/Pods-ShareExtension-resources.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 		2D02E4CB1E0B4B27006451C7 /* Bundle React Native Code And Images */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -493,13 +539,57 @@
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
 		};
-		47EDE76A3C21727BB0F3D430 /* [CP] Copy Pods Resources */ = {
+		36E474F57CE870FA5098D382 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-converTeglia-converTegliaTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		40EAF9EF208C4A4CDD560426 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-converTeglia-tvOS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		702B2980D2D89EC6D403B8D4 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-convertiTeglia-convertiTegliaTests/Pods-convertiTeglia-convertiTegliaTests-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-converTeglia-converTegliaTests/Pods-converTeglia-converTegliaTests-resources.sh",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Entypo.ttf",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf",
@@ -540,10 +630,10 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-convertiTeglia-convertiTegliaTests/Pods-convertiTeglia-convertiTegliaTests-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-converTeglia-converTegliaTests/Pods-converTeglia-converTegliaTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		77DDCCE075E359CB16AEAA88 /* [CP] Check Pods Manifest.lock */ = {
+		78F7AC5FD54A4601490042CB /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -558,14 +648,14 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-convertiTeglia-convertiTegliaTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-ShareExtension-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		89A646D6202095D924104808 /* [CP] Check Pods Manifest.lock */ = {
+		795EC996DBC7997A6F77FCB2 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -580,20 +670,20 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-convertiTeglia-tvOS-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-converTeglia-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8C7780C0830FF75B38E79308 /* [CP] Copy Pods Resources */ = {
+		D768599BFE913109D43FCF89 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-convertiTeglia/Pods-convertiTeglia-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-converTeglia/Pods-converTeglia-resources.sh",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Entypo.ttf",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf",
@@ -634,91 +724,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-convertiTeglia/Pods-convertiTeglia-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		994B0ACBA2AAD5317CD41B85 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-ShareMenuExtensione-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		CAE9B56A89BBEEBE33D49114 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-convertiTeglia-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E319A2C19907ACC888FEF21C /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ShareMenuExtensione/Pods-ShareMenuExtensione-resources.sh",
-				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AccessibilityResources.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ShareMenuExtensione/Pods-ShareMenuExtensione-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F4FCCEF720A2B827D2EA6A67 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-convertiTeglia-tvOSTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-converTeglia/Pods-converTeglia-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {
@@ -766,7 +772,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00E356F31AD99517003FC87E /* convertiTegliaTests.m in Sources */,
+				00E356F31AD99517003FC87E /* converTegliaTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -792,15 +798,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2DCD954D1E0B4F2C00145EB5 /* convertiTegliaTests.m in Sources */,
+				2DCD954D1E0B4F2C00145EB5 /* converTegliaTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C5FB9328257286F8004B006A /* Sources */ = {
+		C5CA64E72576AC1900AC77EF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C5FB933E2572929F004B006A /* ReactShareViewController.swift in Sources */,
+				C5CA64FC2576AD3C00AC77EF /* ShareViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -809,26 +815,26 @@
 /* Begin PBXTargetDependency section */
 		00E356F51AD99517003FC87E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 13B07F861A680F5B00A75B9A /* convertiTeglia */;
+			target = 13B07F861A680F5B00A75B9A /* converTeglia */;
 			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
 		};
 		2D02E4921E0B4A5D006451C7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 2D02E47A1E0B4A5D006451C7 /* convertiTeglia-tvOS */;
+			target = 2D02E47A1E0B4A5D006451C7 /* converTeglia-tvOS */;
 			targetProxy = 2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */;
 		};
-		C5FB9335257286F9004B006A /* PBXTargetDependency */ = {
+		C5CA64F42576AC1F00AC77EF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = C5FB932B257286F8004B006A /* ShareMenuExtensione */;
-			targetProxy = C5FB9334257286F9004B006A /* PBXContainerItemProxy */;
+			target = C5CA64EA2576AC1900AC77EF /* ShareExtension */;
+			targetProxy = C5CA64F32576AC1F00AC77EF /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		C5FB9330257286F9004B006A /* MainInterface.storyboard */ = {
+		C5CA64EF2576AC1D00AC77EF /* MainInterface.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				C5FB9331257286F9004B006A /* Base */,
+				C5CA64F02576AC1D00AC77EF /* Base */,
 			);
 			name = MainInterface.storyboard;
 			sourceTree = "<group>";
@@ -838,15 +844,14 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8EA4B17FFAFE06F90384BDD9 /* Pods-convertiTeglia-convertiTegliaTests.debug.xcconfig */;
+			baseConfigurationReference = F9AAC0923C0181E8968EE188 /* Pods-converTeglia-converTegliaTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = 6WNU3C7G3F;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = convertiTegliaTests/Info.plist;
+				INFOPLIST_FILE = converTegliaTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -856,18 +861,17 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/convertiTeglia.app/convertiTeglia";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/converTeglia.app/converTeglia";
 			};
 			name = Debug;
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C650BAB808E8AFF464A2CF55 /* Pods-convertiTeglia-convertiTegliaTests.release.xcconfig */;
+			baseConfigurationReference = 7039F0FB5F6D75560A05E440 /* Pods-converTeglia-converTegliaTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
-				DEVELOPMENT_TEAM = 6WNU3C7G3F;
-				INFOPLIST_FILE = convertiTegliaTests/Info.plist;
+				INFOPLIST_FILE = converTegliaTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -877,23 +881,23 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/convertiTeglia.app/convertiTeglia";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/converTeglia.app/converTeglia";
 			};
 			name = Release;
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8BCF63EB393D3CCD11604B40 /* Pods-convertiTeglia.debug.xcconfig */;
+			baseConfigurationReference = 54CFFA6AB61A4D93663D3C27 /* Pods-converTeglia.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = converTeglia/converTeglia.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6WNU3C7G3F;
 				ENABLE_BITCODE = NO;
-				INFOPLIST_FILE = convertiTeglia/Info.plist;
+				INFOPLIST_FILE = converTeglia/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -901,8 +905,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = convertiTeglia;
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PRODUCT_NAME = converTeglia;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -911,16 +914,16 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E21325F7087BB515B1DC2316 /* Pods-convertiTeglia.release.xcconfig */;
+			baseConfigurationReference = 3DA7045ABD672DFCEE3FAD91 /* Pods-converTeglia.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = converTeglia/converTeglia.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6WNU3C7G3F;
-				INFOPLIST_FILE = convertiTeglia/Info.plist;
+				INFOPLIST_FILE = converTeglia/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -928,8 +931,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = convertiTeglia;
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PRODUCT_NAME = converTeglia;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -937,7 +939,7 @@
 		};
 		2D02E4971E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 377F07B018447035FF33B8A5 /* Pods-convertiTeglia-tvOS.debug.xcconfig */;
+			baseConfigurationReference = 8DF49D05982E956ED5AC3B53 /* Pods-converTeglia-tvOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -948,14 +950,14 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "convertiTeglia-tvOS/Info.plist";
+				INFOPLIST_FILE = "converTeglia-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.convertiTeglia-tvOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.converTeglia-tvOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
@@ -965,7 +967,7 @@
 		};
 		2D02E4981E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 54E93AC6E409D13CE4EB38BE /* Pods-convertiTeglia-tvOS.release.xcconfig */;
+			baseConfigurationReference = 7B42CBFF33DC924AC200E844 /* Pods-converTeglia-tvOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -976,14 +978,14 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "convertiTeglia-tvOS/Info.plist";
+				INFOPLIST_FILE = "converTeglia-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.convertiTeglia-tvOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.converTeglia-tvOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
@@ -993,7 +995,7 @@
 		};
 		2D02E4991E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F3025A934CB8BDC222A8725D /* Pods-convertiTeglia-tvOSTests.debug.xcconfig */;
+			baseConfigurationReference = 891A81F525E708232F543C11 /* Pods-converTeglia-tvOSTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1003,24 +1005,24 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "convertiTeglia-tvOSTests/Info.plist";
+				INFOPLIST_FILE = "converTeglia-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.convertiTeglia-tvOSTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.converTeglia-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/convertiTeglia-tvOS.app/convertiTeglia-tvOS";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/converTeglia-tvOS.app/converTeglia-tvOS";
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 			};
 			name = Debug;
 		};
 		2D02E49A1E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 470C06628D83CE33546002BA /* Pods-convertiTeglia-tvOSTests.release.xcconfig */;
+			baseConfigurationReference = 09A9843FA8939BB8CDD8E77B /* Pods-converTeglia-tvOSTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1030,17 +1032,17 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "convertiTeglia-tvOSTests/Info.plist";
+				INFOPLIST_FILE = "converTeglia-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.convertiTeglia-tvOSTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.converTeglia-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/convertiTeglia-tvOS.app/convertiTeglia-tvOS";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/converTeglia-tvOS.app/converTeglia-tvOS";
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 			};
 			name = Release;
@@ -1158,9 +1160,9 @@
 			};
 			name = Release;
 		};
-		C5FB9338257286FA004B006A /* Debug */ = {
+		C5CA64F62576AC1F00AC77EF /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B62406BBC09D00C5C0BC337E /* Pods-ShareMenuExtensione.debug.xcconfig */;
+			baseConfigurationReference = C6AF0E46B908A6672CA8DA00 /* Pods-ShareExtension.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -1169,29 +1171,31 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = ShareExtension/ShareExtension.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 6WNU3C7G3F;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = ShareMenuExtensione/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				INFOPLIST_FILE = ShareExtension/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.example.convertiTeglia.ShareMenuExtensione;
+				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.example.converTeglia.ShareExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_BRIDGING_HEADER = "ShareExtension/ShareExtension-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		C5FB9339257286FA004B006A /* Release */ = {
+		C5CA64F72576AC1F00AC77EF /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0ADD49BC57AE6BC41F397E99 /* Pods-ShareMenuExtensione.release.xcconfig */;
+			baseConfigurationReference = F4F3A0D1F9B6D0ABB1E57906 /* Pods-ShareExtension.release.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -1200,19 +1204,21 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = ShareExtension/ShareExtension.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 6WNU3C7G3F;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = ShareMenuExtensione/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				INFOPLIST_FILE = ShareExtension/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.example.convertiTeglia.ShareMenuExtensione;
+				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.example.converTeglia.ShareExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "ShareExtension/ShareExtension-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1222,7 +1228,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "convertiTegliaTests" */ = {
+		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "converTegliaTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00E356F61AD99517003FC87E /* Debug */,
@@ -1231,7 +1237,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "convertiTeglia" */ = {
+		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "converTeglia" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				13B07F941A680F5B00A75B9A /* Debug */,
@@ -1240,7 +1246,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "convertiTeglia-tvOS" */ = {
+		2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "converTeglia-tvOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2D02E4971E0B4A5E006451C7 /* Debug */,
@@ -1249,7 +1255,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "convertiTeglia-tvOSTests" */ = {
+		2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "converTeglia-tvOSTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2D02E4991E0B4A5E006451C7 /* Debug */,
@@ -1258,7 +1264,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "convertiTeglia" */ = {
+		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "converTeglia" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,
@@ -1267,11 +1273,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C5FB9337257286FA004B006A /* Build configuration list for PBXNativeTarget "ShareMenuExtensione" */ = {
+		C5CA64F82576AC1F00AC77EF /* Build configuration list for PBXNativeTarget "ShareExtension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C5FB9338257286FA004B006A /* Debug */,
-				C5FB9339257286FA004B006A /* Release */,
+				C5CA64F62576AC1F00AC77EF /* Debug */,
+				C5CA64F72576AC1F00AC77EF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -80,11 +80,16 @@ const styles = StyleSheet.create({
 		justifyContent:'center'
 	},
 	dimInput:{
+		borderWidth:1,
 		flexDirection:'row',
 		alignItems:'center',
+	},//PIKER-----------------------------------------------------------------
+	pickerItem:{
+		flex:1,
 	},
 	picker:{
 		flex:1,
+		borderWidth:1,
 	},
 	pickerText:{
 		flex:1,
@@ -163,7 +168,7 @@ function NewTrayModal(props){
 		hide()
 	}
 	const onCancel=()=>{
-		toggleBlurAction();
+		
 		hide()
 	}
 	const setPortions=()=>{
@@ -213,11 +218,10 @@ function NewTrayModal(props){
 			<View style={styles.contentView}>
 				<View style={styles.nameInput}>
              		 <Label style={styles.label}>Nome</Label>
-             		 <TextInput placeholder='Scrivi qui un nome alla tua teglia!'
+             		 <TextInput placeholder='Dai un nome alla tua teglia!'
              		 		autoFocus={true} clearButtonMode='while-editing'
              		 		maxLength={32} returnKeyType='done' textAlign='center'
-             		 		onChangeText={text=>setName(text)} value = {name} required
-             		 />
+             		 		onChangeText={text=>setName(text)} value = {name}              		 />
             	</View>
 				<View style = {styles.type}>
 					<Label style={styles.label}>Forma</Label>
@@ -240,7 +244,8 @@ function NewTrayModal(props){
 					</View>
 				</View>
 				<View style = {styles.measurement}>
-				{type === 'rect' 
+				{type === 'rect' //pICKER--------------------------------------------
+				//----------------------------------------------RECT
 					? 	<View>
 							<Label style={styles.label}>Misure</Label>
 							<View style={styles.dimInput}>
@@ -258,7 +263,8 @@ function NewTrayModal(props){
 							    <Text style={styles.pickerText}>cm</Text>
 							</View>
 						</View>
-					: 	
+					: 	//PICKER----------------------------------------------------
+					//--------------------------------------------------------------
 					 	<View>
 					 		<Label style={styles.label}>Misura:</Label>
 							<View style={styles.sideView}>

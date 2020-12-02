@@ -6,6 +6,11 @@ import {connect} from 'react-redux';
 import {deleteTrayAction,setMyTrayAction} from '../redux/actions';
 
 const styles = StyleSheet.create({
+	mainContainer:{
+		flex:1,
+		marginRight:'5%',
+		marginLeft:'5%',
+	},
 	row:{
 		flexDirection:'row',
 		backgroundColor:'white',
@@ -14,15 +19,22 @@ const styles = StyleSheet.create({
 		flex:1,
 		textAlign:'center'
 	},
+	flatCSTListContainer:{
+		maxHeight:'50%',
+	},
+	flatSTDListContainer:{
+		maxHeight:'100%',
+		flex:1,
+	},
 })
 
 function CardTrayList({type,stdTrays,setMyTrayAction,deleteTrayAction}){
 	const typeText = ['rect','circle','square']
 	return (
-		<View>
-			<View>
+		<View style={styles.mainContainer}>
+			<View style={styles.flatCSTListContainer}>
 				{stdTrays.customTrays[typeText[type]].length > 0 ? 
-						<FlatList
+						<FlatList 
 							data={stdTrays.customTrays[typeText[type]]}
 							renderItem = {({item})=>{
 								return(
@@ -33,29 +45,24 @@ function CardTrayList({type,stdTrays,setMyTrayAction,deleteTrayAction}){
 							}
 							ListHeaderComponent={()=>{
 								return(
-									<View>
 										<View style={styles.row}>
 											<Text style={styles.rowEl}>Teglie personali</Text>
 										</View>
-										<View style={styles.row}>
-											<Text style={styles.rowEl}>Nome</Text>
-											<Text style={styles.rowEl}>Dimensioni</Text>
-											<Text style={styles.rowEl}>Persone</Text>
-											<Text style={styles.rowEl}>Scelta</Text>								
-										</View>
-									</View>
 									)
 								}
 							}
+							stickyHeaderIndices={[0]}
 						/>
 						: <Text style={{textAlign:'center'}}>Nessuna teglia personale salvata!</Text>
 				}
 				</View>
-				<View>
+				<View style={styles.flatSTDListContainer}>
 					<FlatList
 						data={stdTrays.trays[typeText[type]]}
 						renderItem={({item})=>{
-							return <StdTrayRow tray={item} onSelect={(key)=>setMyTrayAction(key)} />}}
+							return (
+								<StdTrayRow tray={item}
+									onSelect={(key)=>setMyTrayAction(key)} />)}}
 						ListHeaderComponent={()=>{
 							return(
 								<View>

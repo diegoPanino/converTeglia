@@ -7,6 +7,9 @@ import {CLEAN_STORE,
 		TOGGLE_BLUR,toggleBlurAction,
 		ADD_TRAY,addTrayAction,
 		DELETE_TRAY,deleteTrayAction,
+		SET_NUMBER_OF_DAY,setNumDaysAction,
+		SHOW_TUTORIAL,showTutorialAction,
+		RESET_SETTINGS,resetSettingsAction,
 } from './actions'; 
 import {stdTrays} from '../api/standardTrays';
 
@@ -27,7 +30,7 @@ export const linkReducer = (state = {} ,action) =>{
 }
 export const historyReducer = (state= [] ,action) =>{
 	switch(action.type){
-		case SAVE_SEARCHED_LINK: return [...state,{...action.payload,favourite:false,date:Date.now(),key:Date.now()}]
+		case SAVE_SEARCHED_LINK: return [...state,{...action.payload,favourite:false,date:Date.now()-5*day,key:Date.now()}]
 		case DELETE_SEARCHED_LINK: return state.filter(el=> el.date !== action.payload)
 		case BOOKMARK_SEARCH: {
 			const index = state.findIndex(el => el.date === action.payload)
@@ -44,6 +47,7 @@ export const historyReducer = (state= [] ,action) =>{
 }
 export const settingsReducer = (state = stdTrays,action) =>{
 	switch(action.type){
+		case RESET_SETTINGS: return stdTrays;
 		case SET_MY_TRAY: {
 			const traysTypes = Object.keys(state.trays)
 			const trayIndex = Math.trunc(action.payload)
@@ -83,6 +87,8 @@ export const settingsReducer = (state = stdTrays,action) =>{
 			newState.customTrays[type[Math.trunc(action.payload)]] = array.filter(el=>el.key !== action.payload)
 			return newState;
 		}
+		case SET_NUMBER_OF_DAY: return {...state,day:action.payload}
+		case SHOW_TUTORIAL: return {...state,tutorial:action.payload}
 		default: return state
 	}
 }

@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import {Label} from 'native-base';
 import {toggleBlurAction,addTrayAction} from '../redux/actions';
 import {Picker} from '@react-native-picker/picker';
+import MyPicker from './MyPicker';
 
 
 const squareIco = require ('../img/quadrata.png');
@@ -68,7 +69,7 @@ const styles = StyleSheet.create({
 		justifyContent:'center',
 		alignItems:'center',
 		borderBottomWidth:3,
-		borderBottomColor:'green',
+		borderBottomColor:'black'
 	},
 	touch:{
 		flex:1,
@@ -80,22 +81,37 @@ const styles = StyleSheet.create({
 		justifyContent:'center'
 	},
 	dimInput:{
-		borderWidth:1,
 		flexDirection:'row',
 		alignItems:'center',
-	},//PIKER-----------------------------------------------------------------
+		textAlign:'center',
+	},
 	pickerItem:{
-		flex:1,
+		
 	},
 	picker:{
-		flex:1,
-		borderWidth:1,
+		width:85,
+		backgroundColor:'transparent',
+		transform: [
+      		{ scaleX: 1.1 }, 
+      		{ scaleY: 1.3 },
+  		],
+  		position:'relative',
+  		left:'200%',
 	},
 	pickerText:{
-		flex:1,
+		width:'10%',
+		position:'relative',
+  		left:'90%',
+  		marginRight:'-17%',
+		textAlign:'center',
 	},
 	sidePicker:{
 		flex:1,
+		backgroundColor:'transparent',
+		transform: [
+      		{ scaleX: 1.1 }, 
+      		{ scaleY: 1.3 },
+  		],
 	},
 	sideView:{
 		flexDirection:'row',
@@ -104,7 +120,6 @@ const styles = StyleSheet.create({
 	sideText:{
 		flex:3,
 		textAlign:'center',
-
 	},
 	servs:{
 		flex:1,
@@ -116,14 +131,15 @@ const styles = StyleSheet.create({
 })
 
 function NewTrayModal(props){
-	const [type,setType] = useState('circle')
+	const {hide,toggleBlurAction,addTrayAction,select} = props
+	const [type,setType] = useState(select)
   	const [dim, setDim] = useState(22)
   	const [a,setA] = useState(22)
   	const [b,setB] = useState(20)
 	const [servs,setServs] = useState(6)
 	const [name,setName] = useState()
-	const {hide,toggleBlurAction,addTrayAction} = props
-	
+
+
 	useEffect(()=>{
 		setPortions();
 	},[dim,a,b,type])
@@ -244,8 +260,7 @@ function NewTrayModal(props){
 					</View>
 				</View>
 				<View style = {styles.measurement}>
-				{type === 'rect' //pICKER--------------------------------------------
-				//----------------------------------------------RECT
+				{type === 'rect' 
 					? 	<View>
 							<Label style={styles.label}>Misure</Label>
 							<View style={styles.dimInput}>
@@ -263,8 +278,7 @@ function NewTrayModal(props){
 							    <Text style={styles.pickerText}>cm</Text>
 							</View>
 						</View>
-					: 	//PICKER----------------------------------------------------
-					//--------------------------------------------------------------
+					: 	
 					 	<View>
 					 		<Label style={styles.label}>Misura:</Label>
 							<View style={styles.sideView}>

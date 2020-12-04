@@ -52,10 +52,10 @@ const styles=StyleSheet.create({
 	}
 })
 
-	const [tray,setTray] = useState('Rotonda');
+	const [tray,setTray] = useState('circle');
 	const [advSett,setAdvSett] = useState(false)
 	const [showNTM,setShowNTM] = useState(false)
-	const data = ['Rettangolare','Rotonda','Quadrata'];
+	const data = ['rect','circle','square'];
 	const refImg = useRef();
 	const refStdTrays = useRef();
 	const windowWidth = useWindowDimensions().width;
@@ -73,7 +73,7 @@ const styles=StyleSheet.create({
 	return (
 		<View style={styles.view}>
 			{showNTM && 
-				<NewTrayModal hide={()=>setShowNTM(false)}/>}
+				<NewTrayModal select={tray} hide={()=>setShowNTM(false)}/>}
 			 {showNTM &&
 			  <BlurView
 			 		    	  style={styles.blur}

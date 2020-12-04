@@ -1,4 +1,6 @@
 export const stdTrays = {
+	tutorial:true,
+	day:90,
 	selection:{dim:22,servs:10,selected:true,key:'0.2'},
 	trays:{
 		circle:[

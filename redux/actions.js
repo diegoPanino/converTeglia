@@ -8,6 +8,9 @@ export const SET_MY_TRAY = 'SET_MY_TRAY'; // SELECT THE DESTINATION TRAY FOR CON
 export const TOGGLE_BLUR = 'TOGGLE_BLUR'; //SYSTEM TOGGLE BLUR
 export const ADD_TRAY = 'ADD_TRAY'; //CREATE A NEW PERSONAL TRAY
 export const DELETE_TRAY = 'DELETE_TRAY'; //ERASE CUSTOM TRAY
+export const SET_NUMBER_OF_DAY = 'SET_NUMBER_OF_DAY'; // SET THE TIME NEED TO PASS BEFORE AUTOMATICALLY ERASE HISTORY
+export const SHOW_TUTORIAL = 'SHOW_TUTORIAL'; //FLAG FOR THE INITIAL TUTORIAL TO BE SHOW
+export const RESET_SETTINGS = 'RESET_SETTINGS';
 //ACTION MAKER
 
 export const searchLinkAction= recipe =>({
@@ -43,4 +46,15 @@ export const addTrayAction = tray =>({
 export const deleteTrayAction = trayKey =>({
 	type:DELETE_TRAY,
 	payload:trayKey
+})
+export const setNumDaysAction = days =>({
+	type:SET_NUMBER_OF_DAY,
+	payload: days
+})
+export const showTutorialAction = flag =>({
+	type:SHOW_TUTORIAL,
+	payload: flag
+})
+export const resetSettingsAction = () =>({
+	type: RESET_SETTINGS,
 })

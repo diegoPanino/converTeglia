@@ -11,6 +11,7 @@ export const DELETE_TRAY = 'DELETE_TRAY'; //ERASE CUSTOM TRAY
 export const SET_NUMBER_OF_DAY = 'SET_NUMBER_OF_DAY'; // SET THE TIME NEED TO PASS BEFORE AUTOMATICALLY ERASE HISTORY
 export const SHOW_TUTORIAL = 'SHOW_TUTORIAL'; //FLAG FOR THE INITIAL TUTORIAL TO BE SHOW
 export const RESET_SETTINGS = 'RESET_SETTINGS';
+export const FAST_CONVERTION = 'FAST_CONVERTION'; // FLAG TO SHOW FAST CONVERTION BUTTON
 //ACTION MAKER
 
 export const searchLinkAction= recipe =>({
@@ -57,4 +58,7 @@ export const showTutorialAction = flag =>({
 })
 export const resetSettingsAction = () =>({
 	type: RESET_SETTINGS,
+})
+export const fastConvertionAction = () =>({
+	type: FAST_CONVERTION,
 })

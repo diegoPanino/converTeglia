@@ -36,7 +36,6 @@ function SearchScreen({navigation,searchLinkAction,cleanStoreAction,saveSearched
   		const shareListener = ShareMenu.addNewShareListener(shareTextHandler)
   		return ()=>{
   			shareListener.remove()
-  			cleanStoreAction();
   		}
   	},[])
 
@@ -53,11 +52,12 @@ function SearchScreen({navigation,searchLinkAction,cleanStoreAction,saveSearched
 //recuperata da resultScreen. Cosi da gestire anche loadgingPage
 	const confirmInput=()=>{	
 	//validation input, un po qui un po in fetch.js
-		cleanStoreAction();
 		Keyboard.dismiss();
 		getIngredients(inputBox)
 			.then(result=>{
-				cleanStoreAction();
+				
+				console.log('RESULT: ')
+				console.log(result)
 				if(!result.hasOwnProperty('err'))
 					saveSearchedLinkAction(result)
 

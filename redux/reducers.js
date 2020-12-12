@@ -10,14 +10,16 @@ import {CLEAN_STORE,
 		SET_NUMBER_OF_DAY,setNumDaysAction,
 		SHOW_TUTORIAL,showTutorialAction,
 		RESET_SETTINGS,resetSettingsAction,
+		FAST_CONVERTION,fastConvertionAction,
 } from './actions'; 
 import {stdTrays} from '../api/standardTrays';
 
 const day = 86400000
 
-export const systemReducer = (state = {...state,blur:false},action) =>{
+export const systemReducer = (state = {...state,blur:false,fastConv:false},action) =>{
 	switch(action.type){
 		case TOGGLE_BLUR: return {...state,blur:!state.blur} 
+		case FAST_CONVERTION: return {...state,fastConv:!state.fastConv}
 		default: return state;
 	}
 }
@@ -28,9 +30,9 @@ export const linkReducer = (state = {} ,action) =>{
 		default: return state;
 	}
 }
-export const historyReducer = (state= [] ,action) =>{
+export const historyReducer = (state = [] ,action) =>{
 	switch(action.type){
-		case SAVE_SEARCHED_LINK: return [...state,{...action.payload,favourite:false,date:Date.now()-5*day,key:Date.now()}]
+		case SAVE_SEARCHED_LINK: return [...state,{...action.payload,favourite:false,date:Date.now(),key:Date.now()}]
 		case DELETE_SEARCHED_LINK: return state.filter(el=> el.date !== action.payload)
 		case BOOKMARK_SEARCH: {
 			const index = state.findIndex(el => el.date === action.payload)

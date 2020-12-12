@@ -1,6 +1,5 @@
 import React from 'react';
 const corn = require("corn");
-//const fetch = require("node-fetch");
 const cheerio = require("react-native-cheerio");
 
 const space = RegExp(/\s{2,}/g);
@@ -94,7 +93,7 @@ function normalizePortions(htmlStr){
 		case(RegExp(/teglia/gi).test(htmlStr)): {measurement='teglia';rad = number;break;}
 		case(RegExp(/tortiera/gi).test(htmlStr)): {measurement='teglia';rad = number;break;}
 		case(RegExp(/cm/gi).test(htmlStr)):{measurement='teglia';rad = number;break;}
-		default : {measurement='teglia';rad = 22}
+		default : {measurement='teglia';rad = '22'}
 	}
 	if(measurement === 'persone'){
 		switch(number){
@@ -110,14 +109,11 @@ function normalizePortions(htmlStr){
 			case '16': {rad=28; break;} 
 		}
 	}
-	console.log('STR: ',htmlStr )
-	console.log('Meas: ',measurement)
-	console.log('Num: ',number)
-	console.log('Rad: ',rad)
-
 	return rad;
 }
 function resetRecipe(){
+	//recipe.ingredients.length = 0;
+	ingredients.length = 0;
 	recipe = {
 		url:'',
 		title:'',
@@ -182,7 +178,7 @@ function getAmount(ings,title,url,portions){
 //funzioni helper per la normalizzazione dei dati, restituisce recipe se tutto ok
 //oppure restituisce valore errore
 export async function getIngredients(url){
- resetRecipe();
+resetRecipe()
  switch(true){
  	case (RegExp(/blog.giallozafferano/g).test(url)):{
    		try{
@@ -210,8 +206,11 @@ export async function getIngredients(url){
 			})//end each
 	
 			const getAmountError = getAmount(ingredients,title,url,portions)	
-			if(getAmountError)
+			if(getAmountError){
+				console.log('RETURN RECIPE: ',recipe)
 				return recipe;
+			}
+		
 			else
 				throw new Error('-----------GetAmountError-----------')
 		}
@@ -241,8 +240,11 @@ export async function getIngredients(url){
 				ingredients[i] = $(el).children().text().replace(space," ")
 			})
 			const getAmountError = getAmount(ingredients,title,url,portions)
-			if(getAmountError)
+			if(getAmountError){
+				console.log('RETURN RECIPE: ',recipe)
 				return recipe;
+			}
+		
 			else
 				throw new Error('GetAmountError')
 		}
@@ -267,8 +269,11 @@ export async function getIngredients(url){
 			})
 			
 			const getAmountError = getAmount(ingredients,title,url,portions)
-			if(getAmountError)
+			if(getAmountError){
+				console.log('RETURN RECIPE: ',recipe)
 				return recipe;
+			}
+		
 			else
 				throw new Error('GetAmountError')
 		}
@@ -299,8 +304,11 @@ export async function getIngredients(url){
 				})
 			
 			const getAmountError = getAmount(ingredients,title,url,portions)
-			if(getAmountError)
+			if(getAmountError){
+				console.log('RETURN RECIPE: ',recipe)
 				return recipe;
+			}
+		
 			else
 				throw new Error('GetAmountError')
 		}
@@ -339,8 +347,11 @@ export async function getIngredients(url){
 			})
 			
 			const getAmountError = getAmount(ingredients,title,url,portions)	
-			if(getAmountError)
+			if(getAmountError){
+				console.log('RETURN RECIPE: ',recipe)
 				return recipe;
+			}
+		
 			else
 				throw new Error('GetAmountError')
 		}
@@ -365,8 +376,11 @@ export async function getIngredients(url){
 			})
 			
 			const getAmountError = getAmount(ingredients,title,url,portions)
-			if(getAmountError)
+			if(getAmountError){
+				console.log('RETURN RECIPE: ',recipe)
 				return recipe;
+			}
+		
 			else
 				throw new Error('GetAmountError')
 		}
@@ -397,8 +411,11 @@ export async function getIngredients(url){
 				ingredients[i] = $(el).text().replace(space," ")
 			})
 			const getAmountError = getAmount(ingredients,title,url,portions)	
-			if(getAmountError)
+			if(getAmountError){
+				console.log('RETURN RECIPE: ',recipe)
 				return recipe;
+			}
+		
 			else
 				throw new Error('GetAmountError')
 		}
@@ -422,8 +439,11 @@ export async function getIngredients(url){
 				ingredients[i] = $(el).text().replace(/\s\s+/g, " ")
 			})
 			const getAmountError = getAmount(ingredients,title,url,portions)	
-			if(getAmountError)
+			if(getAmountError){
+				console.log('RETURN RECIPE: ',recipe)
 				return recipe;
+			}
+		
 			else
 				throw new Error('GetAmountError')
 		}
@@ -445,8 +465,11 @@ export async function getIngredients(url){
 				ingredients[i] = $(el).text().replace(space," ")
 			})
 			const getAmountError = getAmount(ingredients,title,url,portions)
-			if(getAmountError)
+			if(getAmountError){
+				console.log('RETURN RECIPE: ',recipe)
 				return recipe;
+			}
+		
 			else
 				throw new Error('GetAmountError')
 		}
@@ -477,8 +500,11 @@ export async function getIngredients(url){
 				ingredients[i]= $(el).text().replace(space," ")
 			})
 			const getAmountError = getAmount(ingredients,title,url,portions)
-			if(getAmountError)
+			if(getAmountError){
+				console.log('RETURN RECIPE: ',recipe)
 				return recipe;
+			}
+		
 			else
 				throw new Error('GetAmountError')
 		}
@@ -539,8 +565,11 @@ export async function getIngredients(url){
 				ingredients[i]=$(el).text().replace(space," ")
 			})
 			const getAmountError = getAmount(ingredients,title,url,portions)
-			if(getAmountError)
+			if(getAmountError){
+				console.log('RETURN RECIPE: ',recipe)
 				return recipe;
+			}
+		
 			else
 				throw new Error('GetAmountError')
 		}
@@ -566,8 +595,11 @@ export async function getIngredients(url){
 				ingredients[i]= $(el).text().replace(space," ")
 			})
 			const getAmountError = getAmount(ingredients,title,url,portions)
-			if(getAmountError)
+			if(getAmountError){
+				console.log('RETURN RECIPE: ',recipe)
 				return recipe;
+			}
+		
 			else
 				throw new Error('GetAmountError')
 		}
@@ -601,8 +633,11 @@ export async function getIngredients(url){
 				ingredients[i]= $(el).text().replace(space, " ")
 			})
 			const getAmountError = getAmount(ingredients,title,url,portions)	
-			if(getAmountError)
+			if(getAmountError){
+				console.log('RETURN RECIPE: ',recipe)
 				return recipe;
+			}
+		
 			else
 				throw new Error('GetAmountError')
 		}
@@ -626,8 +661,11 @@ export async function getIngredients(url){
 				ingredients[i]=$(el).text().replace(space," ")
 			})
 			const getAmountError = getAmount(ingredients,title,url,portions)	
-			if(getAmountError)
+			if(getAmountError){
+				console.log('RETURN RECIPE: ',recipe)
 				return recipe;
+			}
+		
 			else
 				throw new Error('GetAmountError')
 		}
@@ -657,8 +695,11 @@ export async function getIngredients(url){
 				ingredients[i] = $(el).text().replace(space," ")
 			})
 			const getAmountError = getAmount(ingredients,title,url,portions)
-			if(getAmountError)
+			if(getAmountError){
+				console.log('RETURN RECIPE: ',recipe)
 				return recipe;
+			}
+		
 			else
 				throw new Error('GetAmountError')
 		}
@@ -683,8 +724,11 @@ export async function getIngredients(url){
 				ingredients[i]= $(el).text().replace(space," ");
 			})
 			const getAmountError = getAmount(ingredients,title,url,portions)	
-			if(getAmountError)
+			if(getAmountError){
+				console.log('RETURN RECIPE: ',recipe)
 				return recipe;
+			}
+		
 			else
 				throw new Error('GetAmountError')
 		}
@@ -715,8 +759,11 @@ export async function getIngredients(url){
 				})
 			})
 			const getAmountError = getAmount(ingredients,title,url,portions)	
-			if(getAmountError)
+			if(getAmountError){
+				console.log('RETURN RECIPE: ',recipe)
 				return recipe;
+			}
+		
 			else
 				throw new Error('GetAmountError')
 		}
@@ -744,8 +791,11 @@ export async function getIngredients(url){
 				ingredients[i] = $(el).text().replace(space," ")
 			})
 			const getAmountError = getAmount(ingredients,title,url,portions)
-			if(getAmountError)
+			if(getAmountError){
+				console.log('RETURN RECIPE: ',recipe)
 				return recipe;
+			}
+		
 			else
 				throw new Error('GetAmountError')
 		}
@@ -768,8 +818,11 @@ export async function getIngredients(url){
 				ingredients[i] =  $(el).next().text().replace(space," ")+" "+$(el).text().replace(space," ")
 			})
 			const getAmountError = getAmount(ingredients,title,url,portions)	
-			if(getAmountError)
+			if(getAmountError){
+				console.log('RETURN RECIPE: ',recipe)
 				return recipe;
+			}
+		
 			else
 				throw new Error('GetAmountError')
 		}
@@ -798,8 +851,11 @@ export async function getIngredients(url){
 				ingredients[i] = $(el).text().replace(space," ")
 			})
 			const getAmountError = getAmount(ingredients,title,url,portions)	
-			if(getAmountError)
+			if(getAmountError){
+				console.log('RETURN RECIPE: ',recipe)
 				return recipe;
+			}
+		
 			else
 				throw new Error('GetAmountError')
 		}
@@ -823,8 +879,11 @@ export async function getIngredients(url){
 				ingredients[i] = $(el).text().replace(space," ")
 			})
 			const getAmountError = getAmount(ingredients,title,url,portions)
-			if(getAmountError)
+			if(getAmountError){
+				console.log('RETURN RECIPE: ',recipe)
 				return recipe;
+			}
+		
 			else
 				throw new Error('GetAmountError')
 		}
@@ -867,8 +926,11 @@ export async function getIngredients(url){
 				ingredients.push(...paragraphs)
 			}
 			const getAmountError = getAmount(ingredients,title,url,portions)
-			if(getAmountError)
+			if(getAmountError){
+				console.log('RETURN RECIPE: ',recipe)
 				return recipe;
+			}
+		
 			else
 				throw new Error('GetAmountError')
 		}	
@@ -895,8 +957,11 @@ export async function getIngredients(url){
 			ingredients.push(...splitArr)
 			
 			const getAmountError = getAmount(ingredients,title,url,portions)	
-			if(getAmountError)
+			if(getAmountError){
+				console.log('RETURN RECIPE: ',recipe)
 				return recipe;
+			}
+		
 			else
 				throw new Error('GetAmountError')
 		}
@@ -924,8 +989,11 @@ export async function getIngredients(url){
 				ingredients[i]= $(el).text().replace(space," ")
 			})
 			const getAmountError = getAmount(ingredients,title,url,portions)
-			if(getAmountError)
+			if(getAmountError){
+				console.log('RETURN RECIPE: ',recipe)
 				return recipe;
+			}
+		
 			else
 				throw new Error('GetAmountError')
 		}
@@ -953,8 +1021,11 @@ export async function getIngredients(url){
 				ingredients[i] = $(el).text().replace(space," ")
 			})
 			const getAmountError = getAmount(ingredients,title,url,portions)
-			if(getAmountError)
+			if(getAmountError){
+				console.log('RETURN RECIPE: ',recipe)
 				return recipe;
+			}
+		
 			else
 				throw new Error('GetAmountError')
 		}

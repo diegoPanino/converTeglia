@@ -7,7 +7,6 @@ import {toggleBlurAction,addTrayAction} from '../redux/actions';
 import {Picker} from '@react-native-picker/picker';
 import MyPicker from './MyPicker';
 
-
 const squareIco = require ('../img/quadrata.png');
 const rectIco = require('../img/rettangolare.png');
 const circleIco = require('../img/rotonda.png');

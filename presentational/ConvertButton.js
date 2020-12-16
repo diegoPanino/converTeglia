@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Text, StyleSheet,Image,TouchableOpacity} from 'react-native';
 import {Icon,Button} from 'native-base';
 import {connect} from 'react-redux';
-import {fastConvertionAction} from '../redux/actions';
+import {fastConvertionAction,convertAction} from '../redux/actions';
 //import { BlurView } from "@react-native-community/blur";
 
 const styles = StyleSheet.create({
@@ -37,8 +37,10 @@ const styles = StyleSheet.create({
 })
 
 function ConvertButton(props){
-	const {blurRadius,navigation,fastConvertionAction} = props
+	const {blurRadius,navigation} = props
+	const {fastConvertionAction,convertAction} = props
 	const convert = () =>{
+		convertAction();
 		fastConvertionAction();
 		navigation.navigate('ResultScreen');
 	}
@@ -53,4 +55,4 @@ function ConvertButton(props){
 		</View>
 		);
 }
-export default connect(null,{fastConvertionAction})(ConvertButton);
+export default connect(null,{fastConvertionAction,convertAction})(ConvertButton);

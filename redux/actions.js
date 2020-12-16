@@ -12,6 +12,7 @@ export const SET_NUMBER_OF_DAY = 'SET_NUMBER_OF_DAY'; // SET THE TIME NEED TO PA
 export const SHOW_TUTORIAL = 'SHOW_TUTORIAL'; //FLAG FOR THE INITIAL TUTORIAL TO BE SHOW
 export const RESET_SETTINGS = 'RESET_SETTINGS';
 export const FAST_CONVERTION = 'FAST_CONVERTION'; // FLAG TO SHOW FAST CONVERTION BUTTON
+export const CONVERT = 'CONVERT'; //TRIGGER THE FLAG TO CONVERT
 //ACTION MAKER
 
 export const searchLinkAction= recipe =>({
@@ -61,4 +62,7 @@ export const resetSettingsAction = () =>({
 })
 export const fastConvertionAction = () =>({
 	type: FAST_CONVERTION,
+})
+export const convertAction = () =>({
+	type:CONVERT
 })

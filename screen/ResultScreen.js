@@ -1,11 +1,13 @@
-import React,{useState,useEffect} from 'react';
+import React,{useState,useEffect,useRef} from 'react';
 import {View,Text,StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
 import ResultList from '../presentational/ResultList';
 import InfoTray from '../presentational/InfoTray';
 import ModalInfoTray from '../presentational/ModalInfoTray';
+import OriginalTrayInfoModal from '../presentational/OriginalTrayInfoModal';
 import { BlurView } from "@react-native-community/blur";
 import {toggleBlurAction,fastConvertionAction} from '../redux/actions';
+import * as KitchenMath from '../api/kitchenMath';
 
 const styles=StyleSheet.create({
 	mainContainer:{
@@ -41,24 +43,70 @@ const styles=StyleSheet.create({
 	}
 })
 
-function ResultScreen({result,navigation,toggleBlurAction,fastConvertionAction,selectedTray}){
-	const [showModal,setShowModal] = useState(true)
-	
+function ResultScreen(props){
+	const {toggleBlurAction,fastConvertionAction} = props
+	const {selectedTray,result} = props
+	const {navigation} = props
+	const {dim,key} = selectedTray
+	const [showModal,setShowModal] = useState(false)
+	const [modalOriginalTray, setModalOriginalTray] = useState(true)
+	const [areaSource,setAreaSource] = useState()
+	const [areaTarget,setAreaTarget] = useState()
+	const [k,setK] = useState() //not in use
+	const [convertedRecipe,setConverted] = useState()
+	const prevAreaTarget = usePrevState(areaTarget)
+	const prevK = usePrevState(k)
+	const prevTray = usePrevState(selectedTray.dim)
+
+	function usePrevState(value){
+		const ref = useRef()
+		useEffect(()=>{
+			ref.current = value
+		})
+		return ref.current
+	}
+
 	useEffect(()=>{
-		if(showModal){
+		if(modalOriginalTray)
 			toggleBlurAction();
+	},[])
+
+	useEffect(()=>{
+		if(selectedTray.dim !== prevTray && prevTray !== undefined){
+			const myTray = KitchenMath.getAreaByType(dim,key)
+			setAreaTarget(myTray.area)
 		}
-	})
+	},[selectedTray])
+
+	useEffect(()=>{
+		if(props.convert){
+			const {area} = KitchenMath.getAreaByType(dim,key)
+			setAreaTarget(area)
+		}
+	},[props.convert])
+
+	useEffect(()=>{
+		if(prevAreaTarget !== areaTarget)
+			setK(KitchenMath.getKfromArea(areaSource,areaTarget))
+	},[areaTarget])
+
+	const onContinueOriginalTray=(area)=>{
+		setAreaSource(area)
+		setModalOriginalTray(false);
+		setShowModal(true);
+	}
+
+	const onConfirmTray=(area)=>{
+		toggleBlurAction();
+		setAreaTarget(area)
+		setShowModal(false)
+	}
 
 	const changeTray=()=>{
 		toggleBlurAction();
 		fastConvertionAction();
 		setShowModal(false)
 		navigation.navigate('MyTrayScreen')
-	}
-	const confirmTray=()=>{
-		toggleBlurAction();
-		setShowModal(false)
 	}
 
 	if(result.hasOwnProperty('recipe')){
@@ -67,23 +115,26 @@ function ResultScreen({result,navigation,toggleBlurAction,fastConvertionAction,s
 		else{
 			return (
 				<View style={styles.mainContainer}>
-				{showModal && <BlurView
-			 		    	  style={styles.blur}
-			 		          blurType="dark"
-			 		          blurAmount={1}
-			 		        />}
+				{(showModal || modalOriginalTray) && 
+					<BlurView
+		 	    	  style={styles.blur}
+		 		      blurType="dark"
+	 		          blurAmount={1}
+	 		        />}
+	 		        <OriginalTrayInfoModal 
+	 		        				confirm={(area)=>onContinueOriginalTray(area)}
+	 		        				showModal={modalOriginalTray}
+	 		        				tray={result.recipe.trayRad}
+	 		        />
 					<ModalInfoTray 	close={()=>changeTray()}
-									confirm={()=>confirmTray()}
+									confirm={(area)=>onConfirmTray(area)}
 									showModal={showModal}
 									selectedTray={selectedTray}/>
 					<View style={styles.titleBox}>
 						<Text style={styles.title}>{result.recipe.title}</Text>
 					</View>
-					<View style={styles.infoTray}>
-						<InfoTray rad={result.recipe.trayRad} />
-					</View>
 					<View style={styles.recipe}>
-						<ResultList list={result.recipe}/>
+						<ResultList list={result.recipe} k = {k}/>
 					</View>
 				</View>
 			);
@@ -97,6 +148,7 @@ function ResultScreen({result,navigation,toggleBlurAction,fastConvertionAction,s
 
 const mapStateToProps=(state)=>({
 	result:state.result,
-	selectedTray:state.settings.selection
+	selectedTray:state.settings.selection,
+	convert:state.system.convert
 })
 export default connect(mapStateToProps,{toggleBlurAction,fastConvertionAction})(ResultScreen);

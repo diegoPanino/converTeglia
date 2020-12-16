@@ -33,12 +33,12 @@ export default function ModalMessage(props){
 	 	textAlign:'center',
 	 	marginTop:10,
 	  },
-	  closeButton:{
+	  convertButton:{
 	  	position:'absolute',
 	  	right:20,
 	  	bottom:5,
 	  },
-	  deleteButton:{
+	  changeButton:{
 	  	position:'absolute',
 	  	left:20,
 	  	bottom:5,
@@ -63,6 +63,11 @@ export default function ModalMessage(props){
 	  }
 	})
 
+	const onConfirmTray = () =>{
+		const {area} = KitchenMath.getAreaByType(dim,key)
+		confirm(area)
+	}
+
 	return (
 		<Modal animationType='slide' transparent={true} visible={showModal}>
 			<View style={styles.modalView}>
@@ -82,10 +87,10 @@ export default function ModalMessage(props){
 						</Text>
 					</View>
 				</View>
-				<Button style={styles.closeButton} rounded transparent onPress={close}>
+				<Button style={styles.changeButton} rounded transparent onPress={close}>
 					<Text>CAMBIA TEGLIA</Text>
 				</Button>
-				<Button style={styles.deleteButton} rounded transparent onPress={confirm}>
+				<Button style={styles.convertButton} rounded transparent onPress={()=>onConfirmTray()}>
 					<Text>CONVERTI</Text>
 				</Button>
 			</View>

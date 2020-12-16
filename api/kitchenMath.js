@@ -88,3 +88,7 @@ export function getAreaByType(dim,key){
 		}
 	}
 }
+export function getAreaFromRad(rad){
+	const area = Math.pow((rad/2),2) * Math.PI
+	return area;
+}

@@ -11,15 +11,18 @@ import {CLEAN_STORE,
 		SHOW_TUTORIAL,showTutorialAction,
 		RESET_SETTINGS,resetSettingsAction,
 		FAST_CONVERTION,fastConvertionAction,
+		CONVERT,convertAction,
 } from './actions'; 
 import {stdTrays} from '../api/standardTrays';
 
 const day = 86400000
 
-export const systemReducer = (state = {...state,blur:false,fastConv:false},action) =>{
+export const systemReducer = (state = {...state,blur:false,fastConv:false,convert:false},action) =>{
 	switch(action.type){
 		case TOGGLE_BLUR: return {...state,blur:!state.blur} 
 		case FAST_CONVERTION: return {...state,fastConv:!state.fastConv}
+		case CONVERT: return {...state,convert:true}
+		case SEARCH_LINK: return {...state,convert:false}
 		default: return state;
 	}
 }

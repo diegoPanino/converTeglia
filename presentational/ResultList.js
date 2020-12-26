@@ -1,6 +1,9 @@
-import React, {useEffect,useState} from 'react';
+import React, {useEffect,useState,useRef} from 'react';
 import {ScrollView,Text,StyleSheet,View,TextInput,TouchableOpacity} from 'react-native';
 import {Icon} from 'native-base';
+import {convertByKAction,convertByIAction} from '../redux/actions';
+import {connect} from 'react-redux';
+import IngredientRow from './IngredientRow';
 
 const styles = StyleSheet.create({
 	viewList:{
@@ -10,51 +13,60 @@ const styles = StyleSheet.create({
 		padding:3,
 	},
 	amount:{
-		flex:0.5,
-		alignItems:'center',
+		flex:1,
+	},
+	amountInput:{
+		color:'black',	
 	},
 	unit:{
-		flex:1,
+		flex:0.5,
 		alignItems:'flex-start',
+		justifyContent:'center',
 	},
 	name:{
 		flex:3,
 		alignItems:'flex-start',
+		justifyContent:'center',
 	},
 	lock:{
 		flex:0.5,
+		justifyContent:'center',
 	},
 	lockIco:{
 		fontSize:20,
 	}
 })
 
-export default function ResultList(props){
-	const {k=1} = props
-	const [ingredients,setIngredients] = useState(props.list.ingredients)
+function ResultList(props){
+	const {convertByKAction,convertByIAction} = props
+	const {ingredients} = props.list.recipe
+	const {convertedRecipe} = props.list
+	const {k} = props
+	const [showAllLocks,setShowAllLocks] = useState(true)
 
-	const Row = ingredients.map((ingredient,i)=>{
-				const amount = (ingredient.amounts * k).toFixed()
-				return(
-					<View style={styles.viewList} key={i}>
-						<View style={styles.amount}>
-							<TextInput>{amount}</TextInput>
-						</View>
-						<View style={styles.unit}>
-							<Text>{ingredient.units}</Text>
-						</View>
-						<View style={styles.name}>
-							<Text>{ingredient.names}</Text>
-						</View>
-						<TouchableOpacity style={[styles.lock]}>
-							<Icon style={styles.lockIco} name='lock-open' />
-						</TouchableOpacity>
-					</View>
-					)
-		})
+	useEffect(()=>{
+		convertByKAction(k)
+	},[k])
+
+	const onConvertByIHandler=(i)=>{
+		convertByIAction(i)
+	}
 	return (
 		<ScrollView>
-			{Row}
+		{
+			ingredients.map((ingredient,index)=>{
+				return <IngredientRow key={index} 
+							hideLocks = {()=>setShowAllLocks(false)}
+							showLocks = {()=>setShowAllLocks(true)}
+							showAllLocks = {showAllLocks}
+							amount={convertedRecipe[index]}
+							unit={ingredient.units}
+							name={ingredient.names}
+							convertByI = {(i)=>onConvertByIHandler(i)} 
+							/>
+			})
+		}
 		</ScrollView>
 	)
 }
+export default connect(null,{convertByKAction,convertByIAction})(ResultList)

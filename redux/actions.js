@@ -13,6 +13,8 @@ export const SHOW_TUTORIAL = 'SHOW_TUTORIAL'; //FLAG FOR THE INITIAL TUTORIAL TO
 export const RESET_SETTINGS = 'RESET_SETTINGS';
 export const FAST_CONVERTION = 'FAST_CONVERTION'; // FLAG TO SHOW FAST CONVERTION BUTTON
 export const CONVERT = 'CONVERT'; //TRIGGER THE FLAG TO CONVERT
+export const CONVERT_BY_K = 'CONVERT_BY_K'; // MULTIPLE ALL INGREDIENTS BY K costant (TRAY)
+export const CONVERT_BY_I = 'CONVERT_BY_I'; // MULTIPLE ALL INGREDIENTS BY I costant (INGREDIENTS)
 //ACTION MAKER
 
 export const searchLinkAction= recipe =>({
@@ -65,4 +67,12 @@ export const fastConvertionAction = () =>({
 })
 export const convertAction = () =>({
 	type:CONVERT
+})
+export const convertByKAction = k =>({
+	type:CONVERT_BY_K,
+	payload: k
+})
+export const convertByIAction = i =>({
+	type:CONVERT_BY_I,
+	payload: i,
 })

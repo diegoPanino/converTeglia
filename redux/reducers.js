@@ -12,6 +12,8 @@ import {CLEAN_STORE,
 		RESET_SETTINGS,resetSettingsAction,
 		FAST_CONVERTION,fastConvertionAction,
 		CONVERT,convertAction,
+		CONVERT_BY_K,convertByKAction,
+		CONVERT_BY_I,convertByIAction,
 } from './actions'; 
 import {stdTrays} from '../api/standardTrays';
 
@@ -27,9 +29,23 @@ export const systemReducer = (state = {...state,blur:false,fastConv:false,conver
 	}
 }
 
-export const linkReducer = (state = {} ,action) =>{
+export const linkReducer = (state = {recipe:{},convertedRecipe:{}} ,action) =>{
 	switch(action.type){
 		case SEARCH_LINK: return {...state,...action.payload}
+		case CONVERT_BY_K: {
+				const newIngredients = [...state.recipe.ingredients]
+				const converted = newIngredients.map((ing,i) =>{
+						return (ing.amounts * action.payload).toFixed()
+				})
+				return {...state,convertedRecipe:converted}
+			}
+		case CONVERT_BY_I:{
+			const newIngredients = [...state.convertedRecipe]
+			const converted = newIngredients.map(ing=>{
+				return (ing * action.payload).toFixed()
+			})
+			return {...state,convertedRecipe:converted};
+		}
 		default: return state;
 	}
 }

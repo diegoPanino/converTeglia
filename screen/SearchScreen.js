@@ -43,21 +43,17 @@ function SearchScreen({navigation,searchLinkAction,cleanStoreAction,saveSearched
 		setInputBox(null)
 	}
 	const inputHandler=t=>{
-		//validation input
-		//setEnableConfirmForm(true);
 		setInputBox(t)
 	}
 
 //qui verra chiamata la api e ricevera recipe, che verra salvata nello store (al posti di link e basta) per poi essere
 //recuperata da resultScreen. Cosi da gestire anche loadgingPage
 	const confirmInput=()=>{	
-	//validation input, un po qui un po in fetch.js
+		if(inputBox === undefined || inputBox === null ||inputBox.length <= 0)
+			return ;
 		Keyboard.dismiss();
 		getIngredients(inputBox)
 			.then(result=>{
-				
-				console.log('RESULT: ')
-				console.log(result)
 				if(!result.hasOwnProperty('err'))
 					saveSearchedLinkAction(result)
 
@@ -70,15 +66,12 @@ function SearchScreen({navigation,searchLinkAction,cleanStoreAction,saveSearched
 		<Container>
 			<Content contentContainerStyle={styles.view}>
 				<Item rounded>
-					<Input placeholder='Qui va link ricetta o lista ingredienti' value={inputBox} onChangeText = {inputHandler}
+					<Input placeholder='Qui va link ricetta...' value={inputBox} onChangeText = {inputHandler}
 						  onSubmitEditing={confirmInput}/>
 					<Icon active name='close' onPress={resetInputBox}/>
 				</Item>	
 				<Button rounded block transparent large onPress={confirmInput} >
 					<Text >Leggi ricetta</Text>
-				</Button>
-				<Button rounded block transparent large onPress={()=>{navigation.navigate('ResultScreen')}}>
-					<Text >Result Screen</Text>
 				</Button>
 			</Content>
 			<Footer></Footer>

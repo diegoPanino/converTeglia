@@ -52,7 +52,7 @@ function ResultScreen(props){
 	const [modalOriginalTray, setModalOriginalTray] = useState(true)
 	const [areaSource,setAreaSource] = useState()
 	const [areaTarget,setAreaTarget] = useState()
-	const [k,setK] = useState() //not in use
+	const [k,setK] = useState(1) 
 	const [convertedRecipe,setConverted] = useState()
 	const prevAreaTarget = usePrevState(areaTarget)
 	const prevK = usePrevState(k)
@@ -66,10 +66,10 @@ function ResultScreen(props){
 		return ref.current
 	}
 
-	useEffect(()=>{
-		if(modalOriginalTray)
-			toggleBlurAction();
-	},[])
+	// useEffect(()=>{
+	// 	if(modalOriginalTray)
+	// 		toggleBlurAction();
+	// },[])
 
 	useEffect(()=>{
 		if(selectedTray.dim !== prevTray && prevTray !== undefined){
@@ -86,8 +86,9 @@ function ResultScreen(props){
 	},[props.convert])
 
 	useEffect(()=>{
-		if(prevAreaTarget !== areaTarget)
+		if(prevAreaTarget !== areaTarget){
 			setK(KitchenMath.getKfromArea(areaSource,areaTarget))
+		}
 	},[areaTarget])
 
 	const onContinueOriginalTray=(area)=>{
@@ -122,6 +123,7 @@ function ResultScreen(props){
 	 		          blurAmount={1}
 	 		        />}
 	 		        <OriginalTrayInfoModal 
+	 		        				blurAction={toggleBlurAction}
 	 		        				confirm={(area)=>onContinueOriginalTray(area)}
 	 		        				showModal={modalOriginalTray}
 	 		        				tray={result.recipe.trayRad}
@@ -134,7 +136,7 @@ function ResultScreen(props){
 						<Text style={styles.title}>{result.recipe.title}</Text>
 					</View>
 					<View style={styles.recipe}>
-						<ResultList list={result.recipe} k = {k}/>
+						<ResultList list={result} k = {k}/>
 					</View>
 				</View>
 			);
@@ -151,4 +153,5 @@ const mapStateToProps=(state)=>({
 	selectedTray:state.settings.selection,
 	convert:state.system.convert
 })
-export default connect(mapStateToProps,{toggleBlurAction,fastConvertionAction})(ResultScreen);
+export default connect(mapStateToProps,{toggleBlurAction,
+										fastConvertionAction,})(ResultScreen);

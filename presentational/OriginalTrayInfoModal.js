@@ -5,7 +5,7 @@ import {Picker} from '@react-native-picker/picker';
 import * as KitchenMath from '../api/kitchenMath';
 
 export default function OriginalTrayInfoModal(props){
-	const {confirm,showModal,tray} = props
+	const {confirm,showModal,tray,blurAction} = props
 	const [size,setSize] = useState(tray)
 	const [servs,setServs] = useState(KitchenMath.getServsFromRad(tray))
 	const windowWidth = useWindowDimensions().width;
@@ -89,6 +89,9 @@ export default function OriginalTrayInfoModal(props){
 		return <Picker.Item style={styles.pickerItem} label={`${i}`} value={i} key={i}/>
 	})
 
+	useEffect(()=>{
+		blurAction()
+	},[])
 	useEffect(()=>{
 		onServsChange()
 	},[servs])

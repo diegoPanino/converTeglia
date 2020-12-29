@@ -75,11 +75,10 @@ const styles=StyleSheet.create({
 			{showNTM && 
 				<NewTrayModal select={tray} hide={()=>setShowNTM(false)}/>}
 			 {showNTM &&
-			  <BlurView
-			 		    	  style={styles.blur}
-			 		          blurType="dark"
-			 		          blurAmount={1}
-			 		        />}
+			  <BlurView style={styles.blur}
+			 		    blurType="dark"
+			 		    blurAmount={1}
+			 		    />}
 			<Carousel 
 				contentContainerStyle={styles.ccs}
 				containerCustomStyle={styles.carouselImg}

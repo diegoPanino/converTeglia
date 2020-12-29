@@ -66,8 +66,10 @@ function SearchScreen({navigation,searchLinkAction,cleanStoreAction,saveSearched
 		<Container>
 			<Content contentContainerStyle={styles.view}>
 				<Item rounded>
-					<Input placeholder='Qui va link ricetta...' value={inputBox} onChangeText = {inputHandler}
-						  onSubmitEditing={confirmInput}/>
+					<Input 	placeholder='Qui va il link della ricetta...'
+							value={inputBox}
+							onChangeText = {inputHandler}
+						  	onSubmitEditing={confirmInput}/>
 					<Icon active name='close' onPress={resetInputBox}/>
 				</Item>	
 				<Button rounded block transparent large onPress={confirmInput} >

@@ -29,6 +29,7 @@ let pensieri = "ul.gdl-tabs-content";
 const gipsy = "h5.ingredient";
 const luciano = "h3.bevan_small.rosso_scuro";
 const dolciSenzaBurro = "div.cooked-recipe-ingredients";
+const tavolare = "*[itemprop = 'recipeIngredient']"
 
 const ingredients = [];
 let recipe = {
@@ -1028,6 +1029,34 @@ resetRecipe()
 		
 			else
 				throw new Error('GetAmountError')
+		}
+		catch(err){
+			console.log(err)
+		}
+		break;
+	}
+	case (RegExp(/tavolartegusto/g).test(url)):{
+		try{
+			const $ = await readHtml(url);
+
+			const htmlTitle = "span.post-title"
+			 const title = $(htmlTitle).find("[itemprop='name']").text().trim()
+			
+
+			const htmlPortionsTag = "[itemprop='recipeYield']"
+			let portions = normalizePortions($(htmlPortionsTag).text())
+
+
+			$(tavolare).each((i,el)=>{
+				ingredients[i] = $(el).text().replace(space,' ')
+			})
+			const getAmountError = getAmount(ingredients,title,url,portions)
+			if(getAmountError){
+				console.log('RETURN RECIPE: ',recipe)
+				return recipe;
+			}
+
+
 		}
 		catch(err){
 			console.log(err)

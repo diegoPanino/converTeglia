@@ -11,6 +11,8 @@ import {store,persistor} from './redux/store';
 import {searchLinkAction} from './redux/actions';
 import {Provider} from 'react-redux';
 import {PersistGate} from 'redux-persist/integration/react';
+import SplashScreen from './screen/SplashScreen';
+
 
 
 const Stack = createStackNavigator();

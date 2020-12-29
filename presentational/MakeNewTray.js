@@ -137,27 +137,39 @@ function NewTrayModal(props){
   	const [b,setB] = useState(20)
 	const [servs,setServs] = useState(6)
 	const [name,setName] = useState()
+	const [invalidForm,setInvalidForm] = useState(false)
 
 
 	useEffect(()=>{
 		setPortions();
 	},[dim,a,b,type])
 	useEffect(()=>{
+		if(isNaN(servs))
+			setInvalidForm(true)
+	},[servs])
+	useEffect(()=>{
 		return ()=> toggleBlurAction()
 	},[])
 
 
 	let nums=[];
-	for(let i = 1;i<=40;i++){
+	for(let i = 1;i<=44;i++){
 		nums.push(i)
 	}
 	const pickers = nums.map(i=>{
 		return <Picker.Item style={styles.pickerItem} label={`${i}`} value={i} key={i}/>
 	})
 
+	const checkName=()=>{
+		if(!name)
+			setName('Teglia Personale')
+	}
+
 	const onSave=()=>{
 		let dimensions;
 		let key;
+
+		checkName();
 
 		if(type==='rect'){
 			dimensions = a +'x' + b
@@ -183,7 +195,6 @@ function NewTrayModal(props){
 		hide()
 	}
 	const onCancel=()=>{
-		
 		hide()
 	}
 	const setPortions=()=>{
@@ -223,6 +234,7 @@ function NewTrayModal(props){
 			case(area>1105 && area <=1164):setServs(26);break;
 			case(area>1164 && area <=1226):setServs(27);break;
 			case(area>1226 && area <=1288):setServs(28);break;
+			case(area>1226 && area <=1530):setServs(30);break;
 			default: setServs('Misure troppo grandi!')
 		}
 	}
@@ -236,7 +248,8 @@ function NewTrayModal(props){
              		 <TextInput placeholder='Dai un nome alla tua teglia!'
              		 		autoFocus={true} clearButtonMode='while-editing'
              		 		maxLength={32} returnKeyType='done' textAlign='center'
-             		 		onChangeText={text=>setName(text)} value = {name}              		 />
+             		 		onEndEditing={()=>checkName()}
+             		 		onChangeText={text=>setName(text)} value = {name} />
             	</View>
 				<View style = {styles.type}>
 					<Label style={styles.label}>Forma</Label>
@@ -295,11 +308,11 @@ function NewTrayModal(props){
 					</View>
 				</View>
 				<View style={styles.btnRow}>
-					<TouchableOpacity large transparent onPress={()=>onSave()}>
-						<Text>SALVA TEGLIA</Text>
-					</TouchableOpacity>
 					<TouchableOpacity  large transparent onPress={()=>onCancel()}>
 						<Text>TORNA INDIETRO</Text>
+					</TouchableOpacity>
+					<TouchableOpacity disabled={invalidForm} large transparent onPress={()=>onSave()}>
+						<Text>SALVA TEGLIA</Text>
 					</TouchableOpacity>
 				</View>
 			</View>

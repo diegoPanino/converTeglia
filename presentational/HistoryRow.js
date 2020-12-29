@@ -64,14 +64,17 @@ function HistoryRow(props){
 						  extraData={title}
 						  confirm={removeHistoryElement}
 						  close={()=>setShowDelModal(false)} />
-			<View style={styles.textRow}>
-				<Tooltip width={useWindowDimensions().width} closeOnlyOnBackdropPress={true} containerStyle={styles.tooltip}
-					popover= {<Text selectable={true}>{url}</Text>} >
-						<Text style = {styles.text}>{title}</Text>
-				</Tooltip>
-			</View>
+			<TouchableOpacity style={styles.textRow} onPress={showRecipe}>
+				<Text style = {styles.text}>{title}</Text>
+			</TouchableOpacity>
 			<View style={[styles.row,styles.icons]}>
-				<Icon style={styles.icon} name='eye' onPress={showRecipe}/>
+				<Tooltip width={useWindowDimensions().width}
+						closeOnlyOnBackdropPress={true}
+						containerStyle={styles.tooltip}
+						skipAndroidStatusBar={true}
+						popover= {<Text selectable={true}>{url}</Text>} >
+						<Icon style={styles.icon} name='md-planet-outline'/>
+				</Tooltip>
 				<Icon style={styles.icon} name='trash-outline' onPress={()=>setShowDelModal(true)}/>
 				<Icon style={[styles.icon,styles.fav]} name={favIco} onPress={toggleFavourite}/>
 			</View>

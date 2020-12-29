@@ -55,10 +55,10 @@ export default function ModalMessage(props){
 				<View>
 					<Text style={styles.extraData}>{extraData}</Text>
 				</View>
-				<Button style={styles.closeButton} rounded transparent onPress={close}>
+				<Button style={styles.deleteButton} rounded transparent onPress={close}>
 					<Text>CHIUDI</Text>
 				</Button>
-				<Button style={styles.deleteButton} rounded transparent onPress={confirm}>
+				<Button style={styles.closeButton} rounded transparent onPress={confirm}>
 					<Text>ELIMINA</Text>
 				</Button>
 			</View>

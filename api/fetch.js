@@ -14,7 +14,7 @@ const benedetta = "ul.wpurp-recipe-ingredients"
 const ricettaLM ="div.ingredienti"
 const pisti ="div.cooked-recipe-ingredients"
 const ricetteDalMondo = "#ingredienti"
-const chiaraPassion = "div.wpurp-recipe-ingredients"
+const chiaraPassion = "ul.wprm-recipe-ingredients" 
 const soniaPeronaci = "p"
 const americaFoodShop ="div.entry-content.single-page>ul";
 const vlf = "div.single-ingredients";
@@ -28,7 +28,7 @@ const foodlers = "div.recipe_ingredients";
 let pensieri = "ul.gdl-tabs-content";
 const gipsy = "h5.ingredient";
 const luciano = "h3.bevan_small.rosso_scuro";
-const dolciSenzaBurro = "div.cooked-recipe-ingredients";
+const dolciSenzaBurro = "ul.ricetta-ingredients-list";
 const tavolare = "*[itemprop = 'recipeIngredient']"
 
 const ingredients = [];
@@ -117,6 +117,7 @@ function resetRecipe(){
 	ingredients.length = 0;
 	recipe = {
 		url:'',
+		src:'',
 		title:'',
 		trayRad:'',
 		ingredients:[]
@@ -124,9 +125,10 @@ function resetRecipe(){
 }
 //getAmount restituira true o false a seconda di errore nella lettura dati
 //recipe e' globale, getAMount la riempe 
-function getAmount(ings,title,url,portions){
+function getAmount(ings,title,url,portions,src){
 	recipe.title=title;
 	recipe.url=url;
+	recipe.src=src
 	recipe.trayRad = portions
 	const valori = ings.map((ingrediente,i)=>{
 		const selectNums = RegExp(/([0-9]){1,}/g)
@@ -188,6 +190,8 @@ resetRecipe()
 		    const htmlTitle = 'h1.entry-title';
 			const title = getHtmlTitle($,htmlTitle)
 
+			const src = $('figure.recipe-cover').find('img').attr('src')
+			console.log(src)
 		    const htmlPortionsTag = 'li.servings';
 		    const htmlPortionsValue = $(htmlPortionsTag).find('span.recipe-value').text()
 		    const portions = normalizePortions(htmlPortionsValue)
@@ -206,9 +210,8 @@ resetRecipe()
 				ingredients[i] = number +" "+unit+" "+name;
 			})//end each
 	
-			const getAmountError = getAmount(ingredients,title,url,portions)	
+			const getAmountError = getAmount(ingredients,title,url,portions,src)	
 			if(getAmountError){
-				console.log('RETURN RECIPE: ',recipe)
 				return recipe;
 			}
 		
@@ -227,6 +230,8 @@ resetRecipe()
 			const htmlTitle='h1.gz-title-recipe';
 			const title = getHtmlTitle($,htmlTitle)
 
+			const src = $('picture.gz-featured-image').find('source').attr('data-srcset')
+
 			const htmlPortionsTag = 'div.gz-list-featured-data'
 			let portions;
 			const htmlPortionsValue = $(htmlPortionsTag)
@@ -240,9 +245,8 @@ resetRecipe()
 			$(gialloZafferano).each((i,el)=>{
 				ingredients[i] = $(el).children().text().replace(space," ")
 			})
-			const getAmountError = getAmount(ingredients,title,url,portions)
+			const getAmountError = getAmount(ingredients,title,url,portions,src)
 			if(getAmountError){
-				console.log('RETURN RECIPE: ',recipe)
 				return recipe;
 			}
 		
@@ -261,6 +265,8 @@ resetRecipe()
 			const htmlTitle = 'h1.main_title'
 			const title = getHtmlTitle($,htmlTitle)
 
+			const src = $('div.img_featured').find('img').attr('src')
+
 			const htmlPortionsTag = 'ul.info_ricetta'
 			const htmlPortionsValue = $(htmlPortionsTag).find('li.dosi_per').text()
 			const portions = normalizePortions(htmlPortionsValue)
@@ -269,9 +275,8 @@ resetRecipe()
 						ingredients[i] = $(el).text().replace(space, " ")
 			})
 			
-			const getAmountError = getAmount(ingredients,title,url,portions)
+			const getAmountError = getAmount(ingredients,title,url,portions,src)
 			if(getAmountError){
-				console.log('RETURN RECIPE: ',recipe)
 				return recipe;
 			}
 		
@@ -290,6 +295,8 @@ resetRecipe()
 		const htmlTitle = 'h1.titolo-ricetta'
 		const title = getHtmlTitle($,htmlTitle)
 
+		const src = $('img.image').attr('src')
+
 		const htmlPortionsTag = 'div.scheda-ricetta-new'
 		let portions;
 		const htmlPortionsValue = $(htmlPortionsTag).find('span.scheda-def')
@@ -304,9 +311,8 @@ resetRecipe()
 					ingredients[i]=$(el).text().replace(space," ")
 				})
 			
-			const getAmountError = getAmount(ingredients,title,url,portions)
+			const getAmountError = getAmount(ingredients,title,url,portions,src)
 			if(getAmountError){
-				console.log('RETURN RECIPE: ',recipe)
 				return recipe;
 			}
 		
@@ -324,6 +330,8 @@ resetRecipe()
 
 			const htmlTitle = 'h1.h1-tit-recipes'
 			const title = getHtmlTitle($,htmlTitle)
+
+			const src = "https://ricetta.it"+ $('img.img-responsive.phrecipe').attr('src')
 
 			const htmlPortionsTag1 = 'span.post-detail-attribute-label';
 			const htmlPortionsTag2 = 'span.post-detail-attribute-value';
@@ -347,9 +355,8 @@ resetRecipe()
 				ingredients[i]=$(el).text().replace(space," ")
 			})
 			
-			const getAmountError = getAmount(ingredients,title,url,portions)	
+			const getAmountError = getAmount(ingredients,title,url,portions,src)	
 			if(getAmountError){
-				console.log('RETURN RECIPE: ',recipe)
 				return recipe;
 			}
 		
@@ -368,6 +375,8 @@ resetRecipe()
 			const htmlTitle = 'h1';//col-sm-9 col-md-10
 			const title = getHtmlTitle($,htmlTitle)
 
+			const src = $('div.visual_container').find('img').attr('data-src-mobile')
+
 			const htmlPortionsTag ='span.galbani_icon.gicon-persone'
 			const htmlPortionsValue = $(htmlPortionsTag).next().text()
 			const portions = normalizePortions(htmlPortionsValue)
@@ -376,9 +385,8 @@ resetRecipe()
 			 	ingredients[i] = $(el).text().replace(space," ")
 			})
 			
-			const getAmountError = getAmount(ingredients,title,url,portions)
+			const getAmountError = getAmount(ingredients,title,url,portions,src)
 			if(getAmountError){
-				console.log('RETURN RECIPE: ',recipe)
 				return recipe;
 			}
 		
@@ -397,6 +405,8 @@ resetRecipe()
 			const htmlTitle = 'h1.mb-0';
 			const title = getHtmlTitle($,htmlTitle)
 
+			const src = $('figure').find('img').attr('data-src')
+
 			const htmlPortionsTag = 'li.list-group-item.active'
 			let portions;
 			const htmlPortionsValue = $(htmlPortionsTag).each((i,el)=>{
@@ -411,9 +421,8 @@ resetRecipe()
 			$(misya).find("label.form-check-label").each((i,el)=>{
 				ingredients[i] = $(el).text().replace(space," ")
 			})
-			const getAmountError = getAmount(ingredients,title,url,portions)	
+			const getAmountError = getAmount(ingredients,title,url,portions,src)	
 			if(getAmountError){
-				console.log('RETURN RECIPE: ',recipe)
 				return recipe;
 			}
 		
@@ -432,6 +441,9 @@ resetRecipe()
 			const htmlTitle = 'h1.titolo-single-sotto-img';
 			const title = getHtmlTitle($,htmlTitle)
 
+			const src = $("[itemprop='image']").attr('data-src')
+			console.log(src)
+
 			const htmlPortionsTag = 'div.fusion-one-fourth.fusion-spacing-no.specifiche'
 			const htmlPortionsValue = $(htmlPortionsTag).find('span').first().text()
 			const portions = normalizePortions(htmlPortionsValue+" persone")
@@ -439,9 +451,8 @@ resetRecipe()
 			$(ricette).find("li").each((i,el)=>{
 				ingredients[i] = $(el).text().replace(/\s\s+/g, " ")
 			})
-			const getAmountError = getAmount(ingredients,title,url,portions)	
+			const getAmountError = getAmount(ingredients,title,url,portions,src)	
 			if(getAmountError){
-				console.log('RETURN RECIPE: ',recipe)
 				return recipe;
 			}
 		
@@ -460,14 +471,15 @@ resetRecipe()
 			const htmlTitle = 'h1.entry-title';
 			const title = getHtmlTitle($,htmlTitle)
 
+			const src = $('embed#pubtechvideo').attr('src')
+			console.log(src)
 			const portions=normalizePortions()
 
 			$(benedetta).find('li').each((i,el)=>{
 				ingredients[i] = $(el).text().replace(space," ")
 			})
-			const getAmountError = getAmount(ingredients,title,url,portions)
+			const getAmountError = getAmount(ingredients,title,url,portions,src)
 			if(getAmountError){
-				console.log('RETURN RECIPE: ',recipe)
 				return recipe;
 			}
 		
@@ -486,6 +498,8 @@ resetRecipe()
 			const htmlTitle = 'h1_titolo_ricetta';
 			const title = normalizeNames($('h1').text())	
 
+			const src = "https://www.ricettelastminute.com"+$('div.foto-ricetta').find('img').attr('src')
+
 			const htmlPortionsTag='span.ricetta-dettagli'
 			let portions;
 			const htmlPortionsValue=$(htmlPortionsTag).each((i,el)=>{
@@ -500,9 +514,8 @@ resetRecipe()
 			$(ricettaLM).find('li').each((i,el)=>{
 				ingredients[i]= $(el).text().replace(space," ")
 			})
-			const getAmountError = getAmount(ingredients,title,url,portions)
+			const getAmountError = getAmount(ingredients,title,url,portions,src)
 			if(getAmountError){
-				console.log('RETURN RECIPE: ',recipe)
 				return recipe;
 			}
 		
@@ -520,6 +533,9 @@ resetRecipe()
 
 			const htmlTitle = 'h1.entry-title'
 			const title = getHtmlTitle($,htmlTitle)
+
+			const src = $('div.cooked-post-featured-image').find('img').attr('data-lazy-src')
+			console.log(src)
 
 			const htmlPortionsTag = 'select.cooked-servings-changer'
 			let portions;
@@ -543,6 +559,7 @@ resetRecipe()
 			})
 			recipe.title=title
 			recipe.url=url
+			recipe.src=src
 			recipe.portions=portions
 			return recipe
 		}
@@ -558,6 +575,8 @@ resetRecipe()
 			const htmlTitle='h1.item.pf-title'
 			const title = getHtmlTitle($,htmlTitle)
 
+			const src = 'https://www.ricettedalmondo.it/'+$('div.foto-ricetta').find('img').attr('src')
+
 			const htmlPortionsTag='h2.legend.legend-ingredienti'
 			const htmlPortionsValue =$(htmlPortionsTag).text()
 			const portions = normalizePortions(htmlPortionsValue)
@@ -565,9 +584,8 @@ resetRecipe()
 			$(ricetteDalMondo).find('li').each((i,el)=>{
 				ingredients[i]=$(el).text().replace(space," ")
 			})
-			const getAmountError = getAmount(ingredients,title,url,portions)
+			const getAmountError = getAmount(ingredients,title,url,portions,src)
 			if(getAmountError){
-				console.log('RETURN RECIPE: ',recipe)
 				return recipe;
 			}
 		
@@ -586,18 +604,25 @@ resetRecipe()
 			const htmlTitle='h1.entry-title'
 			const title = getHtmlTitle($,htmlTitle)
 
-			const htmlPortionsTag1='span.wpur-recipe-servings';
-			const htmlPortionsTag2='span.wpur-recipe-servings-type'
-			const htmlPortionsValue1 = $(htmlPortionsTag1).text()
-			const htmlPortionsValue2 = $(htmlPortionsTag2).text()
+			const src = $('img.aligncenter.size-full').attr('src')
+
+			const htmlPortionsTag1='span.wpurp-recipe-servings';
+			const htmlPortionsTag2='span.wpurp-recipe-servings-type'
+			const htmlPortionsValue1 = $(htmlPortionsTag1).first().text()
+			const htmlPortionsValue2 = $(htmlPortionsTag2).first().text()
 			const portions = normalizePortions(htmlPortionsValue1 + htmlPortionsValue2)
 
-			$(chiaraPassion).first().find('li').each((i,el)=>{
-				ingredients[i]= $(el).text().replace(space," ")
+			let htmlScrapeString;
+			if($('ul').hasClass('wpurp-recipe-ingredient-container'))
+				htmlScrapeString = 'ul.wpurp-recipe-ingredient-container'
+			else
+				htmlScrapeString = chiaraPassion
+
+			$(htmlScrapeString).find('li').each((i,el)=>{
+				ingredients[i] = $(el).text().replace(space,' ')
 			})
-			const getAmountError = getAmount(ingredients,title,url,portions)
+			const getAmountError = getAmount(ingredients,title,url,portions,src)
 			if(getAmountError){
-				console.log('RETURN RECIPE: ',recipe)
 				return recipe;
 			}
 		
@@ -628,14 +653,15 @@ resetRecipe()
 			const htmlTitle = 'h1.entry-title'
 			const title = getHtmlTitle($,htmlTitle)
 
+			const src = $('div.entry-image.relative').find('img').attr('data-src')
+
 			const portions = normalizePortions()
 
 			$(americaFoodShop).find('li').each((i,el)=>{
 				ingredients[i]= $(el).text().replace(space, " ")
 			})
-			const getAmountError = getAmount(ingredients,title,url,portions)	
+			const getAmountError = getAmount(ingredients,title,url,portions,src)	
 			if(getAmountError){
-				console.log('RETURN RECIPE: ',recipe)
 				return recipe;
 			}
 		
@@ -654,6 +680,8 @@ resetRecipe()
 			const htmlTitle = 'h1'
 			const title =$(htmlTitle).first().text()
 
+			const src = $('div.single-main-media-image-w').find('img').attr('nitro-lazy-src')
+
 			const htmlPortionsTag='li.single-meta-serves';
 			const htmlPortionsValue =$(htmlPortionsTag).text()
 			const portions=normalizePortions(htmlPortionsValue)
@@ -661,9 +689,8 @@ resetRecipe()
 			$(vlf).find('span.ingredient-amount').each((i,el)=>{
 				ingredients[i]=$(el).text().replace(space," ")
 			})
-			const getAmountError = getAmount(ingredients,title,url,portions)	
+			const getAmountError = getAmount(ingredients,title,url,portions,src)                                	
 			if(getAmountError){
-				console.log('RETURN RECIPE: ',recipe)
 				return recipe;
 			}
 		
@@ -682,6 +709,8 @@ resetRecipe()
 			const htmlTitle = 'h1'
 			const title = getHtmlTitle($,htmlTitle)
 
+			const src = $('img.img-responsive.photo').attr('src')
+
 			const htmlPortionsTag='div.row.box-met'
 			let portions;
 			const htmlPortionsValue=$(htmlPortionsTag).find('div').each((i,el)=>{
@@ -695,9 +724,8 @@ resetRecipe()
 			$(gnamGnam).find('dd').each((i,el)=>{
 				ingredients[i] = $(el).text().replace(space," ")
 			})
-			const getAmountError = getAmount(ingredients,title,url,portions)
+			const getAmountError = getAmount(ingredients,title,url,portions,src)
 			if(getAmountError){
-				console.log('RETURN RECIPE: ',recipe)
 				return recipe;
 			}
 		
@@ -716,6 +744,11 @@ resetRecipe()
 			const htmlTitle = 'h1.fn'
 			const title = getHtmlTitle($,htmlTitle)
 
+			const dataRecipe = $('body').attr('data-recipe')
+			const firstCode = dataRecipe.slice(0,-3)
+			const link = "https://cdn.cook.stbm.it/thumbnails/ricette/"
+			const src = link + firstCode + "/" + dataRecipe + "/" +"hd400x225.jpg"
+
 			const htmlPortionsTag='li.yield'
 			const htmlPortionsValue = $(htmlPortionsTag).text()
 			const portions = normalizePortions(htmlPortionsValue)
@@ -724,9 +757,8 @@ resetRecipe()
 			$(cookAround).find('li').not(exlusion).each((i,el)=>{
 				ingredients[i]= $(el).text().replace(space," ");
 			})
-			const getAmountError = getAmount(ingredients,title,url,portions)	
+			const getAmountError = getAmount(ingredients,title,url,portions,src)	
 			if(getAmountError){
-				console.log('RETURN RECIPE: ',recipe)
 				return recipe;
 			}
 		
@@ -780,6 +812,8 @@ resetRecipe()
 			const htmlTitle= 'h1'
 			const title = getHtmlTitle($,htmlTitle)
 
+			const src ="https://www.veganhome.it" + $('img.img-thumbnail').attr('src')
+
 			const htmlPortionsTag='h2.vhome3-first'
 			const htmlPortionsValue=$(htmlPortionsTag).each((i,el)=>{
 				const line = $(el).text()
@@ -791,9 +825,8 @@ resetRecipe()
 			$(vegan).find('li').each((i,el)=>{
 				ingredients[i] = $(el).text().replace(space," ")
 			})
-			const getAmountError = getAmount(ingredients,title,url,portions)
+			const getAmountError = getAmount(ingredients,title,url,portions,src)
 			if(getAmountError){
-				console.log('RETURN RECIPE: ',recipe)
 				return recipe;
 			}
 		
@@ -812,15 +845,21 @@ resetRecipe()
 			const htmlTitle = 'h1'
 			const title = getHtmlTitle($,htmlTitle)
 
-			const portions = normalizePortions()
+			let src;
+			$('img').each((i,el)=>{
+				if(title == $(el).attr('alt'))
+					src = $(el).attr('data-cfsrc')		
+			})
+
+			const htmlPortions = $('div.ingredients-title').find('span').text()
+			const portions = normalizePortions(htmlPortions)
 
 			const $ingredients = $(agroDolce).find('li').children(".ingredient-info");
 			$ingredients.each((i,el)=>{
 				ingredients[i] =  $(el).next().text().replace(space," ")+" "+$(el).text().replace(space," ")
 			})
-			const getAmountError = getAmount(ingredients,title,url,portions)	
+			const getAmountError = getAmount(ingredients,title,url,portions,src)	
 			if(getAmountError){
-				console.log('RETURN RECIPE: ',recipe)
 				return recipe;
 			}
 		
@@ -839,6 +878,9 @@ resetRecipe()
 			const htmlTitle = 'h1.single-title'
 			const title = getHtmlTitle($,htmlTitle)
 
+			const src = $('section.recipe-main-cover').find('img').attr('src')
+			console.log(src)
+
 			const htmlPortionsTag = 'h3';
 			let portions;
 			const htmlPortionsValue = $(htmlPortionsTag).each((i,el)=>{
@@ -851,7 +893,7 @@ resetRecipe()
 			$(gnamBox).first().next().find('li').each((i,el)=>{
 				ingredients[i] = $(el).text().replace(space," ")
 			})
-			const getAmountError = getAmount(ingredients,title,url,portions)	
+			const getAmountError = getAmount(ingredients,title,url,portions,src)	
 			if(getAmountError){
 				console.log('RETURN RECIPE: ',recipe)
 				return recipe;
@@ -872,6 +914,9 @@ resetRecipe()
 			const htmlTitle = 'h1'
 			const title =getHtmlTitle($,htmlTitle)
 
+			const src = $('img')
+			console.log(src)
+
 			const htmlPortionsTag='div.recipe-ingredients'
 			const htmlPortionsValue=$(htmlPortionsTag).find('h2').text()
 			const portions = normalizePortions(htmlPortionsValue)
@@ -881,7 +926,6 @@ resetRecipe()
 			})
 			const getAmountError = getAmount(ingredients,title,url,portions)
 			if(getAmountError){
-				console.log('RETURN RECIPE: ',recipe)
 				return recipe;
 			}
 		
@@ -899,6 +943,8 @@ resetRecipe()
 
 			const htmlTitle = 'h1'
 			const title = getHtmlTitle($,htmlTitle)
+
+			const src = $('div.blog-thumbnail-image').find('img').attr('src')
 
 			const hasTabMenu = $('ul').hasClass("gdl-tabs-content");
 			let portions;
@@ -926,9 +972,8 @@ resetRecipe()
 				paragraphs = $(pensieri).find('li').first().text().split(/\n/)
 				ingredients.push(...paragraphs)
 			}
-			const getAmountError = getAmount(ingredients,title,url,portions)
+			const getAmountError = getAmount(ingredients,title,url,portions,src)
 			if(getAmountError){
-				console.log('RETURN RECIPE: ',recipe)
 				return recipe;
 			}
 		
@@ -947,6 +992,8 @@ resetRecipe()
 			const htmlTitle='h1.single-food-title.ricettetitle'
 			const title = getHtmlTitle($,htmlTitle)
 
+			const src = $('div.ricette_featureimage').find('img').attr('src')
+
 			const htmlPortionsTag = 'div.col-xs-8.col-sm-9.personimg';
 			let portions=0
 			const htmlPortionsValue=$(htmlPortionsTag).find('img').each((i,el)=>{
@@ -957,9 +1004,8 @@ resetRecipe()
 			let splitArr = $(gipsy).children().first().text().split(/\n/)
 			ingredients.push(...splitArr)
 			
-			const getAmountError = getAmount(ingredients,title,url,portions)	
+			const getAmountError = getAmount(ingredients,title,url,portions,src)	
 			if(getAmountError){
-				console.log('RETURN RECIPE: ',recipe)
 				return recipe;
 			}
 		
@@ -978,6 +1024,8 @@ resetRecipe()
 			const htmlTitle = 'h2.entry-title';
 			const title = getHtmlTitle($,htmlTitle)
 
+			const src = $('p.thumbnail').find('img').attr('src')
+
 			const htmlPortionsTag = 'h3.bevan_small.rosso_scuro'
 			let portions;
 			const htmlPortionsValue = $(htmlPortionsTag).each((i,el)=>{
@@ -989,7 +1037,7 @@ resetRecipe()
 			$(luciano).next().find('li').each((i,el)=>{
 				ingredients[i]= $(el).text().replace(space," ")
 			})
-			const getAmountError = getAmount(ingredients,title,url,portions)
+			const getAmountError = getAmount(ingredients,title,url,portions,src)
 			if(getAmountError){
 				console.log('RETURN RECIPE: ',recipe)
 				return recipe;
@@ -1007,23 +1055,21 @@ resetRecipe()
 		try{
 			const $ = await readHtml(url);
 
-			const htmlTitle = 'h1.entry-title'
+			const htmlTitle = 'h1#ricetta-title'
 			const title = getHtmlTitle($,htmlTitle)
 
-			const htmlPortionsTag = 'select.cooked-servings-changer'
-			let portions;
-			const htmlPortionsValue = $(htmlPortionsTag).find('option').each((i,el)=>{
-					if($(el).prop('selected')){
-						portions = normalizePortions($(el).text())
-					}
-			})
+			const src = "https:"+$('div#ricetta-thumbnail-1').find('img').attr('src')
 
-			$(dolciSenzaBurro).find('div.cooked-ingredient').each((i,el)=>{
+			const htmlPortionsTag = 'span#ricetta-portions'
+			let portions;
+			const htmlPortionsValue = "porzion" + $(htmlPortionsTag).text()
+			portions = normalizePortions(htmlPortionsValue)
+
+			$(dolciSenzaBurro).find('li').each((i,el)=>{
 				ingredients[i] = $(el).text().replace(space," ")
 			})
-			const getAmountError = getAmount(ingredients,title,url,portions)
+			const getAmountError = getAmount(ingredients,title,url,portions,src)
 			if(getAmountError){
-				console.log('RETURN RECIPE: ',recipe)
 				return recipe;
 			}
 		
@@ -1040,8 +1086,12 @@ resetRecipe()
 			const $ = await readHtml(url);
 
 			const htmlTitle = "span.post-title"
-			 const title = $(htmlTitle).find("[itemprop='name']").text().trim()
+			const title = $(htmlTitle).find("[itemprop='name']").text().trim()
 			
+			const htmlImg = 'div.single-container'
+			const htmlSrc= $(htmlImg).find("[itemprop='image']").attr('data-srcset')
+			const srcArr = htmlSrc.split(' ')
+			const src = srcArr[2]
 
 			const htmlPortionsTag = "[itemprop='recipeYield']"
 			let portions = normalizePortions($(htmlPortionsTag).text())
@@ -1050,9 +1100,8 @@ resetRecipe()
 			$(tavolare).each((i,el)=>{
 				ingredients[i] = $(el).text().replace(space,' ')
 			})
-			const getAmountError = getAmount(ingredients,title,url,portions)
-			if(getAmountError){
-				console.log('RETURN RECIPE: ',recipe)
+			const getAmountError = getAmount(ingredients,title,url,portions,src)
+			if(getAmountError){			
 				return recipe;
 			}
 

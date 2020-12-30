@@ -1,5 +1,5 @@
 import React,{useState,useEffect,useRef} from 'react';
-import {View,Text,StyleSheet} from 'react-native';
+import {View,Text,StyleSheet, Image} from 'react-native';
 import {connect} from 'react-redux';
 import ResultList from '../presentational/ResultList';
 import InfoTray from '../presentational/InfoTray';
@@ -40,6 +40,12 @@ const styles=StyleSheet.create({
 		right:0,
 		left:0,
 		bottom:0,
+	},
+	imgContainer:{
+		flex:3
+	},
+	img:{
+		flex:3,
 	}
 })
 
@@ -134,6 +140,9 @@ function ResultScreen(props){
 									selectedTray={selectedTray}/>
 					<View style={styles.titleBox}>
 						<Text style={styles.title}>{result.recipe.title}</Text>
+					</View>
+					<View style={styles.imgContainer}>
+						<Image source={{uri:result.recipe.src}} style={styles.img} />
 					</View>
 					<View style={styles.recipe}>
 						<ResultList list={result} k = {k}/>

@@ -56,6 +56,7 @@ function ResultScreen(props){
 	const {dim,key} = selectedTray
 	const [showModal,setShowModal] = useState(false)
 	const [modalOriginalTray, setModalOriginalTray] = useState(true)
+	const [loaded,setLoaded] = useState(false)
 	const [areaSource,setAreaSource] = useState()
 	const [areaTarget,setAreaTarget] = useState()
 	const [k,setK] = useState(1) 
@@ -141,8 +142,10 @@ function ResultScreen(props){
 					<View style={styles.titleBox}>
 						<Text style={styles.title}>{result.recipe.title}</Text>
 					</View>
-					<View style={styles.imgContainer}>
-						<Image source={{uri:result.recipe.src}} style={styles.img} />
+					<View style={loaded ? styles.imgContainer : {display:'none'}}>
+						<Image 	onLoad={()=>setLoaded(true)}
+								source={{uri:result.recipe.src}}
+								style={styles.img} />
 					</View>
 					<View style={styles.recipe}>
 						<ResultList list={result} k = {k}/>

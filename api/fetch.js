@@ -64,13 +64,19 @@ function normalizeUnit(units){
 		case 'l','litro','litri': return 'l';
 		case 'kg','chilo','chili': return 'kg';
 		case 'g','gr', 'grammo','grammi': return 'g';
-		case 'gr': return 'g';
+		case 'gr': return 'g'; 
+		case 'cucchiaio': return 'CT';
+		case 'cucchiai': return 'CT';
+		case 'cucchiaino': return 'ct';
+		case 'cucchiaini': return 'ct';
+		case 'tazza': return 'Tz';
+		case 'tazze': return 'Tz';
 		default: return units;
 	}
 }
 function normalizeNames(names){
-	let cleanNames = names.replace(/\s{2,}/g,' ')
-	cleanNames = cleanNames.replace(/[^\w\s]|_/g,'')
+	let cleanNames = names.replace(/\s{2,}/g,' ').toLowerCase() //double space replaced with single space
+	cleanNames = cleanNames.replace(/[^\w\s[à-ý][()]/g,'')
 	cleanNames = cleanNames.trim();
 	return cleanNames;
 }
@@ -124,13 +130,14 @@ function resetRecipe(){
 	}
 }
 //getAmount restituira true o false a seconda di errore nella lettura dati
-//recipe e' globale, getAMount la riempe 
+//recipe e' globale, getAmount la riempe 
 function getAmount(ings,title,url,portions,src){
-	recipe.title=title;
+	recipe.title=title.toUpperCase();
 	recipe.url=url;
 	recipe.src=src
 	recipe.trayRad = portions
 	const valori = ings.map((ingrediente,i)=>{
+		//const selectFractions = RegExp(/[¼-¾]/g)
 		const selectNums = RegExp(/([0-9]){1,}/g)
 		let nums = selectNums.exec(ingrediente)
 		if(nums !== null){
@@ -140,7 +147,7 @@ function getAmount(ings,title,url,portions,src){
 			}// end check farina 00
 			const strNoNums = nums.input.replace(nums[0],'')
 			const selectUnits = 
-				RegExp(/l\b|litro\b|litri\b|ml\b|cl\b|kg\b|chilo\b|chili\b|g\b|gr\b|mg\b|grammi|grammo/gi);
+				RegExp(/l\b|litro\b|litri\b|ml\b|cl\b|kg\b|chilo\b|chili\b|g\b|gr\b|mg\b|grammi|grammo|cucchiaio|cucchiaino|cucchiaini|cucchiai|tazza|tazze/i);
 			const unitsRaw = selectUnits.exec(strNoNums)
 			if(unitsRaw !== null){
 				const units = normalizeUnit(unitsRaw[0])
@@ -183,6 +190,31 @@ function getAmount(ings,title,url,portions,src){
 export async function getIngredients(url){
 resetRecipe()
  switch(true){
+ 	case(RegExp(/est/g).test(url)):{
+ 		console.log('--------test')
+ 		const ing = [	"farina 00 300 gr",
+ 						"2 cucchiai di cacao (circa 15g)",
+ 						"5 cucchiaini di pepe(circa 16g)",
+ 						"1 cucchiaio di birra(circa 145g)",
+ 						"1 cucchiaino di birra(cira 13ml)",
+ 						"¼ tazza aceto",
+ 						"½ tazza birra",
+ 						"¾ tazza olio",
+ 						"1/4 panetto di burro",
+ 						"30-40ml acqua",
+ 						"20 grammi caffè",
+ 						"200 ml dI aCqUa di RoSe",
+ 						"200,5 g di sale",
+ 					]
+ 		const title = "RiCeTtA dI PrOvA"
+ 		const url = "url"
+ 		const portions = normalizePortions("")
+ 		const src = "https://www.atuttodonna.it/atuttodonna/wp-content/uploads/2020/04/immagini-felicit%C3%A0.jpg"
+ 		const getAmountError = getAmount(ing,title,url,portions,src)
+ 		if(getAmountError)
+ 			return recipe;
+ 		break;
+ 	}
  	case (RegExp(/blog.giallozafferano/g).test(url)):{
    		try{
     		const $ = await readHtml(url);
@@ -214,12 +246,12 @@ resetRecipe()
 			if(getAmountError){
 				return recipe;
 			}
-		
 			else
 				throw new Error('-----------GetAmountError-----------')
 		}
 		catch(err){
 			console.log(err)
+			return ({err:1,msg:'Errore nel leggere la ricetta !'})
 		}
 		break;
 	}
@@ -249,12 +281,12 @@ resetRecipe()
 			if(getAmountError){
 				return recipe;
 			}
-		
 			else
 				throw new Error('GetAmountError')
 		}
 		catch(err){
 			console.log(err)
+			return ({err:1,msg:'Errore nel leggere la ricetta !'})
 		}
 		break;
 	}
@@ -279,12 +311,12 @@ resetRecipe()
 			if(getAmountError){
 				return recipe;
 			}
-		
 			else
 				throw new Error('GetAmountError')
 		}
 		catch(err){
 			console.log(err)
+			return ({err:1,msg:'Errore nel leggere la ricetta !'})
 		}
 		break;
 	}
@@ -315,12 +347,12 @@ resetRecipe()
 			if(getAmountError){
 				return recipe;
 			}
-		
 			else
 				throw new Error('GetAmountError')
 		}
 		catch(err){
 			console.log(err)
+			return ({err:1,msg:'Errore nel leggere la ricetta !'})
 		}
 		break;
 	}
@@ -359,12 +391,12 @@ resetRecipe()
 			if(getAmountError){
 				return recipe;
 			}
-		
 			else
 				throw new Error('GetAmountError')
 		}
 		catch(err){
 			console.log(err)
+			return ({err:1,msg:'Errore nel leggere la ricetta !'})
 		}
 		break;
 	}
@@ -389,12 +421,12 @@ resetRecipe()
 			if(getAmountError){
 				return recipe;
 			}
-		
 			else
 				throw new Error('GetAmountError')
 		}
 		catch(err){
 			console.log(err)
+			return ({err:1,msg:'Errore nel leggere la ricetta !'})
 		}
 		break;
 	}
@@ -425,12 +457,12 @@ resetRecipe()
 			if(getAmountError){
 				return recipe;
 			}
-		
 			else
 				throw new Error('GetAmountError')
 		}
 		catch(err){
 			console.log(err)
+			return ({err:1,msg:'Errore nel leggere la ricetta !'})
 		}
 		break;
 	}
@@ -455,12 +487,12 @@ resetRecipe()
 			if(getAmountError){
 				return recipe;
 			}
-		
 			else
 				throw new Error('GetAmountError')
 		}
 		catch(err){
 			console.log(err)
+			return ({err:1,msg:'Errore nel leggere la ricetta !'})
 		}
 		break;
 	}
@@ -482,12 +514,12 @@ resetRecipe()
 			if(getAmountError){
 				return recipe;
 			}
-		
 			else
 				throw new Error('GetAmountError')
 		}
 		catch(err){
 			console.log(err)
+			return ({err:1,msg:'Errore nel leggere la ricetta !'})
 		}
 		break;
 	}
@@ -518,12 +550,12 @@ resetRecipe()
 			if(getAmountError){
 				return recipe;
 			}
-		
 			else
 				throw new Error('GetAmountError')
 		}
 		catch(err){
 			console.log(err)
+			return ({err:1,msg:'Errore nel leggere la ricetta !'})
 		}
 		break;
 	}
@@ -565,6 +597,7 @@ resetRecipe()
 		}
 		catch(err){
 			console.log(err);
+			return ({err:1,msg:'Errore nel leggere la ricetta !'})
 		}
 		break;
 	}
@@ -588,12 +621,12 @@ resetRecipe()
 			if(getAmountError){
 				return recipe;
 			}
-		
 			else
 				throw new Error('GetAmountError')
 		}
 		catch(err){
 			console.log(err)
+			return ({err:1,msg:'Errore nel leggere la ricetta !'})
 		}
 		break;
 	}
@@ -625,7 +658,6 @@ resetRecipe()
 			if(getAmountError){
 				return recipe;
 			}
-		
 			else
 				throw new Error('GetAmountError')
 		}
@@ -643,6 +675,7 @@ resetRecipe()
 		}
 		catch(err){
 			console.log(err)
+			return ({err:1,msg:'Errore nel leggere la ricetta !'})
 		}
 		break;
 	}
@@ -664,12 +697,12 @@ resetRecipe()
 			if(getAmountError){
 				return recipe;
 			}
-		
 			else
 				throw new Error('GetAmountError')
 		}
 		catch(err){
 			console.log(err)
+			return ({err:1,msg:'Errore nel leggere la ricetta !'})
 		}
 		break;
 	}
@@ -693,12 +726,12 @@ resetRecipe()
 			if(getAmountError){
 				return recipe;
 			}
-		
 			else
 				throw new Error('GetAmountError')
 		}
 		catch(err){
 			console.log(err)
+			return ({err:1,msg:'Errore nel leggere la ricetta !'})
 		}
 		break;
 	}
@@ -728,12 +761,12 @@ resetRecipe()
 			if(getAmountError){
 				return recipe;
 			}
-		
 			else
 				throw new Error('GetAmountError')
 		}
 		catch(err){
 			console.log(err)
+			return ({err:1,msg:'Errore nel leggere la ricetta !'})
 		}
 		break;
 	}
@@ -761,12 +794,12 @@ resetRecipe()
 			if(getAmountError){
 				return recipe;
 			}
-		
 			else
 				throw new Error('GetAmountError')
 		}
 		catch(err){
 			console.log(err)
+			return ({err:1,msg:'Errore nel leggere la ricetta !'})
 		}
 		break;
 	}
@@ -796,12 +829,12 @@ resetRecipe()
 				console.log('RETURN RECIPE: ',recipe)
 				return recipe;
 			}
-		
 			else
 				throw new Error('GetAmountError')
 		}
 		catch(err){
 			console.log(err)
+			return ({err:1,msg:'Errore nel leggere la ricetta !'})
 		}
 		break;
 	}
@@ -829,12 +862,12 @@ resetRecipe()
 			if(getAmountError){
 				return recipe;
 			}
-		
 			else
 				throw new Error('GetAmountError')
 		}
 		catch(err){
 			console.log(err)
+			return ({err:1,msg:'Errore nel leggere la ricetta !'})
 		}
 		break;
 	}
@@ -862,12 +895,12 @@ resetRecipe()
 			if(getAmountError){
 				return recipe;
 			}
-		
 			else
 				throw new Error('GetAmountError')
 		}
 		catch(err){
 			console.log(err)
+			return ({err:1,msg:'Errore nel leggere la ricetta !'})
 		}
 		break;
 	}
@@ -898,12 +931,12 @@ resetRecipe()
 				console.log('RETURN RECIPE: ',recipe)
 				return recipe;
 			}
-		
 			else
 				throw new Error('GetAmountError')
 		}
 		catch(err){
 			console.log(err)
+			return ({err:1,msg:'Errore nel leggere la ricetta !'})
 		}
 		break;
 	}
@@ -928,12 +961,12 @@ resetRecipe()
 			if(getAmountError){
 				return recipe;
 			}
-		
 			else
 				throw new Error('GetAmountError')
 		}
 		catch(err){
 			console.log(err)
+			return ({err:1,msg:'Errore nel leggere la ricetta !'})
 		}
 		break;
 	}
@@ -976,12 +1009,12 @@ resetRecipe()
 			if(getAmountError){
 				return recipe;
 			}
-		
 			else
 				throw new Error('GetAmountError')
 		}	
 		catch(err){
 			console.log(err)
+			return ({err:1,msg:'Errore nel leggere la ricetta !'})
 		}
 		break;
 	}
@@ -1008,12 +1041,12 @@ resetRecipe()
 			if(getAmountError){
 				return recipe;
 			}
-		
 			else
 				throw new Error('GetAmountError')
 		}
 		catch(err){
 			console.log(err)
+			return ({err:1,msg:'Errore nel leggere la ricetta !'})
 		}
 		break;
 	}
@@ -1048,6 +1081,7 @@ resetRecipe()
 		}
 		catch(err){
 			console.log(err)
+			return ({err:1,msg:'Errore nel leggere la ricetta !'})
 		}
 		break;
 	}
@@ -1078,6 +1112,7 @@ resetRecipe()
 		}
 		catch(err){
 			console.log(err)
+			return ({err:1,msg:'Errore nel leggere la ricetta !'})
 		}
 		break;
 	}
@@ -1109,6 +1144,7 @@ resetRecipe()
 		}
 		catch(err){
 			console.log(err)
+			return ({err:1,msg:'Errore nel leggere la ricetta !'})
 		}
 		break;
 	}

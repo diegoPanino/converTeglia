@@ -1,5 +1,6 @@
 import React,{useState,useEffect,useRef} from 'react';
-import {View,Text,StyleSheet, Image} from 'react-native';
+import {View,Text,StyleSheet,Image,TouchableOpacity,Share} from 'react-native';
+import {Icon} from 'native-base';
 import {connect} from 'react-redux';
 import ResultList from '../presentational/ResultList';
 import InfoTray from '../presentational/InfoTray';
@@ -21,8 +22,23 @@ const styles=StyleSheet.create({
 	recipe:{
 		flex:8,
 	},
-	title:{
+	titleContainer:{
 		flex:1,
+		flexDirection:'row',
+	},
+	titleView:{
+		flex:1,
+		marginLeft:20,
+	},
+	title:{
+		textAlign:'center'
+	},
+	shareIcoContainer:{
+		marginRight:5,
+		alignItems:'flex-end'
+	},
+	shareIco:{
+		fontSize:25,
 	},
 	infoTray:{
 		flex:1,
@@ -42,17 +58,19 @@ const styles=StyleSheet.create({
 		bottom:0,
 	},
 	imgContainer:{
-		flex:3
+		flex:3,
+		paddingBottom:5,
 	},
 	img:{
 		flex:3,
-	}
+	},
+	
 })
 
 function ResultScreen(props){
 	const {toggleBlurAction,fastConvertionAction} = props
 	const {selectedTray,result} = props
-	const {navigation} = props
+	const {navigation,route} = props
 	const {dim,key} = selectedTray
 	const [showModal,setShowModal] = useState(false)
 	const [modalOriginalTray, setModalOriginalTray] = useState(true)
@@ -72,7 +90,6 @@ function ResultScreen(props){
 		})
 		return ref.current
 	}
-
 	// useEffect(()=>{
 	// 	if(modalOriginalTray)
 	// 		toggleBlurAction();
@@ -117,6 +134,27 @@ function ResultScreen(props){
 		navigation.navigate('MyTrayScreen')
 	}
 
+	/*const onShare = async () => {
+    try {
+      const result = await Share.share({
+        title:'-Converteglia- ',
+ 		message: 'Converteglia', 
+  		url: 'converteglia://result/', 
+      });
+      if (result.action === Share.sharedAction) {
+        if (result.activityType) {
+          // shared with activity type of result.activityType
+        } else {
+          // shared
+        }
+      } else if (result.action === Share.dismissedAction) {
+        // dismissed
+      }
+    } catch (error) {
+      alert(error.message);
+    }
+  };*/
+
 	if(result.hasOwnProperty('recipe')){
 		if(result.recipe.hasOwnProperty('err'))
 			return (<Text>{result.recipe.msg}</Text>)
@@ -139,8 +177,14 @@ function ResultScreen(props){
 									confirm={(area)=>onConfirmTray(area)}
 									showModal={showModal}
 									selectedTray={selectedTray}/>
-					<View style={styles.titleBox}>
-						<Text style={styles.title}>{result.recipe.title}</Text>
+					<View style={styles.titleContainer}>
+						<View style={styles.titleView}>
+							<Text style={styles.title}>{result.recipe.title}</Text>
+						</View>
+							{/*<TouchableOpacity 	style={styles.shareIcoContainer}
+												onPress={()=>onShare()}>
+								<Icon style={styles.shareIco} name ='share-social' />
+							</TouchableOpacity>*/}
 					</View>
 					<View style={loaded ? styles.imgContainer : {display:'none'}}>
 						<Image 	onLoad={()=>setLoaded(true)}

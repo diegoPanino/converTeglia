@@ -1,5 +1,6 @@
 
 import React from 'react';
+import {Linking,Text} from 'react-native'
 import {createStackNavigator} from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
 import SearchScreen from './screen/SearchScreen';
@@ -16,13 +17,21 @@ import SplashScreen from './screen/SplashScreen';
 
 
 const Stack = createStackNavigator();
+const linking = {
+  prefixes: ['converteglia://'],
+  config: {
+    screens:{
+      ResultScreen:'result/:link'
+    }
+  },
+};
 
 export default function App(){
   //persistor.purge();
   return (
     <Provider store = {store} >
       <PersistGate loading={null} persistor={persistor}>   
-        <NavigationContainer>
+        <NavigationContainer linking={linking} fallback={<Text>Caricando...</Text>}>
           <Stack.Navigator
                         initialRouteName = {SearchScreen}
                         headerMode = 'screen'

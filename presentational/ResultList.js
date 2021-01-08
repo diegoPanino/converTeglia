@@ -63,9 +63,11 @@ function ResultList(props){
 							unit={ingredient.units}
 							name={ingredient.names}
 							convertByI = {(i)=>onConvertByIHandler(i)} 
+							
 							/>
 			})
 		}
+		<Text style={{textAlign:'center'}}>Ho moltiplicato ogni ingredienti per {k.toFixed(2)}</Text>
 		</ScrollView>
 	)
 }

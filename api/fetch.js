@@ -29,7 +29,12 @@ let pensieri = "ul.gdl-tabs-content";
 const gipsy = "h5.ingredient";
 const luciano = "h3.bevan_small.rosso_scuro";
 const dolciSenzaBurro = "ul.ricetta-ingredients-list";
-const tavolare = "*[itemprop = 'recipeIngredient']"
+const tavolare = "*[itemprop = 'recipeIngredient']";
+const lci = 'ul.recipe-ingredients';
+const sep = 'ul.sp2015-ingredienti-box.row.btn-group';
+const buonissimo = 'section.ingrRicc';
+const ricetteVeloci = 'div#ingredienti-box';
+const cookist = "div.box-ingredienti";
 
 const ingredients = [];
 let recipe = {
@@ -58,10 +63,12 @@ function getHtmlTitle($,title){
 	return res;
 }
 function normalizeUnit(units){
-	units = units.trim()
+	units = units.trim().toLowerCase()
 	const cleanUnit = units.replace(/[0-9]/,'')
 	switch(cleanUnit){
 		case 'l','litro','litri': return 'l';
+		case 'decilitri': return 'dl';
+		case 'decilitro': return 'dl';
 		case 'kg','chilo','chili': return 'kg';
 		case 'g','gr', 'grammo','grammi': return 'g';
 		case 'gr': return 'g'; 
@@ -96,6 +103,7 @@ function normalizePortions(htmlStr){
 		case(RegExp(/servin/gi).test(htmlStr)): {measurement='persone';break;}
 		case(RegExp(/pancake/gi).test(htmlStr)): {measurement='persone';break;}
 		case(RegExp(/x/gi).test(htmlStr)): {measurement='persone';break;}
+		case(RegExp(/dos/gi).test(htmlStr)): {measurement='persone';break;}
 		case(RegExp(/stampo/gi).test(htmlStr)): {measurement='teglia';rad = number;break;}
 		case(RegExp(/teglia/gi).test(htmlStr)): {measurement='teglia';rad = number;break;}
 		case(RegExp(/tortiera/gi).test(htmlStr)): {measurement='teglia';rad = number;break;}
@@ -131,30 +139,60 @@ function resetRecipe(){
 }
 //getAmount restituira true o false a seconda di errore nella lettura dati
 //recipe e' globale, getAmount la riempe 
-function getAmount(ings,title,url,portions,src){
-	recipe.title=title.toUpperCase();
+function getAmount(ings,title,url,portions,src='image not found'){
+	title = title.charAt(0).toUpperCase() + title.slice(1).toLowerCase()
+	recipe.title=title
 	recipe.url=url;
-	recipe.src=src
 	recipe.trayRad = portions
+
+	if(src.length === 0)
+		recipe.src = 'image not found'
+	else
+		recipe.src = src
+
 	const valori = ings.map((ingrediente,i)=>{
 		//const selectFractions = RegExp(/[¼-¾]/g)
-		const selectNums = RegExp(/([0-9]){1,}/g)
+		const selectFractions = /[0-9]{1,}-[0-9]{1,}/g
+		const selectNums = /([0-9]+,[0-9]+)|([0-9]+\.[0-9]+)|([0-9]+)/
+		const selectFarina = /farina [0-9]{2}|farina[0-9]{2}|farina tipo[0-9]{2}|farina tipo [0-9]{2}/i
+		const selectFloat = /([0-9]+,[0-9]+)|([0-9]+\.[0-9]+)/
+
+		const approxValue = selectFractions.exec(ingrediente)
+		if(approxValue){
+			const numsArr = approxValue[0].split('-')
+			const media = (Number(numsArr[0])+Number([numsArr[1]]))/2
+			ingrediente = approxValue.input.replace(selectFractions,media)
+		}//getting media value from approx (if exist) numbers
+
 		let nums = selectNums.exec(ingrediente)
+
 		if(nums !== null){
-			if(nums[0]==='00'){
-				ingrediente = nums.input.replace(/00/g,'zero zero')
-				nums= selectNums.exec(ingrediente)
+			const checkFarina = selectFarina.exec(ingrediente)
+			const floatNum = selectFloat.exec(ingrediente)
+
+			if(floatNum){
+				nums[0] = floatNum[0].replace(',','.')
+				const subStr = floatNum.input.substr(floatNum.index,floatNum[0].length)
+
+				nums.input = floatNum.input.replace(subStr,nums[0])
+			}
+
+			if(checkFarina){
+				ingrediente = checkFarina.input.replace(checkFarina[0],'replacement')			
+				nums = selectNums.exec(ingrediente)
+				nums.input = checkFarina.input.replace('replacemente',checkFarina[0])
 			}// end check farina 00
+			
 			const strNoNums = nums.input.replace(nums[0],'')
 			const selectUnits = 
-				RegExp(/l\b|litro\b|litri\b|ml\b|cl\b|kg\b|chilo\b|chili\b|g\b|gr\b|mg\b|grammi|grammo|cucchiaio|cucchiaino|cucchiaini|cucchiai|tazza|tazze/i);
+				RegExp(/l\b|litro\b|litri\b|decilitro\b|decilitri\b|ml\b|cl\b|kg\b|chilo\b|chili\b|g\b|gr\b|mg\b|grammi|grammo|cucchiaio|cucchiaino|cucchiaini|cucchiai|tazza|tazze/i);
 			const unitsRaw = selectUnits.exec(strNoNums)
 			if(unitsRaw !== null){
 				const units = normalizeUnit(unitsRaw[0])
 				const namesRaw = unitsRaw.input.replace(selectUnits,'')
 				const names = normalizeNames(namesRaw)
 				recipe.ingredients.push({
-					amounts:nums[0],
+					amounts:Number(nums[0]),
 					units:units,
 					names:names,
 					key:i
@@ -189,27 +227,35 @@ function getAmount(ings,title,url,portions,src){
 //oppure restituisce valore errore
 export async function getIngredients(url){
 resetRecipe()
+if(!(/http/gi).test(url)){
+	const ingredientsList = url.replace(/\t|\v|\f/gi,' ').split('\n')
+	ingredientsList.map(el=>{
+		if(el.length > 0)
+			ingredients.push(el.replace(space,' ').trim())
+		
+	})
+	console.log(ingredients)
+	console.log("length: ",ingredients.length)
+	//return recipe;
+}
+	
  switch(true){
  	case(RegExp(/est/g).test(url)):{
  		console.log('--------test')
- 		const ing = [	"farina 00 300 gr",
- 						"2 cucchiai di cacao (circa 15g)",
- 						"5 cucchiaini di pepe(circa 16g)",
- 						"1 cucchiaio di birra(circa 145g)",
- 						"1 cucchiaino di birra(cira 13ml)",
- 						"¼ tazza aceto",
- 						"½ tazza birra",
- 						"¾ tazza olio",
- 						"1/4 panetto di burro",
+ 		const ing = [	
+ 						"300 gr farina 00",
+ 						"farina 00 300 gr",
+ 						"300gr farina 00",
+ 						"farina 00 300gr",
  						"30-40ml acqua",
- 						"20 grammi caffè",
- 						"200 ml dI aCqUa di RoSe",
- 						"200,5 g di sale",
+ 						"19,5 g orzo, riu",
+ 						"29.8 ml acqua",
+ 						"coca,zero 23,4 ml"
  					]
- 		const title = "RiCeTtA dI PrOvA"
+ 		const title = "riCetta dI pROVA"
  		const url = "url"
  		const portions = normalizePortions("")
- 		const src = "https://www.atuttodonna.it/atuttodonna/wp-content/uploads/2020/04/immagini-felicit%C3%A0.jpg"
+ 		const src = ""//"https://www.atuttodonna.it/atuttodonna/wp-content/uploads/2020/04/immagini-felicit%C3%A0.jpg"
  		const getAmountError = getAmount(ing,title,url,portions,src)
  		if(getAmountError)
  			return recipe;
@@ -1147,6 +1193,166 @@ resetRecipe()
 			return ({err:1,msg:'Errore nel leggere la ricetta !'})
 		}
 		break;
+	}
+	case ((/lacucinaitaliana/g).test(url)):{
+		try{
+			const $ = await readHtml(url)
+
+			const htmlTitle = 'h1.article-title'
+			const title = $(htmlTitle).text().trim()
+
+			const htmlImg = 'div.article-header-text'
+			const src = $(htmlImg).next().find('img').attr('srcset')
+
+			const htmlPortionsTag = 'div.recipe-info'
+			const portions = normalizePortions($(htmlPortionsTag).find('div.col-sm-6').text())
+
+			$(lci).find('li').each((i,el)=>{
+				ingredients[i] = $(el).text().replace(space,' ')
+			})
+
+			const getAmountError = getAmount(ingredients,title,url,portions,src)
+			if(getAmountError){
+				return recipe;
+			}
+			else
+				throw new Error('GetAmountError')
+		}
+		catch(err){
+			console.log(err)
+			return ({err:1,msg:'Errore nel leggere la ricetta !'})
+		}
+	}
+	case ((/salepepe/g).test(url)):{
+		try{
+			const $ = await readHtml(url)
+
+			const htmlTitle = 'h1.fn.sp-title.playfairheavy'
+			const title = $(htmlTitle).text().trim()
+
+			const htmlImg = 'div.sp-ricetta-img.col-md-12.clearfix'
+			const src = $(htmlImg).find('img').attr('data-srcset').split(' ')
+
+
+			const htmlPortionsTag ='h3.lato.block-heading.clearfix'
+			const portions = normalizePortions($(htmlPortionsTag).text())
+
+			$(sep).find('ul.row').each((i,el)=>{
+				ingredients[i] = $(el).text().trim().replace(space,' ')
+			})
+
+			const getAmountError = getAmount(ingredients,title,url,portions,src[0])
+			if(getAmountError)
+				return recipe;
+			else
+				throw new Error('GetAmountError')
+
+		}
+		catch(err){
+			console.log(err)
+			return ({err:1,msg:'Errore nel leggere la ricetta !'})
+		}
+	}
+	case ((/buonissimo/g).test(url)):{
+		try{
+			const $ = await readHtml(url)
+
+			const htmlTitle = 'article'
+			const title = $(htmlTitle).find('h1').text().trim()
+
+			const htmlImg = 'picture.topImg'
+			const src = $(htmlImg).find('img').attr('src')
+
+			let portions;
+			const htmlPortionsTag = 'ul.dettRicc'
+			$(htmlPortionsTag).find('li').each((i,el)=>{
+				if(i===2){
+					portions=normalizePortions($(el).text().trim())
+				}
+			})
+
+			$(buonissimo).find('li').each((i,el)=>{
+				ingredients[i]= $(el).text().replace(space,' ')
+			})
+
+			const getAmountError = getAmount(ingredients,title,url,portions,src)
+			if(getAmountError)
+				return recipe;
+			else
+				throw new Error('GetAmountError')
+		}
+		catch(err){
+			console.log(err)
+			return ({err:1,msg:'Errore nel leggere la ricetta'})
+		}
+	}
+	case ((/dolciveloci/g).test(url)),((/primochef/g).test(url)):{
+		try{
+			const $ = await readHtml(url)
+
+			const htmlTitle ='h1.m-b-xs-0.axil-post-title.hover-line'
+			const title = $(htmlTitle).text().trim()
+
+			const htmlImg = 'img'
+			let src
+			$(htmlImg).each((i,el)=>{
+				if($(el).attr('alt') == title)
+					src = $(el).attr('data-src')
+			})
+
+			let portions
+			const htmlPortionsTag = 'div#cotture-box'
+			$(htmlPortionsTag).find('span').each((i,el)=>{
+				if(i===1){
+					portions = normalizePortions('persone '+ $(el).text().trim())
+				}
+			})
+
+			$(ricetteVeloci).text().replace(space,' ').trim().split('•').map((el,i)=>{
+				if(i>0)
+					ingredients[i-1] = el
+			})
+			
+			const getAmountError = getAmount(ingredients,title,url,portions,src)
+			if(getAmountError)
+				return recipe
+			else
+				throw new Error('GetAmountError')
+		}
+		catch(err){
+			console.log(err)
+			return ({err:1,msg:'Errore nel leggere la ricetta'})
+		}
+	}
+	case((/cookist/g).test(url)):{
+		try{
+			const $ = await readHtml(url)
+
+			const htmlTitle = 'div.art-title'
+			const title=$(htmlTitle).find('h1').text().trim();
+
+			const htmlImg = 'div.box-triplePhoto.clearfix'
+			const src=$(htmlImg).last().find('a').last().attr('data-src-big')
+
+			const htmlPortionsTag='span.recipe-icon.icon-servings.big';
+			const portions = normalizePortions($(htmlPortionsTag).next().text().trim())
+
+			$(cookist).find('li').each((i,el)=>{
+				const amount = $(el).find('b').text().trim().replace(space,' ')
+				const name = $(el).find('span').first().text().trim().replace(space,' ')
+				ingredients[i]=amount+" "+name
+			})
+
+			const getAmountError= getAmount(ingredients,title,url,portions,src)
+			if(getAmountError)
+				return recipe
+			else
+				throw new Error('GetAmountError')
+		}
+		catch(err){
+			console.log(err)
+			return ({err:1,msg:'Errore nel leggere la ricetta'})
+		}
 	}
 	default:{
 		return ({err:1,msg:'Impossibile leggere la ricetta !'})

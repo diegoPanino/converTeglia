@@ -1,10 +1,11 @@
 import React,{useEffect,useState,useCallback} from 'react';
-import {View,StyleSheet, TextInput,Keyboard} from 'react-native';
+import {View,StyleSheet, TextInput,Keyboard, Modal} from 'react-native';
 import ShareMenu, { ShareMenuReactView } from "react-native-share-menu";
 import { Item , Input , Label , Icon , Button, Container, Footer, Content, Text	} from 'native-base';
 import {connect} from 'react-redux';
 import {searchLinkAction,cleanStoreAction,saveSearchedLinkAction} from '../redux/actions';
 import {getIngredients} from '../api/fetch';
+import MakeNewRecipe from '../presentational/NewRecipe';
 
 const styles=StyleSheet.create({
 	view:{
@@ -17,6 +18,7 @@ const styles=StyleSheet.create({
 
 function SearchScreen({navigation,searchLinkAction,cleanStoreAction,saveSearchedLinkAction}){
 	const [inputBox, setInputBox] = useState('')
+	const [newRecipe,setNewRecipe] = useState(false)
 	//const [enableConfirmForm,setEnableConfirmForm] = useState(false)
 
 	const shareTextHandler = useCallback((sharedItem)=>{
@@ -62,8 +64,12 @@ function SearchScreen({navigation,searchLinkAction,cleanStoreAction,saveSearched
 			})
 			.catch(err=>console.log(err))
 	}
+
 	return (
 		<Container>
+			<Modal animationType='slide' transparent={true} visible={newRecipe}>
+				<MakeNewRecipe hide={()=>setNewRecipe(false)} />		
+			</Modal>
 			<Content contentContainerStyle={styles.view}>
 				<Item rounded>
 					<Input 	placeholder='Qui va il link della ricetta...'
@@ -74,6 +80,9 @@ function SearchScreen({navigation,searchLinkAction,cleanStoreAction,saveSearched
 				</Item>	
 				<Button rounded block transparent large onPress={confirmInput} >
 					<Text >Leggi ricetta</Text>
+				</Button>
+				<Button rounded block transparent large onPress={()=>setNewRecipe(true)} >
+					<Text >Crea la tua ricetta</Text>
 				</Button>
 			</Content>
 			<Footer></Footer>

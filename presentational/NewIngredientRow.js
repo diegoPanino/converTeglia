@@ -1,5 +1,5 @@
-import React,{useState,useEffect} from 'react';
-import {View,Text,TextInput,StyleSheet} from 'react-native';
+import React,{useState,useEffect,useRef} from 'react';
+import {View,Text,TextInput,StyleSheet,Keyboard} from 'react-native';
 import {Button,Icon} from 'native-base';
 import {Picker} from '@react-native-picker/picker';
 
@@ -10,12 +10,12 @@ const styles = StyleSheet.create({
 		marginTop:5,
 		marginBottom:5,
 	},
-	amount:{
+	amounts:{
 		flex:1,
 		borderWidth:2,
 		borderRadius:10,
 	},
-	unit:{
+	units:{
 		flex:0.5,
 		borderWidth:2,
 		borderRadius:10,
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
 		backgroundColor:'transparent',
 		width:78,
 	},
-	name:{
+	names:{
 		flex:3,
 		borderWidth:2,
 		borderRadius:10,
@@ -39,19 +39,29 @@ const styles = StyleSheet.create({
 	}
 })
 
-export default function NewIngredientRow(props){
-	const [amount,setAmount] = useState()
-	const [unit,setUnit] = useState(' ')
-	const [name,setName] = useState()
-	const [enableInput,setEnableInput] = useState(true)
-	const {newIngredient,id} = props
+export default function NewIngredientRow({form=false,...props}){
+	const [amounts,setAmount] = useState(props.amounts)
+	const [units,setUnit] = useState(props.units)
+	const [names,setName] = useState(props.names)
+	const [id,setId] = useState(props.id)
+	const [showDeleteIco,setShowDeleteIco] = useState(false)
+	const {newIngredient,deleteIngredient,index} = props
+	const ref = useRef()
 
-	const units = ['g','kg','ml','dl','l','CT','ct','tz',' ']
-	const pickerUnit = units.map(el=>{
+	const unitss = [' ','g','kg','ml','dl','l','CT','ct','tz']
+	const pickerUnit = unitss.map(el=>{
 		return <Picker.Item style={styles.pickerItem} label={`${el}`} value={el} key={el}/>
 	})
-	
-	console.log(id)
+
+	useEffect(()=>{
+		onSubmitHandler()
+	},[units])
+
+	useEffect(()=>{
+		if(id)
+			setShowDeleteIco(true)
+	},[id])
+
 
 	const onAmountChageHandler=text=>{
 		onAmountChange(text)
@@ -65,71 +75,59 @@ export default function NewIngredientRow(props){
 		setName(text)
 	}
 	const onSubmitHandler=()=>{
-		let failed;
-		if(amount && name)
-			failed = newIngredient({amount,unit,name})
-		if(!failed){
-			setAmount('')
-			setUnit(' ')
-			setName()
+		if(names&&amounts){
+			const fail = newIngredient({amounts,units,names,id})
+			if(fail || form){
+				setName()
+				setAmount()
+				setUnit(' ')
+			}
 		}
-		else{
-			setEnableInput(false)
-		}
-
-
 	}
-
 
 	return (
 		<View style={styles.ingredientRow}>
-				<View style={styles.amount}>
+				<View style={styles.amounts}>
 					<TextInput
 						placeholder='250'
 						placeholderTextColor='gray'
 						textAlign='center'
 						keyboardType='numeric'
-						value={amount}
+						returnKeyType='next'
+						value={amounts}
 						onChangeText={text=>onAmountChageHandler(text)}
 						onSubmitEditing={()=>onSubmitHandler()}
-						returnKeyType='next'
-						
 					/>
 				</View>
-				<View style={styles.unit}>
+				<View style={styles.units}>
 					<Picker style={styles.picker}
 							mode='dropdown'
-							selectedValue={unit}
+							selectedValue={units}
 							onValueChange={(val)=>setUnit(val)}
-							
 							>
 						{pickerUnit}	
 					</Picker>
 
 				</View>
-				<View style={styles.name}>
+				<View style={styles.names}>
 					<TextInput
+						
+						autofocus={false}
 						placeholder='burro'
 						placeholderTextColor='gray'
 						textAlign='center'
-						value={name}
+						value={names}
 						onChangeText={(text)=>onNameChange(text)}
 						onSubmitEditing={()=>onSubmitHandler()}
-						returnKeyType='next'
-						
+						returnKeyType='done'
 					/>
 				</View>
 				<View style={styles.icoContainer}>
-					<Icon name='close-circle-outline' onPress={()=>console.log('press')} />
+						{showDeleteIco
+							?	<Icon name='close-circle-outline' onPress={()=>deleteIngredient(id)} />
+							: 	null
+						}
 				</View>
 			</View>
 		);
 }
-
-
-/*<TextInput
-						placeholder='g'
-						placeholderTextColor='black'
-						textAlign='center'
-						onChangeText={(text)=>onUnitChange(text)}
-					/>*/

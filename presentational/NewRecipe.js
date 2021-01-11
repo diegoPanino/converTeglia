@@ -1,9 +1,10 @@
 import React,{useState,useEffect} from 'react';
-import {View,Text,TextInput,StyleSheet,ScrollView,TouchableOpacity} from 'react-native';
+import {View,Text,TextInput,StyleSheet,ScrollView,TouchableOpacity,Alert} from 'react-native';
 import {Button} from 'native-base';
 import {connect} from 'react-redux';
+import { v4 as idGen} from 'uuid';
 import NewIngredientRow from './NewIngredientRow';
-import {toggleBlurAction} from '../redux/actions';
+import {toggleBlurAction,searchLinkAction,saveSearchedLinkAction} from '../redux/actions';
 
 const styles = StyleSheet.create({
 	mainView:{
@@ -49,30 +50,94 @@ const styles = StyleSheet.create({
 function MakeNewRecipe(props){
 	const [title,setTitle] = useState()
 	const [invalidForm,setInvalidForm] = useState(false)
-	const [ingredientRow,setIngredientRow]=useState([{amount:0,unit:'',name:'',id:''}])
-	const {hide} = props
-	const {toggleBlurAction} = props
+	const [ingredientRow,setIngredientRow]=useState(props.recipe||[])
+	//const [isLoaded,setIsLoaded] = useState(false)
+	//const copiedRecipe = (props.recipe)
+	const {read} = props
+	const {hide,navigation} = props
+	const {toggleBlurAction,searchLinkAction,saveSearchedLinkAction} = props
 
 	useEffect(()=>{
 		toggleBlurAction()
-		return ()=>toggleBlurAction()
+		return ()=>{
+			toggleBlurAction()
+			setIngredientRow([])
+			}
 	},[])
 
 	const addIngredient=ingredient=>{
-		const {amount,unit,name} = ingredient
-		const id = amount+unit+name
-		const isDuplicate = ingredientRow.some((el)=>{
-			const ingId = el.amount+el.unit+el.name
-			 return ingId===id
+		const {amounts,units,names} = ingredient
+
+		if(!(ingredient.id))
+			ingredient.id = idGen()
+		
+		const existId = ingredientRow.some((el)=>{
+				return el.id === ingredient.id
 		})
-		if(!isDuplicate){
-			const newIngredient = [...ingredientRow,ingredient]
-			setIngredientRow(newIngredient)
-			return true;
+
+		if(existId){
+			const editIng = ingredientRow.find((el,i)=>{
+				if(el.id === ingredient.id){
+					const copy = [...ingredientRow]
+					copy[i] = {...ingredient}
+					setIngredientRow(copy)
+					return false;
+				}
+			})
+		}//id exist so edit
+		else{
+			const isDuplicate = ingredientRow.some((el)=>{
+				const elValue = el.amounts+el.units+el.names
+				const newIngr = amounts+units+names
+				return elValue === newIngr
+			})
+			if(!isDuplicate){
+				const newIngredient = [...ingredientRow,ingredient]
+				setIngredientRow(newIngredient)	
+				return false;	
+			}
+			else
+				return true;
 		}
-		else
-			return false;
+	}
+
+	const onDeleteIngredient=id=>{
+		const ingredient = ingredientRow.find((el)=>{
+			if(id === el.id){
+				const copyIngredient=[...ingredientRow]
+				const index = copyIngredient.indexOf(el)
+				copyIngredient.splice(index,1)
+				setIngredientRow(copyIngredient)
+				return true
+			}
+		})
 	}	
+
+	const onConvertPress=()=>{
+		if(!(title)){
+			Alert.alert('Attenzione','Dai un nome alle tua ricetta!')
+			return
+		}
+		if(ingredientRow.length <= 0){
+			Alert.alert('Attenzione','Aggiungi ingredienti alla tua ricetta!')
+			return 
+		}
+		const ingredients = ingredientRow.map((el,i)=>{
+			delete el.id
+			return {...el,key:i}
+		})
+		const recipe = {
+			url:'Ricetta personale',
+			src:'immagine personale',
+			title:title,
+			trayRad:22,
+			ingredients:ingredients
+		}
+		saveSearchedLinkAction(recipe)
+		searchLinkAction(recipe)
+		hide()
+		navigation.navigate('ResultScreen');
+	}
 
 	return(
 		<View style={styles.mainView}>
@@ -86,16 +151,23 @@ function MakeNewRecipe(props){
 						onChangeText={(text)=>setTitle(text)}
 					/>
 				</View>
-				<ScrollView style={styles.ScrollView}>
+				<ScrollView style={styles.ScrollView}>	
 					{ingredientRow.map((el,i)=>{
-						return <NewIngredientRow key={i} id={ingredientRow.id} style={styles.ingredientRow}
+						return <NewIngredientRow key={el.id} style={styles.ingredientRow}
 									newIngredient={ingredient=>addIngredient(ingredient)}
+									deleteIngredient={id=>onDeleteIngredient(id)}
+									amounts={el.amounts} units={el.units} names={el.names} id={el.id}
 									/>
-						})
+						})			
 					}
+					<NewIngredientRow key={'0'} style={styles.ingredientRow}
+									newIngredient={ingredient=>addIngredient(ingredient)}
+									deleteIngredient={id=>onDeleteIngredient(id)}
+									form={true}
+									/>
 				</ScrollView>
 				<View style={styles.btnRow}>
-					<TouchableOpacity large transparent onPress={()=>console.log('ingr: ',ingredientRow)} >
+					<TouchableOpacity large transparent onPress={()=>onConvertPress()} >
 						<Text>CONVERTI</Text>
 					</TouchableOpacity>
 					<TouchableOpacity  large transparent onPress={()=>hide()}>
@@ -106,4 +178,4 @@ function MakeNewRecipe(props){
 		</View>
 		);
 }
-export default connect(null,{toggleBlurAction})(MakeNewRecipe)
+export default connect(null,{toggleBlurAction,searchLinkAction,saveSearchedLinkAction})(MakeNewRecipe)

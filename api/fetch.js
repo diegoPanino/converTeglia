@@ -228,15 +228,20 @@ function getAmount(ings,title,url,portions,src='image not found'){
 export async function getIngredients(url){
 resetRecipe()
 if(!(/http/gi).test(url)){
+	console.log(url)
 	const ingredientsList = url.replace(/\t|\v|\f/gi,' ').split('\n')
 	ingredientsList.map(el=>{
 		if(el.length > 0)
 			ingredients.push(el.replace(space,' ').trim())
 		
 	})
-	console.log(ingredients)
-	console.log("length: ",ingredients.length)
-	//return recipe;
+	const getAmountError = getAmount(ingredients,'Ricetta personale','Ricetta personale','','')
+	if(getAmountError)
+		return {...recipe,personal:true}
+	else{
+		console.log(err)
+		return ({err:1,msg:'Errore nel leggere la ricetta !'})
+	}
 }
 	
  switch(true){

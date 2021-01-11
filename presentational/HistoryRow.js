@@ -29,7 +29,9 @@ const styles = StyleSheet.create({
 		color:'red'
 	},
 	tooltip:{
-		marginLeft:10
+		flex:1,
+		marginLeft:-10,
+		textAlign:'center',
 	},
 	text:{
 		//width:250

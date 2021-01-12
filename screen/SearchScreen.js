@@ -1,7 +1,6 @@
 import React,{useEffect,useState,useCallback} from 'react';
 import {View,StyleSheet, TextInput,Keyboard, Modal} from 'react-native';
 import ShareMenu, { ShareMenuReactView } from "react-native-share-menu";
-import {AdMobBanner,AdMobInterstitial,PublisherBanner} from 'react-native-admob'
 import { Item , Input , Label , Icon , Button, Container, Footer, Content, Text	} from 'native-base';
 import {connect} from 'react-redux';
 import { v4 as idGen} from 'uuid';
@@ -22,7 +21,6 @@ function SearchScreen({navigation,searchLinkAction,cleanStoreAction,saveSearched
 	const [inputBox, setInputBox] = useState('')
 	const [newRecipe,setNewRecipe] = useState(false)
 	const [copiedRecipe,setCopiedRecipe] = useState('')
-	//const [enableConfirmForm,setEnableConfirmForm] = useState(false)
 
 	const shareTextHandler = useCallback((sharedItem)=>{
 	if(!sharedItem) return

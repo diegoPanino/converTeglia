@@ -243,7 +243,6 @@ if(!(/http/gi).test(url)){
 		return ({err:1,msg:'Errore nel leggere la ricetta !'})
 	}
 }
-	
  switch(true){
  	case(RegExp(/est/g).test(url)):{
  		console.log('--------test')

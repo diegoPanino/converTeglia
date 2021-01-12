@@ -1,5 +1,6 @@
 import React,{useState,useEffect,useRef} from 'react';
 import {View,Text,StyleSheet,Image,TouchableOpacity,Share} from 'react-native';
+//import {AdMobBanner,AdMobInterstitial,PublisherBanner} from 'react-native-admob'
 import {Icon} from 'native-base';
 import {connect} from 'react-redux';
 import ResultList from '../presentational/ResultList';
@@ -82,6 +83,8 @@ function ResultScreen(props){
 	const prevAreaTarget = usePrevState(areaTarget)
 	const prevK = usePrevState(k)
 	const prevTray = usePrevState(selectedTray.dim)
+	
+
 
 	function usePrevState(value){
 		const ref = useRef()
@@ -90,10 +93,32 @@ function ResultScreen(props){
 		})
 		return ref.current
 	}
-	// useEffect(()=>{
-	// 	if(modalOriginalTray)
-	// 		toggleBlurAction();
-	// },[])
+
+/*	useEffect(()=>{
+		AdMobInterstitial.setTestDevices([AdMobInterstitial.simulatorId]);
+    	AdMobInterstitial.setAdUnitID('ca-app-pub-3940256099942544/8691691433');
+
+    	AdMobInterstitial.addEventListener('adLoaded', () =>
+      		console.log('AdMobInterstitial adLoaded'),
+    	);
+    	AdMobInterstitial.addEventListener('adFailedToLoad', error =>
+      		console.warn(error),
+    	);
+    	AdMobInterstitial.addEventListener('adOpened', () =>
+      		console.log('AdMobInterstitial => adOpened'),
+    	);
+	    AdMobInterstitial.addEventListener('adClosed', () => {
+	    	console.log('AdMobInterstitial => adClosed');
+	    	AdMobInterstitial.requestAd().catch(error => console.warn(error));
+	    });
+	    AdMobInterstitial.addEventListener('adLeftApplication', () =>
+	    	console.log('AdMobInterstitial => adLeftApplication'),
+	    );
+	    AdMobInterstitial.requestAd().catch(error => console.warn(error));
+
+	    AdMobInterstitial.showAd().catch(err=>console.log(err))
+	    return ()=> AdMobInterstitial.removeAllListeners()
+	},[])*/
 
 	useEffect(()=>{
 		if(selectedTray.dim !== prevTray && prevTray !== undefined){

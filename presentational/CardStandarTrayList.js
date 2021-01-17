@@ -1,9 +1,10 @@
 import React from 'react';
-import {FlatList,View,Text,StyleSheet} from 'react-native';
+import {FlatList,View,StyleSheet} from 'react-native';
 import StdTrayRow from './StdTrayRow';
 import CustomTrayRow from './CustomTrayRow.js'
 import {connect} from 'react-redux';
 import {deleteTrayAction,setMyTrayAction} from '../redux/actions';
+import MyText from './MyText';
 
 const styles = StyleSheet.create({
 	mainContainer:{
@@ -12,12 +13,23 @@ const styles = StyleSheet.create({
 		marginLeft:'5%',
 	},
 	row:{
+		height:35,
 		flexDirection:'row',
-		backgroundColor:'white',
+		alignItems:'center',
+		backgroundColor:'#ffe199',//primary
+		borderColor:'#554f60',
+		borderTopWidth:2,
+		borderRightWidth:2,
+		borderLeftWidth:2,
+		borderRadius:20,
+		elevation:2,
+		zIndex:10,
 	},
 	rowEl:{
 		flex:1,
-		textAlign:'center'
+		textAlign:'center',
+		fontSize:18,
+		fontWeight:'bold'
 	},
 	flatCSTListContainer:{
 		maxHeight:'50%',
@@ -26,6 +38,10 @@ const styles = StyleSheet.create({
 		maxHeight:'100%',
 		flex:1,
 	},
+	h4Center:{
+		textAlign:'center',
+		fontSize:18
+	}
 })
 
 function CardTrayList({type,stdTrays,setMyTrayAction,deleteTrayAction}){
@@ -46,14 +62,14 @@ function CardTrayList({type,stdTrays,setMyTrayAction,deleteTrayAction}){
 							ListHeaderComponent={()=>{
 								return(
 										<View style={styles.row}>
-											<Text style={styles.rowEl}>Teglie personali</Text>
+											<MyText myStyle={styles.rowEl}>Teglie personali</MyText>
 										</View>
 									)
 								}
 							}
 							stickyHeaderIndices={[0]}
 						/>
-						: <Text style={{textAlign:'center'}}>Nessuna teglia personale salvata!</Text>
+						: <MyText myStyle={styles.h4Center}>Nessuna teglia personale salvata!</MyText>
 				}
 				</View>
 				<View style={styles.flatSTDListContainer}>
@@ -67,7 +83,7 @@ function CardTrayList({type,stdTrays,setMyTrayAction,deleteTrayAction}){
 							return(
 								<View>
 									<View style={styles.row}>
-										<Text style={styles.rowEl}>Teglie standard</Text>								
+										<MyText myStyle={styles.rowEl}>Teglie standard</MyText>								
 									</View>
 								</View>
 								)

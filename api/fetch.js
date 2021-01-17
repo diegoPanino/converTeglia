@@ -139,7 +139,7 @@ function resetRecipe(){
 }
 //getAmount restituira true o false a seconda di errore nella lettura dati
 //recipe e' globale, getAmount la riempe 
-function getAmount(ings,title,url,portions,src='image not found'){
+function getAmount(ings,title,url,portions=22,src='image not found'){
 	title = title.charAt(0).toUpperCase() + title.slice(1).toLowerCase()
 	recipe.title=title
 	recipe.url=url;
@@ -322,6 +322,8 @@ if(!(/http/gi).test(url)){
 					if(RegExp(/Dosi/gi).test(line)){
 						portions = normalizePortions($(el).find('strong').text());
 					}
+					else
+						portions = normalizePortions()
 				})
 
 			$(gialloZafferano).each((i,el)=>{

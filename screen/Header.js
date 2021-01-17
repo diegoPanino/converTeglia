@@ -17,7 +17,6 @@ const styles = StyleSheet.create({
 	header:{
 		height: height *0.18,
 		width: width,
-		borderBottomWidth:1,
 		shadowColor: "#000",
 		shadowOffset: {
 			width: 0,
@@ -26,7 +25,9 @@ const styles = StyleSheet.create({
 		shadowOpacity: 0.25,
 		shadowRadius: 3.84,
 		elevation: 5,
-		backgroundColor:'transparent',
+		borderBottomWidth:1,
+		backgroundColor:'#ffe199', //primary
+
 	},
 	logo:{
 		resizeMode:'stretch',
@@ -52,13 +53,20 @@ const styles = StyleSheet.create({
 	selected:{
 		backgroundColor:'yellow'
 	},
-	blur:{
-		zIndex:5,
+	blurView:{
 		position:'absolute',
-		top:0,
-		right:0,
 		left:0,
-		bottom:0,
+		top:0,
+	},
+	blur:{
+		position:'absolute',
+		left:0,
+		top:0,
+		zIndex:5,
+	},
+	badgeStyle:{
+		backgroundColor:'#847349',
+		borderColor:'#c8bfb5',
 	}
 })
 
@@ -70,9 +78,9 @@ function Header({scene,previous,navigation,settings,system}){
 	const blur = system.blur ? 3 : 0
 	const {fastConv} = system
 	const BadgedImage = withBadge(`${select.servs} pers`,
-		{top:22,right:5,badgeStyle:{backgroundColor:'gray'}})(Image)
+		{top:22,right:5,badgeStyle:styles.badgeStyle})(Image)
 	const BadgedImg = withBadge(`${select.dim}cm`,
-		{right:5,badgeStyle:{backgroundColor:'gray'}})(BadgedImage)
+		{right:5,badgeStyle:styles.badgeStyle})(BadgedImage)
 	
 	return (
 		<View style={styles.header}>
@@ -87,7 +95,10 @@ function Header({scene,previous,navigation,settings,system}){
 				</TouchableOpacity>
 			}
 				<TouchableOpacity onPress={()=>navigation.navigate('MyTrayScreen')}> 
-					<BadgedImg blurRadius={blur} source={trays[trayIndex]} style = {styles.myTrayBtn}/>	
+					{system.blur 
+						? <Image blurRadius={blur} source={trays[trayIndex]} style = {styles.myTrayBtn}/>
+						: <BadgedImg blurRadius={blur} source={trays[trayIndex]} style = {styles.myTrayBtn}/>	
+					}
 				</TouchableOpacity>
 			</View>
 		</View>

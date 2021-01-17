@@ -1,9 +1,10 @@
 import React,{useEffect,useState,useCallback} from 'react';
 import {View,StyleSheet, TextInput,Keyboard, Modal} from 'react-native';
 import ShareMenu, { ShareMenuReactView } from "react-native-share-menu";
-import { Item , Input , Label , Icon , Button, Container, Footer, Content, Text	} from 'native-base';
+import { Item , Input , Label , Icon , Button, Container, Footer, Content} from 'native-base';
 import {connect} from 'react-redux';
 import { v4 as idGen} from 'uuid';
+import MyText from '../presentational/MyText';
 import {searchLinkAction,cleanStoreAction,saveSearchedLinkAction} from '../redux/actions';
 import {getIngredients} from '../api/fetch';
 import MakeNewRecipe from '../presentational/NewRecipe';
@@ -14,6 +15,24 @@ const styles=StyleSheet.create({
 		justifyContent:'center',
 		alignItems:'center',
 		marginTop:-50,
+		backgroundColor:'#fffacd',
+	},
+	btn:{
+		backgroundColor:'#ffd300', //secondary
+		color:'#780116',
+		fontWeight:'bold',
+		borderWidth:2,
+		borderColor:'#780116', 
+		borderRadius:20,
+		padding:5,
+		elevation:5,
+		margin:10,
+	},
+	btnText:{
+		fontWeight:'bold'
+	},
+	color:{
+		color:'#780116'
 	}
 })
 
@@ -58,9 +77,8 @@ function SearchScreen({navigation,searchLinkAction,cleanStoreAction,saveSearched
 		Keyboard.dismiss();
 		getIngredients(inputBox)
 			.then(result=>{
-				if(!result.hasOwnProperty('err'))
-					saveSearchedLinkAction(result)
-				if(result.hasOwnProperty('personal')){
+				if(!result.hasOwnProperty('err')){
+					if(result.hasOwnProperty('personal')){
 					const recipe = result.ingredients.map(ingr=>{
 						return {amounts:ingr.amounts.toString(),
 								units:ingr.units,
@@ -71,6 +89,8 @@ function SearchScreen({navigation,searchLinkAction,cleanStoreAction,saveSearched
 					setCopiedRecipe(recipe)
 					setNewRecipe(true)
 					return 
+					}else
+						saveSearchedLinkAction(result)
 				}
 				searchLinkAction(result);
 				navigation.navigate('ResultScreen');
@@ -85,20 +105,21 @@ function SearchScreen({navigation,searchLinkAction,cleanStoreAction,saveSearched
 			</Modal>
 			<Content contentContainerStyle={styles.view}>
 				<Item rounded>
-					<Input 	placeholder='Qui va il link ricetta o lista ingredienti'
-							value={inputBox}
-							onChangeText = {inputHandler}
-						  	onSubmitEditing={confirmInput}/>
-					<Icon active name='close' onPress={resetInputBox}/>
+					<Input style={styles.color}
+						placeholder='Qui va il link ricetta o lista ingredienti'
+						placeholderTextColor='#780116'
+						value={inputBox}
+						onChangeText = {inputHandler}
+					  	onSubmitEditing={confirmInput}/>
+					<Icon style={styles.color} active name='close' onPress={resetInputBox}/>
 				</Item>	
-				<Button rounded block transparent large onPress={confirmInput} >
-					<Text >Leggi ricetta</Text>
+				<Button style={styles.btn}  block  onPress={confirmInput} >
+					<MyText myStyle={styles.btnText}>LEGGI RICETTA</MyText>
 				</Button>
-				<Button rounded block transparent large onPress={()=>{setNewRecipe(true);setCopiedRecipe([])}}>
-					<Text >Crea la tua ricetta</Text>
+				<Button style={styles.btn}  block  onPress={()=>{setNewRecipe(true);setCopiedRecipe([])}}>
+					<MyText myStyle={styles.btnText}>CREA LA TUA RICETTA</MyText>
 				</Button>
 			</Content>
-			<Footer></Footer>
 		</Container>
 		);
 }

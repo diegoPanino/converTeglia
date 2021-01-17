@@ -1,15 +1,16 @@
 import React,{useEffect,useState} from 'react';
-import {View,Text,Image,StyleSheet,TextInput,Dimensions} from 'react-native';
-import {Item , Input , Label , Button} from 'native-base';
+import {View,Image,StyleSheet} from 'react-native';
+
 
 const styles = StyleSheet.create({
 	card:{
 		height:200,
 		width:200,
-
+		elevation:5,
+		//backgroundColor:'#edd378', //surface
+		borderRadius:10,
 	},
 	img:{
-
 		height:150,
 		width:200,
 	},

@@ -1,19 +1,31 @@
 import React,{useState} from 'react';
-import {Text,View,TouchableOpacity,StyleSheet} from 'react-native';
+import {View,TouchableOpacity,StyleSheet} from 'react-native';
 import {Icon} from 'native-base';
 import ModalMessage from './ModalMessage';
+import MyText from './MyText';
 
 const styles = StyleSheet.create({
 	rowContainer:{
 		flexDirection:'row',
+		height:35,
+		borderRadius:20,
+		elevation:2,
+		marginBottom:5,
+		marginTop:5,
+		padding:2,
+		paddingLeft:3,
+		paddingRight:3,
+		//backgroundColor:'#edd378', //surface
 	},
 	name:{
 		flex:3,
 		justifyContent:'center',
+		marginLeft:5
 	},
 	dim:{
 		flex:2,
 		justifyContent:'center',
+		marginLeft:-5
 	},
 	servs:{
 		flex:1,
@@ -27,7 +39,13 @@ const styles = StyleSheet.create({
 		justifyContent:'flex-end'
 	},
 	servIco:{
-		fontSize:15,
+		fontSize:18,
+	},
+	text:{
+		fontSize:18
+	},
+	trashIco:{
+
 	}
 })
 
@@ -45,17 +63,17 @@ export default function CustomTrayRow({tray,onErase,onSelect}){
 	return (
 		<View>
 		<TouchableOpacity style={styles.rowContainer} onPress={()=>onSelect(key)}>
-			<View style={styles.name}><Text>{name}</Text></View>
-			<View style={styles.dim}><Text>{dim}cm</Text></View>
+			<View style={styles.name}><MyText myStyle={styles.text}>{name}</MyText></View>
+			<View style={styles.dim}><MyText myStyle={styles.text}>{dim}cm</MyText></View>
 			<View style={styles.servs}>
-				<Text>{servs}</Text>
+				<MyText myStyle={styles.text}>{servs}</MyText>
 				<Icon style={styles.servIco} name='md-person' />
 			</View>
 			<View style={styles.choice}>
 				{(	selected && 
 					<Icon style={{marginRight:10}} name='restaurant-outline'/>)
 				}
-				<TouchableOpacity  onPress={()=>setShowDelModal(true)}>
+				<TouchableOpacity style={styles.trashIco} onPress={()=>setShowDelModal(true)}>
 					<Icon name='trash-outline' />
 				</TouchableOpacity>
 			</View>

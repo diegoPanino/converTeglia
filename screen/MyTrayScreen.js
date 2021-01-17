@@ -1,11 +1,12 @@
 import React,{useState,useRef} from 'react';
-import {View,Text,StyleSheet,TextInput,useWindowDimensions,Modal} from 'react-native';
+import {View,StyleSheet,TextInput,useWindowDimensions,Modal,StatusBar} from 'react-native';
 import {Button,Icon} from 'native-base';
 import {connect} from 'react-redux';
 import Carousel from 'react-native-snap-carousel';
 import {toggleBlurAction} from '../redux/actions';
 import CardTray from '../presentational/CardTray';
 import CardTrayList from '../presentational/CardStandarTrayList';
+import MyText from '../presentational/MyText';
 import AdvancedSettingsModal from '../presentational/AdvancedSettingsModal';
 import NewTrayModal from '../presentational/MakeNewTray';
 import { BlurView } from "@react-native-community/blur";
@@ -17,12 +18,15 @@ const styles=StyleSheet.create({
 		flex:1,
 		justifyContent:'center',
 		alignItems:'center',
+		backgroundColor:'#feebc4'//'#fef1d8'  								//BACKGROUND
 	},
 	carouselImg:{
 		flex:1,
+		marginTop:10
 	},
 	carouselTrays:{
 		height:'28%',
+
 	},
 	ccs:{
 		justifyContent:'center',
@@ -34,13 +38,20 @@ const styles=StyleSheet.create({
 		resizeMode:'stretch',
 		flex:1,
 	},
-	settingsBtn:{
+	settingsBtnContainer:{
 		width:350,
 		zIndex:1,
+		borderWidth:2,
+		borderColor:'#c8bfb5', // settings border button 			TEXT
+		borderRadius:20,
+	},
+	settBtn:{
+		backgroundColor:'#847349', //settings background button     BUTTON
 	},
 	settingsBtnIcon:{
 		position:'absolute',
 		right:0,
+		color:'#c8bfb5',        //settings text Button 				TEXT
 	},
 	blur:{
 		zIndex:5,
@@ -49,6 +60,20 @@ const styles=StyleSheet.create({
 		right:0,
 		left:0,
 		bottom:0,
+	},
+	settingsText:{
+		fontSize:20,
+		color:'#c8bfb5',
+	},
+	h1Btn:{
+		backgroundColor:'#847349', //makeNewTray button background 	BUTTON
+		color:'#c8bfb5',			//makeNewTray button text       TEXT
+		fontWeight:'normal',
+		borderWidth:2,
+		borderColor:'#c8bfb5', 		//makeNewTray button border     TEXT
+		borderRadius:20,
+		padding:5,
+		elevation:5,
 	}
 })
 
@@ -104,13 +129,13 @@ const styles=StyleSheet.create({
 				inactiveSlideScale={0.2}
 			/>
 			<Button rounded transparent block large onPress={()=>onCreateTrayHandler()} >
-				<Text style={{fontSize:20,color:'blue'}}>CREA LA TUA TEGLIA</Text>
+				<MyText myStyle={styles.h1Btn}>CREA LA TUA TEGLIA</MyText>
 			</Button>
 			
-			<View style={styles.settingsBtn}>
-				<Button rounded block light iconRight small onPress={()=> setAdvSett(true)}>
-					<Text>Impostazioni avanzate</Text>
-					<Icon style={styles.settingsBtnIcon} name='add-outline' />
+			<View style={styles.settingsBtnContainer}>
+				<Button style={styles.settBtn} rounded block iconRight small onPress={()=>setAdvSett(true)}>
+					<MyText myStyle={styles.settingsText}>Impostazioni avanzate</MyText>
+					<Icon style={styles.settingsBtnIcon} name='chevron-up' />
 				</Button>
 				<Modal animationType='slide' transparent={true} visible={advSett}>
 					<AdvancedSettingsModal hide={()=>setAdvSett(false)} />
@@ -120,3 +145,4 @@ const styles=StyleSheet.create({
 		);
 }
 export default connect(null,{toggleBlurAction})(MyTrayScreen)
+/*<*/

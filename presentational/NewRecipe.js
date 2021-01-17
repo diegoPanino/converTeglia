@@ -1,10 +1,11 @@
-import React,{useState,useEffect} from 'react';
-import {View,Text,TextInput,StyleSheet,ScrollView,TouchableOpacity,Alert} from 'react-native';
+import React,{useState,useEffect,useRef} from 'react';
+import {View,TextInput,StyleSheet,ScrollView,TouchableOpacity,Alert} from 'react-native';
 import {Button} from 'native-base';
 import {connect} from 'react-redux';
 import { v4 as idGen} from 'uuid';
 import NewIngredientRow from './NewIngredientRow';
 import {toggleBlurAction,searchLinkAction,saveSearchedLinkAction} from '../redux/actions';
+import MyText from './MyText';
 
 const styles = StyleSheet.create({
 	mainView:{
@@ -18,25 +19,29 @@ const styles = StyleSheet.create({
 	contentView:{
 		position:'relative',
 		top:'25%',
-		backgroundColor: 'white',
+		backgroundColor: '#f5f3bb',
 		padding:10,
 		paddingBottom:15,
 		borderRadius:25,
 		borderRightWidth:4,
 		borderBottomWidth:4,
+		borderColor:'#780116'
 	},
 	titleContainer:{
+		borderColor:'#780116',
 		borderTopWidth:1,
 		borderBottomWidth:1,
 		marginBottom:15,
 	},
 	titleInput:{
-
+		fontSize:20,
+		color:'#780116'
 	},
 	ScrollView:{
 		height:'45%',
 		borderBottomWidth:1,
-		marginBottom:15
+		marginBottom:15,
+		borderColor:'#780116',
 	},
 	ingredientRow:{
 		
@@ -45,14 +50,23 @@ const styles = StyleSheet.create({
 		flexDirection:'row',
 		justifyContent:'space-around',
 	},
+	btn:{
+		backgroundColor:'#ffd300', //secondary
+		color:'#780116',
+		fontWeight:'bold',
+		borderWidth:2,
+		borderColor:'#780116', 
+		borderRadius:20,
+		padding:5,
+		elevation:5,
+		margin:10,
+	}
 })
 
 function MakeNewRecipe(props){
 	const [title,setTitle] = useState()
 	const [invalidForm,setInvalidForm] = useState(false)
 	const [ingredientRow,setIngredientRow]=useState(props.recipe||[])
-	//const [isLoaded,setIsLoaded] = useState(false)
-	//const copiedRecipe = (props.recipe)
 	const {read} = props
 	const {hide,navigation} = props
 	const {toggleBlurAction,searchLinkAction,saveSearchedLinkAction} = props
@@ -145,7 +159,7 @@ function MakeNewRecipe(props){
 				<View style={styles.titleContainer}>
 					<TextInput style={styles.titleInput}
 						placeholder='Dai un nome alla tua ricetta!'
-						placeholderTextColor='black'
+						placeholderTextColor='#780116'
 						textAlign='center'
 						autoFocus={true}
 						onChangeText={(text)=>setTitle(text)}
@@ -153,11 +167,12 @@ function MakeNewRecipe(props){
 				</View>
 				<ScrollView style={styles.ScrollView}>	
 					{ingredientRow.map((el,i)=>{
-						return <NewIngredientRow key={el.id} style={styles.ingredientRow}
+						return (
+								<NewIngredientRow style={styles.ingredientRow} key={el.id}
 									newIngredient={ingredient=>addIngredient(ingredient)}
 									deleteIngredient={id=>onDeleteIngredient(id)}
 									amounts={el.amounts} units={el.units} names={el.names} id={el.id}
-									/>
+								/>)
 						})			
 					}
 					<NewIngredientRow key={'0'} style={styles.ingredientRow}
@@ -167,11 +182,11 @@ function MakeNewRecipe(props){
 									/>
 				</ScrollView>
 				<View style={styles.btnRow}>
-					<TouchableOpacity large transparent onPress={()=>onConvertPress()} >
-						<Text>CONVERTI</Text>
+					<TouchableOpacity style={styles.btn} onPress={()=>onConvertPress()} >
+						<MyText>CONVERTI</MyText>
 					</TouchableOpacity>
-					<TouchableOpacity  large transparent onPress={()=>hide()}>
-						<Text>INDIETRO</Text>
+					<TouchableOpacity style={styles.btn} onPress={()=>hide()}>
+						<MyText>INDIETRO</MyText>
 					</TouchableOpacity>
 				</View>
 			</View>

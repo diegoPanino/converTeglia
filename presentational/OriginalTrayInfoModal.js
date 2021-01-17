@@ -1,7 +1,8 @@
 import React,{useState,useEffect} from 'react';
-import {View,Text,Modal,StyleSheet,useWindowDimensions} from 'react-native';
+import {View,Modal,StyleSheet,useWindowDimensions} from 'react-native';
 import {Button,Icon} from 'native-base';
 import {Picker} from '@react-native-picker/picker';
+import MyText from './MyText';
 import * as KitchenMath from '../api/kitchenMath';
 
 export default function OriginalTrayInfoModal(props){
@@ -14,7 +15,7 @@ export default function OriginalTrayInfoModal(props){
 	modalView:{
 		position:'absolute',
 		top:windowHeight/3,
-		height:windowHeight/4.5,
+		height:windowHeight/3.8,
 		width:windowWidth-40,
 		margin: 20,
     	backgroundColor: "white",
@@ -33,11 +34,15 @@ export default function OriginalTrayInfoModal(props){
 	  	position:'absolute',
 	  	right:20,
 	  	bottom:5,
+	  
+	},
+	closeBtnText:{
+		fontSize:22,
 	},
 	selectedTray:{
 	  	flex:1,
 	  	alignItems:'center',
-	  	marginBottom:30,
+	  	marginBottom:50,
 	  	marginTop:10,
 	},
 	pickerContainer:{
@@ -53,6 +58,7 @@ export default function OriginalTrayInfoModal(props){
 		position:'relative',
 		bottom:35,
 		left:'75%',
+		fontSize:18,
 	},
 	flex1:{
 	 	flex:1,
@@ -66,11 +72,11 @@ export default function OriginalTrayInfoModal(props){
 	},
 	center:{
 	  	textAlign:'center',
-	  	fontSize:16,
+	  	fontSize:18,
 	},
 	warning:{
 		color:'red',
-		fontSize:11,
+		fontSize:16,
 	}
 })
 
@@ -117,12 +123,12 @@ export default function OriginalTrayInfoModal(props){
 		<Modal animationType='slide' transparent={true} visible={showModal}>
 			<View style={styles.modalView}>
 				<View>
-					<Text style={styles.center}>
+					<MyText myStyle={styles.center}>
 						La ricetta originale usa questa teglia:
-					</Text>
-					<Text style={[styles.center,styles.warning]}>
+					</MyText>
+					<MyText myStyle={[styles.center,styles.warning]}>
 						(Si consiglia di controllare sempre!)
-					</Text>
+					</MyText>
 				</View>
 				<View style={styles.selectedTray}>
 					<View style={styles.pickerContainer}>
@@ -131,7 +137,7 @@ export default function OriginalTrayInfoModal(props){
 								onValueChange={(value)=>setSize(value)}>
 							{PickerItemsSize}
 						</Picker>
-						<Text style={styles.cm}>cm</Text>
+						<MyText myStyle={styles.cm}>cm</MyText>
 					</View>
 					<View style={styles.pickerContainer}>
 						<Picker style={styles.picker} mode='dropdown'
@@ -143,7 +149,7 @@ export default function OriginalTrayInfoModal(props){
 					</View>
 				</View>
 				<Button style={styles.closeButton} rounded transparent onPress={()=>onConfirm()}>
-					<Text>CONTINUA</Text>
+					<MyText myStyle={styles.closeBtnText}>CONTINUA</MyText>
 				</Button>
 			</View>
 		</Modal>

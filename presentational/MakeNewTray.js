@@ -1,11 +1,11 @@
 import React,{useState,useEffect} from 'react';
-import {View,Text,StyleSheet, Image, TouchableOpacity, 
+import {View,StyleSheet, Image, TouchableOpacity, 
 		TextInput, TouchableWithoutFeedback, Keyboard} from 'react-native';
 import {connect} from 'react-redux';
-import {Label} from 'native-base';
 import {toggleBlurAction,addTrayAction} from '../redux/actions';
 import {Picker} from '@react-native-picker/picker';
 import MyPicker from './MyPicker';
+import MyText from './MyText';
 
 const squareIco = require ('../img/quadrata.png');
 const rectIco = require('../img/rettangolare.png');
@@ -61,7 +61,8 @@ const styles = StyleSheet.create({
 		paddingBottom:25,
 	},
 	label:{
-		textAlign:'center'
+		textAlign:'center',
+		fontSize:20
 	},
 	select:{
 		flex:1,
@@ -98,10 +99,10 @@ const styles = StyleSheet.create({
   		left:'200%',
 	},
 	pickerText:{
-		width:'10%',
+		width:'15%',
 		position:'relative',
   		left:'90%',
-  		marginRight:'-17%',
+  		marginRight:'-18%',
 		textAlign:'center',
 	},
 	sidePicker:{
@@ -119,13 +120,21 @@ const styles = StyleSheet.create({
 	sideText:{
 		flex:3,
 		textAlign:'center',
+		fontSize:18
 	},
 	servs:{
 		flex:1,
-		alignItems:'center'
+		alignItems:'center',
 	},
 	servsText:{
-		fontWeight:'bold'
+		fontWeight:'bold',
+		fontSize:18
+	},
+	btnText:{
+		fontSize:22
+	},
+	textInput:{
+		fontSize:18
 	}
 })
 
@@ -244,15 +253,16 @@ function NewTrayModal(props){
 		<View style={styles.mainView} >
 			<View style={styles.contentView}>
 				<View style={styles.nameInput}>
-             		 <Label style={styles.label}>Nome</Label>
-             		 <TextInput placeholder='Dai un nome alla tua teglia!'
+					<MyText myStyle={styles.label}>Nome</MyText>
+             		 <TextInput style={styles.textInput}
+             		 		placeholder='Dai un nome alla tua teglia!'
              		 		autoFocus={true} clearButtonMode='while-editing'
              		 		maxLength={32} returnKeyType='done' textAlign='center'
              		 		onEndEditing={()=>checkName()}
              		 		onChangeText={text=>setName(text)} value = {name} />
             	</View>
 				<View style = {styles.type}>
-					<Label style={styles.label}>Forma</Label>
+					<MyText myStyle={styles.label}>Forma</MyText>
 					<View style={styles.btnRow}>
 						<TouchableOpacity
 							style={type === 'rect'? [styles.select,styles.touch] : styles.touch}
@@ -274,27 +284,27 @@ function NewTrayModal(props){
 				<View style = {styles.measurement}>
 				{type === 'rect' 
 					? 	<View>
-							<Label style={styles.label}>Misure</Label>
+							<MyText myStyle={styles.label}>Misure</MyText>
 							<View style={styles.dimInput}>
 							    <Picker style={styles.picker}
 							    		selectedValue={a} mode='dropdown'
 							    		onValueChange={(value)=>setA(value)}>
 							    			{pickers}
 							    </Picker>
-							    <Text style={styles.pickerText}>X</Text>
+							    <MyText myStyle={styles.pickerText}>X</MyText>
 							    <Picker style={styles.picker}
 							    		selectedValue={b} mode='dropdown'
 							    		onValueChange={(value)=>setB(value)}>
 							    			{pickers}
 							    </Picker>
-							    <Text style={styles.pickerText}>cm</Text>
+							    <MyText myStyle={styles.pickerText}>cm</MyText>
 							</View>
 						</View>
 					: 	
 					 	<View>
-					 		<Label style={styles.label}>Misura:</Label>
+					 		<MyText myStyle={styles.label}>Misura:</MyText>
 							<View style={styles.sideView}>
-								<Text style={styles.sideText}>Diametro/Lato:</Text>
+								<MyText myStyle={styles.sideText}>Diametro/Lato:</MyText>
 								<Picker style={styles.sidePicker}
 							    		selectedValue={dim} mode='dropdown'
 							    		onValueChange={(value)=>setDim(value)}>
@@ -304,15 +314,15 @@ function NewTrayModal(props){
 						</View>
 				}
 					<View style={styles.servs}>
-						<Text>Porzioni: <Text style={styles.servsText}>{servs}</Text></Text>		
+						<MyText myStyle={{fontSize:18}}>Porzioni: <MyText myStyle={styles.servsText}>{servs}</MyText></MyText>		
 					</View>
 				</View>
 				<View style={styles.btnRow}>
 					<TouchableOpacity  large transparent onPress={()=>onCancel()}>
-						<Text>TORNA INDIETRO</Text>
+						<MyText myStyle={styles.btnText}>INDIETRO</MyText>
 					</TouchableOpacity>
 					<TouchableOpacity disabled={invalidForm} large transparent onPress={()=>onSave()}>
-						<Text>SALVA TEGLIA</Text>
+						<MyText myStyle={styles.btnText}>SALVA TEGLIA</MyText>
 					</TouchableOpacity>
 				</View>
 			</View>

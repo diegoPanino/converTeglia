@@ -1,8 +1,9 @@
 import React from 'react';
-import {View,SectionList,Text,StyleSheet} from 'react-native';
+import {View,SectionList,StyleSheet} from 'react-native';
 import {Icon} from 'native-base';
 import {Tooltip} from 'react-native-elements';
 import moment from 'moment';
+import MyText from './MyText';
 import HistoryRow from './HistoryRow';
 
 const styles = StyleSheet.create({
@@ -10,7 +11,8 @@ const styles = StyleSheet.create({
 		textAlign:'center',
 		margin:5,
 		borderBottomWidth:1,
-		borderBottomColor:'black'
+		borderBottomColor:'black',
+		fontSize:18,
 	}
 })
 
@@ -40,7 +42,7 @@ export default function HistoryList(props){
 		<SectionList
 			sections = {sections}
 			renderItem = { ( {item} ) =>{return <HistoryRow {...item} navigate={navigate} />} }
-			renderSectionHeader = {({section})=><Text style={styles.sectionHeader} key={section.key}>{section.title}</Text>}
+			renderSectionHeader = {({section})=><MyText myStyle={styles.sectionHeader} key={section.key}>{section.title}</MyText>}
 		/>
 		);
 }

@@ -1,8 +1,9 @@
 import React, {useEffect,useState,useRef} from 'react';
-import {ScrollView,Text,StyleSheet,View,TextInput,TouchableOpacity} from 'react-native';
+import {ScrollView,StyleSheet,View,TextInput,TouchableOpacity} from 'react-native';
 import {Icon} from 'native-base';
 import {convertByKAction,convertByIAction} from '../redux/actions';
 import {connect} from 'react-redux';
+import MyText from './MyText';
 import IngredientRow from './IngredientRow';
 
 const styles = StyleSheet.create({
@@ -34,6 +35,11 @@ const styles = StyleSheet.create({
 	},
 	lockIco:{
 		fontSize:20,
+	},
+	h4Center:{
+		marginTop:30,
+		textAlign:'center',
+		fontSize:18
 	}
 })
 
@@ -67,7 +73,7 @@ function ResultList(props){
 							/>
 			})
 		}
-		<Text style={{textAlign:'center'}}>Ho moltiplicato ogni ingredienti per {k.toFixed(2)}</Text>
+		<MyText myStyle={styles.h4Center}>Ho moltiplicato ogni ingredienti per {k.toFixed(2)}</MyText>
 		</ScrollView>
 	)
 }

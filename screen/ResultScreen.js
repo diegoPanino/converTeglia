@@ -1,8 +1,9 @@
 import React,{useState,useEffect,useRef} from 'react';
-import {View,Text,StyleSheet,Image,TouchableOpacity,Share} from 'react-native';
+import {View,StyleSheet,Image,TouchableOpacity,Share} from 'react-native';
 //import {AdMobBanner,AdMobInterstitial,PublisherBanner} from 'react-native-admob'
 import {Icon} from 'native-base';
 import {connect} from 'react-redux';
+import MyText from '../presentational/MyText';
 import ResultList from '../presentational/ResultList';
 import InfoTray from '../presentational/InfoTray';
 import ModalInfoTray from '../presentational/ModalInfoTray';
@@ -30,9 +31,11 @@ const styles=StyleSheet.create({
 	titleView:{
 		flex:1,
 		marginLeft:20,
+		flexGrow:2
 	},
 	title:{
-		textAlign:'center'
+		textAlign:'center',
+		fontSize:22
 	},
 	shareIcoContainer:{
 		marginRight:5,
@@ -61,6 +64,7 @@ const styles=StyleSheet.create({
 	imgContainer:{
 		flex:3,
 		paddingBottom:5,
+		marginTop:30
 	},
 	img:{
 		flex:3,
@@ -156,7 +160,7 @@ function ResultScreen(props){
 		toggleBlurAction();
 		fastConvertionAction();
 		setShowModal(false)
-		navigation.navigate('MyTrayScreen')
+		navigation.navigate('TrayScreen')
 	}
 
 	/*const onShare = async () => {
@@ -179,10 +183,9 @@ function ResultScreen(props){
       alert(error.message);
     }
   };*/
-
 	if(result.hasOwnProperty('recipe')){
 		if(result.recipe.hasOwnProperty('err'))
-			return (<Text>{result.recipe.msg}</Text>)
+			return (<MyText>{result.recipe.msg}</MyText>)
 		else{
 			return (
 				<View style={styles.mainContainer}>
@@ -204,7 +207,7 @@ function ResultScreen(props){
 									selectedTray={selectedTray}/>
 					<View style={styles.titleContainer}>
 						<View style={styles.titleView}>
-							<Text style={styles.title}>{result.recipe.title}</Text>
+							<MyText myStyle={styles.title}>{result.recipe.title}</MyText>
 						</View>
 							{/*<TouchableOpacity 	style={styles.shareIcoContainer}
 												onPress={()=>onShare()}>
@@ -224,7 +227,7 @@ function ResultScreen(props){
 		}	
 	}
 	else{
-		return (<Text>C'è stato un problema nel leggere la ricetta</Text>)
+		return (<MyText>C'è stato un problema nel leggere la ricetta</MyText>)
 	}	
 }
 	

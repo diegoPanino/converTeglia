@@ -1,9 +1,11 @@
 import React,{useState,useEffect} from 'react';
-import {Modal,View,Text,StyleSheet} from 'react-native';
+import {Modal,View,StyleSheet} from 'react-native';
 import {Icon,Button} from 'native-base';
 import {Picker} from '@react-native-picker/picker';
 import {connect} from 'react-redux';
 import {setNumDaysAction,showTutorialAction} from '../redux/actions';
+import MyText from './MyText';
+
 const styles = StyleSheet.create({
 	modalStyle:{
 		backgroundColor:'gray',
@@ -42,7 +44,11 @@ const styles = StyleSheet.create({
 		flex:1,
 		marginLeft:'2.5%',
 		marginRight:'2.5%',
+		fontSize:18,
 	},
+	btnStyle:{
+		fontSize:22
+	}
 })
 	
 
@@ -74,12 +80,12 @@ function AdvancedSettingsModal({hide,setNumDaysAction,showTutorialAction,setting
 	return(
 			<View style={styles.modalStyle}>
 				<Button rounded block light small onPress={()=>saveAndexit()}>
-					<Text>Impostazioni avanzate</Text>
-					<Icon style={styles.settingsBtnIcon} name='add-outline' />
+					<MyText myStyle={styles.btnStyle}>Impostazioni avanzate</MyText>
+					<Icon style={styles.settingsBtnIcon} name='chevron-down' />
 				</Button>
 				<View style={styles.settings}>
 					<View style={styles.settLine}>
-						<Text style={styles.settText}>Per quanti giorni salvo le tue ricette ricercate?</Text>
+						<MyText myStyle={styles.settText}>Per quanti giorni salvo le tue ricette ricercate?</MyText>
 						<View style={styles.pickerContainer}>
 							<Picker style={styles.picker} mode='dropdown'
 									selectedValue={numberOfDays}
@@ -89,7 +95,7 @@ function AdvancedSettingsModal({hide,setNumDaysAction,showTutorialAction,setting
 						</View>
 					</View>
 					<View style={styles.settLine}>
-						<Text style={styles.settText}>Mostra tutorial all'avvio </Text>
+						<MyText myStyle={styles.settText}>Mostra tutorial all'avvio </MyText>
 						<View style={styles.pickerContainer}>
 							<Picker style={styles.picker} mode='dropdown'
 									selectedValue={showTutorial}

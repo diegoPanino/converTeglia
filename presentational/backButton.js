@@ -9,6 +9,9 @@ backButton:{
 		left:5,
 		width:75,
 		height:75,
+	},
+	ico:{
+		fontSize:50
 	}
 })
 export default function BackButton({navigation,blurRadius}){
@@ -18,8 +21,9 @@ export default function BackButton({navigation,blurRadius}){
 	else{
 		return(
 			<TouchableOpacity style={styles.backButton} onPress={()=>navigation.goBack()}>
-				<Image blurRadius={blurRadius} source={bckBtn} style = {styles.backButton} />
+				<Image blurRadius={blurRadius} source={bckBtn} style = {styles.backButton} />				
 			</TouchableOpacity>	
 		);
 	}
 }
+

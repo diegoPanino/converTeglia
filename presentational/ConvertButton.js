@@ -1,8 +1,9 @@
 import React from 'react';
-import {View, Text, StyleSheet,Image,TouchableOpacity} from 'react-native';
+import {View, StyleSheet,Image,TouchableOpacity} from 'react-native';
 import {Icon,Button} from 'native-base';
 import {connect} from 'react-redux';
 import {fastConvertionAction,convertAction} from '../redux/actions';
+import MyText from './MyText';
 //import { BlurView } from "@react-native-community/blur";
 
 const styles = StyleSheet.create({
@@ -47,7 +48,7 @@ function ConvertButton(props){
 	return (
 		<View style={styles.btnView}>
 			<Button style={styles.btn} warning rounded onPress={()=>convert()}>
-				<Text style={styles.text}>CONVERTI</Text>
+				<MyText myStyle={styles.text}>CONVERTI</MyText>
 			</Button>
 			<TouchableOpacity style={styles.icoContainer} onPress={()=>fastConvertionAction()}>
 				<Icon style={styles.ico} name='close' style={styles.ico}/>

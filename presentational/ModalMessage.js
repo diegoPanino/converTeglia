@@ -1,6 +1,7 @@
 import React from 'react';
-import {View,Text,Modal,StyleSheet,useWindowDimensions} from 'react-native';
+import {View,Modal,StyleSheet,useWindowDimensions} from 'react-native';
 import {Button} from 'native-base';
+import MyText from './MyText';
 
 
 
@@ -12,7 +13,7 @@ export default function ModalMessage(props){
 	modalView:{
 		position:'absolute',
 		top:windowHeight/3,
-		height:windowHeight/6,
+		height:windowHeight/4.3,
 		width:windowWidth-40,
 		margin: 20,
     	backgroundColor: "white",
@@ -41,6 +42,12 @@ export default function ModalMessage(props){
 	  	position:'absolute',
 	  	left:20,
 	  	bottom:5,
+	  },
+	  text:{
+	  	fontSize:18,
+	  },
+	  btnText:{
+	  	fontSize:22,
 	  }
 	})
 
@@ -50,16 +57,16 @@ export default function ModalMessage(props){
 		<Modal animationType='slide' transparent={true} visible={showModal}>
 			<View style = {styles.modalView}>
 				<View>
-					<Text>{message}</Text>
+					<MyText myStyle={styles.text}>{message}</MyText>
 				</View>
 				<View>
-					<Text style={styles.extraData}>{extraData}</Text>
+					<MyText myStyle={[styles.text,styles.extraData]}>{extraData}</MyText>
 				</View>
 				<Button style={styles.deleteButton} rounded transparent onPress={close}>
-					<Text>CHIUDI</Text>
+					<MyText myStyle={styles.btnText}>CHIUDI</MyText>
 				</Button>
 				<Button style={styles.closeButton} rounded transparent onPress={confirm}>
-					<Text>ELIMINA</Text>
+					<MyText myStyle={styles.btnText}>ELIMINA</MyText>
 				</Button>
 			</View>
 		</Modal>

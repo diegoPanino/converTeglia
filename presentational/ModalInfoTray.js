@@ -1,6 +1,7 @@
 import React from 'react';
-import {View,Text,Modal,StyleSheet,useWindowDimensions} from 'react-native';
+import {View,Modal,StyleSheet,useWindowDimensions} from 'react-native';
 import {Button,Icon} from 'native-base';
+import MyText from './MyText';
 import * as KitchenMath from '../api/kitchenMath';
 
 export default function ModalMessage(props){
@@ -13,7 +14,7 @@ export default function ModalMessage(props){
 	modalView:{
 		position:'absolute',
 		top:windowHeight/3,
-		height:windowHeight/4.5,
+		height:windowHeight/3.8,
 		width:windowWidth-40,
 		margin: 20,
     	backgroundColor: "white",
@@ -46,7 +47,7 @@ export default function ModalMessage(props){
 	  selectedTray:{
 	  	flex:1,
 	  	alignItems:'center',
-	  	marginBottom:30,
+	  	marginBottom:50,
 	  	marginTop:10,
 	  },
 	  flex1:{
@@ -56,10 +57,16 @@ export default function ModalMessage(props){
 	  	fontWeight:'bold'
 	  },
 	  ico:{
-	  	fontSize:15,
+	  	fontSize:18,
 	  },
 	  center:{
 	  	textAlign:'center',
+	  },
+	  h4:{
+	  	fontSize:18
+	  },
+	  btnText:{
+	  	fontSize:22
 	  }
 	})
 
@@ -72,26 +79,26 @@ export default function ModalMessage(props){
 		<Modal animationType='slide' transparent={true} visible={showModal}>
 			<View style={styles.modalView}>
 				<View>
-					<Text style={styles.center}>La teglia che userai per cucinare:</Text>
+					<MyText myStyle={[styles.center,styles.h4]}>La teglia che userai per cucinare:</MyText>
 				</View>
 				<View style={styles.selectedTray}>
 					<View style={styles.flex1}>
-						<Text style={styles.bold}>{type}</Text>
+						<MyText myStyle={[styles.bold,styles.h4]}>{type}</MyText>
 					</View>
 					<View style={styles.flex1}>
-						<Text style={styles.bold}>{dim}cm</Text>
+						<MyText myStyle={[styles.bold,styles.h4]}>{dim}cm</MyText>
 					</View>
 					<View style={styles.flex1}>
-						<Text style={styles.bold}>{servs}
+						<MyText myStyle={[styles.bold,styles.h4]}>{servs}
 							<Icon name='md-person' style={styles.ico} />
-						</Text>
+						</MyText>
 					</View>
 				</View>
 				<Button style={styles.changeButton} rounded transparent onPress={close}>
-					<Text>CAMBIA TEGLIA</Text>
+					<MyText myStyle={styles.btnText}>CAMBIA</MyText>
 				</Button>
 				<Button style={styles.convertButton} rounded transparent onPress={()=>onConfirmTray()}>
-					<Text>CONVERTI</Text>
+					<MyText myStyle={styles.btnText}>CONVERTI</MyText>
 				</Button>
 			</View>
 		</Modal>

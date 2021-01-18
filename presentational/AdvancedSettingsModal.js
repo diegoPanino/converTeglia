@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from 'react';
-import {Modal,View,StyleSheet} from 'react-native';
-import {Icon,Button} from 'native-base';
+import {Modal,View,StyleSheet,TouchableOpacity} from 'react-native';
+import {Icon} from 'native-base';
 import {Picker} from '@react-native-picker/picker';
 import {connect} from 'react-redux';
 import {setNumDaysAction,showTutorialAction} from '../redux/actions';
@@ -8,16 +8,22 @@ import MyText from './MyText';
 
 const styles = StyleSheet.create({
 	modalStyle:{
-		backgroundColor:'gray',
+		backgroundColor:'#feebc4',
 		position:'absolute',
 		bottom:0,
 		height:'25%',
 		width:'100%',
-		borderRadius:15,
+		borderTopLeftRadius:15,
+		borderTopRightRadius:15,
+		borderTopWidth:2,
+		borderLeftWidth:1,
+		borderRightWidth:1,
+		borderColor:'#e8871e'
 	},
 	settingsBtnIcon:{
 		position:'absolute',
 		right:0,
+		color:'#e8871e',
 	},
 	settings:{
 		paddingTop:30,
@@ -46,8 +52,21 @@ const styles = StyleSheet.create({
 		marginRight:'2.5%',
 		fontSize:18,
 	},
+	btn:{
+		left:-1,
+		marginRight:-3,
+		backgroundColor:'#feea52', //BUTTON BACKGROUND
+		borderLeftWidth:2,
+		borderRightWidth:3,
+		borderBottomWidth:2,
+		borderColor:'#E8871E', 		//BUTTON BORDER
+		borderRadius:20,
+		elevation:5,
+	},
 	btnStyle:{
-		fontSize:22
+		textAlign:'center',
+		fontSize:22,
+		color:'#e8871e'
 	}
 })
 	
@@ -79,13 +98,13 @@ function AdvancedSettingsModal({hide,setNumDaysAction,showTutorialAction,setting
 
 	return(
 			<View style={styles.modalStyle}>
-				<Button rounded block light small onPress={()=>saveAndexit()}>
+				<TouchableOpacity style={styles.btn} onPress={()=>saveAndexit()}>
 					<MyText myStyle={styles.btnStyle}>Impostazioni avanzate</MyText>
 					<Icon style={styles.settingsBtnIcon} name='chevron-down' />
-				</Button>
+				</TouchableOpacity>
 				<View style={styles.settings}>
 					<View style={styles.settLine}>
-						<MyText myStyle={styles.settText}>Per quanti giorni salvo le tue ricette ricercate?</MyText>
+						<MyText myStyle={styles.settText}>Per quanti giorni salvo le ricette cercate?</MyText>
 						<View style={styles.pickerContainer}>
 							<Picker style={styles.picker} mode='dropdown'
 									selectedValue={numberOfDays}

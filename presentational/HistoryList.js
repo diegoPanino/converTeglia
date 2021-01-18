@@ -9,10 +9,25 @@ import HistoryRow from './HistoryRow';
 const styles = StyleSheet.create({
 	sectionHeader:{
 		textAlign:'center',
+		backgroundColor:'#FFDCBA',					//PRIMARY
+		borderColor:'#e8871e',   					//BUTTON BORDER
+		borderTopWidth:2,
+		borderRightWidth:2,
+		borderLeftWidth:2,
+		borderTopLeftRadius:20,
+		borderTopRightRadius:20,
 		margin:5,
-		borderBottomWidth:1,
-		borderBottomColor:'black',
 		fontSize:18,
+		fontWeight:'bold',
+	},
+	sectionList:{
+		marginRight:'2.5%',
+		marginLeft:'2.5%',
+		backgroundColor:'#fef1d8',
+		borderTopLeftRadius:20,
+		borderTopRightRadius:20,
+		borderRadius:20,
+		elevation:2,
 	}
 })
 
@@ -39,9 +54,9 @@ export default function HistoryList(props){
 			}	
 		})
 	return (
-		<SectionList
+		<SectionList style={styles.sectionList}
 			sections = {sections}
-			renderItem = { ( {item} ) =>{return <HistoryRow {...item} navigate={navigate} />} }
+			renderItem = { ( {item,index} ) =>{return <HistoryRow {...item} index={index} navigate={navigate} />} }
 			renderSectionHeader = {({section})=><MyText myStyle={styles.sectionHeader} key={section.key}>{section.title}</MyText>}
 		/>
 		);

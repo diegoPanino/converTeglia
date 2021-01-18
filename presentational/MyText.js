@@ -4,7 +4,7 @@ import {Text,StyleSheet} from 'react-native';
 const styles = StyleSheet.create({
 	text:{
 		fontSize: 25,
-		color: '#554f60', //text
+		color: 'black', //text
 	}
 })
 

@@ -1,14 +1,14 @@
 import React from 'react';
 import {Text,TouchableOpacity,Image,StyleSheet} from 'react-native';
 
-const bckBtn = require('../img/backButton.png');
+const bckBtn = require('../img/backButtonBAD.png');
 const styles = StyleSheet.create({
 backButton:{
 		position:'absolute',
-		bottom:5,
-		left:5,
-		width:75,
-		height:75,
+		bottom:0,
+		left:0,
+		height:'55%',
+		width:'55%',
 	},
 	ico:{
 		fontSize:50

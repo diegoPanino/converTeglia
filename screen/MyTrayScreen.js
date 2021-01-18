@@ -1,6 +1,6 @@
 import React,{useState,useRef} from 'react';
-import {View,StyleSheet,TextInput,useWindowDimensions,Modal,StatusBar} from 'react-native';
-import {Button,Icon} from 'native-base';
+import {View,StyleSheet,TextInput,useWindowDimensions,Modal,StatusBar,TouchableOpacity} from 'react-native';
+import {Icon} from 'native-base';
 import {connect} from 'react-redux';
 import Carousel from 'react-native-snap-carousel';
 import {toggleBlurAction} from '../redux/actions';
@@ -26,6 +26,8 @@ const styles=StyleSheet.create({
 	},
 	carouselTrays:{
 		height:'28%',
+	},
+	trayContainerStyle:{
 
 	},
 	ccs:{
@@ -42,16 +44,17 @@ const styles=StyleSheet.create({
 		width:350,
 		zIndex:1,
 		borderWidth:2,
-		borderColor:'#c8bfb5', // settings border button 			TEXT
+		borderColor:'#e8871e', // settings border button 			BORDER/TEXT
 		borderRadius:20,
 	},
 	settBtn:{
-		backgroundColor:'#847349', //settings background button     BUTTON
+		backgroundColor:'#feea52',
+		borderRadius:20, //settings background button     BUTTON
 	},
 	settingsBtnIcon:{
 		position:'absolute',
 		right:0,
-		color:'#c8bfb5',        //settings text Button 				TEXT
+		color:'#e8871e',        //settingsICO text Button 				TEXT
 	},
 	blur:{
 		zIndex:5,
@@ -62,18 +65,22 @@ const styles=StyleSheet.create({
 		bottom:0,
 	},
 	settingsText:{
+		textAlign:'center',
 		fontSize:20,
-		color:'#c8bfb5',
+		color:'#e8871e', // settings text Button 					TEXT
 	},
 	h1Btn:{
-		backgroundColor:'#847349', //makeNewTray button background 	BUTTON
-		color:'#c8bfb5',			//makeNewTray button text       TEXT
+		backgroundColor:'#feea52', //makeNewTray button background 	BUTTON
+		color:'#e8871e',			//makeNewTray button text       TEXT
 		fontWeight:'normal',
 		borderWidth:2,
-		borderColor:'#c8bfb5', 		//makeNewTray button border     TEXT
+		borderColor:'#e8871e', 		//makeNewTray button border     BORDER/TEXT
 		borderRadius:20,
 		padding:5,
 		elevation:5,
+	},
+	btn:{
+		margin:5,
 	}
 })
 
@@ -119,6 +126,7 @@ const styles=StyleSheet.create({
 				/>
 			<Carousel
 				ref={refStdTrays}
+				contentContainerStyle={styles.trayContainerStyle}
 				containerCustomStyle={styles.carouselTrays}
 				data={data}
 				renderItem = {({item,index})=>{return <CardTrayList type={index} />}}
@@ -128,15 +136,15 @@ const styles=StyleSheet.create({
 				firstItem = {1}
 				inactiveSlideScale={0.2}
 			/>
-			<Button rounded transparent block large onPress={()=>onCreateTrayHandler()} >
+			<TouchableOpacity style={styles.btn} onPress={()=>onCreateTrayHandler()} >
 				<MyText myStyle={styles.h1Btn}>CREA LA TUA TEGLIA</MyText>
-			</Button>
+			</TouchableOpacity>
 			
 			<View style={styles.settingsBtnContainer}>
-				<Button style={styles.settBtn} rounded block iconRight small onPress={()=>setAdvSett(true)}>
+				<TouchableOpacity style={styles.settBtn} rounded block iconRight small onPress={()=>setAdvSett(true)}>
 					<MyText myStyle={styles.settingsText}>Impostazioni avanzate</MyText>
 					<Icon style={styles.settingsBtnIcon} name='chevron-up' />
-				</Button>
+				</TouchableOpacity>
 				<Modal animationType='slide' transparent={true} visible={advSett}>
 					<AdvancedSettingsModal hide={()=>setAdvSett(false)} />
 				</Modal>

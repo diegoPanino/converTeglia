@@ -19,29 +19,29 @@ const styles = StyleSheet.create({
 	contentView:{
 		position:'relative',
 		top:'25%',
-		backgroundColor: '#f5f3bb',
+		backgroundColor: '#fef1d8',   					 //SURFACE
 		padding:10,
 		paddingBottom:15,
 		borderRadius:25,
 		borderRightWidth:4,
 		borderBottomWidth:4,
-		borderColor:'#780116'
+		borderColor:'#feaa52'   //surface border     //BUTTON BORDER
 	},
 	titleContainer:{
-		borderColor:'#780116',
+		borderColor:'#feaa52',						//BUTTON BORDER
 		borderTopWidth:1,
 		borderBottomWidth:1,
 		marginBottom:15,
 	},
 	titleInput:{
 		fontSize:20,
-		color:'#780116'
+		color:'black'							//TEXT
 	},
 	ScrollView:{
 		height:'45%',
 		borderBottomWidth:1,
 		marginBottom:15,
-		borderColor:'#780116',
+		borderColor:'#feaa52',					//BUTTON BORDER
 	},
 	ingredientRow:{
 		
@@ -51,15 +51,17 @@ const styles = StyleSheet.create({
 		justifyContent:'space-around',
 	},
 	btn:{
-		backgroundColor:'#ffd300', //secondary
-		color:'#780116',
-		fontWeight:'bold',
+		backgroundColor:'#feea52', 				//BUTTON BACKGROUND
 		borderWidth:2,
-		borderColor:'#780116', 
+		borderColor:'#E8871E', 
 		borderRadius:20,
 		padding:5,
 		elevation:5,
 		margin:10,
+	},
+	btnText:{
+		color:'#e8871e',
+		//fontWeight:'bold'							//BUTTON TEXT
 	}
 })
 
@@ -159,9 +161,9 @@ function MakeNewRecipe(props){
 				<View style={styles.titleContainer}>
 					<TextInput style={styles.titleInput}
 						placeholder='Dai un nome alla tua ricetta!'
-						placeholderTextColor='#780116'
+						placeholderTextColor='black'
 						textAlign='center'
-						autoFocus={true}
+						autoFocus={false}
 						onChangeText={(text)=>setTitle(text)}
 					/>
 				</View>
@@ -171,7 +173,7 @@ function MakeNewRecipe(props){
 								<NewIngredientRow style={styles.ingredientRow} key={el.id}
 									newIngredient={ingredient=>addIngredient(ingredient)}
 									deleteIngredient={id=>onDeleteIngredient(id)}
-									amounts={el.amounts} units={el.units} names={el.names} id={el.id}
+									amounts={el.amounts} units={el.units} names={el.names} id={el.id} delay={i}
 								/>)
 						})			
 					}
@@ -182,11 +184,11 @@ function MakeNewRecipe(props){
 									/>
 				</ScrollView>
 				<View style={styles.btnRow}>
-					<TouchableOpacity style={styles.btn} onPress={()=>onConvertPress()} >
-						<MyText>CONVERTI</MyText>
-					</TouchableOpacity>
 					<TouchableOpacity style={styles.btn} onPress={()=>hide()}>
-						<MyText>INDIETRO</MyText>
+						<MyText myStyle={styles.btnText}>INDIETRO</MyText>
+					</TouchableOpacity>
+					<TouchableOpacity style={styles.btn} onPress={()=>onConvertPress()} >
+						<MyText myStyle={styles.btnText}>CONVERTI</MyText>
 					</TouchableOpacity>
 				</View>
 			</View>

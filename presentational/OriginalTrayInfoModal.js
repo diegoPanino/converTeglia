@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from 'react';
-import {View,Modal,StyleSheet,useWindowDimensions} from 'react-native';
-import {Button,Icon} from 'native-base';
+import {View,Modal,StyleSheet,useWindowDimensions,TouchableOpacity} from 'react-native';
+import {Icon} from 'native-base';
 import {Picker} from '@react-native-picker/picker';
 import MyText from './MyText';
 import * as KitchenMath from '../api/kitchenMath';
@@ -15,10 +15,10 @@ export default function OriginalTrayInfoModal(props){
 	modalView:{
 		position:'absolute',
 		top:windowHeight/3,
-		height:windowHeight/3.8,
+		height:windowHeight/3.5,
 		width:windowWidth-40,
 		margin: 20,
-    	backgroundColor: "white",
+    	backgroundColor: "#fef1d8",			//SURFACE
 	    borderRadius: 20,
 	    padding: 10,
 	    shadowColor: "#000",
@@ -32,17 +32,25 @@ export default function OriginalTrayInfoModal(props){
 	  },
 	closeButton:{
 	  	position:'absolute',
-	  	right:20,
-	  	bottom:5,
-	  
+	  	right:5,
+	  	bottom:0,
+	  	backgroundColor:'#feea52', //BUTTON BACKGROUND
+		borderWidth:2,
+		borderColor:'#E8871E', 		//BUTTON BORDER
+		borderRadius:20,
+		padding:5,
+		elevation:5,
+		margin:10,
 	},
 	closeBtnText:{
 		fontSize:22,
+		//fontWeight:'bold',
+		color:'#e8871e'       //BUTTON TEXT COLOR
 	},
 	selectedTray:{
 	  	flex:1,
 	  	alignItems:'center',
-	  	marginBottom:50,
+	  	marginBottom:70,
 	  	marginTop:10,
 	},
 	pickerContainer:{
@@ -148,9 +156,9 @@ export default function OriginalTrayInfoModal(props){
 							<Icon name='md-person' style={[styles.ico,styles.cm]} />
 					</View>
 				</View>
-				<Button style={styles.closeButton} rounded transparent onPress={()=>onConfirm()}>
+				<TouchableOpacity style={styles.closeButton} onPress={()=>onConfirm()}>
 					<MyText myStyle={styles.closeBtnText}>CONTINUA</MyText>
-				</Button>
+				</TouchableOpacity>
 			</View>
 		</Modal>
 		);

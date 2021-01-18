@@ -228,7 +228,6 @@ function getAmount(ings,title,url,portions=22,src='image not found'){
 export async function getIngredients(url){
 resetRecipe()
 if(!(/http/gi).test(url)){
-	console.log(url)
 	const ingredientsList = url.replace(/\t|\v|\f/gi,' ').split('\n')
 	ingredientsList.map(el=>{
 		if(el.length > 0)
@@ -273,7 +272,6 @@ if(!(/http/gi).test(url)){
 			const title = getHtmlTitle($,htmlTitle)
 
 			const src = $('figure.recipe-cover').find('img').attr('src')
-			console.log(src)
 		    const htmlPortionsTag = 'li.servings';
 		    const htmlPortionsValue = $(htmlPortionsTag).find('span.recipe-value').text()
 		    const portions = normalizePortions(htmlPortionsValue)
@@ -526,7 +524,6 @@ if(!(/http/gi).test(url)){
 			const title = getHtmlTitle($,htmlTitle)
 
 			const src = $("[itemprop='image']").attr('data-src')
-			console.log(src)
 
 			const htmlPortionsTag = 'div.fusion-one-fourth.fusion-spacing-no.specifiche'
 			const htmlPortionsValue = $(htmlPortionsTag).find('span').first().text()
@@ -556,7 +553,7 @@ if(!(/http/gi).test(url)){
 			const title = getHtmlTitle($,htmlTitle)
 
 			const src = $('embed#pubtechvideo').attr('src')
-			console.log(src)
+
 			const portions=normalizePortions()
 
 			$(benedetta).find('li').each((i,el)=>{
@@ -619,7 +616,6 @@ if(!(/http/gi).test(url)){
 			const title = getHtmlTitle($,htmlTitle)
 
 			const src = $('div.cooked-post-featured-image').find('img').attr('data-lazy-src')
-			console.log(src)
 
 			const htmlPortionsTag = 'select.cooked-servings-changer'
 			let portions;
@@ -878,7 +874,6 @@ if(!(/http/gi).test(url)){
 			})
 			const getAmountError = getAmount(ingredients,title,url,portions)	
 			if(getAmountError){
-				console.log('RETURN RECIPE: ',recipe)
 				return recipe;
 			}
 			else
@@ -964,7 +959,6 @@ if(!(/http/gi).test(url)){
 			const title = getHtmlTitle($,htmlTitle)
 
 			const src = $('section.recipe-main-cover').find('img').attr('src')
-			console.log(src)
 
 			const htmlPortionsTag = 'h3';
 			let portions;
@@ -980,7 +974,6 @@ if(!(/http/gi).test(url)){
 			})
 			const getAmountError = getAmount(ingredients,title,url,portions,src)	
 			if(getAmountError){
-				console.log('RETURN RECIPE: ',recipe)
 				return recipe;
 			}
 			else
@@ -1000,7 +993,6 @@ if(!(/http/gi).test(url)){
 			const title =getHtmlTitle($,htmlTitle)
 
 			const src = $('img')
-			console.log(src)
 
 			const htmlPortionsTag='div.recipe-ingredients'
 			const htmlPortionsValue=$(htmlPortionsTag).find('h2').text()
@@ -1124,7 +1116,6 @@ if(!(/http/gi).test(url)){
 			})
 			const getAmountError = getAmount(ingredients,title,url,portions,src)
 			if(getAmountError){
-				console.log('RETURN RECIPE: ',recipe)
 				return recipe;
 			}
 		

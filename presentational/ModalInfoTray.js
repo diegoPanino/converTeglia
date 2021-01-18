@@ -1,6 +1,6 @@
 import React from 'react';
-import {View,Modal,StyleSheet,useWindowDimensions} from 'react-native';
-import {Button,Icon} from 'native-base';
+import {View,Modal,StyleSheet,useWindowDimensions,TouchableOpacity} from 'react-native';
+import {Icon} from 'native-base';
 import MyText from './MyText';
 import * as KitchenMath from '../api/kitchenMath';
 
@@ -14,10 +14,10 @@ export default function ModalMessage(props){
 	modalView:{
 		position:'absolute',
 		top:windowHeight/3,
-		height:windowHeight/3.8,
+		height:windowHeight/3.5,
 		width:windowWidth-40,
 		margin: 20,
-    	backgroundColor: "white",
+    	backgroundColor: "#fef1d8",  //SURFACE
 	    borderRadius: 20,
 	    padding: 10,
 	    shadowColor: "#000",
@@ -66,9 +66,20 @@ export default function ModalMessage(props){
 	  	fontSize:18
 	  },
 	  btnText:{
-	  	fontSize:22
-	  }
-	})
+	  	fontSize:22,
+	  	//fontWeight:'bold',
+	  	color:'#e8871e',			//BUTTON TEXT
+	  },
+	  btn:{
+		backgroundColor:'#feea52', //BUTTON BACKGROUND
+		borderWidth:2,
+		borderColor:'#E8871E', 		//BUTTON BORDER
+		borderRadius:20,
+		padding:5,
+		elevation:5,
+		margin:10,
+	},
+})
 
 	const onConfirmTray = () =>{
 		const {area} = KitchenMath.getAreaByType(dim,key)
@@ -94,12 +105,12 @@ export default function ModalMessage(props){
 						</MyText>
 					</View>
 				</View>
-				<Button style={styles.changeButton} rounded transparent onPress={close}>
+				<TouchableOpacity style={[styles.changeButton,styles.btn]} onPress={close}>
 					<MyText myStyle={styles.btnText}>CAMBIA</MyText>
-				</Button>
-				<Button style={styles.convertButton} rounded transparent onPress={()=>onConfirmTray()}>
+				</TouchableOpacity>
+				<TouchableOpacity style={[styles.convertButton,styles.btn]} onPress={()=>onConfirmTray()}>
 					<MyText myStyle={styles.btnText}>CONVERTI</MyText>
-				</Button>
+				</TouchableOpacity>
 			</View>
 		</Modal>
 		);

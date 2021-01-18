@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, StyleSheet,Image,TouchableOpacity} from 'react-native';
-import {Icon,Button} from 'native-base';
+import {Icon} from 'native-base';
 import {connect} from 'react-redux';
 import {fastConvertionAction,convertAction} from '../redux/actions';
 import MyText from './MyText';
@@ -22,12 +22,20 @@ const styles = StyleSheet.create({
 		marginLeft:10,
 	},
 	btn:{
-		flex:1,
-		
+		flex:0.8,
 		justifyContent:'center',
+		backgroundColor:'#feea52', //BUTTON BACKGROUND
+		borderWidth:2,
+		borderColor:'#E8871E', 		//BUTTON BORDER
+		borderRadius:20,
+		//padding:5,
+		elevation:5,
+		//margin:10,
 	},
 	text:{
+		textAlign:'center',
 		fontSize:35,
+		color:'#e8871e',
 	},
 	icoContainer:{
 		flex:0.5,
@@ -47,9 +55,9 @@ function ConvertButton(props){
 	}
 	return (
 		<View style={styles.btnView}>
-			<Button style={styles.btn} warning rounded onPress={()=>convert()}>
+			<TouchableOpacity style={styles.btn}  onPress={()=>convert()}>
 				<MyText myStyle={styles.text}>CONVERTI</MyText>
-			</Button>
+			</TouchableOpacity>
 			<TouchableOpacity style={styles.icoContainer} onPress={()=>fastConvertionAction()}>
 				<Icon style={styles.ico} name='close' style={styles.ico}/>
 			</TouchableOpacity>

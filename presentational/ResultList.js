@@ -40,6 +40,12 @@ const styles = StyleSheet.create({
 		marginTop:30,
 		textAlign:'center',
 		fontSize:18
+	},
+	scrollView:{
+		marginRight:'2.5%',
+		marginLeft:'2.5%',
+		backgroundColor:'#fef1d8',     //SURFACE
+		borderRadius:20,
 	}
 })
 
@@ -58,10 +64,11 @@ function ResultList(props){
 		convertByIAction(i)
 	}
 	return (
-		<ScrollView>
+		<ScrollView style={styles.scrollView}>
 		{
 			ingredients.map((ingredient,index)=>{
-				return <IngredientRow key={index} 
+				return <IngredientRow key={index}
+							index={index}
 							hideLocks = {()=>setShowAllLocks(false)}
 							showLocks = {()=>setShowAllLocks(true)}
 							showAllLocks = {showAllLocks}
@@ -73,7 +80,7 @@ function ResultList(props){
 							/>
 			})
 		}
-		<MyText myStyle={styles.h4Center}>Ho moltiplicato ogni ingredienti per {k.toFixed(2)}</MyText>
+		<MyText myStyle={styles.h4Center}>Ho moltiplicato ogni ingrediente per {k.toFixed(2)}</MyText>
 		</ScrollView>
 	)
 }

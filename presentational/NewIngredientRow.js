@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
 		flex:1,
 		borderWidth:2,
 		borderRadius:10,
-		borderColor:'#780116'
+		borderColor:'#feaa52'			//BUTTON BACKGROUND
 	},
 	units:{
 		flex:0.5,
@@ -23,18 +23,18 @@ const styles = StyleSheet.create({
 		borderRadius:10,
 		marginLeft:10,
 		marginRight:10,	
-		borderColor:'#780116'	
+		borderColor:'#feaa52'			//BUTTON BACKGROUND
 	},
 	picker:{
 		backgroundColor:'transparent',
 		width:78,
-		color:'#780116'
+		color:'black'				//TEXT INPUT
 	},
 	names:{
 		flex:3,
 		borderWidth:2,
 		borderRadius:10,
-		borderColor:'#780116'
+		borderColor:'#feaa52'			//BUTTON BACKGROUND
 	},
 	icoContainer:{
 		flex:0.5,
@@ -44,10 +44,10 @@ const styles = StyleSheet.create({
 	},
 	h3Text:{
 		fontSize:20,
-		color:'#780116'
+		color:'black'			//TEXT INPUT
 	},
 	color:{
-		color:'#780116'
+		color:'black' 				//ICO COLOR
 	}
 })
 
@@ -57,7 +57,7 @@ export default function NewIngredientRow({form=false,...props}){
 	const [names,setName] = useState(props.names)
 	const [id,setId] = useState(props.id)
 	const [showDeleteIco,setShowDeleteIco] = useState(false)
-	const {newIngredient,deleteIngredient,index} = props
+	const {newIngredient,deleteIngredient,delay} = props
 	const animationScale = useRef(new Animated.Value(0)).current
 
 	const unitss = [' ','g','kg','ml','dl','l','CT','ct','tz']
@@ -69,7 +69,8 @@ export default function NewIngredientRow({form=false,...props}){
 		Animated.timing(animationScale,{
 			toValue:1,
 			duration:600,
-			useNativeDriver:false
+			delay: delay ? delay* 250 :0,
+			useNativeDriver:true
 		}).start()
 	},[])
 	useEffect(()=>{
@@ -122,13 +123,14 @@ export default function NewIngredientRow({form=false,...props}){
 					<TextInput
 						style={styles.h3Text}
 						placeholder='250'
-						placeholderTextColor='#780116'
+						placeholderTextColor='gray'
 						textAlign='center'
 						keyboardType='numeric'
 						returnKeyType='next'
 						value={amounts}
 						onChangeText={text=>onAmountChageHandler(text)}
 						onSubmitEditing={()=>onSubmitHandler()}
+						onEndEditing={()=>onSubmitHandler()}
 					/>
 				</View>
 				<View style={styles.units}>
@@ -144,13 +146,13 @@ export default function NewIngredientRow({form=false,...props}){
 				<View style={styles.names}>
 					<TextInput
 						style={styles.h3Text}
-						autofocus={false}
 						placeholder='burro'
-						placeholderTextColor='#780116'
+						placeholderTextColor='gray'
 						textAlign='center'
 						value={names}
 						onChangeText={(text)=>onNameChange(text)}
 						onSubmitEditing={()=>onSubmitHandler()}
+						onEndEditing={()=>onSubmitHandler()}
 						returnKeyType='done'
 					/>
 				</View>

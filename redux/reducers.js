@@ -14,17 +14,20 @@ import {CLEAN_STORE,
 		CONVERT,convertAction,
 		CONVERT_BY_K,convertByKAction,
 		CONVERT_BY_I,convertByIAction,
+		TOGGLE_ICO,toggleChangedIcoAction
 } from './actions'; 
 import {stdTrays} from '../api/standardTrays';
 
 const day = 86400000
 
-export const systemReducer = (state = {...state,blur:false,fastConv:false,convert:false},action) =>{
+export const systemReducer = (state = {...state,blur:false,fastConv:false,convert:false,changedIco:false},action) =>{
 	switch(action.type){
 		case TOGGLE_BLUR: return {...state,blur:!state.blur} 
 		case FAST_CONVERTION: return {...state,fastConv:!state.fastConv}
 		case CONVERT: return {...state,convert:true}
 		case SEARCH_LINK: return {...state,convert:false}
+		case SET_MY_TRAY: return {...state,changedIco:true}
+		case TOGGLE_ICO: return {...state,changedIco:false}
 		default: return state;
 	}
 }

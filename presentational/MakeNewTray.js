@@ -23,12 +23,13 @@ const styles = StyleSheet.create({
 	contentView:{
 		position:'relative',
 		top:'28%',
-		backgroundColor: 'white',
+		backgroundColor: '#fef1d8',   //SURFACE
 		padding:10,
 		paddingBottom:15,
 		borderRadius:25,
 		borderRightWidth:4,
 		borderBottomWidth:4,
+		borderColor:'#feaa52'   
 	},
 	btnRow:{
 		flexDirection:'row',
@@ -38,14 +39,14 @@ const styles = StyleSheet.create({
 		justifyContent:'center',
 		alignItems:'center',
 		borderTopWidth:1,
-		borderTopColor:'black',
+		borderTopColor:'#feaa52',
 		marginBottom:20,
 	},
 	nameInput:{
 	//	backgroundColor:'#add8e6',
 		borderTopWidth:1,
 		textAlign:'center',
-		
+		borderColor:'#feaa52'
 	},
 	type:{
 		justifyContent:'center',
@@ -53,12 +54,14 @@ const styles = StyleSheet.create({
 		marginBottom:10,
 		borderBottomWidth:1,
 		borderTopWidth:1,
+		borderColor:'#feaa52',
 	},
 	measurement:{
 		justifyContent:'center',
 		borderBottomWidth:1,
 		marginBottom:25,
 		paddingBottom:25,
+		borderColor:'#feaa52',
 	},
 	label:{
 		textAlign:'center',
@@ -69,7 +72,7 @@ const styles = StyleSheet.create({
 		justifyContent:'center',
 		alignItems:'center',
 		borderBottomWidth:3,
-		borderBottomColor:'black'
+		borderBottomColor:'#feaa52'
 	},
 	touch:{
 		flex:1,
@@ -130,8 +133,18 @@ const styles = StyleSheet.create({
 		fontWeight:'bold',
 		fontSize:18
 	},
+	btn:{
+		backgroundColor:'#feea52', //BUTTON BACKGROUND
+		borderWidth:2,
+		borderColor:'#E8871E', 		//BUTTON BORDER
+		borderRadius:20,
+		padding:5,
+		elevation:5,
+		margin:10,
+	},
 	btnText:{
-		fontSize:22
+		fontSize:22,
+		color:'#e8871e',			//BUTTON TEXT
 	},
 	textInput:{
 		fontSize:18
@@ -318,10 +331,10 @@ function NewTrayModal(props){
 					</View>
 				</View>
 				<View style={styles.btnRow}>
-					<TouchableOpacity  large transparent onPress={()=>onCancel()}>
+					<TouchableOpacity style={styles.btn}  large transparent onPress={()=>onCancel()}>
 						<MyText myStyle={styles.btnText}>INDIETRO</MyText>
 					</TouchableOpacity>
-					<TouchableOpacity disabled={invalidForm} large transparent onPress={()=>onSave()}>
+					<TouchableOpacity style={styles.btn} disabled={invalidForm} large transparent onPress={()=>onSave()}>
 						<MyText myStyle={styles.btnText}>SALVA TEGLIA</MyText>
 					</TouchableOpacity>
 				</View>

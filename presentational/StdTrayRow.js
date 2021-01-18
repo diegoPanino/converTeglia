@@ -10,10 +10,8 @@ export default function StdTrayRow({tray,onSelect}){
 	rowContainer:{
 		flexDirection:'row',
 		height:35,
-		borderRadius:20,
-		elevation:2,
-		margin:3,
-		//backgroundColor:'#edd378', //surface
+		borderBottomWidth:0.8,
+		borderColor:'#FFDCBA',
 	},
 	name:{
 		flex:3,

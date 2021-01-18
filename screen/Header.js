@@ -1,12 +1,14 @@
-import React from 'react';
-import {Dimensions, View, Text, StyleSheet, Button, Image, TouchableOpacity} from 'react-native';
-import {withBadge,Icon} from 'react-native-elements';
+import React,{useState,useEffect,useRef} from 'react';
+import {Dimensions, View, Text, StyleSheet, Button, Image, TouchableOpacity,Animated} from 'react-native';
+import {withBadge} from 'react-native-elements';
+import {Icon} from 'native-base';
 import {connect} from 'react-redux';
 import BackButton from '../presentational/backButton';
 import ConvertButton from '../presentational/ConvertButton';
 import { BlurView } from "@react-native-community/blur";
+import {toggleChangedIcoAction} from '../redux/actions';
 
-const logo = require('../img/logo.png');
+const logo = require('../img/Converteglia.jpg');
 const historyBtn = require ('../img/history.png');
 const squareTray = require ('../img/quadrata.png');
 const rectTray = require('../img/rettangolare.png');
@@ -26,12 +28,16 @@ const styles = StyleSheet.create({
 		shadowRadius: 3.84,
 		elevation: 5,
 		borderBottomWidth:1,
-		backgroundColor:'#ffe199', //primary
+		backgroundColor:'#FFDCBA', //background
 
 	},
+	logoContainer:{
+		marginTop:15,
+		height:'50%',
+	},
 	logo:{
-		resizeMode:'stretch',
-		height: height *0.10,
+		//resizeMode:'contain',
+		height: height *0.090,
 		width: width,	
 	},
 	rightMenu:{
@@ -64,27 +70,59 @@ const styles = StyleSheet.create({
 		top:0,
 		zIndex:5,
 	},
+	badgeStyleServs:{
+		backgroundColor:'#feaa52',
+		borderColor:'#e8871e',
+		padding:5,
+	},
 	badgeStyle:{
-		backgroundColor:'#847349',
-		borderColor:'#c8bfb5',
+		backgroundColor:'#feaa52',		//BUTTON COLOR PRIMARY
+		borderColor:'#e8871e',
+		padding:2,
+	},
+	color:{
+		color:'black'					//TEXT COLOR
 	}
 })
 
-function Header({scene,previous,navigation,settings,system}){
-
-	const select = settings.selection
-	const trayIndex = Math.trunc(select.key)
+function Header({scene,previous,navigation,settings,system,toggleChangedIcoAction}){
+	let select = settings.selection
+	let trayIndex = Math.trunc(select.key)
 	const option = scene.descriptor
 	const blur = system.blur ? 3 : 0
+	const {changedIco} = system
 	const {fastConv} = system
-	const BadgedImage = withBadge(`${select.servs} pers`,
-		{top:22,right:5,badgeStyle:styles.badgeStyle})(Image)
-	const BadgedImg = withBadge(`${select.dim}cm`,
+	const BadgedImage = withBadge(<Text style={styles.color}>{select.servs}<Icon name='md-person' style={{fontSize:16}}/></Text>,
+		{top:22,right:5,badgeStyle:styles.badgeStyleServs})(Image)
+	const BadgedImg = withBadge(<Text style={styles.color}>{select.dim}cm</Text>,
 		{right:5,badgeStyle:styles.badgeStyle})(BadgedImage)
-	
+	const scale = useRef(new Animated.Value(1)).current
+
+	useEffect(()=>{
+		if(changedIco){
+			Animated.sequence([
+				Animated.timing(scale,{
+					toValue:0,
+					duration:300,
+					useNativeDriver:true
+				}),
+				Animated.timing(scale,{
+					toValue:1,
+					duration:300,
+					useNativeDriver:true
+				})])
+				.start(finished=>{
+					if(finished)
+						toggleChangedIcoAction();
+				})
+		}
+	},[changedIco])
+
 	return (
 		<View style={styles.header}>
-			<Image blurRadius={blur} source = {logo} style = {styles.logo} />
+			<View style={styles.logoContainer}>
+				<Image blurRadius={blur} source = {logo} style = {styles.logo} />
+			</View>
 			{fastConv 
 			? 	<ConvertButton blurRadius={blur} navigation={navigation} />
 			: 	<BackButton blurRadius={blur} navigation={navigation} />
@@ -94,12 +132,14 @@ function Header({scene,previous,navigation,settings,system}){
 					<Image blurRadius={blur} source={historyBtn} style = {styles.historyBtn} />	
 				</TouchableOpacity>
 			}
+				<Animated.View style={[{transform:[{scale}]}]} >
 				<TouchableOpacity onPress={()=>navigation.navigate('MyTrayScreen')}> 
 					{system.blur 
 						? <Image blurRadius={blur} source={trays[trayIndex]} style = {styles.myTrayBtn}/>
 						: <BadgedImg blurRadius={blur} source={trays[trayIndex]} style = {styles.myTrayBtn}/>	
 					}
 				</TouchableOpacity>
+				</Animated.View>
 			</View>
 		</View>
 		);
@@ -108,4 +148,4 @@ mapStateToProps = state => ({
 	settings: state.settings,
 	system: state.system	
 })
-export default connect(mapStateToProps)(Header);
+export default connect(mapStateToProps,{toggleChangedIcoAction})(Header);

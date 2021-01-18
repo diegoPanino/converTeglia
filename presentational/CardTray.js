@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
 		height:200,
 		width:200,
 		elevation:5,
-		//backgroundColor:'#edd378', //surface
+		backgroundColor:'#fef1d8', //surface
 		borderRadius:10,
 	},
 	img:{

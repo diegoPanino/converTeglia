@@ -11,17 +11,23 @@ const styles = StyleSheet.create({
 		flex:1,
 		marginRight:'5%',
 		marginLeft:'5%',
+		borderRadius:20,
+		// borderBottomWidth:1,
+		// borderRightWidth:1,
+		// borderLeftWidth:1,
+		backgroundColor:'#fef1d8'
 	},
 	row:{
 		height:35,
 		flexDirection:'row',
 		alignItems:'center',
-		backgroundColor:'#ffe199',//primary
-		borderColor:'#554f60',
+		backgroundColor:'#FFDCBA',//primary
+		borderColor:'#e8871e',
 		borderTopWidth:2,
 		borderRightWidth:2,
 		borderLeftWidth:2,
-		borderRadius:20,
+		borderTopLeftRadius:20,
+		borderTopRightRadius:20,
 		elevation:2,
 		zIndex:10,
 	},
@@ -29,7 +35,9 @@ const styles = StyleSheet.create({
 		flex:1,
 		textAlign:'center',
 		fontSize:18,
-		fontWeight:'bold'
+		fontWeight:'bold',
+		borderTopLeftRadius:20,
+		borderTopRightRadius:20,
 	},
 	flatCSTListContainer:{
 		maxHeight:'50%',

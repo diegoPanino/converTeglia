@@ -1,6 +1,5 @@
 import React from 'react';
-import {View,Modal,StyleSheet,useWindowDimensions} from 'react-native';
-import {Button} from 'native-base';
+import {View,Modal,StyleSheet,useWindowDimensions,TouchableOpacity} from 'react-native';
 import MyText from './MyText';
 
 
@@ -16,7 +15,7 @@ export default function ModalMessage(props){
 		height:windowHeight/4.3,
 		width:windowWidth-40,
 		margin: 20,
-    	backgroundColor: "white",
+		backgroundColor:'#feebc4', 	//background
 	    borderRadius: 20,
 	    padding: 10,
 	    shadowColor: "#000",
@@ -27,6 +26,9 @@ export default function ModalMessage(props){
 	    shadowOpacity: 0.25,
 	    shadowRadius: 3.84,
 	    elevation: 5
+	  },
+	  viewContainer:{
+	  				
 	  },
 	  extraData:{
 	  	fontWeight:'bold',
@@ -42,12 +44,24 @@ export default function ModalMessage(props){
 	  	position:'absolute',
 	  	left:20,
 	  	bottom:5,
+
 	  },
 	  text:{
 	  	fontSize:18,
 	  },
 	  btnText:{
 	  	fontSize:22,
+	  	color:'#e8871e'
+	  },
+	  btn:{
+	  	backgroundColor:'#feea52', //BUTTON BACKGROUND
+		//fontWeight:'bold',
+		borderWidth:2,
+		borderColor:'#E8871E', 		//BUTTON BORDER
+		borderRadius:20,
+		padding:5,
+		elevation:5,
+		margin:10,
 	  }
 	})
 
@@ -56,18 +70,18 @@ export default function ModalMessage(props){
 	return(
 		<Modal animationType='slide' transparent={true} visible={showModal}>
 			<View style = {styles.modalView}>
-				<View>
+				<View style={styles.viewContainer}>
 					<MyText myStyle={styles.text}>{message}</MyText>
 				</View>
 				<View>
 					<MyText myStyle={[styles.text,styles.extraData]}>{extraData}</MyText>
 				</View>
-				<Button style={styles.deleteButton} rounded transparent onPress={close}>
+				<TouchableOpacity style={[styles.deleteButton,styles.btn]}  onPress={close}>
 					<MyText myStyle={styles.btnText}>CHIUDI</MyText>
-				</Button>
-				<Button style={styles.closeButton} rounded transparent onPress={confirm}>
+				</TouchableOpacity>
+				<TouchableOpacity style={[styles.closeButton,styles.btn]}  onPress={confirm}>
 					<MyText myStyle={styles.btnText}>ELIMINA</MyText>
-				</Button>
+				</TouchableOpacity>
 			</View>
 		</Modal>
 		);

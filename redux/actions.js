@@ -6,6 +6,7 @@ export const SAVE_SEARCHED_LINK = 'SAVE_SEARCHED_LINK'; //KEEP TRACK OF THE SEAR
 export const DELETE_SEARCHED_LINK = 'DELETE_SEARCHED_LINK'; //DELETE A RESEARCH FROM THE NORMAL HISTORY
 export const SET_MY_TRAY = 'SET_MY_TRAY'; // SELECT THE DESTINATION TRAY FOR CONVERSIONS
 export const TOGGLE_BLUR = 'TOGGLE_BLUR'; //SYSTEM TOGGLE BLUR
+export const TOGGLE_ICO = 'TOGGLE_ICO'; // SET TO FALSE THE FLAG FOR ANIMATION ICO IN THE HEADER
 export const ADD_TRAY = 'ADD_TRAY'; //CREATE A NEW PERSONAL TRAY
 export const DELETE_TRAY = 'DELETE_TRAY'; //ERASE CUSTOM TRAY
 export const SET_NUMBER_OF_DAY = 'SET_NUMBER_OF_DAY'; // SET THE TIME NEED TO PASS BEFORE AUTOMATICALLY ERASE HISTORY
@@ -42,6 +43,9 @@ export const setMyTrayAction = trayKey => ({
 })
 export const toggleBlurAction = () =>({
 	type:TOGGLE_BLUR
+})
+export const toggleChangedIcoAction = () =>({
+	type:TOGGLE_ICO
 })
 export const addTrayAction = tray =>({
 	type:ADD_TRAY,

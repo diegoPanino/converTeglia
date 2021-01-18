@@ -4,7 +4,7 @@ import {Icon} from 'native-base';
 import MyText from './MyText';
 
 export default function IngredientRow(props){
-	const {amount,unit,name} = props
+	const {amount,unit,name,index} = props
 	const {convertByI} = props
 	const {hideLocks,showLocks} = props
 	const {showAllLocks} = props
@@ -15,6 +15,7 @@ export default function IngredientRow(props){
 	const [validInput,setValidInput] = useState(true)
 	const textInputRef = useRef(null)
 	const zoom = useRef(new Animated.Value(1)).current
+	const scale = useRef(new Animated.Value(0)).current
 
 	const zoomIn=()=>{
 		Animated.timing(zoom,{
@@ -23,21 +24,31 @@ export default function IngredientRow(props){
 			useNativeDriver:false
 		}).start()
 	}
-
+	useEffect(()=>{
+			Animated.timing(scale,{
+				toValue:1,
+				duration:600,
+				delay:index ? index * 200 : 0,
+				useNativeDriver:true
+			}).start()
+	})
 	useEffect(()=>{
 		Animated.sequence([
 			Animated.timing(zoom,{
 				toValue:0,
 				duration:300,
-				useNativeDriver:false
+				useNativeDriver:true
 			}),
 			Animated.timing(zoom,{
 				toValue:1,
 				duration:300,
-				useNativeDriver:false
+				useNativeDriver:true
 			})
 		]).start()
-		setAmountInput(amount)	
+		if(amount > 0)
+			setAmountInput(amount)	
+		else
+			setAmountInput()	
 	},[amount])
 
 	useEffect(()=>{
@@ -82,35 +93,37 @@ export default function IngredientRow(props){
 		setAmountInput(amount)
 	}
 	return (
-		<View style={styles.viewList} >
-			<View style={styles.amount}>
-				<Animated.View style={[ {transform: [{ scale: zoom }] } ]}>
-				<TextInput  style={styles.amountInput}
-							keyboardType='numeric'
-							returnKeyType='go'
-							onChangeText={t=>onChangeTextHandler(t)}
-							onSubmitEditing={()=>onSubmitEditingHandler()}
-							onEndEditing = {()=>onEndEditingHandler()}
-							editable={locked} 
-							value={amountInput}
-							placeholderTextColor='black'
-							ref={textInputRef} />
-				</Animated.View>
+		<Animated.View style={[ {transform: [{scale}] } ]}>
+			<View style={styles.viewList} >
+				<View style={styles.amount}>
+					<Animated.View style={[ {transform: [{ scale: zoom }] } ]}>
+					<TextInput  style={styles.amountInput}
+								keyboardType='numeric'
+								returnKeyType='go'
+								onChangeText={t=>onChangeTextHandler(t)}
+								onSubmitEditing={()=>onSubmitEditingHandler()}
+								onEndEditing = {()=>onEndEditingHandler()}
+								editable={locked} 
+								value={amountInput}
+								placeholderTextColor='black'
+								ref={textInputRef} />
+					</Animated.View>
+				</View>
+				<View style={styles.unit}>
+					<MyText myStyle={styles.h3Text}>{unit}</MyText>
+				</View>
+				<View style={styles.name}>
+					<MyText myStyle={styles.h3Text}>{name}</MyText>
+				</View>
+				<View style={styles.lock}>
+				{((showAllLocks || locked) && amountInput) && 
+					<TouchableOpacity  onPress={()=>onLockIngr()}>
+						<Icon style={styles.lockIco} name={nameIco} />
+					</TouchableOpacity>
+				}
+				</View>
 			</View>
-			<View style={styles.unit}>
-				<MyText myStyle={styles.h3Text}>{unit}</MyText>
-			</View>
-			<View style={styles.name}>
-				<MyText myStyle={styles.h3Text}>{name}</MyText>
-			</View>
-			<View style={styles.lock}>
-			{(showAllLocks || locked) && 
-				<TouchableOpacity  onPress={()=>onLockIngr()}>
-					<Icon style={styles.lockIco} name={nameIco} />
-				</TouchableOpacity>
-			}
-			</View>
-		</View>
+		</Animated.View>
 		);
 }
 const styles = StyleSheet.create({
@@ -119,11 +132,12 @@ const styles = StyleSheet.create({
 		flexDirection:'row',
 		//margin:5,
 		padding:3,
-		elevation:3,
+		borderBottomWidth:0.5,
+		borderColor:'#feaa52'
 		//backgroundColor:'orange',
-		borderRadius:40,
-		marginTop:5,
-		marginBottom:5
+		// borderRadius:40,
+		// marginTop:5,
+		// marginBottom:5
 	},
 	amount:{
 		flex:1,

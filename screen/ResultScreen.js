@@ -15,7 +15,8 @@ import * as KitchenMath from '../api/kitchenMath';
 const styles=StyleSheet.create({
 	mainContainer:{
 		flex:1,
-		margin:'2.5%',
+		//margin:'2.5%',
+		backgroundColor:'#feebc4' //BACKGROUND
 	},
 	titleBox:{
 		flex:1,
@@ -69,6 +70,15 @@ const styles=StyleSheet.create({
 	img:{
 		flex:3,
 	},
+	errMsgContainer:{
+		flex:1,
+		justifyContent:'center',
+		backgroundColor:'#fef1d8'
+	},
+	errMsg:{
+		textAlign:'center',
+		color:'#780116'
+	}
 	
 })
 
@@ -160,7 +170,7 @@ function ResultScreen(props){
 		toggleBlurAction();
 		fastConvertionAction();
 		setShowModal(false)
-		navigation.navigate('TrayScreen')
+		navigation.navigate('MyTrayScreen')
 	}
 
 	/*const onShare = async () => {
@@ -185,7 +195,12 @@ function ResultScreen(props){
   };*/
 	if(result.hasOwnProperty('recipe')){
 		if(result.recipe.hasOwnProperty('err'))
-			return (<MyText>{result.recipe.msg}</MyText>)
+			return (<View style={styles.errMsgContainer}>
+						<MyText myStyle={styles.errMsg}>{result.recipe.msg}</MyText>
+						<TouchableOpacity onPress={()=>{navigation.goBack()}}>
+							<MyText myStyle={styles.errMsg}>Riprova</MyText>
+						</TouchableOpacity>
+					</View>)
 		else{
 			return (
 				<View style={styles.mainContainer}>

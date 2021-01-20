@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
 })
 	
 
-function AdvancedSettingsModal({hide,setNumDaysAction,showTutorialAction,settings}){
+function AdvancedSettingsModal({hide,setNumDaysAction,showTutorialAction,settings,navigation}){
 		
 	const [showTutorial,setShowTutorial] = useState(settings.tutorial)
 	const [numberOfDays,setNODays] = useState(settings.day)
@@ -85,7 +85,13 @@ function AdvancedSettingsModal({hide,setNumDaysAction,showTutorialAction,setting
 	})
 
 	useEffect(()=>{
-		showTutorialAction(showTutorial);
+		if(showTutorial){
+			navigation.navigate('SearchScreen')
+			showTutorialAction(showTutorial)
+			hide();
+		}
+		else
+			showTutorialAction(showTutorial);
 	},[showTutorial])
 	useEffect(()=>{
 		setNumDaysAction(numberOfDays);
@@ -114,7 +120,7 @@ function AdvancedSettingsModal({hide,setNumDaysAction,showTutorialAction,setting
 						</View>
 					</View>
 					<View style={styles.settLine}>
-						<MyText myStyle={styles.settText}>Mostra tutorial all'avvio </MyText>
+						<MyText myStyle={styles.settText}>Guarda tutorial iniziale </MyText>
 						<View style={styles.pickerContainer}>
 							<Picker style={styles.picker} mode='dropdown'
 									selectedValue={showTutorial}

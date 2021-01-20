@@ -8,6 +8,7 @@ import MyText from '../presentational/MyText';
 import {searchLinkAction,cleanStoreAction,saveSearchedLinkAction} from '../redux/actions';
 import {getIngredients} from '../api/fetch';
 import MakeNewRecipe from '../presentational/NewRecipe';
+import TutorialWelcome from '../presentational/tutorial/TutorialWelcome.js';
 
 const styles=StyleSheet.create({
 	view:{
@@ -39,7 +40,7 @@ const styles=StyleSheet.create({
 	}
 })
 
-function SearchScreen({navigation,searchLinkAction,cleanStoreAction,saveSearchedLinkAction}){
+function SearchScreen({navigation,searchLinkAction,cleanStoreAction,saveSearchedLinkAction,tutorial}){
 	const [inputBox, setInputBox] = useState('')
 	const [newRecipe,setNewRecipe] = useState(false)
 	const [copiedRecipe,setCopiedRecipe] = useState('')
@@ -102,11 +103,11 @@ function SearchScreen({navigation,searchLinkAction,cleanStoreAction,saveSearched
 			})
 			.catch(err=>console.log(err))
 	}
-
 	return (
 		<Container>
+		{tutorial && <TutorialWelcome showModal={()=>setNewRecipe(true)} />}
 			<Modal animationType='slide' transparent={true} visible={newRecipe}>
-				<MakeNewRecipe hide={()=>setNewRecipe(false)} navigation={navigation} recipe={copiedRecipe}/>		
+				<MakeNewRecipe hide={()=>setNewRecipe(false)} navigation={navigation} recipe={copiedRecipe} tutorial={tutorial}/>		
 			</Modal>
 			<Content contentContainerStyle={styles.view}>
 				<Item rounded style={styles.inputStyle}>
@@ -127,8 +128,12 @@ function SearchScreen({navigation,searchLinkAction,cleanStoreAction,saveSearched
 			</Content>
 		</Container>
 		);
-}
-export default connect(null,{searchLinkAction,cleanStoreAction,saveSearchedLinkAction})(SearchScreen)
+}	
+const mapStateToProps=state=>({
+	tutorial:state.settings.tutorial
+})
+
+export default connect(mapStateToProps,{searchLinkAction,cleanStoreAction,saveSearchedLinkAction})(SearchScreen)
 
 
 

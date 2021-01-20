@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import { v4 as idGen} from 'uuid';
 import NewIngredientRow from './NewIngredientRow';
 import {toggleBlurAction,searchLinkAction,saveSearchedLinkAction} from '../redux/actions';
+import TutorialBox from './tutorial/TutorialBox.js'
 import MyText from './MyText';
 
 const styles = StyleSheet.create({
@@ -70,7 +71,7 @@ function MakeNewRecipe(props){
 	const [invalidForm,setInvalidForm] = useState(false)
 	const [ingredientRow,setIngredientRow]=useState(props.recipe||[])
 	const {read} = props
-	const {hide,navigation} = props
+	const {hide,navigation,tutorial} = props
 	const {toggleBlurAction,searchLinkAction,saveSearchedLinkAction} = props
 
 	useEffect(()=>{
@@ -130,9 +131,11 @@ function MakeNewRecipe(props){
 	}	
 
 	const onConvertPress=()=>{
-		if(!(title)){
+		if(!tutorial){
+			if(!(title)){
 			Alert.alert('Attenzione','Dai un nome alle tua ricetta!')
 			return
+			}
 		}
 		if(ingredientRow.length <= 0){
 			Alert.alert('Attenzione','Aggiungi ingredienti alla tua ricetta!')
@@ -157,6 +160,10 @@ function MakeNewRecipe(props){
 
 	return(
 		<View style={styles.mainView}>
+		{tutorial && <TutorialBox  type='newRecipe' 
+					navigation={navigation} next='ResultScreen' 
+					exampleFunction={(ingr)=>setIngredientRow(ingr)} 
+					reduxFunction={()=>onConvertPress()} />}
 			<View style={styles.contentView}>
 				<View style={styles.titleContainer}>
 					<TextInput style={styles.titleInput}

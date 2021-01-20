@@ -146,7 +146,7 @@ const styles=StyleSheet.create({
 					<Icon style={styles.settingsBtnIcon} name='chevron-up' />
 				</TouchableOpacity>
 				<Modal animationType='slide' transparent={true} visible={advSett}>
-					<AdvancedSettingsModal hide={()=>setAdvSett(false)} />
+					<AdvancedSettingsModal hide={()=>setAdvSett(false)} navigation={navigation}/>
 				</Modal>
 			</View>
 		</View>

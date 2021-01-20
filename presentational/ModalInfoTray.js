@@ -3,9 +3,10 @@ import {View,Modal,StyleSheet,useWindowDimensions,TouchableOpacity} from 'react-
 import {Icon} from 'native-base';
 import MyText from './MyText';
 import * as KitchenMath from '../api/kitchenMath';
+import TutorialBox from './tutorial/TutorialBox.js';
 
 export default function ModalMessage(props){
-	const {close,confirm,showModal,selectedTray} = props;
+	const {close,confirm,showModal,selectedTray,tutorial} = props;
 	const {dim,key,servs} = selectedTray
 	const {area,type} = KitchenMath.getAreaByType(dim,key)
 	const windowWidth = useWindowDimensions().width;
@@ -88,6 +89,7 @@ export default function ModalMessage(props){
 
 	return (
 		<Modal animationType='slide' transparent={true} visible={showModal}>
+		{tutorial && <TutorialBox type='selectedTray' reduxFunction={()=>onConfirmTray()} />}
 			<View style={styles.modalView}>
 				<View>
 					<MyText myStyle={[styles.center,styles.h4]}>La teglia che userai per cucinare:</MyText>

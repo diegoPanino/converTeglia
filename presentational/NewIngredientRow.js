@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
 
 export default function NewIngredientRow({form=false,...props}){
 	const [amounts,setAmount] = useState(props.amounts)
-	const [units,setUnit] = useState(props.units)
+	const [units,setUnit] = useState(props.units || 'g')
 	const [names,setName] = useState(props.names)
 	const [id,setId] = useState(props.id)
 	const [showDeleteIco,setShowDeleteIco] = useState(false)

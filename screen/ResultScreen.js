@@ -11,6 +11,7 @@ import OriginalTrayInfoModal from '../presentational/OriginalTrayInfoModal';
 import { BlurView } from "@react-native-community/blur";
 import {toggleBlurAction,fastConvertionAction} from '../redux/actions';
 import * as KitchenMath from '../api/kitchenMath';
+import TutorialBox from '../presentational/tutorial/TutorialBox.js';
 
 const styles=StyleSheet.create({
 	mainContainer:{
@@ -84,7 +85,7 @@ const styles=StyleSheet.create({
 
 function ResultScreen(props){
 	const {toggleBlurAction,fastConvertionAction} = props
-	const {selectedTray,result} = props
+	const {selectedTray,result,tutorial} = props
 	const {navigation,route} = props
 	const {dim,key} = selectedTray
 	const [showModal,setShowModal] = useState(false)
@@ -210,16 +211,20 @@ function ResultScreen(props){
 		 		      blurType="dark"
 	 		          blurAmount={1}
 	 		        />}
+	 		        {(tutorial && !modalOriginalTray && !showModal) && <TutorialBox type='result' next='HistoryScreen' navigation={navigation} />}
 	 		        <OriginalTrayInfoModal 
 	 		        				blurAction={toggleBlurAction}
 	 		        				confirm={(area)=>onContinueOriginalTray(area)}
 	 		        				showModal={modalOriginalTray}
 	 		        				tray={result.recipe.trayRad}
+	 		        				tutorial={tutorial}
 	 		        />
 					<ModalInfoTray 	close={()=>changeTray()}
 									confirm={(area)=>onConfirmTray(area)}
 									showModal={showModal}
-									selectedTray={selectedTray}/>
+									selectedTray={selectedTray}
+									tutorial={tutorial}
+					/>
 					<View style={styles.titleContainer}>
 						<View style={styles.titleView}>
 							<MyText myStyle={styles.title}>{result.recipe.title}</MyText>
@@ -250,7 +255,8 @@ function ResultScreen(props){
 const mapStateToProps=(state)=>({
 	result:state.result,
 	selectedTray:state.settings.selection,
-	convert:state.system.convert
+	tutorial:state.settings.tutorial,
+	convert:state.system.convert,
 })
 export default connect(mapStateToProps,{toggleBlurAction,
 										fastConvertionAction,})(ResultScreen);

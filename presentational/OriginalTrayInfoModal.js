@@ -4,9 +4,10 @@ import {Icon} from 'native-base';
 import {Picker} from '@react-native-picker/picker';
 import MyText from './MyText';
 import * as KitchenMath from '../api/kitchenMath';
+import TutorialBox from './tutorial/TutorialBox.js';
 
 export default function OriginalTrayInfoModal(props){
-	const {confirm,showModal,tray,blurAction} = props
+	const {confirm,showModal,tray,blurAction,tutorial} = props
 	const [size,setSize] = useState(tray)
 	const [servs,setServs] = useState(KitchenMath.getServsFromRad(tray))
 	const windowWidth = useWindowDimensions().width;
@@ -129,6 +130,7 @@ export default function OriginalTrayInfoModal(props){
 
 	return (
 		<Modal animationType='slide' transparent={true} visible={showModal}>
+		{tutorial && <TutorialBox type='modalOriginal' reduxFunction ={()=>onConfirm()}  />}
 			<View style={styles.modalView}>
 				<View>
 					<MyText myStyle={styles.center}>

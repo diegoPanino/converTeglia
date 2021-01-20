@@ -86,8 +86,9 @@ const styles = StyleSheet.create({
 })
 
 function Header({scene,previous,navigation,settings,system,toggleChangedIcoAction}){
-	let select = settings.selection
-	let trayIndex = Math.trunc(select.key)
+	const select = settings.selection
+	const {tutorial} = settings 
+	const trayIndex = Math.trunc(select.key)
 	const option = scene.descriptor
 	const blur = system.blur ? 3 : 0
 	const {changedIco} = system
@@ -125,15 +126,15 @@ function Header({scene,previous,navigation,settings,system,toggleChangedIcoActio
 			</View>
 			{fastConv 
 			? 	<ConvertButton blurRadius={blur} navigation={navigation} />
-			: 	<BackButton blurRadius={blur} navigation={navigation} />
+			: 	<BackButton disabled={tutorial} blurRadius={blur} navigation={navigation} />
 			}
 			<View style = {styles.rightMenu}>
-			{!fastConv && <TouchableOpacity onPress={()=>navigation.navigate('HistoryScreen')}> 
+			{!fastConv && <TouchableOpacity disabled={tutorial} onPress={()=>navigation.navigate('HistoryScreen')}> 
 					<Image blurRadius={blur} source={historyBtn} style = {styles.historyBtn} />	
 				</TouchableOpacity>
 			}
 				<Animated.View style={[{transform:[{scale}]}]} >
-				<TouchableOpacity onPress={()=>navigation.navigate('MyTrayScreen')}> 
+				<TouchableOpacity disabled={tutorial} onPress={()=>navigation.navigate('MyTrayScreen')}> 
 					{system.blur 
 						? <Image blurRadius={blur} source={trays[trayIndex]} style = {styles.myTrayBtn}/>
 						: <BadgedImg blurRadius={blur} source={trays[trayIndex]} style = {styles.myTrayBtn}/>	

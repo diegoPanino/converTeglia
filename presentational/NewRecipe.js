@@ -162,7 +162,8 @@ function MakeNewRecipe(props){
 		<View style={styles.mainView}>
 		{tutorial && <TutorialBox  type='newRecipe' 
 					navigation={navigation} next='ResultScreen' 
-					exampleFunction={(ingr)=>setIngredientRow(ingr)} 
+					exampleFunction={(ingr)=>setIngredientRow(ingr)}
+					titleFunction={(text)=>setTitle(text)}
 					reduxFunction={()=>onConvertPress()} />}
 			<View style={styles.contentView}>
 				<View style={styles.titleContainer}>

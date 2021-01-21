@@ -3,15 +3,17 @@ import {View,StyleSheet,TextInput,useWindowDimensions,Modal,StatusBar,TouchableO
 import {Icon} from 'native-base';
 import {connect} from 'react-redux';
 import Carousel from 'react-native-snap-carousel';
-import {toggleBlurAction} from '../redux/actions';
+import {toggleBlurAction,setMyTrayAction,showTutorialAction} from '../redux/actions';
 import CardTray from '../presentational/CardTray';
 import CardTrayList from '../presentational/CardStandarTrayList';
 import MyText from '../presentational/MyText';
 import AdvancedSettingsModal from '../presentational/AdvancedSettingsModal';
 import NewTrayModal from '../presentational/MakeNewTray';
 import { BlurView } from "@react-native-community/blur";
+import TutorialBox from '../presentational/tutorial/TutorialBox.js';
 
-function MyTrayScreen({navigation,toggleBlurAction}){
+
+function MyTrayScreen({navigation,toggleBlurAction,setMyTrayAction,tutorial,showTutorialAction}){
 
 const styles=StyleSheet.create({
 	view:{
@@ -104,6 +106,7 @@ const styles=StyleSheet.create({
 
 	return (
 		<View style={styles.view}>
+		{tutorial && <TutorialBox navigation={navigation} type='myTray' reduxFunction={(key)=>setMyTrayAction(key)} next='end' exampleFunction={(bool)=>showTutorialAction(bool)}/>}
 			{showNTM && 
 				<NewTrayModal select={tray} hide={()=>setShowNTM(false)}/>}
 			 {showNTM &&
@@ -141,7 +144,7 @@ const styles=StyleSheet.create({
 			</TouchableOpacity>
 			
 			<View style={styles.settingsBtnContainer}>
-				<TouchableOpacity style={styles.settBtn} rounded block iconRight small onPress={()=>setAdvSett(true)}>
+				<TouchableOpacity style={styles.settBtn} onPress={()=>setAdvSett(true)}>
 					<MyText myStyle={styles.settingsText}>Impostazioni avanzate</MyText>
 					<Icon style={styles.settingsBtnIcon} name='chevron-up' />
 				</TouchableOpacity>
@@ -152,5 +155,8 @@ const styles=StyleSheet.create({
 		</View>
 		);
 }
-export default connect(null,{toggleBlurAction})(MyTrayScreen)
+mapStateToProps=state=>({
+	tutorial:state.settings.tutorial
+})
+export default connect(mapStateToProps,{toggleBlurAction,setMyTrayAction,showTutorialAction})(MyTrayScreen)
 /*<*/

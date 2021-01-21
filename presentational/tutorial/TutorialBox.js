@@ -15,6 +15,7 @@ const styles= StyleSheet.create({
 		left:0,
 		top:0,
 		zIndex:10,
+		elevation:3,
 		backgroundColor:'transparent',
 		height:HEIGHT,
 		width:WIDTH,
@@ -71,7 +72,7 @@ const styles= StyleSheet.create({
 })
 
 export default function TutorialBox(props){
-	const {type,next,navigation=null,hide=()=>{},exampleFunction,reduxFunction} = props
+	const {type,next,navigation=null,hide=()=>{},exampleFunction,reduxFunction,titleFunction} = props
 	const [index,setIndex] = useState(0)
 	const scale = useRef( new Animated.Value(0)).current
 	const screen = {
@@ -144,15 +145,51 @@ export default function TutorialBox(props){
 			positioning:{marginTop:0}
 			},
 		],
-		myTray:{
-			message:'',
-		},
-		history:{
-			message:'',
-		},
-		advancedSettings:{
-			message:'',
-		},
+		history:[
+			{
+			message:'Il Ricettario viene diviso secondo la data, le ricette piú vecchie, secondo le tue preferenze, verranno eliminate automaticamente',
+			positioning:{marginTop:'30%'},
+			},
+			{
+			message:'Toccando il cuore, eviterai che la ricetta sia eliminata automaticamente, così da averla sempre a tua disposizione, anche offline',
+			positioning:{marginTop:'30%'}
+			},
+			{
+			message:'Toccando invece il pianeta avrai la possibilitá di copiare il link della pagina web della ricetta, così da poter ritrovare velocemente le tue ricette di piú esito!',
+			positioning:{marginTop:'30%'},
+			},
+			{
+			message:'Puoi anche eliminarle manualmente, toccando il cestino, ricordati di separare i rifiuti!\nAdesso parliamo di teglie...Ricordi l\'icona con l\'immagine della teglia?',
+			positioning:{marginTop:0},
+			},
+		],	
+		myTray:[
+			{
+			message:'Fai scorrere verso destra o verso sinistra le immagini delle teglie, per cambiare la forma della tua teglia',
+			positioning:{marginTop:'45%'}
+			},
+			{
+			message:'Per il momento ci sono solo le teglie di misure standard, ma basta pochissimo per creare la tua teglia personale, toccando CREA LA TUA TEGLIA',
+			positioning:{marginTop:0}
+			},
+			{
+			message:'Tocca la teglia che vuoi utilizzare, e vedrai l\'icona cambiare a seconda della forma selezionata',
+			positioning:{marginTop:0},
+			key:'0.0'
+			},
+			{
+			message:'Toccando Impostazioni Avanzate, potrai scegliere dopo quanti giorni ConverTeglia deve eliminare le vecchie ricette, salvate nel ricettario ',
+			positioning:{marginTop:'30%'}
+			},
+			{
+			message:'...E avrai anche la possibilitá di rivedere questo emozionante tutorial!\n',
+			positioning:{marginTop:'30%'}
+			},
+			{
+			message:'E con questo è tutto, spero che ConverTeglia ti sia d\'aiuto nello sfornare leccornie!\nSe è così, o anche no, qualsiasi commento o domanda vorrai lasciare nelle recensioni dell\'app, saranno molto apprezati!\nOra ai fornelli!',
+			positioning:{marginTop:'20%'}
+			},
+		],		
 	}
 	useEffect(()=>{
 		showingUp();
@@ -160,8 +197,13 @@ export default function TutorialBox(props){
 	},[])
 
 	useEffect(()=>{
-		if(screen[type][index].hasOwnProperty('exampleData'))
+		if(screen[type][index].hasOwnProperty('exampleData')){
 			exampleFunction(screen[type][index].exampleData)
+			titleFunction('Una prova di meringa')
+		}
+		if(screen[type][index].hasOwnProperty('key')){
+			reduxFunction(screen[type][index].key)
+		}
 	},[index])
 
 	const animation=(flag)=>{
@@ -225,6 +267,16 @@ export default function TutorialBox(props){
 	const onPrevPress=()=>{
 		showingOff(false)
 	}
+	const onEndPress=()=>{
+		Animated.timing(scale,{
+			toValue:0,
+			duration:600,
+			useNativeDriver:true
+		}).start(()=>{
+			exampleFunction(false)
+			navigation.navigate('SearchScreen')
+		})
+	}
 
 	return(
 		<View style={styles.mainView}>
@@ -241,9 +293,14 @@ export default function TutorialBox(props){
 						</View>
 					</View>
 					<View style={styles.bottonView} >
-						<TouchableOpacity style={styles.buttonContainer} onPress={()=>onNextPress()} >
-							<MyText myStyle={styles.buttonText}>PROSSIMO</MyText>
-						</TouchableOpacity>
+						{(next ==='end' && index == screen[type].length - 1 )
+							?	<TouchableOpacity style={styles.buttonContainer} onPress={()=>onEndPress()} >
+									<MyText myStyle={styles.buttonText}>FINE</MyText>
+								</TouchableOpacity>
+							: 	<TouchableOpacity style={styles.buttonContainer} onPress={()=>onNextPress()} >
+									<MyText myStyle={styles.buttonText}>PROSSIMO</MyText>
+								</TouchableOpacity>
+						}
 					</View>
 				</View>
 			</Animated.View>

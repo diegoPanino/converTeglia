@@ -116,10 +116,11 @@ export default function IngredientRow(props){
 					<MyText myStyle={styles.h3Text}>{name}</MyText>
 				</View>
 				<View style={styles.lock}>
-				{((showAllLocks || locked) && amountInput) && 
-					<TouchableOpacity  onPress={()=>onLockIngr()}>
+				{((showAllLocks || locked) && amountInput) 
+					?<TouchableOpacity  onPress={()=>onLockIngr()}>
 						<Icon style={styles.lockIco} name={nameIco} />
 					</TouchableOpacity>
+					: null
 				}
 				</View>
 			</View>

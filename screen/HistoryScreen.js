@@ -3,11 +3,13 @@ import {View,StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
 import HistoryList from '../presentational/HistoryList';
 import MyText from '../presentational/MyText';
+import TutorialBox from '../presentational/tutorial/TutorialBox.js';
 
 const styles=StyleSheet.create({
 	mainView:{
 		flex:1,
-		backgroundColor:'#feebc4'
+		backgroundColor:'#feebc4',
+		
 	},
 	errMsgContainer:{
 		flex:1,
@@ -20,7 +22,7 @@ const styles=StyleSheet.create({
 	}
 })
 
-function HistoryScreen({history,navigation}){
+function HistoryScreen({history,navigation,tutorial}){
 	
 	return (
 		<View style={styles.mainView}>
@@ -28,10 +30,12 @@ function HistoryScreen({history,navigation}){
 			? <HistoryList list = {history} navigation = {navigation}/>
 			: <View style={styles.errMsgContainer}><MyText myStyle={styles.errMsg}>Nessuna ricetta salvata!</MyText></View>
 		}
+		{tutorial && <TutorialBox navigation={navigation} type='history' next='MyTrayScreen'/>}
 		</View>
 	)
 }
 const mapStateToProps=(state)=>({
-	history:state.history
+	history:state.history,
+	tutorial:state.settings.tutorial
 })
 export default connect(mapStateToProps)(HistoryScreen)

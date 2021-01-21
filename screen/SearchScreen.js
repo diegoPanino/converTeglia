@@ -1,5 +1,5 @@
 import React,{useEffect,useState,useCallback,useRef} from 'react';
-import {View,StyleSheet, TextInput,Keyboard, Modal, TouchableOpacity, Animated} from 'react-native';
+import {View,StyleSheet, TextInput,Keyboard, Modal, TouchableOpacity, Animated, InteractionManager} from 'react-native';
 import ShareMenu, { ShareMenuReactView } from "react-native-share-menu";
 import { Item , Input , Label , Icon , Container, Content} from 'native-base';
 import {connect} from 'react-redux';
@@ -9,6 +9,7 @@ import {searchLinkAction,cleanStoreAction,saveSearchedLinkAction} from '../redux
 import {getIngredients} from '../api/fetch';
 import MakeNewRecipe from '../presentational/NewRecipe';
 import TutorialWelcome from '../presentational/tutorial/TutorialWelcome.js';
+import Loader from './Loader.js';
 
 const styles=StyleSheet.create({
 	view:{
@@ -44,6 +45,7 @@ function SearchScreen({navigation,searchLinkAction,cleanStoreAction,saveSearched
 	const [inputBox, setInputBox] = useState('')
 	const [newRecipe,setNewRecipe] = useState(false)
 	const [copiedRecipe,setCopiedRecipe] = useState('')
+	const [isLoaded,setIsLoaded] = useState(false)
 	const searchBtn = useRef(new Animated.Value(1)).current
 
 	const shareTextHandler = useCallback((sharedItem)=>{
@@ -66,6 +68,12 @@ function SearchScreen({navigation,searchLinkAction,cleanStoreAction,saveSearched
   		}
   	},[])
 
+  	useEffect(()=>{
+		InteractionManager.runAfterInteractions(()=>{
+			setIsLoaded(true)
+		})	
+	})
+	
 	const resetInputBox=()=>{
 		setInputBox(null)
 	}
@@ -103,6 +111,10 @@ function SearchScreen({navigation,searchLinkAction,cleanStoreAction,saveSearched
 			})
 			.catch(err=>console.log(err))
 	}
+
+	if(!isLoaded)
+		return <Loader />
+	else{
 	return (
 		<Container>
 		{tutorial && <TutorialWelcome showModal={()=>setNewRecipe(true)} />}
@@ -127,7 +139,7 @@ function SearchScreen({navigation,searchLinkAction,cleanStoreAction,saveSearched
 				</TouchableOpacity>
 			</Content>
 		</Container>
-		);
+		);}
 }	
 const mapStateToProps=state=>({
 	tutorial:state.settings.tutorial

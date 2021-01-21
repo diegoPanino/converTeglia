@@ -1,5 +1,5 @@
 import React,{useState,useEffect,useRef} from 'react';
-import {View,StyleSheet,Image,TouchableOpacity,Share} from 'react-native';
+import {View,StyleSheet,Image,TouchableOpacity,InteractionManager} from 'react-native';
 //import {AdMobBanner,AdMobInterstitial,PublisherBanner} from 'react-native-admob'
 import {Icon} from 'native-base';
 import {connect} from 'react-redux';
@@ -12,6 +12,7 @@ import { BlurView } from "@react-native-community/blur";
 import {toggleBlurAction,fastConvertionAction} from '../redux/actions';
 import * as KitchenMath from '../api/kitchenMath';
 import TutorialBox from '../presentational/tutorial/TutorialBox.js';
+import Loader from './Loader.js';
 
 const styles=StyleSheet.create({
 	mainContainer:{
@@ -95,11 +96,16 @@ function ResultScreen(props){
 	const [areaTarget,setAreaTarget] = useState()
 	const [k,setK] = useState(1) 
 	const [convertedRecipe,setConverted] = useState()
+	const [isLoaded,setIsLoaded] = useState(false)
 	const prevAreaTarget = usePrevState(areaTarget)
 	const prevK = usePrevState(k)
 	const prevTray = usePrevState(selectedTray.dim)
 	
-
+	useEffect(()=>{
+  		InteractionManager.runAfterInteractions(()=>{
+  				setIsLoaded(true)
+   		})	
+	})
 
 	function usePrevState(value){
 		const ref = useRef()
@@ -174,26 +180,9 @@ function ResultScreen(props){
 		navigation.navigate('MyTrayScreen')
 	}
 
-	/*const onShare = async () => {
-    try {
-      const result = await Share.share({
-        title:'-Converteglia- ',
- 		message: 'Converteglia', 
-  		url: 'converteglia://result/', 
-      });
-      if (result.action === Share.sharedAction) {
-        if (result.activityType) {
-          // shared with activity type of result.activityType
-        } else {
-          // shared
-        }
-      } else if (result.action === Share.dismissedAction) {
-        // dismissed
-      }
-    } catch (error) {
-      alert(error.message);
-    }
-  };*/
+	if(!isLoaded)
+		return <Loader />
+	else{
 	if(result.hasOwnProperty('recipe')){
 		if(result.recipe.hasOwnProperty('err'))
 			return (<View style={styles.errMsgContainer}>
@@ -229,10 +218,6 @@ function ResultScreen(props){
 						<View style={styles.titleView}>
 							<MyText myStyle={styles.title}>{result.recipe.title}</MyText>
 						</View>
-							{/*<TouchableOpacity 	style={styles.shareIcoContainer}
-												onPress={()=>onShare()}>
-								<Icon style={styles.shareIco} name ='share-social' />
-							</TouchableOpacity>*/}
 					</View>
 					<View style={loaded ? styles.imgContainer : {display:'none'}}>
 						<Image 	onLoad={()=>setLoaded(true)}
@@ -248,7 +233,8 @@ function ResultScreen(props){
 	}
 	else{
 		return (<MyText>C'è stato un problema nel leggere la ricetta</MyText>)
-	}	
+		}	
+	}
 }
 	
 
@@ -258,5 +244,4 @@ const mapStateToProps=(state)=>({
 	tutorial:state.settings.tutorial,
 	convert:state.system.convert,
 })
-export default connect(mapStateToProps,{toggleBlurAction,
-										fastConvertionAction,})(ResultScreen);
+export default connect(mapStateToProps,{toggleBlurAction,fastConvertionAction,})(ResultScreen);

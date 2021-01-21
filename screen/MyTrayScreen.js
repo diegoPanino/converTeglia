@@ -1,5 +1,5 @@
-import React,{useState,useRef} from 'react';
-import {View,StyleSheet,TextInput,useWindowDimensions,Modal,StatusBar,TouchableOpacity} from 'react-native';
+import React,{useState,useEffect,useRef} from 'react';
+import {View,StyleSheet,TextInput,useWindowDimensions,Modal,StatusBar,TouchableOpacity,InteractionManager,Animated} from 'react-native';
 import {Icon} from 'native-base';
 import {connect} from 'react-redux';
 import Carousel from 'react-native-snap-carousel';
@@ -11,6 +11,7 @@ import AdvancedSettingsModal from '../presentational/AdvancedSettingsModal';
 import NewTrayModal from '../presentational/MakeNewTray';
 import { BlurView } from "@react-native-community/blur";
 import TutorialBox from '../presentational/tutorial/TutorialBox.js';
+import Loader from './Loader.js';
 
 
 function MyTrayScreen({navigation,toggleBlurAction,setMyTrayAction,tutorial,showTutorialAction}){
@@ -75,6 +76,7 @@ const styles=StyleSheet.create({
 		backgroundColor:'#feea52', //makeNewTray button background 	BUTTON
 		color:'#e8871e',			//makeNewTray button text       TEXT
 		fontWeight:'normal',
+		textAlign:'center',
 		borderWidth:2,
 		borderColor:'#e8871e', 		//makeNewTray button border     BORDER/TEXT
 		borderRadius:20,
@@ -83,6 +85,7 @@ const styles=StyleSheet.create({
 	},
 	btn:{
 		margin:5,
+
 	}
 })
 
@@ -94,6 +97,24 @@ const styles=StyleSheet.create({
 	const refStdTrays = useRef();
 	const windowWidth = useWindowDimensions().width;
 	const windowHeight = useWindowDimensions().height;
+	const [isLoaded,setIsLoaded] = useState(false)
+	const scale = useRef(new Animated.Value(0)).current
+
+  	useEffect(()=>{
+  		const transEnd = navigation.addListener('transitionEnd',e=>{
+  			Animated.timing(scale,{
+  				toValue:1,
+  				duration:400,
+  				useNativeDriver:true
+  			}).start()
+  		})
+  	},[navigation])
+
+	useEffect(()=>{
+		InteractionManager.runAfterInteractions(()=>{
+    		setIsLoaded(true)
+    	})	
+	})
 
 	function onSnapToItemHandler(index){
 		setTray(data[index])
@@ -104,8 +125,13 @@ const styles=StyleSheet.create({
 		toggleBlurAction();
 	}
 
+	if(!isLoaded)
+		return <Loader />
+	else{
 	return (
-		<View style={styles.view}>
+		
+		 <View style={styles.view}>
+		 <Animated.View style = {{transform:[{scale}] }} >
 		{tutorial && <TutorialBox navigation={navigation} type='myTray' reduxFunction={(key)=>setMyTrayAction(key)} next='end' exampleFunction={(bool)=>showTutorialAction(bool)}/>}
 			{showNTM && 
 				<NewTrayModal select={tray} hide={()=>setShowNTM(false)}/>}
@@ -152,8 +178,10 @@ const styles=StyleSheet.create({
 					<AdvancedSettingsModal hide={()=>setAdvSett(false)} navigation={navigation}/>
 				</Modal>
 			</View>
+			</Animated.View>
 		</View>
-		);
+		
+		);}
 }
 mapStateToProps=state=>({
 	tutorial:state.settings.tutorial

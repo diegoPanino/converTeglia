@@ -148,14 +148,30 @@ const mapStateToProps=state=>({
 export default connect(mapStateToProps,{searchLinkAction,cleanStoreAction,saveSearchedLinkAction})(SearchScreen)
 
 
-
 /*
-<TouchableOpacity style={styles.btn} onPress={confirmInput} >
+	return (
+		<Container>
+		{tutorial && <TutorialWelcome showModal={()=>setNewRecipe(true)} />}
+			<Modal animationType='slide' transparent={true} visible={newRecipe}>
+				<MakeNewRecipe hide={()=>setNewRecipe(false)} navigation={navigation} recipe={copiedRecipe} tutorial={tutorial}/>		
+			</Modal>
+			<Content contentContainerStyle={styles.view}>
+				<Item rounded style={styles.inputStyle}>
+					<Input style={[styles.color]}
+						placeholder='Qui va il link ricetta o lista ingredienti'
+						placeholderTextColor='black'
+						value={inputBox}
+						onChangeText = {inputHandler}
+					  	onSubmitEditing={confirmInput}/>
+					<Icon style={styles.color} active name='close' onPress={resetInputBox}/>
+				</Item>	
+				<TouchableOpacity style={styles.btn} onPress={()=>confirmInput()} >
 					<MyText myStyle={styles.btnText}>LEGGI RICETTA</MyText>
 				</TouchableOpacity>
 				<TouchableOpacity style={styles.btn} onPress={()=>{setNewRecipe(true);setCopiedRecipe([])}}>
 					<MyText myStyle={styles.btnText}>CREA LA TUA RICETTA</MyText>
 				</TouchableOpacity>
-
-
+			</Content>
+		</Container>
+		);}
 */

@@ -1,5 +1,5 @@
 import React,{useRef,useEffect} from 'react';
-import {View,ActivityIndicator,StyleSheet,Animated} from 'react-native';
+import {View,ActivityIndicator,StyleSheet,Animated, Image} from 'react-native';
 import MyText from '../presentational/MyText.js';
 import { BlurView } from "@react-native-community/blur";
 
@@ -47,6 +47,7 @@ export default function Loader(props){
 				<ActivityIndicator size='large' color='#feaa52' />
 			</Animated.View>
 			<View style={styles.tipsView}>
+				<Image source={require('../img/tips.png')} style={styles.tipsImg} />
 				<MyText myStyle={styles.tipsText}>{tips[index]}</MyText>
 			</View>
 		</View>
@@ -74,5 +75,12 @@ const styles = StyleSheet.create({
 	tipsText:{
 		textAlign:'center',
 		fontSize:18,
+	},
+	tipsImg:{
+		position:'absolute',
+		right:0,
+		top:-40,
+		width:60,
+		height:60,
 	}
 })

@@ -83,6 +83,14 @@ const styles = StyleSheet.create({
 		alignItems:'center',
 		justifyContent:'center'
 	},
+	imgText:{
+		fontSize:14,
+		textAlign:'center',
+	},
+	img:{
+		width:100,
+		height:100,
+	},
 	dimInput:{
 		flexDirection:'row',
 		alignItems:'center',
@@ -280,17 +288,20 @@ function NewTrayModal(props){
 						<TouchableOpacity
 							style={type === 'rect'? [styles.select,styles.touch] : styles.touch}
 							onPress={()=>{Keyboard.dismiss();setType('rect')}}>
-							<Image source={rectIco} />
+							<MyText myStyle={styles.imgText}>Rettangolare</MyText>
+							<Image source={rectIco} style={styles.img} />
 						</TouchableOpacity>
 						<TouchableOpacity
 							style={type === 'circle'? styles.select : styles.touch}
 							onPress={()=>{Keyboard.dismiss();setType('circle')}}>
-							<Image source={circleIco} />
+							<MyText myStyle={styles.imgText}>Rotonda</MyText>
+							<Image source={circleIco} style={styles.img} />
 						</TouchableOpacity>
 						<TouchableOpacity
 						style={type === 'square'? styles.select : styles.touch}
 						onPress={()=>{Keyboard.dismiss();setType('square')}}>
-							<Image source={squareIco} />
+							<MyText myStyle={styles.imgText}>Quadrata</MyText>
+							<Image source={squareIco} style={styles.img} />
 						</TouchableOpacity>
 					</View>
 				</View>

@@ -8,7 +8,7 @@ import ConvertButton from '../presentational/ConvertButton';
 import { BlurView } from "@react-native-community/blur";
 import {toggleChangedIcoAction} from '../redux/actions';
 
-const logo = require('../img/Converteglia.jpg');
+const logo = require('../img/name.png');
 const historyBtn = require ('../img/history.png');
 const squareTray = require ('../img/quadrata.png');
 const rectTray = require('../img/rettangolare.png');
@@ -32,12 +32,12 @@ const styles = StyleSheet.create({
 
 	},
 	logoContainer:{
-		marginTop:15,
+		marginTop:5,
 		height:'50%',
 	},
 	logo:{
 		//resizeMode:'contain',
-		height: height *0.090,
+		height: height *0.11,
 		width: width,	
 	},
 	rightMenu:{

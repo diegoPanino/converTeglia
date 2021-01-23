@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import {Linking,Text} from 'react-native'
 import {createStackNavigator} from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
@@ -11,7 +11,7 @@ import {store,persistor} from './redux/store';
 import {searchLinkAction} from './redux/actions';
 import {Provider} from 'react-redux';
 import {PersistGate} from 'redux-persist/integration/react';
-import SplashScreen from './screen/SplashScreen';
+import SplashScreen from 'react-native-splash-screen';
 
 
 
@@ -27,10 +27,15 @@ const linking = {
 
 export default function App(){
   //persistor.purge();
+
+  useEffect(()=>{
+    SplashScreen.hide()
+  })
+
   return (
     <Provider store = {store} >
       <PersistGate loading={null} persistor={persistor}>   
-        <NavigationContainer linking={linking} fallback={<Text>Caricando...</Text>}>
+        <NavigationContainer>
           <Stack.Navigator
                         initialRouteName = {SearchScreen}
                         headerMode = 'screen'

@@ -9,7 +9,7 @@ import {searchLinkAction,cleanStoreAction,saveSearchedLinkAction} from '../redux
 import {getIngredients} from '../api/fetch';
 import MakeNewRecipe from '../presentational/NewRecipe';
 import TutorialWelcome from '../presentational/tutorial/TutorialWelcome.js';
-import Loader from './Loader.js';
+import MySplashScreen from './SplashScreen.js';
 
 const styles=StyleSheet.create({
 	view:{
@@ -113,7 +113,7 @@ function SearchScreen({navigation,searchLinkAction,cleanStoreAction,saveSearched
 	}
 
 	if(!isLoaded)
-		return <Loader />
+		return <MySplashScreen />
 	else{
 	return (
 		<Container>

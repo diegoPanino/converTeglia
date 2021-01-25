@@ -1,5 +1,5 @@
 import React,{useEffect} from 'react';
-import {Linking,Text} from 'react-native'
+import {Linking,TextInput,Text} from 'react-native'
 import {createStackNavigator} from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
 import SearchScreen from './screen/SearchScreen';
@@ -16,17 +16,20 @@ import SplashScreen from 'react-native-splash-screen';
 
 
 const Stack = createStackNavigator();
-const linking = {
-  prefixes: ['converteglia://'],
-  config: {
-    screens:{
-      ResultScreen:'result/:link'
-    }
-  },
-};
+
 
 export default function App(){
   //persistor.purge();
+
+   Text.defaultProps = {
+    ...(Text.defaultProps || {}),
+    allowFontScaling: false,
+  };
+
+  TextInput.defaultProps = {
+    ...(TextInput.defaultProps || {}),
+    allowFontScaling: false,
+  };
 
   useEffect(()=>{
     SplashScreen.hide()

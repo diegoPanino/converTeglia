@@ -44,18 +44,36 @@ let recipe = {
 	ingredients:[]
 }
 
+function checkNetworkErrors(res){
+	switch(res.status){
+		case 200: return false;
+		case 500: return {err:1,msg:'Oops... sembra che il sito web abbia qualche problema'} 
+		case 404: return {err:1,msg:'Oops... sembra che la pagina non esista!'} 
+		default: return {err:1,msg:'Oops... sembra che qualcosa sia andato storto!'}
+	}
+
+}
+
 async function readHtml(url){
+	let servsRespond = false;
 	try{
 		let response = await fetch(url,{
 			method:"get",
 			headers:{"Content-type":"text/html"}
 			})
+		servsRespond = checkNetworkErrors(response);
+		if(servsRespond)
+			throw new Error()
 		let data = await response.text()
-		return cheerio.load(data)
+		const $ = cheerio.load(data)
+		return $;
 		}
 	catch(err){
-		console.log("-------------READ HTML ERROR:------------",err)
-		return err;
+		if(err.message)
+			throw new Error('Oops... ci sono problemi con il collegamento')
+		else{
+			throw new Error(servsRespond.msg)
+		}
 	}	
 }
 function getHtmlTitle($,title){
@@ -140,6 +158,8 @@ function resetRecipe(){
 //getAmount restituira true o false a seconda di errore nella lettura dati
 //recipe e' globale, getAmount la riempe 
 function getAmount(ings,title,url,portions=22,src='image not found'){
+	if(ings.length === 0)
+		return false
 	title = title.charAt(0).toUpperCase() + title.slice(1).toLowerCase()
 	recipe.title=title
 	recipe.url=url;
@@ -238,32 +258,10 @@ if(!(/http/gi).test(url)){
 	if(getAmountError)
 		return {...recipe,personal:true}
 	else{
-		console.log(err)
 		return ({err:1,msg:'Errore nel leggere la ricetta !'})
 	}
 }
  switch(true){
- 	case(RegExp(/est/g).test(url)):{
- 		console.log('--------test')
- 		const ing = [	
- 						"300 gr farina 00",
- 						"farina 00 300 gr",
- 						"300gr farina 00",
- 						"farina 00 300gr",
- 						"30-40ml acqua",
- 						"19,5 g orzo, riu",
- 						"29.8 ml acqua",
- 						"coca,zero 23,4 ml"
- 					]
- 		const title = "riCetta dI pROVA"
- 		const url = "url"
- 		const portions = normalizePortions("")
- 		const src = ""//"https://www.atuttodonna.it/atuttodonna/wp-content/uploads/2020/04/immagini-felicit%C3%A0.jpg"
- 		const getAmountError = getAmount(ing,title,url,portions,src)
- 		if(getAmountError)
- 			return recipe;
- 		break;
- 	}
  	case (RegExp(/blog.giallozafferano/g).test(url)):{
    		try{
     		const $ = await readHtml(url);
@@ -295,11 +293,10 @@ if(!(/http/gi).test(url)){
 				return recipe;
 			}
 			else
-				throw new Error('-----------GetAmountError-----------')
+				throw new Error('Mi spiace qualcosa è andato storto nel recuperare i dati!')
 		}
 		catch(err){
-			console.log(err)
-			return ({err:1,msg:'Errore nel leggere la ricetta !'})
+			return ({err:1,msg:err.message})
 		}
 		break;
 	}
@@ -309,8 +306,13 @@ if(!(/http/gi).test(url)){
 
 			const htmlTitle='h1.gz-title-recipe';
 			const title = getHtmlTitle($,htmlTitle)
-
-			const src = $('picture.gz-featured-image').find('source').attr('data-srcset')
+			
+			let src2;
+			const src1 = $('picture.gz-featured-image').find('source').attr('data-srcset')
+			if(!src1)
+				src2 = $('picture.gz-featured-image').find('img').attr('data-src')
+			
+			const src = src1 || src2
 
 			const htmlPortionsTag = 'div.gz-list-featured-data'
 			let portions;
@@ -332,11 +334,10 @@ if(!(/http/gi).test(url)){
 				return recipe;
 			}
 			else
-				throw new Error('GetAmountError')
+				throw new Error('Mi spiace qualcosa è andato storto nel recuperare i dati!')
 		}
 		catch(err){
-			console.log(err)
-			return ({err:1,msg:'Errore nel leggere la ricetta !'})
+			return ({err:1,msg:err.message})
 		}
 		break;
 	}
@@ -362,11 +363,10 @@ if(!(/http/gi).test(url)){
 				return recipe;
 			}
 			else
-				throw new Error('GetAmountError')
+				throw new Error('Mi spiace qualcosa è andato storto nel recuperare i dati!')
 		}
 		catch(err){
-			console.log(err)
-			return ({err:1,msg:'Errore nel leggere la ricetta !'})
+			return ({err:1,msg:err.message})
 		}
 		break;
 	}
@@ -398,11 +398,10 @@ if(!(/http/gi).test(url)){
 				return recipe;
 			}
 			else
-				throw new Error('GetAmountError')
+				throw new Error('Mi spiace qualcosa è andato storto nel recuperare i dati!')
 		}
 		catch(err){
-			console.log(err)
-			return ({err:1,msg:'Errore nel leggere la ricetta !'})
+			return ({err:1,msg:err.message})
 		}
 		break;
 	}
@@ -442,11 +441,10 @@ if(!(/http/gi).test(url)){
 				return recipe;
 			}
 			else
-				throw new Error('GetAmountError')
+				throw new Error('Mi spiace qualcosa è andato storto nel recuperare i dati!')
 		}
 		catch(err){
-			console.log(err)
-			return ({err:1,msg:'Errore nel leggere la ricetta !'})
+			return ({err:1,msg:err.message})
 		}
 		break;
 	}
@@ -472,11 +470,10 @@ if(!(/http/gi).test(url)){
 				return recipe;
 			}
 			else
-				throw new Error('GetAmountError')
+				throw new Error('Mi spiace qualcosa è andato storto nel recuperare i dati!')
 		}
 		catch(err){
-			console.log(err)
-			return ({err:1,msg:'Errore nel leggere la ricetta !'})
+			return ({err:1,msg:err.message})
 		}
 		break;
 	}
@@ -508,11 +505,10 @@ if(!(/http/gi).test(url)){
 				return recipe;
 			}
 			else
-				throw new Error('GetAmountError')
+				throw new Error('Mi spiace qualcosa è andato storto nel recuperare i dati!')
 		}
 		catch(err){
-			console.log(err)
-			return ({err:1,msg:'Errore nel leggere la ricetta !'})
+			return ({err:1,msg:err.message})
 		}
 		break;
 	}
@@ -537,11 +533,10 @@ if(!(/http/gi).test(url)){
 				return recipe;
 			}
 			else
-				throw new Error('GetAmountError')
+				throw new Error('Mi spiace qualcosa è andato storto nel recuperare i dati!')
 		}
 		catch(err){
-			console.log(err)
-			return ({err:1,msg:'Errore nel leggere la ricetta !'})
+			return ({err:1,msg:err.message})
 		}
 		break;
 	}
@@ -564,11 +559,10 @@ if(!(/http/gi).test(url)){
 				return recipe;
 			}
 			else
-				throw new Error('GetAmountError')
+				throw new Error('Mi spiace qualcosa è andato storto nel recuperare i dati!')
 		}
 		catch(err){
-			console.log(err)
-			return ({err:1,msg:'Errore nel leggere la ricetta !'})
+			return ({err:1,msg:err.message})
 		}
 		break;
 	}
@@ -600,11 +594,10 @@ if(!(/http/gi).test(url)){
 				return recipe;
 			}
 			else
-				throw new Error('GetAmountError')
+				throw new Error('Mi spiace qualcosa è andato storto nel recuperare i dati!')
 		}
 		catch(err){
-			console.log(err)
-			return ({err:1,msg:'Errore nel leggere la ricetta !'})
+			return ({err:1,msg:err.message})
 		}
 		break;
 	}
@@ -670,11 +663,10 @@ if(!(/http/gi).test(url)){
 				return recipe;
 			}
 			else
-				throw new Error('GetAmountError')
+				throw new Error('Mi spiace qualcosa è andato storto nel recuperare i dati!')
 		}
 		catch(err){
-			console.log(err)
-			return ({err:1,msg:'Errore nel leggere la ricetta !'})
+			return ({err:1,msg:err.message})
 		}
 		break;
 	}
@@ -707,23 +699,20 @@ if(!(/http/gi).test(url)){
 				return recipe;
 			}
 			else
-				throw new Error('GetAmountError')
+				throw new Error('Mi spiace qualcosa è andato storto nel recuperare i dati!')
 		}
 		catch(err){
-			console.log(err)
+			return ({err:1,msg:err.message})
 		}
 		break;
 	}
 	case (RegExp(/soniaperonaci/g).test(url)):{
 		try{
-			console.log(url)
-			console.log('Need to be implemented-SP-')
-			//$(el).trovo un p successivo ad un h2 successivo ad un img
-			//$(el).trovo un h2 che inizia con INGREDIENTI
+			throw new Error();
 		}
 		catch(err){
 			console.log(err)
-			return ({err:1,msg:'Errore nel leggere la ricetta !'})
+			return ({err:1,msg:'Conosco questo sito, ma mi spiace ammeterlo, non posso leggerlo!'})
 		}
 		break;
 	}
@@ -746,11 +735,10 @@ if(!(/http/gi).test(url)){
 				return recipe;
 			}
 			else
-				throw new Error('GetAmountError')
+				throw new Error('Mi spiace qualcosa è andato storto nel recuperare i dati!')
 		}
 		catch(err){
-			console.log(err)
-			return ({err:1,msg:'Errore nel leggere la ricetta !'})
+			return ({err:1,msg:err.message})
 		}
 		break;
 	}
@@ -775,11 +763,10 @@ if(!(/http/gi).test(url)){
 				return recipe;
 			}
 			else
-				throw new Error('GetAmountError')
+				throw new Error('Mi spiace qualcosa è andato storto nel recuperare i dati!')
 		}
 		catch(err){
-			console.log(err)
-			return ({err:1,msg:'Errore nel leggere la ricetta !'})
+			return ({err:1,msg:err.message})
 		}
 		break;
 	}
@@ -810,11 +797,10 @@ if(!(/http/gi).test(url)){
 				return recipe;
 			}
 			else
-				throw new Error('GetAmountError')
+				throw new Error('Mi spiace qualcosa è andato storto nel recuperare i dati!')
 		}
 		catch(err){
-			console.log(err)
-			return ({err:1,msg:'Errore nel leggere la ricetta !'})
+			return ({err:1,msg:err.message})
 		}
 		break;
 	}
@@ -843,11 +829,10 @@ if(!(/http/gi).test(url)){
 				return recipe;
 			}
 			else
-				throw new Error('GetAmountError')
+				throw new Error('Mi spiace qualcosa è andato storto nel recuperare i dati!')
 		}
 		catch(err){
-			console.log(err)
-			return ({err:1,msg:'Errore nel leggere la ricetta !'})
+			return ({err:1,msg:err.message})
 		}
 		break;
 	}
@@ -877,11 +862,10 @@ if(!(/http/gi).test(url)){
 				return recipe;
 			}
 			else
-				throw new Error('GetAmountError')
+				throw new Error('Mi spiace qualcosa è andato storto nel recuperare i dati!')
 		}
 		catch(err){
-			console.log(err)
-			return ({err:1,msg:'Errore nel leggere la ricetta !'})
+			return ({err:1,msg:err.message})
 		}
 		break;
 	}
@@ -910,11 +894,10 @@ if(!(/http/gi).test(url)){
 				return recipe;
 			}
 			else
-				throw new Error('GetAmountError')
+				throw new Error('Mi spiace qualcosa è andato storto nel recuperare i dati!')
 		}
 		catch(err){
-			console.log(err)
-			return ({err:1,msg:'Errore nel leggere la ricetta !'})
+			return ({err:1,msg:err.message})
 		}
 		break;
 	}
@@ -943,11 +926,10 @@ if(!(/http/gi).test(url)){
 				return recipe;
 			}
 			else
-				throw new Error('GetAmountError')
+				throw new Error('Mi spiace qualcosa è andato storto nel recuperare i dati!')
 		}
 		catch(err){
-			console.log(err)
-			return ({err:1,msg:'Errore nel leggere la ricetta !'})
+			return ({err:1,msg:err.message})
 		}
 		break;
 	}
@@ -977,11 +959,10 @@ if(!(/http/gi).test(url)){
 				return recipe;
 			}
 			else
-				throw new Error('GetAmountError')
+				throw new Error('Mi spiace qualcosa è andato storto nel recuperare i dati!')
 		}
 		catch(err){
-			console.log(err)
-			return ({err:1,msg:'Errore nel leggere la ricetta !'})
+			return ({err:1,msg:err.message})
 		}
 		break;
 	}
@@ -1002,15 +983,13 @@ if(!(/http/gi).test(url)){
 				ingredients[i] = $(el).text().replace(space," ")
 			})
 			const getAmountError = getAmount(ingredients,title,url,portions)
-			if(getAmountError){
+			if(getAmountError)
 				return recipe;
-			}
 			else
-				throw new Error('GetAmountError')
+				throw new Error('Mi spiace qualcosa è andato storto nel recuperare i dati!')
 		}
 		catch(err){
-			console.log(err)
-			return ({err:1,msg:'Errore nel leggere la ricetta !'})
+			return ({err:1,msg:err.message})
 		}
 		break;
 	}
@@ -1054,11 +1033,10 @@ if(!(/http/gi).test(url)){
 				return recipe;
 			}
 			else
-				throw new Error('GetAmountError')
-		}	
+				throw new Error('Mi spiace qualcosa è andato storto nel recuperare i dati!')
+		}
 		catch(err){
-			console.log(err)
-			return ({err:1,msg:'Errore nel leggere la ricetta !'})
+			return ({err:1,msg:err.message})
 		}
 		break;
 	}
@@ -1086,11 +1064,10 @@ if(!(/http/gi).test(url)){
 				return recipe;
 			}
 			else
-				throw new Error('GetAmountError')
+				throw new Error('Mi spiace qualcosa è andato storto nel recuperare i dati!')
 		}
 		catch(err){
-			console.log(err)
-			return ({err:1,msg:'Errore nel leggere la ricetta !'})
+			return ({err:1,msg:err.message})
 		}
 		break;
 	}
@@ -1120,11 +1097,10 @@ if(!(/http/gi).test(url)){
 			}
 		
 			else
-				throw new Error('GetAmountError')
+				throw new Error('Mi spiace qualcosa è andato storto nel recuperare i dati!')
 		}
 		catch(err){
-			console.log(err)
-			return ({err:1,msg:'Errore nel leggere la ricetta !'})
+			return ({err:1,msg:err.message})
 		}
 		break;
 	}
@@ -1151,11 +1127,10 @@ if(!(/http/gi).test(url)){
 			}
 		
 			else
-				throw new Error('GetAmountError')
+				throw new Error('Mi spiace qualcosa è andato storto nel recuperare i dati!')
 		}
 		catch(err){
-			console.log(err)
-			return ({err:1,msg:'Errore nel leggere la ricetta !'})
+			return ({err:1,msg:err.message})
 		}
 		break;
 	}
@@ -1179,17 +1154,15 @@ if(!(/http/gi).test(url)){
 				ingredients[i] = $(el).text().replace(space,' ')
 			})
 			const getAmountError = getAmount(ingredients,title,url,portions,src)
-			if(getAmountError){			
+			if(getAmountError){
 				return recipe;
 			}
-
-
+			else
+				throw new Error('Mi spiace qualcosa è andato storto nel recuperare i dati!')
 		}
 		catch(err){
-			console.log(err)
-			return ({err:1,msg:'Errore nel leggere la ricetta !'})
+			return ({err:1,msg:err.message})
 		}
-		break;
 	}
 	case ((/lacucinaitaliana/g).test(url)):{
 		try{
@@ -1213,11 +1186,10 @@ if(!(/http/gi).test(url)){
 				return recipe;
 			}
 			else
-				throw new Error('GetAmountError')
+				throw new Error('Mi spiace qualcosa è andato storto nel recuperare i dati!')
 		}
 		catch(err){
-			console.log(err)
-			return ({err:1,msg:'Errore nel leggere la ricetta !'})
+			return ({err:1,msg:err.message})
 		}
 	}
 	case ((/salepepe/g).test(url)):{
@@ -1239,15 +1211,14 @@ if(!(/http/gi).test(url)){
 			})
 
 			const getAmountError = getAmount(ingredients,title,url,portions,src[0])
-			if(getAmountError)
+			if(getAmountError){
 				return recipe;
+			}
 			else
-				throw new Error('GetAmountError')
-
+				throw new Error('Mi spiace qualcosa è andato storto nel recuperare i dati!')
 		}
 		catch(err){
-			console.log(err)
-			return ({err:1,msg:'Errore nel leggere la ricetta !'})
+			return ({err:1,msg:err.message})
 		}
 	}
 	case ((/buonissimo/g).test(url)):{
@@ -1273,14 +1244,14 @@ if(!(/http/gi).test(url)){
 			})
 
 			const getAmountError = getAmount(ingredients,title,url,portions,src)
-			if(getAmountError)
+			if(getAmountError){
 				return recipe;
+			}
 			else
-				throw new Error('GetAmountError')
+				throw new Error('Mi spiace qualcosa è andato storto nel recuperare i dati!')
 		}
 		catch(err){
-			console.log(err)
-			return ({err:1,msg:'Errore nel leggere la ricetta'})
+			return ({err:1,msg:err.message})
 		}
 	}
 	case ((/dolciveloci/g).test(url)),((/primochef/g).test(url)):{
@@ -1311,14 +1282,14 @@ if(!(/http/gi).test(url)){
 			})
 			
 			const getAmountError = getAmount(ingredients,title,url,portions,src)
-			if(getAmountError)
-				return recipe
+			if(getAmountError){
+				return recipe;
+			}
 			else
-				throw new Error('GetAmountError')
+				throw new Error('Mi spiace qualcosa è andato storto nel recuperare i dati!')
 		}
 		catch(err){
-			console.log(err)
-			return ({err:1,msg:'Errore nel leggere la ricetta'})
+			return ({err:1,msg:err.message})
 		}
 	}
 	case((/cookist/g).test(url)):{
@@ -1341,18 +1312,18 @@ if(!(/http/gi).test(url)){
 			})
 
 			const getAmountError= getAmount(ingredients,title,url,portions,src)
-			if(getAmountError)
-				return recipe
+			if(getAmountError){
+				return recipe;
+			}
 			else
-				throw new Error('GetAmountError')
+				throw new Error('Mi spiace qualcosa è andato storto nel recuperare i dati!')
 		}
 		catch(err){
-			console.log(err)
-			return ({err:1,msg:'Errore nel leggere la ricetta'})
+			return ({err:1,msg:err.message})
 		}
 	}
 	default:{
-		return ({err:1,msg:'Impossibile leggere la ricetta !'})
+		return ({err:1,msg:'Mi spiace, non conosco questo sito!'})
 		break;
 	}
  }

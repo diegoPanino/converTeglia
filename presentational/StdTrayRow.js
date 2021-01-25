@@ -1,6 +1,6 @@
 import React,{useState} from 'react';
 import {View,StyleSheet,TouchableOpacity} from 'react-native';
-import {Icon} from 'native-base';
+import Icon from 'react-native-vector-icons/dist/Ionicons';
 import {setMyTrayAction} from '../redux/actions';
 import MyText from './MyText';
 
@@ -40,6 +40,7 @@ export default function StdTrayRow({tray,onSelect}){
 		fontSize:18
 	},
 	selectIco:{
+		fontSize:28,
 		textAlign:'center',
 		marginTop:2,
 	}

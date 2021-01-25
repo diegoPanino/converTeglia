@@ -1,6 +1,6 @@
 import React,{useState,useEffect,useRef} from 'react';
 import {TextInput,View,StyleSheet,TouchableOpacity,Animated} from 'react-native';
-import {Icon} from 'native-base';
+import Icon from 'react-native-vector-icons/dist/Ionicons';
 import MyText from './MyText';
 
 export default function IngredientRow(props){

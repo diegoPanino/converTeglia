@@ -1,7 +1,7 @@
 import React,{useEffect,useState,useCallback,useRef} from 'react';
 import {View,StyleSheet, TextInput,Keyboard, Modal, TouchableOpacity, Animated, InteractionManager} from 'react-native';
 import ShareMenu, { ShareMenuReactView } from "react-native-share-menu";
-import { Item , Input , Label , Icon , Container, Content} from 'native-base';
+import Icon from 'react-native-vector-icons/dist/Ionicons';
 import {connect} from 'react-redux';
 import { v4 as idGen} from 'uuid';
 import MyText from '../presentational/MyText';
@@ -12,12 +12,27 @@ import TutorialWelcome from '../presentational/tutorial/TutorialWelcome.js';
 import MySplashScreen from './SplashScreen.js';
 
 const styles=StyleSheet.create({
-	view:{
+	mainView:{
+		flex:1,
+		justifyContent:'center',
+		backgroundColor:'#feebc4',  //BACKGROUND
+	},
+	contentView:{
+		marginRight:'2.5%',
+		marginLeft:'2.5%',
 		flex:1,
 		justifyContent:'center',
 		alignItems:'center',
 		marginTop:-50,
-		backgroundColor:'#feebc4',  //BACKGROUND
+	},
+	textInput:{
+		flex:1,
+		fontSize:16,
+	},
+	icon:{
+		padding:10,
+		alignSelf:'center',
+		fontSize:25,
 	},
 	btn:{
 		width:'100%',
@@ -27,7 +42,7 @@ const styles=StyleSheet.create({
 		borderRadius:20,
 		padding:5,
 		elevation:5,
-		margin:10,
+		margin:5,
 	},
 	btnText:{
 		textAlign:'center',
@@ -37,7 +52,12 @@ const styles=StyleSheet.create({
 		color:'black'
 	},
 	inputStyle:{
+		width:'100%',
+		flexDirection:'row',
+		borderWidth:1,
+		borderRadius:20,
 		borderColor:'#e8871e',			//BUTTON TEXT
+		marginBottom:10,
 	}
 })
 
@@ -48,12 +68,15 @@ function SearchScreen({navigation,searchLinkAction,cleanStoreAction,saveSearched
 	const [isLoaded,setIsLoaded] = useState(false)
 	const searchBtn = useRef(new Animated.Value(1)).current
 
+
 	const shareTextHandler = useCallback((sharedItem)=>{
 	if(!sharedItem) return
 
     const {mimeType,data} = sharedItem;
-	    if(mimeType === 'text/plain')
-    	  setInputBox(data);
+	    if(mimeType === 'text/plain'){
+    	  const cleanedString = data.split('http')
+    	  setInputBox('http'+cleanedString[1]);
+	    }
   	  	else
   		    console.log('share type no good')
   	},[])
@@ -116,29 +139,29 @@ function SearchScreen({navigation,searchLinkAction,cleanStoreAction,saveSearched
 		return <MySplashScreen />
 	else{
 	return (
-		<Container>
+		<View style={styles.mainView}>
 		{tutorial && <TutorialWelcome showModal={()=>setNewRecipe(true)} />}
 			<Modal animationType='slide' transparent={true} visible={newRecipe}>
 				<MakeNewRecipe hide={()=>setNewRecipe(false)} navigation={navigation} recipe={copiedRecipe} tutorial={tutorial}/>		
 			</Modal>
-			<Content contentContainerStyle={styles.view}>
-				<Item rounded style={styles.inputStyle}>
-					<Input style={[styles.color]}
+			<View style={styles.contentView}>
+				<View style={styles.inputStyle}>
+					<TextInput style={[styles.textInput,styles.color]}
 						placeholder='Qui va il link ricetta o lista ingredienti'
 						placeholderTextColor='black'
 						value={inputBox}
 						onChangeText = {inputHandler}
 					  	onSubmitEditing={confirmInput}/>
-					<Icon style={styles.color} active name='close' onPress={resetInputBox}/>
-				</Item>	
+					<Icon style={[styles.icon,styles.color]} active name='close' onPress={resetInputBox}/>
+				</View>	
 				<TouchableOpacity style={styles.btn} onPress={()=>confirmInput()} >
 					<MyText myStyle={styles.btnText}>LEGGI RICETTA</MyText>
 				</TouchableOpacity>
 				<TouchableOpacity style={styles.btn} onPress={()=>{setNewRecipe(true);setCopiedRecipe([])}}>
 					<MyText myStyle={styles.btnText}>CREA LA TUA RICETTA</MyText>
 				</TouchableOpacity>
-			</Content>
-		</Container>
+			</View>
+		</View>
 		);}
 }	
 const mapStateToProps=state=>({

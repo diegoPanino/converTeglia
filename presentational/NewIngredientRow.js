@@ -1,6 +1,6 @@
 import React,{useState,useEffect,useRef} from 'react';
 import {View,Text,TextInput,StyleSheet,Keyboard,Animated,Dimensions} from 'react-native';
-import {Button,Icon} from 'native-base';
+import Icon from 'react-native-vector-icons/dist/Ionicons';
 import {Picker} from '@react-native-picker/picker';
 
 const SCREEN_WIDTH = Dimensions.get('window').width
@@ -41,6 +41,9 @@ const styles = StyleSheet.create({
 		alignSelf:'center',
 		alignItems:'flex-end',
 		marginRight:-3
+	},
+	ico:{
+		fontSize:25
 	},
 	h3Text:{
 		fontSize:20,
@@ -109,7 +112,7 @@ export default function NewIngredientRow({form=false,...props}){
 		Animated.timing(animationScale,{
 			toValue:0,
 			duration:600,
-			useNativeDriver:false
+			useNativeDriver:true
 		}).start((finished=>{
 			if(finished)
 				deleteIngredient(id)		
@@ -158,7 +161,7 @@ export default function NewIngredientRow({form=false,...props}){
 				</View>
 				<View style={styles.icoContainer}>
 						{showDeleteIco
-							?	<Icon style={styles.color} name='close-circle-outline' onPress={()=>onDeleteIngredient(id)} />
+							?	<Icon style={[styles.ico,styles.color]} name='close-circle-outline' onPress={()=>onDeleteIngredient(id)} />
 							: 	null
 						}
 				</View>

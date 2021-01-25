@@ -72,9 +72,9 @@ const styles = StyleSheet.create({
 	
 
 function AdvancedSettingsModal({hide,setNumDaysAction,showTutorialAction,settings,navigation}){
-		
-	const [showTutorial,setShowTutorial] = useState(settings.tutorial)
-	const [numberOfDays,setNODays] = useState(settings.day)
+	
+	const [showTutorial,setShowTutorial] = useState(settings.tutorial)  //anti-pattern
+	const [numberOfDays,setNODays] = useState(settings.day) //anti-pattern
 
 	let nums=[];
 	for(let i = 1;i<=90;i++){

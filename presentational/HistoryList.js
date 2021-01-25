@@ -1,6 +1,5 @@
 import React from 'react';
 import {View,SectionList,StyleSheet} from 'react-native';
-import {Icon} from 'native-base';
 import {Tooltip} from 'react-native-elements';
 import moment from 'moment';
 import MyText from './MyText';
@@ -31,6 +30,9 @@ const styles = StyleSheet.create({
 		zIndex:1,
 	}
 })
+const locale = moment.updateLocale('it',{
+	monthsShort:'Gen_Feb_Mar_Apr_Mag_Giu_Lug_Ago_Set_Ott_Nov_Dec'.split('_')
+})
 
 export default function HistoryList(props){
 	const {list,navigation} = props
@@ -38,7 +40,7 @@ export default function HistoryList(props){
 		navigation.navigate('ResultScreen')
 	}
 	const historyByDate = list.reduce((obj,recipe)=>{
-		const date = moment(recipe.date).format('DD MMM')
+		const date = moment(recipe.date).format('DD MMM YYYY')
 		return {
 			...obj,
 			[date]:[...(obj[date]|| []),recipe]

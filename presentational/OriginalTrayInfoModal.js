@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from 'react';
 import {View,Modal,StyleSheet,useWindowDimensions,TouchableOpacity} from 'react-native';
-import {Icon} from 'native-base';
+import Icon from 'react-native-vector-icons/dist/Ionicons';
 import {Picker} from '@react-native-picker/picker';
 import MyText from './MyText';
 import * as KitchenMath from '../api/kitchenMath';

@@ -1,6 +1,6 @@
 import React,{useState} from 'react';
 import {View,TouchableOpacity,StyleSheet} from 'react-native';
-import {Icon} from 'native-base';
+import Icon from 'react-native-vector-icons/dist/Ionicons';
 import ModalMessage from './ModalMessage';
 import MyText from './MyText';
 
@@ -42,14 +42,15 @@ const styles = StyleSheet.create({
 		flexDirection:'row',
 		justifyContent:'flex-end'
 	},
-	servIco:{
-		fontSize:18,
+	selectIco:{
+		marginRight:10,
 	},
 	text:{
 		fontSize:18
 	},
-	trashIco:{
-
+	icoSize:{
+		fontSize:28,
+		alignSelf:'center'
 	}
 })
 
@@ -71,14 +72,14 @@ export default function CustomTrayRow({tray,onErase,onSelect}){
 			<View style={styles.dim}><MyText myStyle={styles.text}>{dim}cm</MyText></View>
 			<View style={styles.servs}>
 				<MyText myStyle={styles.text}>{servs}</MyText>
-				<Icon style={styles.servIco} name='md-person' />
+				<Icon style={styles.text} name='md-person' />
 			</View>
 			<View style={styles.choice}>
 				{(	selected && 
-					<Icon style={{marginRight:10}} name='restaurant-outline'/>)
+					<Icon style={[styles.icoSize,styles.selectIco]} name='restaurant-outline'/>)
 				}
-				<TouchableOpacity style={styles.trashIco} onPress={()=>setShowDelModal(true)}>
-					<Icon name='trash-outline' />
+				<TouchableOpacity onPress={()=>setShowDelModal(true)}>
+					<Icon style={styles.icoSize} name='trash-outline' />
 				</TouchableOpacity>
 			</View>
 		</TouchableOpacity>

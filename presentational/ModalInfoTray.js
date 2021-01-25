@@ -1,6 +1,6 @@
 import React from 'react';
 import {View,Modal,StyleSheet,useWindowDimensions,TouchableOpacity} from 'react-native';
-import {Icon} from 'native-base';
+import Icon from 'react-native-vector-icons/dist/Ionicons';
 import MyText from './MyText';
 import * as KitchenMath from '../api/kitchenMath';
 import TutorialBox from './tutorial/TutorialBox.js';

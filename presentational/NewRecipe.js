@@ -1,6 +1,5 @@
 import React,{useState,useEffect,useRef} from 'react';
 import {View,TextInput,StyleSheet,ScrollView,TouchableOpacity,Alert} from 'react-native';
-import {Button} from 'native-base';
 import {connect} from 'react-redux';
 import { v4 as idGen} from 'uuid';
 import NewIngredientRow from './NewIngredientRow';

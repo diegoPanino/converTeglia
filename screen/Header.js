@@ -8,7 +8,7 @@ import ConvertButton from '../presentational/ConvertButton';
 import { BlurView } from "@react-native-community/blur";
 import {toggleChangedIcoAction} from '../redux/actions';
 
-const logo = require('../img/name.png');
+const logo = require('../img/logo_name.png');
 const historyBtn = require ('../img/history.png');
 const squareTray = require ('../img/quadrata.png');
 const rectTray = require('../img/rettangolare.png');
@@ -19,25 +19,17 @@ const styles = StyleSheet.create({
 	header:{
 		height: height *0.18,
 		width: width,
-		shadowColor: "#000",
-		shadowOffset: {
-			width: 0,
-			height: 2,
-		},
-		shadowOpacity: 0.25,
-		shadowRadius: 3.84,
-		elevation: 5,
-		borderBottomWidth:1,
+		elevation: 6,
+		
 		backgroundColor:'#FFDCBA', //background
 
 	},
 	logoContainer:{
-		marginTop:5,
-		height:'50%',
+		marginTop:0,
+		height:'55%',
 	},
 	logo:{
-		//resizeMode:'contain',
-		height: height *0.11,
+		height: height*0.13,
 		width: width,	
 	},
 	rightMenu:{
@@ -101,7 +93,20 @@ function Header({scene,previous,navigation,settings,system,toggleChangedIcoActio
 
 	useEffect(()=>{
 		if(changedIco){
-			Animated.sequence([
+			Animated.timing(scale,{
+				toValue:0,
+				duration:300,
+				useNativeDriver:true
+			}).start(finished=>{
+				if(finished)
+					toggleChangedIcoAction()
+				Animated.timing(scale,{
+					toValue:1,
+					duration:300,
+					useNativeDriver:true
+				}).start()
+			})
+			/*Animated.sequence([
 				Animated.timing(scale,{
 					toValue:0,
 					duration:300,
@@ -115,7 +120,7 @@ function Header({scene,previous,navigation,settings,system,toggleChangedIcoActio
 				.start(finished=>{
 					if(finished)
 						toggleChangedIcoAction();
-				})
+				})*/
 		}
 	},[changedIco])
 

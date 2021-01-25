@@ -17,7 +17,7 @@ export default function IngredientRow(props){
 	const zoom = useRef(new Animated.Value(1)).current
 	const scale = useRef(new Animated.Value(0)).current
 
-	const zoomIn=()=>{
+	const zoomIn=()=>{		
 		Animated.timing(zoom,{
 			toValue:1,
 			duration:150,
@@ -32,7 +32,7 @@ export default function IngredientRow(props){
 				useNativeDriver:true
 			}).start()
 	})
-	useEffect(()=>{
+	useEffect(()=>{								//when the props amount change set the input box to the new value with animation
 		Animated.sequence([
 			Animated.timing(zoom,{
 				toValue:0,
@@ -51,7 +51,7 @@ export default function IngredientRow(props){
 			setAmountInput()	
 	},[amount])
 
-	useEffect(()=>{
+	useEffect(()=>{								//show the correct lock icons depending if it select or not
 		if(locked){
 			setNameIco('lock-closed')
 			hideLocks()
@@ -63,23 +63,23 @@ export default function IngredientRow(props){
 	},[locked])
 
 	const onLockIngr=()=>{
-			setLocked(!locked)
-			textInputRef.current.focus()
+			setLocked(!locked)						//when lock is press to block the value of ingredient
+			textInputRef.current.focus()			//switch the locked state and focus on the text input
 	}
 	const onChangeTextHandler=t=>{
 		validateInput(t)
 	}
-	const onSubmitEditingHandler=()=>{
-		const I = amountInput/amount
-		if(validInput){
+	const onSubmitEditingHandler=()=>{				//if the value of the ingredient locked is changed and valid
+		const I = amountInput/amount 				//calculate the value of i factor and call the convertion and animation
+		if(validInput){ 							//otherwise keep the value as before
 			convertByI(I)
 			zoomIn();
 		}
 		else
 			setAmountInput(amount)
 	}
-	const validateInput=(t)=>{
-		const onlyNums = t.search(/\D/g)
+	const validateInput=(t)=>{ 						//check for valid input, has to be only numbers
+		const onlyNums = t.search(/\D/g) 			//has to be > 0 and cannot be empty
 		if(onlyNums === -1)
 			setAmountInput(t)
 		if(t > 0 && t.length > 0){
@@ -116,7 +116,7 @@ export default function IngredientRow(props){
 					<MyText myStyle={styles.h3Text}>{name}</MyText>
 				</View>
 				<View style={styles.lock}>
-				{((showAllLocks || locked) && amountInput) 
+				{((showAllLocks || locked) && amountInput)    //show the lock only if the value is not 0 or empty and if there anything else locked
 					?<TouchableOpacity  onPress={()=>onLockIngr()}>
 						<Icon style={styles.lockIco} name={nameIco} />
 					</TouchableOpacity>
@@ -131,14 +131,9 @@ const styles = StyleSheet.create({
 	viewList:{
 		flex:1,
 		flexDirection:'row',
-		//margin:5,
 		padding:3,
 		borderBottomWidth:0.5,
 		borderColor:'#feaa52'
-		//backgroundColor:'orange',
-		// borderRadius:40,
-		// marginTop:5,
-		// marginBottom:5
 	},
 	amount:{
 		flex:1,
@@ -148,10 +143,6 @@ const styles = StyleSheet.create({
 	amountInput:{
 		color:'black',
 		fontSize:20,
-
-	},
-	h3Text:{
-		fontSize:20
 	},
 	unit:{
 		flex:0.5,
@@ -169,5 +160,8 @@ const styles = StyleSheet.create({
 	},
 	lockIco:{
 		fontSize:18,
-	}
+	},
+	h3Text:{
+		fontSize:20
+	},
 })

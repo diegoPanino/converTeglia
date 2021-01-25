@@ -1,75 +1,11 @@
 import React,{useState,useEffect,useRef} from 'react'
 import {View,StyleSheet,TouchableOpacity,Animated,Dimensions} from 'react-native';
-import {Icon} from 'native-base';
+import Icon from 'react-native-vector-icons/dist/Ionicons';
 import {connect} from 'react-redux';
 import MyText from '../MyText.js';
 
 const WIDTH = Dimensions.get('window').width
 const HEIGHT = Dimensions.get('window').height
-
-const styles= StyleSheet.create({
-	mainView:{
-		flex:1,
-		justifyContent:'flex-start',
-		position:'absolute',
-		left:0,
-		top:0,
-		zIndex:10,
-		elevation:3,
-		backgroundColor:'transparent',
-		height:HEIGHT,
-		width:WIDTH,
-	},
-	contentView:{
-		backgroundColor:'#fef1d8',
-		borderWidth:3,
-		borderRadius:20,
-		borderColor:'#feaa52',
-		padding:20,
-		marginRight:'1%',
-		marginLeft:'1%',
-		marginTop:'45%',
-	},
-	headerContent:{
-		flexDirection:'row'
-	},
-	icoView:{
-		flex:1,
-		marginLeft:-15,
-		marginTop:-10,
-	},
-	ico:{
-		color:'#feaa52'
-	},
-	textView:{
-		flex:10,
-		marginTop:-15,
-		marginBottom:10,
-	},
-	h4Text:{
-		marginRight:5,
-		marginLeft:5,
-		textAlign:'center',
-		fontSize:18,
-	},
-	buttonView:{
-		justifyContent:'flex-end',
-		marginTop:10,
-	},
-	buttonContainer:{
-		backgroundColor:'#feea52', //BUTTON BACKGROUND
-		borderWidth:2,
-		borderColor:'#E8871E', 		//BUTTON BORDER
-		borderRadius:20,
-		padding:5,
-		elevation:5,
-	},
-	buttonText:{
-		fontSize:22,
-		textAlign:'center',
-		color:'#e8871e',		
-	}
-})
 
 export default function TutorialBox(props){
 	const {type,next,navigation=null,hide=()=>{},exampleFunction,reduxFunction,titleFunction} = props
@@ -307,7 +243,67 @@ export default function TutorialBox(props){
 		</View>
 		);
 }
-
-/*<View style={[styles.contentView,screen[type].positioning]}>
-				
-			</View>*/
+const styles= StyleSheet.create({
+	mainView:{
+		flex:1,
+		justifyContent:'flex-start',
+		position:'absolute',
+		left:0,
+		top:0,
+		zIndex:10,
+		elevation:3,
+		backgroundColor:'transparent',
+		height:HEIGHT,
+		width:WIDTH,
+	},
+	contentView:{
+		backgroundColor:'#fef1d8',
+		borderWidth:3,
+		borderRadius:20,
+		borderColor:'#feaa52',
+		padding:20,
+		marginRight:'1%',
+		marginLeft:'1%',
+		marginTop:'45%',
+	},
+	headerContent:{
+		flexDirection:'row'
+	},
+	icoView:{
+		flex:1,
+		marginLeft:-15,
+		marginTop:-10,
+	},
+	ico:{
+		color:'#feaa52',
+		fontSize:25
+	},
+	textView:{
+		flex:10,
+		marginTop:-15,
+		marginBottom:10,
+	},
+	h4Text:{
+		marginRight:5,
+		marginLeft:5,
+		textAlign:'center',
+		fontSize:18,
+	},
+	buttonView:{
+		justifyContent:'flex-end',
+		marginTop:10,
+	},
+	buttonContainer:{
+		backgroundColor:'#feea52', //BUTTON BACKGROUND
+		borderWidth:2,
+		borderColor:'#E8871E', 		//BUTTON BORDER
+		borderRadius:20,
+		padding:5,
+		elevation:5,
+	},
+	buttonText:{
+		fontSize:22,
+		textAlign:'center',
+		color:'#e8871e',		
+	}
+})

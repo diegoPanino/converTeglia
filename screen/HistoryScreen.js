@@ -6,27 +6,10 @@ import MyText from '../presentational/MyText';
 import TutorialBox from '../presentational/tutorial/TutorialBox.js';
 import Loader from './Loader.js';
 
-const styles=StyleSheet.create({
-	mainView:{
-		flex:1,
-		backgroundColor:'#feebc4',
-		
-	},
-	errMsgContainer:{
-		flex:1,
-		justifyContent:'center',
-		backgroundColor:'#fef1d8'
-	},
-	errMsg:{
-		textAlign:'center',
-		color:'black',
-	}
-})
-
 function HistoryScreen({history,navigation,tutorial}){
 	const [isLoaded,setIsLoaded] = useState(false)
 
-	useEffect(()=>{
+	useEffect(()=>{											//if component is not rendered show the activity indicator and tips
   		InteractionManager.runAfterInteractions(()=>{
   				setIsLoaded(true)
    		})	
@@ -49,3 +32,20 @@ const mapStateToProps=(state)=>({
 	tutorial:state.settings.tutorial
 })
 export default connect(mapStateToProps)(HistoryScreen)
+
+const styles=StyleSheet.create({
+	mainView:{
+		flex:1,
+		backgroundColor:'#feebc4',
+		
+	},
+	errMsgContainer:{
+		flex:1,
+		justifyContent:'center',
+		backgroundColor:'#fef1d8'
+	},
+	errMsg:{
+		textAlign:'center',
+		color:'black',
+	}
+})

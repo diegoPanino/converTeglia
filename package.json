@@ -26,7 +26,6 @@
     "doctor": "^0.1.26",
     "htmlparser2": "^3.10.1",
     "moment": "^2.29.1",
-    "native-base": "^2.13.14",
     "node-fetch": "^2.6.1",
     "patch-package": "^6.2.2",
     "react": "^16.13.1",

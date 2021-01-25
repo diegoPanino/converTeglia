@@ -1,11 +1,9 @@
 import React,{useState,useEffect,useRef} from 'react';
 import {View,StyleSheet,Image,TouchableOpacity,InteractionManager} from 'react-native';
 //import {AdMobBanner,AdMobInterstitial,PublisherBanner} from 'react-native-admob'
-import {Icon} from 'native-base';
 import {connect} from 'react-redux';
 import MyText from '../presentational/MyText';
 import ResultList from '../presentational/ResultList';
-import InfoTray from '../presentational/InfoTray';
 import ModalInfoTray from '../presentational/ModalInfoTray';
 import OriginalTrayInfoModal from '../presentational/OriginalTrayInfoModal';
 import { BlurView } from "@react-native-community/blur";
@@ -14,100 +12,23 @@ import * as KitchenMath from '../api/kitchenMath';
 import TutorialBox from '../presentational/tutorial/TutorialBox.js';
 import Loader from './Loader.js';
 
-const styles=StyleSheet.create({
-	mainContainer:{
-		flex:1,
-		//margin:'2.5%',
-		backgroundColor:'#feebc4' //BACKGROUND
-	},
-	titleBox:{
-		flex:1,
-		alignItems:'center',
-	},
-	recipe:{
-		flex:8,
-	},
-	titleContainer:{
-		flex:1,
-		flexDirection:'row',
-	},
-	titleView:{
-		flex:1,
-		marginLeft:20,
-		flexGrow:2
-	},
-	title:{
-		textAlign:'center',
-		fontSize:22
-	},
-	shareIcoContainer:{
-		marginRight:5,
-		alignItems:'flex-end'
-	},
-	shareIco:{
-		fontSize:25,
-	},
-	infoTray:{
-		flex:1,
-		paddingLeft:'2.5%',
-		borderRadius:25,
-		borderTopWidth:1,
-		borderLeftWidth:1,
-		borderBottomWidth:3,
-		borderRightWidth:3,
-	},
-	blur:{
-		zIndex:5,
-		position:'absolute',
-		top:0,
-		right:0,
-		left:0,
-		bottom:0,
-	},
-	imgContainer:{
-		flex:3,
-		paddingBottom:5,
-		marginTop:30
-	},
-	img:{
-		flex:3,
-	},
-	errMsgContainer:{
-		flex:1,
-		justifyContent:'center',
-		backgroundColor:'#fef1d8'
-	},
-	errMsg:{
-		textAlign:'center',
-		color:'#780116'
-	}
-	
-})
-
 function ResultScreen(props){
+
 	const {toggleBlurAction,fastConvertionAction} = props
 	const {selectedTray,result,tutorial} = props
-	const {navigation,route} = props
+	const {navigation} = props
 	const {dim,key} = selectedTray
 	const [showModal,setShowModal] = useState(false)
 	const [modalOriginalTray, setModalOriginalTray] = useState(true)
 	const [loaded,setLoaded] = useState(false)
 	const [areaSource,setAreaSource] = useState()
 	const [areaTarget,setAreaTarget] = useState()
-	const [k,setK] = useState(1) 
-	const [convertedRecipe,setConverted] = useState()
+	const [k,setK] = useState(1)
 	const [isLoaded,setIsLoaded] = useState(false)
 	const prevAreaTarget = usePrevState(areaTarget)
-	const prevK = usePrevState(k)
 	const prevTray = usePrevState(selectedTray.dim)
-	
-	useEffect(()=>{
-  		InteractionManager.runAfterInteractions(()=>{
-  				setIsLoaded(true)
-   		})	
-	})
 
-	function usePrevState(value){
+	function usePrevState(value){							//hook to get the prevStatus of value
 		const ref = useRef()
 		useEffect(()=>{
 			ref.current = value
@@ -115,83 +36,62 @@ function ResultScreen(props){
 		return ref.current
 	}
 
-/*	useEffect(()=>{
-		AdMobInterstitial.setTestDevices([AdMobInterstitial.simulatorId]);
-    	AdMobInterstitial.setAdUnitID('ca-app-pub-3940256099942544/8691691433');
-
-    	AdMobInterstitial.addEventListener('adLoaded', () =>
-      		console.log('AdMobInterstitial adLoaded'),
-    	);
-    	AdMobInterstitial.addEventListener('adFailedToLoad', error =>
-      		console.warn(error),
-    	);
-    	AdMobInterstitial.addEventListener('adOpened', () =>
-      		console.log('AdMobInterstitial => adOpened'),
-    	);
-	    AdMobInterstitial.addEventListener('adClosed', () => {
-	    	console.log('AdMobInterstitial => adClosed');
-	    	AdMobInterstitial.requestAd().catch(error => console.warn(error));
-	    });
-	    AdMobInterstitial.addEventListener('adLeftApplication', () =>
-	    	console.log('AdMobInterstitial => adLeftApplication'),
-	    );
-	    AdMobInterstitial.requestAd().catch(error => console.warn(error));
-
-	    AdMobInterstitial.showAd().catch(err=>console.log(err))
-	    return ()=> AdMobInterstitial.removeAllListeners()
-	},[])*/
-
+	useEffect(()=>{
+		InteractionManager.runAfterInteractions(()=>{			//wait for animation to be completed and then show the component
+				setIsLoaded(true)
+		})	
+	})
 	useEffect(()=>{
 		if(selectedTray.dim !== prevTray && prevTray !== undefined){
-			const myTray = KitchenMath.getAreaByType(dim,key)
+			const myTray = KitchenMath.getAreaByType(dim,key)			//when the selected tray change and is different from prev calculate the area
 			setAreaTarget(myTray.area)
 		}
 	},[selectedTray])
 
 	useEffect(()=>{
 		if(props.convert){
-			const {area} = KitchenMath.getAreaByType(dim,key)
+			const {area} = KitchenMath.getAreaByType(dim,key)		//used to start conversion after change tray from MyTrayScreen. can be removed and implement different
 			setAreaTarget(area)
 		}
 	},[props.convert])
 
 	useEffect(()=>{
 		if(prevAreaTarget !== areaTarget){
-			setK(KitchenMath.getKfromArea(areaSource,areaTarget))
+			setK(KitchenMath.getKfromArea(areaSource,areaTarget))	//when target area is set, calcolare the k factor
 		}
 	},[areaTarget])
 
-	const onContinueOriginalTray=(area)=>{
-		setAreaSource(area)
+	const onContinueOriginalTray=(area)=>{				//when press continue on the original trayModal, set the source area of the tray
+		setAreaSource(area)								//hide the original tray modal and show the target area modal(modalInfo)
 		setModalOriginalTray(false);
 		setShowModal(true);
 	}
 
-	const onConfirmTray=(area)=>{
-		toggleBlurAction();
+	const onConfirmTray=(area)=>{			//when press convert from the target area modal (modalInfo), remove the blur effect from the header
+		toggleBlurAction();					//set area target and hide the modal
 		setAreaTarget(area)
 		setShowModal(false)
 	}
 
-	const changeTray=()=>{
-		toggleBlurAction();
-		fastConvertionAction();
+	const changeTray=()=>{					//when press change from the target area modal (modalInfo), remove the blur effect from the header
+		toggleBlurAction();					//switch the value for the convertion button in the next screen -- can be implemented better, most likely
+		fastConvertionAction();				//not necessary. hide the target area modal (modalInfo) and navigate to the tray's selection screen
 		setShowModal(false)
 		navigation.navigate('MyTrayScreen')
 	}
 
 	if(!isLoaded)
-		return <Loader />
+		return <Loader />					//if the component is not loaded, show the activity indicator and tips
 	else{
-	if(result.hasOwnProperty('recipe')){
-		if(result.recipe.hasOwnProperty('err'))
-			return (<View style={styles.errMsgContainer}>
+	if(result.hasOwnProperty('recipe')){												
+		if(result.recipe.hasOwnProperty('err'))						//check if the result loaded into redux, exist and if has error, show it
+			return (<View style={styles.errMsgContainer}>							
 						<MyText myStyle={styles.errMsg}>{result.recipe.msg}</MyText>
 						<TouchableOpacity onPress={()=>{navigation.goBack()}}>
 							<MyText myStyle={styles.errMsg}>Riprova</MyText>
 						</TouchableOpacity>
 					</View>)
-		else{
+		else{     				//if there is no error show the 2 modals and the ResultList
 			return (
 				<View style={styles.mainContainer}>
 				{(showModal || modalOriginalTray) && 
@@ -245,3 +145,55 @@ const mapStateToProps=(state)=>({
 	convert:state.system.convert,
 })
 export default connect(mapStateToProps,{toggleBlurAction,fastConvertionAction,})(ResultScreen);
+
+const styles=StyleSheet.create({
+	errMsgContainer:{
+		flex:1,
+		justifyContent:'center',
+		backgroundColor:'#fef1d8'
+	},
+	errMsg:{
+		textAlign:'center',
+		color:'#780116'
+	},
+	mainContainer:{
+		flex:1,
+		backgroundColor:'#feebc4' //BACKGROUND
+	},
+	blur:{
+		zIndex:5,
+		position:'absolute',
+		top:0,
+		right:0,
+		left:0,
+		bottom:0,
+	},
+	titleContainer:{
+		flex:1,
+		flexDirection:'row',
+	},
+	titleBox:{
+		flex:1,
+		alignItems:'center',
+	},
+	titleView:{
+		flex:1,
+		marginLeft:20,
+		flexGrow:2
+	},
+	title:{
+		textAlign:'center',
+		fontSize:22
+	},
+	imgContainer:{
+		flex:3,
+		paddingBottom:5,
+		marginTop:30
+	},
+	img:{
+		flex:3,
+	},
+	recipe:{
+		flex:8,
+	},	
+})

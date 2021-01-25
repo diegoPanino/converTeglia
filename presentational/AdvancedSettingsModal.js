@@ -1,80 +1,15 @@
 import React,{useState,useEffect} from 'react';
 import {Modal,View,StyleSheet,TouchableOpacity} from 'react-native';
-import {Icon} from 'native-base';
+import Icon from 'react-native-vector-icons/dist/Ionicons';
 import {Picker} from '@react-native-picker/picker';
 import {connect} from 'react-redux';
 import {setNumDaysAction,showTutorialAction} from '../redux/actions';
 import MyText from './MyText';
 
-const styles = StyleSheet.create({
-	modalStyle:{
-		backgroundColor:'#feebc4',
-		position:'absolute',
-		bottom:0,
-		height:'25%',
-		width:'100%',
-		borderTopLeftRadius:15,
-		borderTopRightRadius:15,
-		borderTopWidth:2,
-		borderLeftWidth:1,
-		borderRightWidth:1,
-		borderColor:'#e8871e'
-	},
-	settingsBtnIcon:{
-		position:'absolute',
-		right:0,
-		color:'#e8871e',
-	},
-	settings:{
-		paddingTop:30,
-		padding:10,
-	},
-	settLine:{
-		flexDirection:'row',
-		justifyContent:'center',
-		marginLeft:'2.5%',
-		marginRight:'2.5%',
-		alignItems:'center',
-	},
-	pickerContainer:{
-		width:'25%',
-		marginLeft:'5%',
-	},
-	picker:{
-		transform: [
-      		{ scaleX: 1 }, 
-      		{ scaleY: 1 },
-  		],
-	},
-	settText:{
-		flex:1,
-		marginLeft:'2.5%',
-		marginRight:'2.5%',
-		fontSize:18,
-	},
-	btn:{
-		left:-1,
-		marginRight:-3,
-		backgroundColor:'#feea52', //BUTTON BACKGROUND
-		borderLeftWidth:2,
-		borderRightWidth:3,
-		borderBottomWidth:2,
-		borderColor:'#E8871E', 		//BUTTON BORDER
-		borderRadius:20,
-		elevation:5,
-	},
-	btnStyle:{
-		textAlign:'center',
-		fontSize:22,
-		color:'#e8871e'
-	}
-})
-	
-
 function AdvancedSettingsModal({hide,setNumDaysAction,showTutorialAction,settings,navigation}){
-	
-	const [showTutorial,setShowTutorial] = useState(settings.tutorial)  //anti-pattern
-	const [numberOfDays,setNODays] = useState(settings.day) //anti-pattern
+		
+	const [showTutorial,setShowTutorial] = useState(settings.tutorial)
+	const [numberOfDays,setNODays] = useState(settings.day)
 
 	let nums=[];
 	for(let i = 1;i<=90;i++){
@@ -138,3 +73,72 @@ const mapStateToProps = state =>({
 	settings:state.settings
 })
 export default connect(mapStateToProps,{setNumDaysAction,showTutorialAction})(AdvancedSettingsModal)
+
+const styles = StyleSheet.create({
+	modalStyle:{
+		backgroundColor:'#feebc4',
+		position:'absolute',
+		bottom:0,
+		height:'25%',
+		width:'100%',
+		borderTopLeftRadius:15,
+		borderTopRightRadius:15,
+		borderTopWidth:2,
+		borderLeftWidth:1,
+		borderRightWidth:1,
+		borderColor:'#e8871e'
+	},
+	btn:{
+		left:-1,
+		marginRight:-3,
+		backgroundColor:'#feea52', //BUTTON BACKGROUND
+		borderLeftWidth:2,
+		borderRightWidth:3,
+		borderBottomWidth:2,
+		borderColor:'#E8871E', 		//BUTTON BORDER
+		borderRadius:20,
+		elevation:5,
+	},
+	btnStyle:{
+		textAlign:'center',
+		fontSize:22,
+		color:'#e8871e'
+	},
+	settingsBtnIcon:{
+		position:'absolute',
+		right:10,
+		marginTop:2,
+		color:'#e8871e',
+		fontSize:25
+	},
+	settings:{
+		paddingTop:30,
+		padding:10,
+	},
+	settLine:{
+		flexDirection:'row',
+		justifyContent:'center',
+		marginLeft:'2.5%',
+		marginRight:'2.5%',
+		alignItems:'center',
+	},
+	settText:{
+		flex:1,
+		marginLeft:'2.5%',
+		marginRight:'2.5%',
+		fontSize:18,
+	},
+	pickerContainer:{
+		width:'25%',
+		marginLeft:'5%',
+	},
+	picker:{
+		transform: [
+      		{ scaleX: 1 }, 
+      		{ scaleY: 1 },
+  		],
+	},
+	
+	
+	
+})

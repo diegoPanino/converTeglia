@@ -1,32 +1,6 @@
 import React,{useState,useEffect} from 'react';
-import {View,Text,StyleSheet, Image, TouchableOpacity, 
-		TextInput, TouchableWithoutFeedback, Keyboard} from 'react-native';
+import {View,Text,StyleSheet} from 'react-native';
 import {Picker} from '@react-native-picker/picker';
-
-const styles= StyleSheet.create({
-	rowContainer:{
-		flexDirection:'row',
-		justifyContent:'flex-start',
-		alignItems:'center',
-	},
-	pickerContainer:{
-		flex:1,
-		justifyContent:'center',
-		textAlign:'center',
-		alignContent:'center',
-		alignItems:'center',
-		width:150,
-	},
-	picker:{
-		backgroundColor:'transparent',
-		flex:1,
-		marginLeft:50,
-		width:80,
-	},
-	text:{
-		flex:1,
-	},
-})
 
 export default function MyPicker(){
 
@@ -56,3 +30,27 @@ export default function MyPicker(){
 		</View>
 		)
 }
+const styles= StyleSheet.create({
+	rowContainer:{
+		flexDirection:'row',
+		justifyContent:'flex-start',
+		alignItems:'center',
+	},
+	pickerContainer:{
+		flex:1,
+		justifyContent:'center',
+		textAlign:'center',
+		alignContent:'center',
+		alignItems:'center',
+		width:150,
+	},
+	picker:{
+		backgroundColor:'transparent',
+		flex:1,
+		marginLeft:50,
+		width:80,
+	},
+	text:{
+		flex:1,
+	},
+})

@@ -1,53 +1,9 @@
-import React, {useEffect,useState,useRef} from 'react';
-import {ScrollView,StyleSheet,View,TextInput,TouchableOpacity} from 'react-native';
-import {Icon} from 'native-base';
+import React, {useEffect,useState} from 'react';
+import {ScrollView,StyleSheet} from 'react-native';
 import {convertByKAction,convertByIAction} from '../redux/actions';
 import {connect} from 'react-redux';
 import MyText from './MyText';
 import IngredientRow from './IngredientRow';
-
-const styles = StyleSheet.create({
-	viewList:{
-		flex:1,
-		flexDirection:'row',
-		margin:5,
-		padding:3,
-	},
-	amount:{
-		flex:1,
-	},
-	amountInput:{
-		color:'black',	
-	},
-	unit:{
-		flex:0.5,
-		alignItems:'flex-start',
-		justifyContent:'center',
-	},
-	name:{
-		flex:3,
-		alignItems:'flex-start',
-		justifyContent:'center',
-	},
-	lock:{
-		flex:0.5,
-		justifyContent:'center',
-	},
-	lockIco:{
-		fontSize:20,
-	},
-	h4Center:{
-		marginTop:30,
-		textAlign:'center',
-		fontSize:18
-	},
-	scrollView:{
-		marginRight:'2.5%',
-		marginLeft:'2.5%',
-		backgroundColor:'#fef1d8',     //SURFACE
-		borderRadius:20,
-	}
-})
 
 function ResultList(props){
 	const {convertByKAction,convertByIAction} = props
@@ -56,12 +12,12 @@ function ResultList(props){
 	const {k} = props
 	const [showAllLocks,setShowAllLocks] = useState(true)
 
-	useEffect(()=>{
-		convertByKAction(k)
+	useEffect(()=>{														//inside a scrollView render with map ingredientRow
+		convertByKAction(k)												//when the k factor changed, run the convertion on redux
 	},[k])
 
-	const onConvertByIHandler=(i)=>{
-		convertByIAction(i)
+	const onConvertByIHandler=(i)=>{									//when the inputs end on the ingredientRow textInput of the ingredient vale
+		convertByIAction(i)												//receive the i factor and run the convertion on redux
 	}
 	return (
 		<ScrollView style={styles.scrollView}>
@@ -85,3 +41,16 @@ function ResultList(props){
 	)
 }
 export default connect(null,{convertByKAction,convertByIAction})(ResultList)
+const styles = StyleSheet.create({
+	h4Center:{
+		marginTop:30,
+		textAlign:'center',
+		fontSize:18
+	},
+	scrollView:{
+		marginRight:'2.5%',
+		marginLeft:'2.5%',
+		backgroundColor:'#fef1d8',     //SURFACE
+		borderRadius:20,
+	}
+})

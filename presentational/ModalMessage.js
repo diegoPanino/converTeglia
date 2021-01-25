@@ -1,14 +1,33 @@
 import React from 'react';
-import {View,Modal,StyleSheet,useWindowDimensions,TouchableOpacity} from 'react-native';
+import {View,Modal,StyleSheet,Dimensions,TouchableOpacity} from 'react-native';
 import MyText from './MyText';
 
-
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 
 export default function ModalMessage(props){
-	
-	const windowWidth = useWindowDimensions().width;
-	const windowHeight = useWindowDimensions().height;
-	const styles = StyleSheet.create({
+	const {showModal,message,extraData,close,confirm} = props	
+
+	return(
+		<Modal animationType='slide' transparent={true} visible={showModal}>
+			<View style = {styles.modalView}>
+				<View>
+					<MyText myStyle={styles.text}>{message}</MyText>
+				</View>
+				<View>
+					<MyText myStyle={[styles.text,styles.extraData]}>{extraData}</MyText>
+				</View>
+				<TouchableOpacity style={[styles.deleteButton,styles.btn]}  onPress={close}>
+					<MyText myStyle={styles.btnText}>CHIUDI</MyText>
+				</TouchableOpacity>
+				<TouchableOpacity style={[styles.closeButton,styles.btn]}  onPress={confirm}>
+					<MyText myStyle={styles.btnText}>ELIMINA</MyText>
+				</TouchableOpacity>
+			</View>
+		</Modal>
+		);
+}
+const styles = StyleSheet.create({
 	modalView:{
 		position:'absolute',
 		top:windowHeight/3,
@@ -27,9 +46,6 @@ export default function ModalMessage(props){
 	    shadowRadius: 3.84,
 	    elevation: 5
 	  },
-	  viewContainer:{
-	  				
-	  },
 	  extraData:{
 	  	fontWeight:'bold',
 	 	textAlign:'center',
@@ -44,7 +60,6 @@ export default function ModalMessage(props){
 	  	position:'absolute',
 	  	left:20,
 	  	bottom:5,
-
 	  },
 	  text:{
 	  	fontSize:18,
@@ -55,7 +70,6 @@ export default function ModalMessage(props){
 	  },
 	  btn:{
 	  	backgroundColor:'#feea52', //BUTTON BACKGROUND
-		//fontWeight:'bold',
 		borderWidth:2,
 		borderColor:'#E8871E', 		//BUTTON BORDER
 		borderRadius:20,
@@ -63,26 +77,4 @@ export default function ModalMessage(props){
 		elevation:5,
 		margin:10,
 	  }
-	})
-
-	const {showModal,message,extraData,close,confirm} = props	
-
-	return(
-		<Modal animationType='slide' transparent={true} visible={showModal}>
-			<View style = {styles.modalView}>
-				<View style={styles.viewContainer}>
-					<MyText myStyle={styles.text}>{message}</MyText>
-				</View>
-				<View>
-					<MyText myStyle={[styles.text,styles.extraData]}>{extraData}</MyText>
-				</View>
-				<TouchableOpacity style={[styles.deleteButton,styles.btn]}  onPress={close}>
-					<MyText myStyle={styles.btnText}>CHIUDI</MyText>
-				</TouchableOpacity>
-				<TouchableOpacity style={[styles.closeButton,styles.btn]}  onPress={confirm}>
-					<MyText myStyle={styles.btnText}>ELIMINA</MyText>
-				</TouchableOpacity>
-			</View>
-		</Modal>
-		);
-}
+})

@@ -1,24 +1,6 @@
 import React,{useEffect,useState} from 'react';
 import {View,Image,StyleSheet} from 'react-native';
 
-
-const styles = StyleSheet.create({
-	card:{
-		height:200,
-		width:200,
-		elevation:5,
-		backgroundColor:'#fef1d8', //surface
-		borderRadius:10,
-	},
-	img:{
-		height:150,
-		width:200,
-	},
-	input:{
-		flex:1,
-	}
-})
-
 const squareTray = require ('../img/quadrata.png');
 const rectTray = require('../img/rettangolare.png');
 const circleTray = require('../img/rotonda.png');
@@ -37,3 +19,20 @@ export default function ({type}){
 		</View>
 		)
 }
+
+const styles = StyleSheet.create({
+	card:{
+		height:200,
+		width:200,
+		elevation:5,
+		backgroundColor:'#fef1d8', //surface
+		borderRadius:10,
+	},
+	img:{
+		height:150,
+		width:200,
+	},
+	input:{
+		flex:1,
+	}
+})

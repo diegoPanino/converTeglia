@@ -1,58 +1,9 @@
 import React,{useState,useEffect,useRef} from 'react';
-import {View,Text,TextInput,StyleSheet,Keyboard,Animated,Dimensions} from 'react-native';
+import {View,TextInput,StyleSheet,Animated,Dimensions} from 'react-native';
 import Icon from 'react-native-vector-icons/dist/Ionicons';
 import {Picker} from '@react-native-picker/picker';
 
 const SCREEN_WIDTH = Dimensions.get('window').width
-const styles = StyleSheet.create({
-	ingredientRow:{
-		flex:1,
-		flexDirection:'row',
-		marginTop:5,
-		marginBottom:5,
-	},
-	amounts:{
-		flex:1,
-		borderWidth:2,
-		borderRadius:10,
-		borderColor:'#feaa52'			//BUTTON BACKGROUND
-	},
-	units:{
-		flex:0.5,
-		borderWidth:2,
-		borderRadius:10,
-		marginLeft:10,
-		marginRight:10,	
-		borderColor:'#feaa52'			//BUTTON BACKGROUND
-	},
-	picker:{
-		backgroundColor:'transparent',
-		width:78,
-		color:'black'				//TEXT INPUT
-	},
-	names:{
-		flex:3,
-		borderWidth:2,
-		borderRadius:10,
-		borderColor:'#feaa52'			//BUTTON BACKGROUND
-	},
-	icoContainer:{
-		flex:0.5,
-		alignSelf:'center',
-		alignItems:'flex-end',
-		marginRight:-3
-	},
-	ico:{
-		fontSize:25
-	},
-	h3Text:{
-		fontSize:20,
-		color:'black'			//TEXT INPUT
-	},
-	color:{
-		color:'black' 				//ICO COLOR
-	}
-})
 
 export default function NewIngredientRow({form=false,...props}){
 	const [amounts,setAmount] = useState(props.amounts)
@@ -64,11 +15,11 @@ export default function NewIngredientRow({form=false,...props}){
 	const animationScale = useRef(new Animated.Value(0)).current
 
 	const unitss = [' ','g','kg','ml','dl','l','CT','ct','tz']
-	const pickerUnit = unitss.map(el=>{
+	const pickerUnit = unitss.map(el=>{														//create a picker element for each available units
 		return <Picker.Item style={styles.pickerItem} label={`${el}`} value={el} key={el}/>
 	})
 
-	useEffect(()=>{
+	useEffect(()=>{								//animation delayed showing new line of ingredients
 		Animated.timing(animationScale,{
 			toValue:1,
 			duration:600,
@@ -76,7 +27,7 @@ export default function NewIngredientRow({form=false,...props}){
 			useNativeDriver:true
 		}).start()
 	},[])
-	useEffect(()=>{
+	useEffect(()=>{								
 		onSubmitHandler()
 	},[units])
 
@@ -89,7 +40,7 @@ export default function NewIngredientRow({form=false,...props}){
 	const onAmountChageHandler=text=>{
 		onAmountChange(text)
 	}
-	const onAmountChange=text=>{
+	const onAmountChange=text=>{				//allow to insert only number into the ingredients input box
 		const onlyNums = text.search(/\D/g)
 		if( onlyNums === -1)
 			setAmount(text)
@@ -98,7 +49,7 @@ export default function NewIngredientRow({form=false,...props}){
 		setName(text);
 	}
 
-	const onSubmitHandler=()=>{
+	const onSubmitHandler=()=>{							//when units change or onSubmitEnding create the new ingredient
 		if(names&&amounts){
 			const fail = newIngredient({amounts,units,names,id})
 			if(fail || form){
@@ -108,7 +59,7 @@ export default function NewIngredientRow({form=false,...props}){
 			}
 		}
 	}
-	const onDeleteIngredient=id=>{
+	const onDeleteIngredient=id=>{				//animation and when finishe removed the ingredient
 		Animated.timing(animationScale,{
 			toValue:0,
 			duration:600,
@@ -169,3 +120,52 @@ export default function NewIngredientRow({form=false,...props}){
 		</Animated.View>
 		);
 }
+const styles = StyleSheet.create({
+	ingredientRow:{
+		flex:1,
+		flexDirection:'row',
+		marginTop:5,
+		marginBottom:5,
+	},
+	amounts:{
+		flex:1,
+		borderWidth:2,
+		borderRadius:10,
+		borderColor:'#feaa52'			//BUTTON BACKGROUND
+	},
+	units:{
+		flex:0.5,
+		borderWidth:2,
+		borderRadius:10,
+		marginLeft:10,
+		marginRight:10,	
+		borderColor:'#feaa52'			//BUTTON BACKGROUND
+	},
+	picker:{
+		backgroundColor:'transparent',
+		width:78,
+		color:'black'				//TEXT INPUT
+	},
+	names:{
+		flex:3,
+		borderWidth:2,
+		borderRadius:10,
+		borderColor:'#feaa52'			//BUTTON BACKGROUND
+	},
+	icoContainer:{
+		flex:0.5,
+		alignSelf:'center',
+		alignItems:'flex-end',
+		marginRight:-3
+	},
+	ico:{
+		fontSize:25
+	},
+	h3Text:{
+		fontSize:20,
+		color:'black'			//TEXT INPUT
+	},
+	color:{
+		color:'black' 				//ICO COLOR
+	}
+})

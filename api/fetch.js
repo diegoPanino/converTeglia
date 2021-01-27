@@ -1,5 +1,5 @@
 import React from 'react';
-const corn = require("corn");
+//const corn = require("corn");
 const cheerio = require("react-native-cheerio");
 
 const space = RegExp(/\s{2,}/g);

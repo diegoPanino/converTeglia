@@ -103,7 +103,7 @@ function SearchScreen({navigation,searchLinkAction,saveSearchedLinkAction,tutori
 						value={inputBox}
 						onChangeText = {inputHandler}
 					  	onSubmitEditing={confirmInput}/>
-					<Icon style={[styles.icon,styles.color]} active name='close' onPress={resetInputBox}/>
+					<Icon style={[styles.icon,styles.color]} name='close' onPress={resetInputBox}/>
 				</View>	
 				<TouchableOpacity style={styles.btn} onPress={()=>confirmInput()} >
 					<MyText myStyle={styles.btnText}>LEGGI RICETTA</MyText>

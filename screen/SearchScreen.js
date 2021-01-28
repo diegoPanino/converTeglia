@@ -10,7 +10,6 @@ import {getIngredients} from '../api/fetch';
 import MakeNewRecipe from '../presentational/NewRecipe';
 import TutorialWelcome from '../presentational/tutorial/TutorialWelcome.js';
 import MySplashScreen from './SplashScreen.js';
-import {AdMobInterstitial} from 'react-native-admob';
 
 
 function SearchScreen({navigation,searchLinkAction,saveSearchedLinkAction,tutorial}){
@@ -33,33 +32,6 @@ function SearchScreen({navigation,searchLinkAction,saveSearchedLinkAction,tutori
   		    console.log('share type no good')
   	},[])
 
-	useEffect(()=>{
-		AdMobInterstitial.setTestDevices([AdMobInterstitial.simulatorId]);
-    	AdMobInterstitial.setAdUnitID(/*'ca-app-pub-7517699325717425/9027259851'*/ 
-    									'ca-app-pub-3940256099942544/1033173712');  //test id
-
-    	AdMobInterstitial.addEventListener('adLoaded', () =>
-      		console.log('AdMobInterstitial adLoaded'),
-    	);
-	    AdMobInterstitial.addEventListener('adFailedToLoad', error =>
-	      console.warn(error),
-	    );
-	    AdMobInterstitial.addEventListener('adOpened', () =>
-	      console.log('AdMobInterstitial => adOpened'),
-	    );
-	    AdMobInterstitial.addEventListener('adClosed', () => {
-	      console.log('AdMobInterstitial => adClosed');
-	      AdMobInterstitial.requestAd().catch(error => console.warn(error));
-	    });
-	    AdMobInterstitial.addEventListener('adLeftApplication', () =>
-	      console.log('AdMobInterstitial => adLeftApplication'),
-	    );
-
-	    AdMobInterstitial.requestAd().catch(error => console.warn(error));
-
-	    return ()=>  AdMobInterstitial.removeAllListeners();
-	},[])
-
   	useEffect(()=>{
   		 ShareMenu.getInitialShare(shareTextHandler)
   	},[])
@@ -81,9 +53,6 @@ function SearchScreen({navigation,searchLinkAction,saveSearchedLinkAction,tutori
 	}
 	const inputHandler=t=>{
 		setInputBox(t)
-	}
-	const showAD=()=>{
-		AdMobInterstitial.showAd().catch(error => console.warn(error));	
 	}
 
 //when clicking on readRecipe, close the keyboard, check if there is something inside the input box, if so run the fetch. If detect is a list
@@ -141,9 +110,6 @@ function SearchScreen({navigation,searchLinkAction,saveSearchedLinkAction,tutori
 				</TouchableOpacity>
 				<TouchableOpacity style={styles.btn} onPress={()=>{setNewRecipe(true);setCopiedRecipe([])}}>
 					<MyText myStyle={styles.btnText}>CREA LA TUA RICETTA</MyText>
-				</TouchableOpacity>
-				<TouchableOpacity style={styles.btn} onPress={()=>showAD()}>
-					<MyText myStyle={styles.btnText}>SHOW AD</MyText>
 				</TouchableOpacity>
 			</View>
 		</View>

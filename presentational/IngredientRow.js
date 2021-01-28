@@ -21,7 +21,7 @@ export default function IngredientRow(props){
 		Animated.timing(zoom,{
 			toValue:1,
 			duration:150,
-			useNativeDriver:false
+			useNativeDriver:true
 		}).start()
 	}
 	useEffect(()=>{

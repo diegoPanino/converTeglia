@@ -53,8 +53,8 @@ const styles = StyleSheet.create({
 		fontWeight:'bold',
 	},
 	sectionList:{
-		marginRight:'2.5%',
-		marginLeft:'2.5%',
+		marginBottom:'0%',
+		margin:'2.5%',
 		backgroundColor:'#fef1d8',
 		borderTopLeftRadius:20,
 		borderTopRightRadius:20,

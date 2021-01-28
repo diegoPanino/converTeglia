@@ -1,5 +1,5 @@
 import React,{useState,useEffect,useRef} from 'react';
-import {View,StyleSheet,Dimensions,Modal,TouchableOpacity,InteractionManager,Animated} from 'react-native';
+import {View,StyleSheet,Dimensions,Modal,TouchableOpacity,InteractionManager,ActivityIndicator,Animated} from 'react-native';
 import Icon from 'react-native-vector-icons/dist/Ionicons';
 import {connect} from 'react-redux';
 import Carousel from 'react-native-snap-carousel';
@@ -12,6 +12,7 @@ import NewTrayModal from '../presentational/MakeNewTray';
 import { BlurView } from "@react-native-community/blur";
 import TutorialBox from '../presentational/tutorial/TutorialBox.js';
 import Loader from './Loader.js';
+import {AdMobInterstitial} from 'react-native-admob';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -25,7 +26,31 @@ function MyTrayScreen({navigation,toggleBlurAction,setMyTrayAction,tutorial,show
 	const refImg = useRef();
 	const refStdTrays = useRef();
 	const [isLoaded,setIsLoaded] = useState(false)
+	const [adReady,setAdReady] = useState()
+	const [adError,setAdError] = useState(false)
 	const scale = useRef(new Animated.Value(0)).current
+
+	useEffect(()=>{
+
+		AdMobInterstitial.setTestDevices([AdMobInterstitial.simulatorId]);
+    	AdMobInterstitial.setAdUnitID(/*'ca-app-pub-7517699325717425/9027259851'*/ 
+    									'ca-app-pub-3940256099942544/1033173712');  //test id
+
+    	AdMobInterstitial.addEventListener('adLoaded', () =>{
+      		setAdReady(true)
+      		setAdError(false)
+      		});
+	    AdMobInterstitial.addEventListener('adFailedToLoad', error =>{
+	      	setAdReady(false)
+	      	setAdError(true)
+	      	});
+	    AdMobInterstitial.isReady(ready=>{
+    		setAdReady(ready)
+    		if(!ready)
+    			AdMobInterstitial.requestAd().catch(error => console.warn('requestAd: ',error));
+    	})
+	    return ()=>  AdMobInterstitial.removeAllListeners();
+	},[])
 
   	useEffect(()=>{														//when navigation obj change, make appear the view with animation
   		const transEnd = navigation.addListener('transitionEnd',e=>{
@@ -47,9 +72,10 @@ function MyTrayScreen({navigation,toggleBlurAction,setMyTrayAction,tutorial,show
 		setTray(data[index])									//selected shape of tray and snap the second carousel linked with ref
 		refStdTrays.current.snapToItem(index,true)
 	}
-	function onCreateTrayHandler(){							//on click to make new tray, show the modal to create new tray,
-		setShowNTM(true);									//and blur the header
-		toggleBlurAction();
+	function onCreateTrayHandler(){													//on click to make new tray, show the modal to create new tray,
+		if(adReady)
+			AdMobInterstitial.showAd().catch(error => console.warn(error));			//show alway ad
+		setShowNTM(true);
 	}
 
 	if(!isLoaded)
@@ -62,13 +88,16 @@ function MyTrayScreen({navigation,toggleBlurAction,setMyTrayAction,tutorial,show
 		{tutorial && <TutorialBox navigation={navigation} type='myTray' next='end'
 								reduxFunction={(key)=>setMyTrayAction(key)}  exampleFunction={(bool)=>showTutorialAction(bool)}
 					/>}
-			{showNTM && 
-				<NewTrayModal select={tray} hide={()=>setShowNTM(false)}/>}
-			 {showNTM &&
-			  <BlurView style={styles.blur}
+			{(showNTM && (adReady || adError)) ?
+				<View style={styles.newTrayView}>
+					<NewTrayModal select={tray} hide={()=>setShowNTM(false)}/>
+					<BlurView style={styles.blur}
 			 		    blurType="dark"
 			 		    blurAmount={1}
-			 		    />}
+			 		/>
+			 	</View>
+				: showNTM && <ActivityIndicator style={styles.activity} size='large' color='#feaa52' />
+			}  
 			<Carousel 
 				contentContainerStyle={styles.ccs}
 				containerCustomStyle={styles.carouselImg}
@@ -93,7 +122,7 @@ function MyTrayScreen({navigation,toggleBlurAction,setMyTrayAction,tutorial,show
 				firstItem = {1}
 				inactiveSlideScale={0.2}
 			/>
-			<TouchableOpacity style={styles.btn} onPress={()=>onCreateTrayHandler()} >
+			<TouchableOpacity style={styles.btn} onPress={onCreateTrayHandler} >
 				<MyText myStyle={styles.h1Btn}>CREA LA TUA TEGLIA</MyText>
 			</TouchableOpacity>
 			
@@ -122,6 +151,20 @@ const styles=StyleSheet.create({
 		justifyContent:'center',
 		alignItems:'center',
 		backgroundColor:'#feebc4',  								//BACKGROUND
+	},
+	newTrayView:{
+		position:'absolute',
+		top:0,
+		left:0,
+		width:'100%',
+		height:'100%',
+	},
+	activity:{
+		position:'absolute',
+		top:'50%',
+		left:'50%',
+		zIndex:7,
+		flex:1,
 	},
 	blur:{
 		zIndex:5,

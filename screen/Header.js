@@ -70,15 +70,15 @@ function Header({scene,previous,navigation,settings,system,toggleChangedIcoActio
 			</View>
 			{fastConv 
 			? 	<ConvertButton blurRadius={blur} navigation={navigation} />
-			: 	<BackButton disabled={tutorial} blurRadius={blur} navigation={navigation} />
+			: 	<BackButton disabled={tutorial || system.blur} blurRadius={blur} navigation={navigation} />
 			}
 			<View style = {styles.rightMenu}>
-			{!fastConv && <TouchableOpacity disabled={tutorial} onPress={()=>navigation.navigate('HistoryScreen')}> 
+			{!fastConv && <TouchableOpacity disabled={tutorial || system.blur} onPress={()=>navigation.navigate('HistoryScreen')}> 
 					<Image blurRadius={blur} source={historyBtn} style = {styles.historyBtn} />	
 				</TouchableOpacity>
 			}
 				<Animated.View style={[{transform:[{scale}]}]} >
-				<TouchableOpacity disabled={tutorial} onPress={()=>navigation.navigate('MyTrayScreen')}> 
+				<TouchableOpacity disabled={tutorial || system.blur} onPress={()=>navigation.navigate('MyTrayScreen')}> 
 					{system.blur 
 						? <Image blurRadius={blur} source={trays[trayIndex]} style = {styles.myTrayBtn}/>
 						: <BadgedImg blurRadius={blur} source={trays[trayIndex]} style = {styles.myTrayBtn}/>	

@@ -20,6 +20,10 @@ function NewTrayModal(props){
 	const [name,setName] = useState()
 	const [invalidForm,setInvalidForm] = useState(false)
 
+	useEffect(()=>{
+		toggleBlurAction()
+		return ()=>toggleBlurAction()
+	},[])
 
 	useEffect(()=>{					//when the size of the tray change, update the portions showed
 		setPortions();
@@ -28,10 +32,6 @@ function NewTrayModal(props){
 		if(isNaN(servs))
 			setInvalidForm(true)
 	},[servs])
-	useEffect(()=>{
-		return ()=> toggleBlurAction()		//on unmount remove the blur from the header using redux
-	},[])
-
 
 	let nums=[];
 	for(let i = 1;i<=44;i++){

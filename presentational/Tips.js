@@ -1,13 +1,10 @@
-import React,{useRef,useEffect} from 'react';
-import {View,ActivityIndicator,StyleSheet,Animated, Image} from 'react-native';
-import { BlurView } from "@react-native-community/blur";
-import MyText from '../presentational/MyText.js';
-import Tips from '../presentational/Tips.js';
+import React from 'react';
+import {View,Image,StyleSheet,Dimensions} from 'react-native';
+import MyText from './MyText.js';
 
+const width= Dimensions.get('window').width
 
-export default function Loader(props){
-	const scale = useRef(new Animated.Value(0)).current
-
+export default function Tips({style,img=false}){
 	const tips=['Cliccando sul lucchetto, di un ingredienti, puoi bloccare il suo valore e mantenere le proporzioni',
 				'CT sta per Cucchiaio da Tavola',
 				'ct sta per Cucchiaino da Te',
@@ -26,43 +23,36 @@ export default function Loader(props){
 				]
 	const index= Math.floor(Math.random() * (tips.length)); 
 
-	useEffect(()=>{
-		Animated.timing(scale,{
-			toValue:1,
-			duration:300,
-			useNativeDriver:true
-		}).start()
-
-		return ()=>{
-			Animated.timing(scale,{
-				toValue:0,
-				duration:300,
-				useNativeDriver:true
-			}).start()
-		}
-	},[])
-
 	return (
-		<View style={styles.mainView}>
-			<Animated.View style={{transform:[{scale}]}}>
-				<ActivityIndicator size='large' color='#feaa52' />
-			</Animated.View>
-			<View style={styles.tipsView}>
-				<Tips img/> 
-			</View>
+		<View style={[styles.mainView,style]}>
+			{img && <Image source={require('../img/tips.png')} style={styles.tipsImg} />}
+			<MyText myStyle={styles.tipsText}>{tips[index]}</MyText>
 		</View>
-		);
+		)
 }
+
 const styles = StyleSheet.create({
 	mainView:{
-		flex:1,
+		backgroundColor:'#fef1d8',
 		justifyContent:'center',
-		backgroundColor:'#feebc4',
+		alignContent:'center',
+		padding:20,
+		borderWidth:2,
+		borderRadius:20,
+		borderColor:'#feaa52'
 	},
-	tipsView:{
-		position:'absolute',
-		left:10,
-		right:10,
-		bottom:20,
+	tipsText:{
+		justifyContent:'center',
+		alignItems:'center',
+		alignContent:'center',
+		textAlign:'center',
+		fontSize:18,
 	},
+	tipsImg:{
+		alignSelf:'flex-end',
+		marginRight:-30,
+		marginTop:-50,
+		width:60,
+		height:60,
+	}
 })

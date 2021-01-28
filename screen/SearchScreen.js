@@ -10,7 +10,7 @@ import {getIngredients} from '../api/fetch';
 import MakeNewRecipe from '../presentational/NewRecipe';
 import TutorialWelcome from '../presentational/tutorial/TutorialWelcome.js';
 import MySplashScreen from './SplashScreen.js';
-import AdMobInterstitial from 'react-native-admob';
+import {AdMobInterstitial} from 'react-native-admob';
 
 
 function SearchScreen({navigation,searchLinkAction,saveSearchedLinkAction,tutorial}){
@@ -35,7 +35,8 @@ function SearchScreen({navigation,searchLinkAction,saveSearchedLinkAction,tutori
 
 	useEffect(()=>{
 		AdMobInterstitial.setTestDevices([AdMobInterstitial.simulatorId]);
-    	AdMobInterstitial.setAdUnitID('ca-app-pub-3940256099942544/1033173712');
+    	AdMobInterstitial.setAdUnitID(/*'ca-app-pub-7517699325717425/9027259851'*/ 
+    									'ca-app-pub-3940256099942544/1033173712');  //test id
 
     	AdMobInterstitial.addEventListener('adLoaded', () =>
       		console.log('AdMobInterstitial adLoaded'),
@@ -57,7 +58,6 @@ function SearchScreen({navigation,searchLinkAction,saveSearchedLinkAction,tutori
 	    AdMobInterstitial.requestAd().catch(error => console.warn(error));
 
 	    return ()=>  AdMobInterstitial.removeAllListeners();
-  }
 	},[])
 
   	useEffect(()=>{

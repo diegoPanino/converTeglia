@@ -23,6 +23,7 @@
     "patch-package": "^6.2.2",
     "react": "^16.13.1",
     "react-native": "0.63.3",
+    "react-native-admob": "^2.0.0-beta.6",
     "react-native-cheerio": "^1.0.0-rc.4",
     "react-native-elements": "^3.0.0-alpha.1",
     "react-native-gesture-handler": "^1.8.0",

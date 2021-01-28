@@ -11,6 +11,9 @@
       android:allowBackup="false"
       android:theme="@style/AppTheme">
       <!-- Add this SplashActivity -->
+      <meta-data
+          android:name="com.google.android.gms.ads.APPLICATION_ID"
+          android:value="ca-app-pub-7517699325717425~7961590190"/>
         <activity
           android:name=".SplashActivity"
           android:theme="@style/SplashTheme"

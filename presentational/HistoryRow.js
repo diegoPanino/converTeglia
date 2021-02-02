@@ -2,7 +2,7 @@ import React,{useState,useRef,useEffect} from 'react';
 import {View,StyleSheet,TouchableOpacity,Text,useWindowDimensions,Animated} from 'react-native';
 import {Tooltip} from 'react-native-elements';
 import Icon from 'react-native-vector-icons/dist/Ionicons';
-import {searchLinkAction,deleteSearchedLinkAction,bookmarkSearchAction} from '../redux/actions';
+import {searchLinkAction,deleteSearchedLinkAction,bookmarkSearchAction,plusFavAction,subFavAction,} from '../redux/actions';
 import {connect} from 'react-redux';
 import ModalMessage from './ModalMessage';
 import MyText from './MyText';
@@ -10,7 +10,7 @@ import MyText from './MyText';
 function HistoryRow(props){
 
 	const [showDelModal,setShowDelModal] = useState(false);
-	const {title,url,navigate,date,index} = props
+	const {title,url,navigate,date,index,adCounter,adLimit} = props
 	const scale = useRef(new Animated.Value(0)).current 
 	let favIco = 'heart-outline'
 	if(props.hasOwnProperty('favourite'))				//select the proper icon to show for selected or not favourite
@@ -38,9 +38,18 @@ function HistoryRow(props){
 		}).start(()=>{
 			props.deleteSearchedLinkAction(date);	
 		})
-			setShowDelModal(false);
+			props.showDelModal(false);
 	}
-	function toggleFavourite(){					
+	function toggleFavourite(){		
+		if(props.favourite)
+			props.subFavAction()
+		else if((!(adCounter%adLimit)) && adCounter !== 0){
+			props.showAdModal(true)
+			return;
+		}
+			else
+				props.plusFavAction()
+
 		props.bookmarkSearchAction(date)
 
 	}
@@ -48,7 +57,7 @@ function HistoryRow(props){
 		<Animated.View style={{scaleX:scale,scaleY:scale}}>	
 			<View style={[styles.row,styles.border]}>
 				<ModalMessage showModal={showDelModal}
-							  message='Sei sicura di volerlo eliminare dalla cronologia?'
+							  message='Rimuovo dalla cronologia?'
 							  extraData={title}
 							  confirm={removeHistoryElement}
 							  close={()=>setShowDelModal(false)} />
@@ -75,7 +84,9 @@ function HistoryRow(props){
 const mapDispatchToProps={
 	searchLinkAction,
 	deleteSearchedLinkAction,
-	bookmarkSearchAction
+	bookmarkSearchAction,
+	plusFavAction,
+	subFavAction,
 }	
 export default connect(null,mapDispatchToProps)(HistoryRow)
 

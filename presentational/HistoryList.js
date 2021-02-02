@@ -1,17 +1,45 @@
-import React from 'react';
-import {SectionList,StyleSheet} from 'react-native';
+import React,{useState,useEffect} from 'react';
+import {View,SectionList,StyleSheet} from 'react-native';
 import moment from 'moment';
 import MyText from './MyText';
 import HistoryRow from './HistoryRow';
+import {AdMobRewarded} from 'react-native-admob';
+import {connect} from 'react-redux';
+import {increaseLimitFavRecipeAction} from '../redux/actions.js';
+import ModalMessageAd from './ModalMessageAd.js';
 
 const locale = moment.updateLocale('it',{
 	monthsShort:'Gen_Feb_Mar_Apr_Mag_Giu_Lug_Ago_Set_Ott_Nov_Dec'.split('_')    //translate the months of moment
 })
 
-export default function HistoryList(props){
-	const {list,navigation} = props
+function HistoryList(props){
+	const {list,navigation,increaseLimitFavRecipeAction} = props
+	const [adError,setAdError] = useState(false)
+	const [showAdModal,setShowAdModal] = useState(false)
+
+	useEffect(()=>{
+    AdMobRewarded.setTestDevices([AdMobRewarded.simulatorId]);
+	AdMobRewarded.setAdUnitID('ca-app-pub-3940256099942544/5224354917')//<-TEST | MINE->'ca-app-pub-7517699325717425/8556915163');
+	
+    AdMobRewarded.addEventListener('rewarded', reward =>{
+      increaseLimitFavRecipeAction()
+    });
+
+    return ()=> AdMobRewarded.removeAllListeners();
+	},[])
+
+	const showAd=()=>{
+		 AdMobRewarded.showAd().catch(error => console.warn(error));
+	}
 	const navigate = () =>{
 		navigation.navigate('ResultScreen')
+	}
+	const onShowAdModal = (flag) =>{
+		setShowAdModal(flag)
+	}
+	const onConfirmAdShow=()=>{
+		setShowAdModal(false)
+		showAd()
 	}
 	const historyByDate = list.reduce((obj,recipe)=>{
 		const date = moment(recipe.date).format('DD MMM YYYY')				
@@ -31,13 +59,25 @@ export default function HistoryList(props){
 			}	
 		})
 	return (
-		<SectionList style={styles.sectionList}
-			sections = {sections}
-			renderItem = { ( {item,index} ) =>{return <HistoryRow {...item} index={index} navigate={navigate} />} }
-			renderSectionHeader = {({section})=><MyText myStyle={styles.sectionHeader} key={section.key}>{section.title}</MyText>}
-		/>
+		<View>
+			<SectionList style={styles.sectionList}
+				sections = {sections}
+				renderItem = { ( {item,index} ) =>{return <HistoryRow {...item} index={index} navigate={navigate}
+																adCounter={props.adCounter} adShow={showAd} adLimit={props.adLimit}
+																showAdModal={flag=>onShowAdModal(flag)}/>} }
+				renderSectionHeader = {({section})=><MyText myStyle={styles.sectionHeader} key={section.key}>{section.title}</MyText>}
+			/>
+			<ModalMessageAd showModal={showAdModal}
+							message={'Sembra che tu abbia giá raggiunto il limite di ricette favorite! Guarda un video per aggiungerne un\'altra!'}
+							confirm={onConfirmAdShow}
+							close={()=>setShowAdModal(false)}
+							ad = {AdMobRewarded}
+							/>
+		</View>
 		);
 }
+export default connect(null,{increaseLimitFavRecipeAction})(HistoryList)
+
 const styles = StyleSheet.create({
 	sectionHeader:{
 		textAlign:'center',

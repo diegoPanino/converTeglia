@@ -316,15 +316,18 @@ if(!(/http/gi).test(url)){
 
 			const htmlPortionsTag = 'div.gz-list-featured-data'
 			let portions;
+			let getPortions= false;
 			const htmlPortionsValue = $(htmlPortionsTag)
 				.find('span.gz-name-featured-data').each((i,el)=>{
 					const line = $(el).text()
 					if(RegExp(/Dosi/gi).test(line)){
 						portions = normalizePortions($(el).find('strong').text());
+						getPortions=true
 					}
-					else
+					else if(!getPortions)
 						portions = normalizePortions()
 				})
+				console.log('out: ',portions)
 
 			$(gialloZafferano).each((i,el)=>{
 				ingredients[i] = $(el).children().text().replace(space," ")

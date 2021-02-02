@@ -1,12 +1,40 @@
-import React from 'react';
-import {View,Modal,StyleSheet,Dimensions,TouchableOpacity} from 'react-native';
+import React,{useState,useEffect} from 'react';
+import {View,Modal,StyleSheet,Dimensions,TouchableOpacity,ActivityIndicator} from 'react-native';
 import MyText from './MyText';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
-export default function ModalMessage(props){
-	const {showModal,message,extraData,close,confirm} = props	
+export default function ModalMessageAd(props){
+	const {showModal,message,extraData,close,confirm,ad} = props	
+	const [adLoaded,setAdLoaded] = useState(false)
+	const [adError,setAdError] = useState(false)
+	const [attempt,setAttempt] = useState(0)
+
+	useEffect(()=>{
+		console.log('modal mount')
+		ad.addEventListener('adFailedToLoad', error =>{
+			console.log('adFail')
+			setAdLoaded(false)
+			setAdError(true)
+		})
+		ad.addEventListener('adLoaded', () =>{
+			console.log('ad loaded')
+			setAdLoaded(true)
+			setAdError(false)
+		})
+		ad.addEventListener('adClosed',()=>{
+			 console.log('ad close')
+			 setAdLoaded(false)
+		})
+		return ()=> ad.removeAllListeners();
+	},[])
+
+	useEffect(()=>{
+		console.log('effect,',adLoaded)
+		if(!adLoaded && !adError)
+			ad.requestAd().catch(err=>console.warn(err))
+	},[adLoaded])
 
 	return(
 		<Modal animationType='slide' transparent={true} visible={showModal}>
@@ -20,8 +48,11 @@ export default function ModalMessage(props){
 				<TouchableOpacity style={[styles.deleteButton,styles.btn]}  onPress={close}>
 					<MyText myStyle={styles.btnText}>CHIUDI</MyText>
 				</TouchableOpacity>
-				<TouchableOpacity style={[styles.closeButton,styles.btn]}  onPress={confirm}>
-					<MyText myStyle={styles.btnText}>ELIMINA}</MyText>
+				<TouchableOpacity style={[styles.closeButton,styles.btn]}  onPress={confirm} disabled={adError}>
+					{(!adLoaded && !adError)
+						?<ActivityIndicator size='small' color='#feaa52' />
+						: (adError) ? <MyText myStyle={styles.btnTextError}>Non disponibile!</MyText>
+									: <MyText myStyle={styles.btnText}>GUARDA</MyText> }
 				</TouchableOpacity>
 			</View>
 		</Modal>
@@ -66,6 +97,10 @@ const styles = StyleSheet.create({
 	  },
 	  btnText:{
 	  	fontSize:22,
+	  	color:'#e8871e'
+	  },
+	  btnTextError:{
+	  	fontSize:18,
 	  	color:'#e8871e'
 	  },
 	  btn:{

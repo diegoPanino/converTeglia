@@ -14,7 +14,10 @@ import {CLEAN_STORE,
 		CONVERT,convertAction,
 		CONVERT_BY_K,convertByKAction,
 		CONVERT_BY_I,convertByIAction,
-		TOGGLE_ICO,toggleChangedIcoAction
+		TOGGLE_ICO,toggleChangedIcoAction,
+		PLUS_FAV,plusFavAction,
+		SUB_FAV,subFavAction,
+		INCREASE_LIMIT_FAV_RECIPE,increaseLimitFavRecipeAction,
 } from './actions'; 
 import {stdTrays} from '../api/standardTrays';
 
@@ -113,6 +116,19 @@ export const settingsReducer = (state = stdTrays,action) =>{
 		}
 		case SET_NUMBER_OF_DAY: return {...state,day:action.payload}
 		case SHOW_TUTORIAL: return {...state,tutorial:action.payload}
+		default: return state
+	}
+}
+export const adReducer = (state = {changedTray:0,favoriteRecipe:0,maxFavRecipe:5,createdTray:0,searchedRecipe:0},action)=>{
+	switch(action.type){
+		case SET_MY_TRAY: return {...state,changedTray:state.changedTray + 1}
+		case SAVE_SEARCHED_LINK: return {...state,searchedRecipe: state.searchedRecipe + 1}
+		case PLUS_FAV: return {...state,favoriteRecipe: state.favoriteRecipe + 1}
+		case SUB_FAV: return {...state,favoriteRecipe: state.favoriteRecipe - 1}
+		case INCREASE_LIMIT_FAV_RECIPE: return {...state, maxFavRecipe:state.maxFavRecipe + 1}
+		case ADD_TRAY: return {...state,createdTray:state.createdTray + 1}
+		case DELETE_TRAY: return {...state,createdTray:state.createdTray - 1}
+
 		default: return state
 	}
 }

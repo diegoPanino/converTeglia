@@ -16,6 +16,9 @@ export const FAST_CONVERTION = 'FAST_CONVERTION'; // FLAG TO SHOW FAST CONVERTIO
 export const CONVERT = 'CONVERT'; //TRIGGER THE FLAG TO CONVERT
 export const CONVERT_BY_K = 'CONVERT_BY_K'; // MULTIPLE ALL INGREDIENTS BY K costant (TRAY)
 export const CONVERT_BY_I = 'CONVERT_BY_I'; // MULTIPLE ALL INGREDIENTS BY I costant (INGREDIENTS)
+export const PLUS_FAV = 'PLUS_FAV'; //ADD 1 TO THE FAVOURITE COUNTER FOR AD
+export const SUB_FAV = 'SUB_FAV'; // SUBTRACT 1 TO THE FAV COUNTER FOR AD
+export const INCREASE_LIMIT_FAV_RECIPE = 'INCREASE_LIMIT_FAV_RECIPE'; // INRCEASE BY 1 THE LIMIT OF THE TOTAL NUMBERS OF FAVOURITE RECIPES
 //ACTION MAKER
 
 export const searchLinkAction= recipe =>({
@@ -79,4 +82,13 @@ export const convertByKAction = k =>({
 export const convertByIAction = i =>({
 	type:CONVERT_BY_I,
 	payload: i,
+})	
+export const plusFavAction = () =>({
+	type:PLUS_FAV
+})
+export const subFavAction = () =>({
+	type:SUB_FAV
+})
+export const increaseLimitFavRecipeAction = () =>({
+	type:INCREASE_LIMIT_FAV_RECIPE
 })

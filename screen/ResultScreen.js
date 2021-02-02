@@ -1,5 +1,5 @@
 import React,{useState,useEffect,useRef} from 'react';
-import {View,StyleSheet,Image,TouchableOpacity,InteractionManager} from 'react-native';
+import {View,StyleSheet,Image,TouchableOpacity,InteractionManager,Animated,ActivityIndicator} from 'react-native';
 //import {AdMobBanner,AdMobInterstitial,PublisherBanner} from 'react-native-admob'
 import {connect} from 'react-redux';
 import MyText from '../presentational/MyText';
@@ -11,6 +11,7 @@ import {toggleBlurAction,fastConvertionAction} from '../redux/actions';
 import * as KitchenMath from '../api/kitchenMath';
 import TutorialBox from '../presentational/tutorial/TutorialBox.js';
 import Loader from './Loader.js';
+import {AdMobBanner} from 'react-native-admob';
 
 function ResultScreen(props){
 
@@ -24,9 +25,12 @@ function ResultScreen(props){
 	const [areaSource,setAreaSource] = useState()
 	const [areaTarget,setAreaTarget] = useState()
 	const [k,setK] = useState(1)
+	const [adError,setAdError] = useState(false)
+	const [adLoaded,setAdLoaded] = useState(false)
 	const [isLoaded,setIsLoaded] = useState(false)
 	const prevAreaTarget = usePrevState(areaTarget)
 	const prevTray = usePrevState(selectedTray.dim)
+	const scale = useRef(new Animated.Value(0)).current
 
 	function usePrevState(value){							//hook to get the prevStatus of value
 		const ref = useRef()
@@ -80,16 +84,45 @@ function ResultScreen(props){
 		navigation.navigate('MyTrayScreen')
 	}
 
+	const adAnimation=()=>{
+		Animated.timing(scale,{
+			toValue:1,
+			duration:300,
+			useNativeDriver:true
+		}).start()
+	}
+	const showAd=()=>{
+		setAdLoaded(true)
+		adAnimation()
+		setAdError(false)
+	}
+	const onAdFailed=()=>{
+		setAdLoaded(false)
+		setAdError(true)
+	}
+
 	if(!isLoaded)
 		return <Loader />					//if the component is not loaded, show the activity indicator and tips
 	else{
 	if(result.hasOwnProperty('recipe')){												
 		if(result.recipe.hasOwnProperty('err'))						//check if the result loaded into redux, exist and if has error, show it
-			return (<View style={styles.errMsgContainer}>							
-						<MyText myStyle={styles.errMsg}>{result.recipe.msg}</MyText>
-						<TouchableOpacity onPress={()=>{navigation.goBack()}}>
-							<MyText myStyle={styles.errMsg}>Riprova</MyText>
-						</TouchableOpacity>
+			return (<View style={styles.errMsgContainer}>
+						{(adLoaded || adError) 
+							?<View style={styles.errMsgTextView}>
+								<MyText myStyle={styles.errMsg}>{result.recipe.msg}</MyText>
+								<TouchableOpacity onPress={()=>{navigation.goBack()}}>
+									<MyText myStyle={styles.errMsg}>Riprova</MyText>
+								</TouchableOpacity>
+							 </View>
+							 : <View style={styles.activityIndicator}><ActivityIndicator size='large' color='black' /></View>}
+							<Animated.View style={[styles.adView,{transform:[{scale}]}]}>
+								<AdMobBanner adSize="mediumRectangle"
+			  								adUnitID="ca-app-pub-3940256099942544/6300978111"//<-TEST | MINE->"ca-app-pub-7517699325717425/8128210768"
+			  								testDevices={[AdMobBanner.simulatorId]} 
+			  								onAdLoaded = {showAd}
+			  								onAdFailedToLoad={onAdFailed}/>
+			  				</Animated.View>
+			  			
 					</View>)
 		else{     				//if there is no error show the 2 modals and the ResultList
 			return (
@@ -149,8 +182,9 @@ export default connect(mapStateToProps,{toggleBlurAction,fastConvertionAction,})
 const styles=StyleSheet.create({
 	errMsgContainer:{
 		flex:1,
-		justifyContent:'center',
+		justifyContent:'space-evenly',
 		backgroundColor:'#fef1d8'
+
 	},
 	errMsg:{
 		textAlign:'center',
@@ -167,6 +201,20 @@ const styles=StyleSheet.create({
 		right:0,
 		left:0,
 		bottom:0,
+	},
+	errMsgTextView:{
+		flex:1,
+		justifyContent:'center',
+	},
+	activityIndicator:{
+		flex:1,
+		justifyContent:'center',
+	},
+	adView:{
+		flex:1,
+		marginBottom:10,
+		justifyContent:'flex-end',
+		alignSelf:'center'
 	},
 	titleContainer:{
 		flex:1,

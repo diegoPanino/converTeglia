@@ -10,12 +10,10 @@ import Tips from '../presentational/Tips.js';
 
 const height = Dimensions.get('window').height
 
-function HistoryScreen({history,navigation,tutorial}){
+function HistoryScreen({history,navigation,tutorial,adCounter,adLimit}){
 	const [isLoaded,setIsLoaded] = useState(false)
 	const [adError,setAdError] = useState(false)
 	const scale = useRef(new Animated.Value(0)).current
-
-
 	function animationScale(){
 		Animated.timing(scale,{
 				toValue:1,
@@ -23,7 +21,6 @@ function HistoryScreen({history,navigation,tutorial}){
 				useNativeDriver:true
 		}).start()
 	}
-
 	function showAd(){
 		setAdError(false)
 		animationScale()
@@ -55,7 +52,7 @@ function HistoryScreen({history,navigation,tutorial}){
 		<View style={styles.mainView}>
 			<View style={styles.contentView}>
 				{(history.length > 0) 
-					? <HistoryList list = {history} navigation = {navigation}/>
+					? <HistoryList list = {history} navigation = {navigation} adCounter={adCounter} adLimit={adLimit}/>
 					: <View style={styles.errMsgContainer}><MyText myStyle={styles.errMsg}>Nessuna ricetta salvata!</MyText></View>
 				}
 				{tutorial && <TutorialBox navigation={navigation} type='history' next='MyTrayScreen'/>}
@@ -75,7 +72,9 @@ function HistoryScreen({history,navigation,tutorial}){
 }
 const mapStateToProps=(state)=>({
 	history:state.history,
-	tutorial:state.settings.tutorial
+	tutorial:state.settings.tutorial,
+	adCounter:state.ad.favoriteRecipe,
+	adLimit:state.ad.maxFavRecipe
 })
 export default connect(mapStateToProps)(HistoryScreen)
 

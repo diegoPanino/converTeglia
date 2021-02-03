@@ -53,7 +53,7 @@ function HistoryScreen({history,navigation,tutorial,adCounter,adLimit}){
 			<View style={styles.contentView}>
 				{(history.length > 0) 
 					? <HistoryList list = {history} navigation = {navigation} adCounter={adCounter} adLimit={adLimit}/>
-					: <View style={styles.errMsgContainer}><MyText myStyle={styles.errMsg}>Nessuna ricetta salvata!</MyText></View>
+					: <MyText myStyle={styles.errMsg}>Nessuna ricetta salvata!</MyText>
 				}
 				{tutorial && <TutorialBox navigation={navigation} type='history' next='MyTrayScreen'/>}
 			</View>
@@ -99,6 +99,7 @@ const styles=StyleSheet.create({
 		backgroundColor:'#fef1d8'
 	},
 	errMsg:{
+		marginTop:50,
 		textAlign:'center',
 		color:'black',
 	},

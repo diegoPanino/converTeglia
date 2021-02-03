@@ -23,13 +23,14 @@ function HistoryList(props){
 	
     AdMobRewarded.addEventListener('rewarded', reward =>{
       increaseLimitFavRecipeAction()
+      console.log('reward')
     });
 
     return ()=> AdMobRewarded.removeAllListeners();
 	},[])
 
 	const showAd=()=>{
-		 AdMobRewarded.showAd().catch(error => console.warn(error));
+		 AdMobRewarded.showAd().catch(error => {});
 	}
 	const navigate = () =>{
 		navigation.navigate('ResultScreen')
@@ -67,12 +68,12 @@ function HistoryList(props){
 																showAdModal={flag=>onShowAdModal(flag)}/>} }
 				renderSectionHeader = {({section})=><MyText myStyle={styles.sectionHeader} key={section.key}>{section.title}</MyText>}
 			/>
-			<ModalMessageAd showModal={showAdModal}
+			{showAdModal && <ModalMessageAd showModal={showAdModal}
 							message={'Sembra che tu abbia giá raggiunto il limite di ricette favorite! Guarda un video per aggiungerne un\'altra!'}
 							confirm={onConfirmAdShow}
 							close={()=>setShowAdModal(false)}
 							ad = {AdMobRewarded}
-							/>
+				/>}
 		</View>
 		);
 }

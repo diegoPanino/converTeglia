@@ -1,6 +1,5 @@
 import React,{useState,useEffect,useRef} from 'react';
 import {View,StyleSheet,Image,TouchableOpacity,InteractionManager,Animated,ActivityIndicator} from 'react-native';
-//import {AdMobBanner,AdMobInterstitial,PublisherBanner} from 'react-native-admob'
 import {connect} from 'react-redux';
 import MyText from '../presentational/MyText';
 import ResultList from '../presentational/ResultList';
@@ -11,12 +10,13 @@ import {toggleBlurAction,fastConvertionAction} from '../redux/actions';
 import * as KitchenMath from '../api/kitchenMath';
 import TutorialBox from '../presentational/tutorial/TutorialBox.js';
 import Loader from './Loader.js';
-import {AdMobBanner} from 'react-native-admob';
+import {AdMobBanner,AdMobInterstitial} from 'react-native-admob';
 
 function ResultScreen(props){
 
 	const {toggleBlurAction,fastConvertionAction} = props
-	const {selectedTray,result,tutorial} = props
+	const {selectedTray,result,tutorial,ad} = props
+	const {searchedRecipe} = ad
 	const {navigation} = props
 	const {dim,key} = selectedTray
 	const [showModal,setShowModal] = useState(false)
@@ -39,6 +39,25 @@ function ResultScreen(props){
 		})
 		return ref.current
 	}
+
+	useEffect(()=>{
+		AdMobInterstitial.setTestDevices([AdMobInterstitial.simulatorId])
+		AdMobInterstitial.setAdUnitID('ca-app-pub-3940256099942544/1033173712')//<--TEST | MINE -->'ca-app-pub-7517699325717425/2883816461')
+		
+		AdMobInterstitial.addEventListener('adClosed',()=>{
+			AdMobInterstitial.requestAd().catch(err=>{})
+		})
+		AdMobInterstitial.isReady(ready =>{
+			if(!ready)
+				AdMobInterstitial.requestAd().catch(err=>console.warn(err))
+		})
+
+		return () => AdMobInterstitial.removeAllListeners()
+	},[])
+	useEffect(()=>{
+		if((searchedRecipe % 3 === 0) && (searchedRecipe !== 0))
+			AdMobInterstitial.showAd().catch(err=>console.warn(err))
+	},[searchedRecipe])
 
 	useEffect(()=>{
 		InteractionManager.runAfterInteractions(()=>{			//wait for animation to be completed and then show the component
@@ -176,6 +195,7 @@ const mapStateToProps=(state)=>({
 	selectedTray:state.settings.selection,
 	tutorial:state.settings.tutorial,
 	convert:state.system.convert,
+	ad:state.ad
 })
 export default connect(mapStateToProps,{toggleBlurAction,fastConvertionAction,})(ResultScreen);
 

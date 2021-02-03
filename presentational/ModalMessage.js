@@ -21,7 +21,7 @@ export default function ModalMessage(props){
 					<MyText myStyle={styles.btnText}>CHIUDI</MyText>
 				</TouchableOpacity>
 				<TouchableOpacity style={[styles.closeButton,styles.btn]}  onPress={confirm}>
-					<MyText myStyle={styles.btnText}>ELIMINA}</MyText>
+					<MyText myStyle={styles.btnText}>ELIMINA</MyText>
 				</TouchableOpacity>
 			</View>
 		</Modal>

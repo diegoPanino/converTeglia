@@ -38,7 +38,7 @@ function HistoryRow(props){
 		}).start(()=>{
 			props.deleteSearchedLinkAction(date);	
 		})
-			props.showDelModal(false);
+			setShowDelModal(false);
 	}
 	function toggleFavourite(){		
 		if(props.favourite)

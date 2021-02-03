@@ -18,6 +18,7 @@ import {CLEAN_STORE,
 		PLUS_FAV,plusFavAction,
 		SUB_FAV,subFavAction,
 		INCREASE_LIMIT_FAV_RECIPE,increaseLimitFavRecipeAction,
+		RESET_CHANGED_TRAY,resetChangedTrayAction
 } from './actions'; 
 import {stdTrays} from '../api/standardTrays';
 
@@ -122,6 +123,7 @@ export const settingsReducer = (state = stdTrays,action) =>{
 export const adReducer = (state = {changedTray:0,favoriteRecipe:0,maxFavRecipe:5,createdTray:0,searchedRecipe:0},action)=>{
 	switch(action.type){
 		case SET_MY_TRAY: return {...state,changedTray:state.changedTray + 1}
+		case RESET_CHANGED_TRAY: return {...state,changedTray: 0 }
 		case SAVE_SEARCHED_LINK: return {...state,searchedRecipe: state.searchedRecipe + 1}
 		case PLUS_FAV: return {...state,favoriteRecipe: state.favoriteRecipe + 1}
 		case SUB_FAV: return {...state,favoriteRecipe: state.favoriteRecipe - 1}

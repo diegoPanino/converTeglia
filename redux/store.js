@@ -11,7 +11,7 @@ const persistConfig ={
 	key:'root',
 	storage:AsyncStorage,
 	timeout:null,
-	whitelist:['history','settings'],
+	whitelist:['history','settings','ad'],
 }
 const reducers = combineReducers({
 	result: linkReducer,

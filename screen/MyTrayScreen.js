@@ -12,16 +12,19 @@ import NewTrayModal from '../presentational/MakeNewTray';
 import { BlurView } from "@react-native-community/blur";
 import TutorialBox from '../presentational/tutorial/TutorialBox.js';
 import Loader from './Loader.js';
-import {AdMobInterstitial} from 'react-native-admob';
+import ModalMessageAd from '../presentational/ModalMessageAd.js'
+import {AdMobInterstitial,AdMobRewarded} from 'react-native-admob';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
-function MyTrayScreen({navigation,toggleBlurAction,setMyTrayAction,tutorial,showTutorialAction}){
-
+function MyTrayScreen({navigation,toggleBlurAction,setMyTrayAction,tutorial,showTutorialAction,ad}){ // carousel render all the cards, should be removed
+																									// and manually implemented
 	const [tray,setTray] = useState('circle');
+	const {createdTray} = ad
 	const [advSett,setAdvSett] = useState(false)
 	const [showNTM,setShowNTM] = useState(false)
+	const [showAdModal,setShowAdModal] = useState(false)
 	const data = ['rect','circle','square'];
 	const refImg = useRef();
 	const refStdTrays = useRef();
@@ -31,13 +34,23 @@ function MyTrayScreen({navigation,toggleBlurAction,setMyTrayAction,tutorial,show
 	const scale = useRef(new Animated.Value(0)).current
 
 	useEffect(()=>{
+		AdMobRewarded.setTestDevices([AdMobRewarded.simulatorId])
+		AdMobRewarded.setAdUnitID('ca-app-pub-3940256099942544/5224354917')//<--TEST | MINE --> ca-app-pub-7517699325717425/8278811044
+		AdMobRewarded.addEventListener('rewarded', reward =>{
+      		setShowNTM(true);
+      		console.log('reward')
+    	});
 
+		return ()=>AdMobRewarded.removeAllListeners()							//useEffect managin rewarded ad after 3 tray creation
+	},[])
+
+	useEffect(()=>{
 		AdMobInterstitial.setTestDevices([AdMobInterstitial.simulatorId]);
     	AdMobInterstitial.setAdUnitID(/*'ca-app-pub-7517699325717425/9027259851'*/ 
     									'ca-app-pub-3940256099942544/1033173712');  //test id
 
     	AdMobInterstitial.addEventListener('adLoaded', () =>{
-      		setAdReady(true)
+      		setAdReady(true)															//effect managing interstitial ad
       		setAdError(false)
       		});
 	    AdMobInterstitial.addEventListener('adFailedToLoad', error =>{
@@ -72,17 +85,28 @@ function MyTrayScreen({navigation,toggleBlurAction,setMyTrayAction,tutorial,show
 		setTray(data[index])									//selected shape of tray and snap the second carousel linked with ref
 		refStdTrays.current.snapToItem(index,true)
 	}
-	function onCreateTrayHandler(){													//on click to make new tray, show the modal to create new tray,
-		if(adReady)
-			AdMobInterstitial.showAd().catch(error => console.warn(error));			//show alway ad
-		setShowNTM(true);
+	function onCreateTrayHandler(){	
+		if((createdTray % 3 === 0) && (createdTray !==0)){
+			setShowAdModal(true)
+		}	
+		else if(adReady){													
+			AdMobInterstitial.showAd().catch(error => console.warn(error));			
+			setShowNTM(true);
+		}
+		
+	}
+	function showAd(){
+		AdMobRewarded.showAd().catch(err=>console.warn(err))
+	}
+	function onConfirmAdShow(){
+		showAd()
+		setShowAdModal(false)
 	}
 
 	if(!isLoaded)
 		return <Loader />
 	else{
 	return (
-		
 		 <View style={styles.view}>
 		 <Animated.View style = {{transform:[{scale}] }} >
 		{tutorial && <TutorialBox navigation={navigation} type='myTray' next='end'
@@ -136,12 +160,19 @@ function MyTrayScreen({navigation,toggleBlurAction,setMyTrayAction,tutorial,show
 				</Modal>
 			</View>
 			</Animated.View>
+			{ showAdModal && <ModalMessageAd showModal={showAdModal}
+							message={'Sembra che tu abbia raggiunto il limite di teglie personali create! Guarda un video per aggiungerne un\'altra!'}
+							confirm={onConfirmAdShow}
+							close={()=>setShowAdModal(false)}
+							ad = {AdMobRewarded}
+				/>}
 		</View>
 		
 		);}
 }
 mapStateToProps=state=>({
-	tutorial:state.settings.tutorial
+	tutorial:state.settings.tutorial,
+	ad: state.ad
 })
 export default connect(mapStateToProps,{toggleBlurAction,setMyTrayAction,showTutorialAction})(MyTrayScreen)
 

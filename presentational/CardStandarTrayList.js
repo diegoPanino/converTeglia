@@ -1,13 +1,36 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import {FlatList,View,StyleSheet} from 'react-native';
 import StdTrayRow from './StdTrayRow';
 import CustomTrayRow from './CustomTrayRow.js'
 import {connect} from 'react-redux';
-import {deleteTrayAction,setMyTrayAction} from '../redux/actions';
+import {deleteTrayAction,setMyTrayAction,resetChangedTrayAction} from '../redux/actions';
 import MyText from './MyText';
+import {AdMobInterstitial} from 'react-native-admob';
 
-function CardTrayList({type,stdTrays,setMyTrayAction,deleteTrayAction}){
+function CardTrayList({type,stdTrays,setMyTrayAction,deleteTrayAction,resetChangedTrayAction,ad}){
 	const typeText = ['rect','circle','square']
+	const {changedTray} = ad
+
+	useEffect(()=>{
+		AdMobInterstitial.setTestDevices([AdMobInterstitial.simulatorId])
+		AdMobInterstitial.setAdUnitID('ca-app-pub-3940256099942544/1033173712')//<--TEST | MINE -->'ca-app-pub-7517699325717425/5502047427')
+		
+		AdMobInterstitial.addEventListener('adClosed',()=>{
+			AdMobInterstitial.requestAd().catch(err=>{})
+		})
+		AdMobInterstitial.isReady(ready=>{
+			if(!ready)
+				AdMobInterstitial.requestAd().catch(err=>{})	
+		})	
+		return ()=>AdMobInterstitial.removeAllListeners()
+	},[])
+	useEffect(()=>{
+		if((changedTray % 5 === 0) && (changedTray !== 0) ){
+			AdMobInterstitial.showAd().catch(err=>{})
+			resetChangedTrayAction();
+		}
+	},[changedTray])
+
 	//render a simple text if no custom trays, or the list, and in the second flatlist render the standard tray. Custom tray will push down till 50% height
 	//the standard tray, its view will as small as 50%
 	return (
@@ -59,9 +82,10 @@ function CardTrayList({type,stdTrays,setMyTrayAction,deleteTrayAction}){
 		);
 }
 mapStateToProps= state =>({
-	stdTrays : state.settings
+	stdTrays : state.settings,
+	ad: state.ad
 })
-export default connect(mapStateToProps,{deleteTrayAction,setMyTrayAction})(CardTrayList)
+export default connect(mapStateToProps,{deleteTrayAction,setMyTrayAction,resetChangedTrayAction})(CardTrayList)
 
 const styles = StyleSheet.create({
 	mainContainer:{

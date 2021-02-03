@@ -19,6 +19,7 @@ export const CONVERT_BY_I = 'CONVERT_BY_I'; // MULTIPLE ALL INGREDIENTS BY I cos
 export const PLUS_FAV = 'PLUS_FAV'; //ADD 1 TO THE FAVOURITE COUNTER FOR AD
 export const SUB_FAV = 'SUB_FAV'; // SUBTRACT 1 TO THE FAV COUNTER FOR AD
 export const INCREASE_LIMIT_FAV_RECIPE = 'INCREASE_LIMIT_FAV_RECIPE'; // INRCEASE BY 1 THE LIMIT OF THE TOTAL NUMBERS OF FAVOURITE RECIPES
+export const RESET_CHANGED_TRAY = 'RESET_CHANGED_TRAY' // MOVE BACK THE COUNTER FOR THE TRAY CHANGING TO ZERO
 //ACTION MAKER
 
 export const searchLinkAction= recipe =>({
@@ -91,4 +92,7 @@ export const subFavAction = () =>({
 })
 export const increaseLimitFavRecipeAction = () =>({
 	type:INCREASE_LIMIT_FAV_RECIPE
+})
+export const resetChangedTrayAction = () =>({
+	type:RESET_CHANGED_TRAY
 })

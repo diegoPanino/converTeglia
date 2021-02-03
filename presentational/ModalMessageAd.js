@@ -12,28 +12,48 @@ export default function ModalMessageAd(props){
 	const [attempt,setAttempt] = useState(0)
 
 	useEffect(()=>{
-		console.log('modal mount')
+		console.log('mount')
 		ad.addEventListener('adFailedToLoad', error =>{
-			console.log('adFail')
-			setAdLoaded(false)
-			setAdError(true)
+			console.log('FailLoad',error)
+			setAttempt(prevState => prevState + 1)
+		})
+		ad.isReady(ready=>{
+			if(ready){
+				setAdLoaded(true)
+				setAdError(false)
+			}
 		})
 		ad.addEventListener('adLoaded', () =>{
-			console.log('ad loaded')
+			console.log('loaded')
 			setAdLoaded(true)
 			setAdError(false)
 		})
 		ad.addEventListener('adClosed',()=>{
-			 console.log('ad close')
+			 console.log('closed')
 			 setAdLoaded(false)
 		})
 		return ()=> ad.removeAllListeners();
 	},[])
+	useEffect(()=>{
+		return ()=> console.log('unmount')
+	},[])
 
 	useEffect(()=>{
-		console.log('effect,',adLoaded)
+		if(attempt <= 5){
+			setTimeout(()=>{
+				ad.requestAd().catch(err=>{console.log('attemptEffect ERR',err)}) 
+			},5000)
+		}
+		else{
+			setAdLoaded(false)
+			setAdError(true)
+		}
+	},[attempt])
+
+	useEffect(()=>{
+		console.log('adLoadedEffect')
 		if(!adLoaded && !adError)
-			ad.requestAd().catch(err=>console.warn(err))
+			ad.requestAd().catch(err => console.log('adLoadedEffectERR',err) )
 	},[adLoaded])
 
 	return(
@@ -48,7 +68,8 @@ export default function ModalMessageAd(props){
 				<TouchableOpacity style={[styles.deleteButton,styles.btn]}  onPress={close}>
 					<MyText myStyle={styles.btnText}>CHIUDI</MyText>
 				</TouchableOpacity>
-				<TouchableOpacity style={[styles.closeButton,styles.btn]}  onPress={confirm} disabled={adError}>
+				<TouchableOpacity  onPress={confirm} disabled={adError}
+					style={adError ? [styles.closeButton,styles.adErrorBtn] : [styles.closeButton,styles.btn]}>
 					{(!adLoaded && !adError)
 						?<ActivityIndicator size='small' color='#feaa52' />
 						: (adError) ? <MyText myStyle={styles.btnTextError}>Non disponibile!</MyText>
@@ -86,6 +107,10 @@ const styles = StyleSheet.create({
 	  	position:'absolute',
 	  	right:20,
 	  	bottom:5,
+	  },
+	  adErrorBtn:{
+	  	margin:20,
+	  	marginRight:5,
 	  },
 	  deleteButton:{
 	  	position:'absolute',

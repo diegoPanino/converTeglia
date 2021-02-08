@@ -6,12 +6,8 @@ const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
 export default function ModalMessageAd(props){
-	const {showModal,message,extraData,close,confirm,ad} = props	
-	const [adLoaded,setAdLoaded] = useState(false)
-	const [adError,setAdError] = useState(false)
-	const [attempt,setAttempt] = useState(0)
-
-	useEffect(()=>{
+	const {showModal,message,extraData,close,confirm,ready,error} = props	
+/*	useEffect(()=>{
 		console.log('mount')
 		ad.addEventListener('adFailedToLoad', error =>{
 			console.log('FailLoad',error)
@@ -38,7 +34,7 @@ export default function ModalMessageAd(props){
 		return ()=> console.log('unmount')
 	},[])
 
-	useEffect(()=>{
+	/*useEffect(()=>{
 		if(attempt <= 5){
 			setTimeout(()=>{
 				ad.requestAd().catch(err=>{console.log('attemptEffect ERR',err)}) 
@@ -54,7 +50,7 @@ export default function ModalMessageAd(props){
 		console.log('adLoadedEffect')
 		if(!adLoaded && !adError)
 			ad.requestAd().catch(err => console.log('adLoadedEffectERR',err) )
-	},[adLoaded])
+	},[adLoaded])*/
 
 	return(
 		<Modal animationType='slide' transparent={true} visible={showModal}>
@@ -68,11 +64,11 @@ export default function ModalMessageAd(props){
 				<TouchableOpacity style={[styles.deleteButton,styles.btn]}  onPress={close}>
 					<MyText myStyle={styles.btnText}>CHIUDI</MyText>
 				</TouchableOpacity>
-				<TouchableOpacity  onPress={confirm} disabled={adError}
-					style={adError ? [styles.closeButton,styles.adErrorBtn] : [styles.closeButton,styles.btn]}>
-					{(!adLoaded && !adError)
+				<TouchableOpacity  onPress={confirm} disabled={!ready}
+					style={error ? [styles.closeButton,styles.adErrorBtn] : [styles.closeButton,styles.btn]}>
+					{(!ready && !error)
 						?<ActivityIndicator size='small' color='#feaa52' />
-						: (adError) ? <MyText myStyle={styles.btnTextError}>Non disponibile!</MyText>
+						: (error) ? <MyText myStyle={styles.btnTextError}>Non disponibile!</MyText>
 									: <MyText myStyle={styles.btnText}>GUARDA</MyText> }
 				</TouchableOpacity>
 			</View>

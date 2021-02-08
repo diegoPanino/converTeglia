@@ -14,20 +14,44 @@ const locale = moment.updateLocale('it',{
 
 function HistoryList(props){
 	const {list,navigation,increaseLimitFavRecipeAction} = props
-	const [adError,setAdError] = useState(false)
+	const [adRewardError,setAdRewardError] = useState(false)
+	const [adRewardLoaded,setAdRewardLoaded] = useState(false)
+	const [adRewardAttempt,setAdRewardAttempt] = useState(0)
 	const [showAdModal,setShowAdModal] = useState(false)
 
 	useEffect(()=>{
     AdMobRewarded.setTestDevices([AdMobRewarded.simulatorId]);
 	AdMobRewarded.setAdUnitID('ca-app-pub-3940256099942544/5224354917')//<-TEST | MINE->'ca-app-pub-7517699325717425/8556915163');
 	
-    AdMobRewarded.addEventListener('rewarded', reward =>{
-      increaseLimitFavRecipeAction()
-      console.log('reward')
-    });
-
-    return ()=> AdMobRewarded.removeAllListeners();
+   	AdMobRewarded.isReady(ready=>{
+		setAdRewardLoaded(ready)
+	})
+	AdMobRewarded.addEventListener('adLoaded',()=>{
+		setAdRewardError(false)
+		setAdRewardLoaded(true)
+	})
+	AdMobRewarded.addEventListener('adFailedToLoad',err=>{
+		setAdRewardAttempt(prevAttempt => prevAttempt + 1)
+	})
+	AdMobRewarded.addEventListener('rewarded',reward =>{
+		increaseLimitFavRecipeAction()
+	})
+	AdMobRewarded.addEventListener('adClosed',()=>{
+		setAdRewardLoaded(false)
+		AdMobRewarded.requestAd().catch(err=>{})
+	})
+	return ()=>AdMobRewarded.removeAllListeners()							//useEffect managin rewarded ad after 3 tray creation
 	},[])
+	useEffect(()=>{
+		if(adRewardAttempt <= 5 && setAdRewardAttempt !== 0){
+			setTimeout(()=>{
+				AdMobRewarded.requestAd().catch(err=>{}) 
+			},5000)
+		}
+		else if(adRewardAttempt === 6 ){
+			setAdRewardError(true)
+		}
+	},[adRewardAttempt])
 
 	const showAd=()=>{
 		 AdMobRewarded.showAd().catch(error => {});
@@ -72,7 +96,8 @@ function HistoryList(props){
 							message={'Sembra che tu abbia giá raggiunto il limite di ricette favorite! Guarda un video per aggiungerne un\'altra!'}
 							confirm={onConfirmAdShow}
 							close={()=>setShowAdModal(false)}
-							ad = {AdMobRewarded}
+							ready={adRewardLoaded}
+							error={adRewardError}
 				/>}
 		</View>
 		);

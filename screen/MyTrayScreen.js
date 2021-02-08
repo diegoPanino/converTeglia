@@ -31,19 +31,46 @@ function MyTrayScreen({navigation,toggleBlurAction,setMyTrayAction,tutorial,show
 	const [isLoaded,setIsLoaded] = useState(false)
 	const [adReady,setAdReady] = useState()
 	const [adError,setAdError] = useState(false)
+	const [adRewardError,setAdRewardError] = useState(false)
+	const [adRewardLoaded,setAdRewardLoaded] = useState(false)
+	const [adRewardAttempt,setAdRewardAttempt] = useState(0)
 	const scale = useRef(new Animated.Value(0)).current
 
 	useEffect(()=>{
 		AdMobRewarded.setTestDevices([AdMobRewarded.simulatorId])
 		AdMobRewarded.setAdUnitID('ca-app-pub-3940256099942544/5224354917')//<--TEST | MINE --> ca-app-pub-7517699325717425/8278811044
-		AdMobRewarded.addEventListener('rewarded', reward =>{
-      		setShowNTM(true);
-      		console.log('reward')
-    	});
 
+		AdMobRewarded.isReady(ready=>{
+				setAdRewardLoaded(ready)
+		})
+		AdMobRewarded.addEventListener('adLoaded',()=>{
+			setAdRewardError(false)
+			setAdRewardLoaded(true)
+		})
+		AdMobRewarded.addEventListener('adFailedToLoad',err=>{
+			setAdRewardAttempt(prevAttempt => prevAttempt + 1)
+		})
+		AdMobRewarded.addEventListener('rewarded',reward =>{
+			setShowNTM(true)
+		})
+		AdMobRewarded.addEventListener('adClosed',()=>{
+			setAdRewardLoaded(false)
+			AdMobRewarded.requestAd().catch(err=>{})
+		})
 		return ()=>AdMobRewarded.removeAllListeners()							//useEffect managin rewarded ad after 3 tray creation
 	},[])
+	useEffect(()=>{
+		if(adRewardAttempt <= 5 && setAdRewardAttempt !== 0){
+			setTimeout(()=>{
+				AdMobRewarded.requestAd().catch(err=>{}) 
+			},5000)
+		}
+		else if(adRewardAttempt === 6 ){
+			setAdRewardError(true)
+		}
+	},[adRewardAttempt])
 
+/*------------------------------------------------------------------------------------*/
 	useEffect(()=>{
 		AdMobInterstitial.setTestDevices([AdMobInterstitial.simulatorId]);
     	AdMobInterstitial.setAdUnitID(/*'ca-app-pub-7517699325717425/9027259851'*/ 
@@ -59,8 +86,9 @@ function MyTrayScreen({navigation,toggleBlurAction,setMyTrayAction,tutorial,show
 	      	});
 	    AdMobInterstitial.isReady(ready=>{
     		setAdReady(ready)
-    		if(!ready)
+    		if(!ready){
     			AdMobInterstitial.requestAd().catch(error => console.warn('requestAd: ',error));
+    		}
     	})
 	    return ()=>  AdMobInterstitial.removeAllListeners();
 	},[])
@@ -89,7 +117,7 @@ function MyTrayScreen({navigation,toggleBlurAction,setMyTrayAction,tutorial,show
 		if((createdTray % 3 === 0) && (createdTray !==0)){
 			setShowAdModal(true)
 		}	
-		else if(adReady){													
+		else {													
 			AdMobInterstitial.showAd().catch(error => console.warn(error));			
 			setShowNTM(true);
 		}
@@ -164,7 +192,8 @@ function MyTrayScreen({navigation,toggleBlurAction,setMyTrayAction,tutorial,show
 							message={'Sembra che tu abbia raggiunto il limite di teglie personali create! Guarda un video per aggiungerne un\'altra!'}
 							confirm={onConfirmAdShow}
 							close={()=>setShowAdModal(false)}
-							ad = {AdMobRewarded}
+							ready={adRewardLoaded}
+							error={adRewardError}
 				/>}
 		</View>
 		

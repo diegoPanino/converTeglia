@@ -111,6 +111,9 @@ function SearchScreen({navigation,searchLinkAction,saveSearchedLinkAction,tutori
 				<TouchableOpacity style={styles.btn} onPress={()=>{setNewRecipe(true);setCopiedRecipe([])}}>
 					<MyText myStyle={styles.btnText}>CREA LA TUA RICETTA</MyText>
 				</TouchableOpacity>
+				<TouchableOpacity style={styles.btn} onPress={()=>navigation.navigate('test')}>
+					<MyText myStyle={styles.btnText}>TEST</MyText>
+				</TouchableOpacity>
 			</View>
 		</View>
 		);}
@@ -133,8 +136,8 @@ const styles=StyleSheet.create({
 		flex:1,
 		justifyContent:'center',
 		alignItems:'center',
-		marginTop:-50,
 		zIndex:1,
+		marginTop:'-10%',
 	},
 	textInput:{
 		flex:1,
@@ -146,6 +149,7 @@ const styles=StyleSheet.create({
 		fontSize:25,
 	},
 	btn:{
+		maxWidth:600,
 		width:'100%',
 		backgroundColor:'#feea52', //BUTTON BACKGROUND
 		borderWidth:2,

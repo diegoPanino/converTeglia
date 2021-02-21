@@ -11,13 +11,13 @@ const HEIGHT = Dimensions.get('window').height
 const styles = StyleSheet.create({
 	mainView:{
 		flex:1,
-		justifyContent:'flex-start',
+		justifyContent:'center',
 		position:'absolute',
 		left:0,
 		top:0,
 		zIndex:10,
 		backgroundColor:'transparent',
-		height:HEIGHT,
+		height:HEIGHT * 0.82,
 		width:WIDTH,
 	},
 	contentView:{
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
 		padding:20,
 		marginRight:'1%',
 		marginLeft:'1%',
-		marginTop:'45%',
+		marginTop:'-10%',
 	},
 	titleView:{
 		borderBottomWidth:1,

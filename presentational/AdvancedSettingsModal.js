@@ -1,10 +1,11 @@
 import React,{useState,useEffect} from 'react';
-import {Modal,View,StyleSheet,TouchableOpacity} from 'react-native';
+import {Modal,View,StyleSheet,TouchableOpacity,Switch} from 'react-native';
 import Icon from 'react-native-vector-icons/dist/Ionicons';
 import {Picker} from '@react-native-picker/picker';
 import {connect} from 'react-redux';
 import {setNumDaysAction,showTutorialAction} from '../redux/actions';
 import MyText from './MyText';
+import MyPicker from './MyPicker.js';
 
 function AdvancedSettingsModal({hide,setNumDaysAction,showTutorialAction,settings,navigation}){
 		
@@ -15,9 +16,6 @@ function AdvancedSettingsModal({hide,setNumDaysAction,showTutorialAction,setting
 	for(let i = 1;i<=90;i++){
 		nums.push(i)
 	}
-	const PickerItems = nums.map(i=>{
-		return <Picker.Item style={styles.pickerItem} label={`${i}`} value={i} key={i}/>
-	})
 
 	useEffect(()=>{
 		if(showTutorial){
@@ -38,35 +36,28 @@ function AdvancedSettingsModal({hide,setNumDaysAction,showTutorialAction,setting
 	}
 
 	return(
-			<View style={styles.modalStyle}>
-				<TouchableOpacity style={styles.btn} onPress={()=>saveAndexit()}>
-					<MyText myStyle={styles.btnStyle}>Impostazioni avanzate</MyText>
-					<Icon style={styles.settingsBtnIcon} name='chevron-down' />
-				</TouchableOpacity>
-				<View style={styles.settings}>
-					<View style={styles.settLine}>
-						<MyText myStyle={styles.settText}>Per quanti giorni salvo le ricette cercate?</MyText>
-						<View style={styles.pickerContainer}>
-							<Picker style={styles.picker} mode='dropdown'
-									selectedValue={numberOfDays}
-									onValueChange={(value)=>setNODays(value)}>
-								{PickerItems}
-							</Picker>
-						</View>
+		<View style={styles.modalStyle}>
+			<TouchableOpacity style={styles.btn} onPress={()=>saveAndexit()}>
+				<MyText myStyle={styles.btnStyle}>Impostazioni avanzate</MyText>
+				<Icon style={styles.settingsBtnIcon} name='chevron-down' />
+			</TouchableOpacity>
+			<View style={styles.settings}>
+				<View style={styles.settLine}>
+					<MyText myStyle={styles.settText}>Per quanti giorni salvo le ricette cercate?</MyText>
+					<View style={styles.pickerContainer}>
+						<MyPicker values={nums} onValueChange={(value)=>setNODays(value)} selectValue={numberOfDays}/>
 					</View>
-					<View style={styles.settLine}>
-						<MyText myStyle={styles.settText}>Guarda tutorial iniziale </MyText>
-						<View style={styles.pickerContainer}>
-							<Picker style={styles.picker} mode='dropdown'
-									selectedValue={showTutorial}
-									onValueChange={(value)=>setShowTutorial(value)}>
-								<Picker.Item label='NO' value={false} key='NO'/>
-								<Picker.Item label='SI' value={true} key='SI'/>
-							</Picker>
-						</View>
+				</View>
+				<View style={styles.settLine}>
+					<MyText myStyle={styles.settText}>Guarda tutorial iniziale </MyText>
+					<View style={styles.pickerContainer}>
+						<Switch onValueChange={(value)=>setShowTutorial(value)} value={showTutorial}
+						        trackColor={{ false: "#767577", true: "#feea52" }}
+    							thumbColor={showTutorial ? "#E8871E" : "#f4f3f4"}/>
 					</View>
-				</View>		
-			</View>
+				</View>
+			</View>		
+		</View>
 		);
 }
 const mapStateToProps = state =>({
@@ -79,7 +70,7 @@ const styles = StyleSheet.create({
 		backgroundColor:'#feebc4',
 		position:'absolute',
 		bottom:0,
-		height:'25%',
+		height:'35%',
 		width:'100%',
 		borderTopLeftRadius:15,
 		borderTopRightRadius:15,
@@ -129,6 +120,8 @@ const styles = StyleSheet.create({
 		fontSize:18,
 	},
 	pickerContainer:{
+		flex:0.5,
+		alignItems:'center',
 		width:'25%',
 		marginLeft:'5%',
 	},
@@ -137,8 +130,5 @@ const styles = StyleSheet.create({
       		{ scaleX: 1 }, 
       		{ scaleY: 1 },
   		],
-	},
-	
-	
-	
+	},	
 })

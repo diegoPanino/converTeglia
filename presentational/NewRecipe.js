@@ -1,5 +1,5 @@
 import React,{useState,useEffect,useRef} from 'react';
-import {View,TextInput,StyleSheet,ScrollView,TouchableOpacity,Alert} from 'react-native';
+import {View,TextInput,StyleSheet,ScrollView,TouchableOpacity,Alert,Dimensions} from 'react-native';
 import {connect} from 'react-redux';
 import { v4 as idGen} from 'uuid';
 import NewIngredientRow from './NewIngredientRow';
@@ -7,13 +7,19 @@ import {toggleBlurAction,searchLinkAction,saveSearchedLinkAction} from '../redux
 import TutorialBox from './tutorial/TutorialBox.js'
 import MyText from './MyText';
 
+const WIDTH = Dimensions.get('window').width
+const HEIGHT = Dimensions.get('window').height
+
 function MakeNewRecipe(props){
 	const [title,setTitle] = useState()
 	const [invalidForm,setInvalidForm] = useState(false)
 	const [ingredientRow,setIngredientRow]=useState(props.recipe||[])
+	const [dropMenu,setDropMenu] = useState(true)
 	const {read} = props
 	const {hide,navigation,tutorial} = props
 	const {toggleBlurAction,searchLinkAction,saveSearchedLinkAction} = props
+
+	console.log('ingredient:',ingredientRow)
 
 	useEffect(()=>{
 		toggleBlurAction()
@@ -125,6 +131,7 @@ function MakeNewRecipe(props){
 									newIngredient={ingredient=>addIngredient(ingredient)}
 									deleteIngredient={id=>onDeleteIngredient(id)}
 									amounts={el.amounts} units={el.units} names={el.names} id={el.id} delay={i}
+									dropMenu={dropMenu}
 								/>)
 						})			
 					}
@@ -151,15 +158,16 @@ export default connect(null,{toggleBlurAction,searchLinkAction,saveSearchedLinkA
 const styles = StyleSheet.create({
 	mainView:{
 		position:'absolute',
-		top:'-2%',
-		height:'100%',
-		width:'100%',
+		top:'20%',
+		left:0,
+		justifyContent:'center',
+		height:HEIGHT * 0.76,
+		width:WIDTH,
 		backgroundColor:'transparent',
 		zIndex:6,
 	},
 	contentView:{
-		position:'relative',
-		top:'25%',
+		//top:'15%',
 		backgroundColor: '#fef1d8',   					 //SURFACE
 		padding:10,
 		paddingBottom:15,

@@ -6,8 +6,8 @@ import MyText from './MyText';
 import * as KitchenMath from '../api/kitchenMath';
 import TutorialBox from './tutorial/TutorialBox.js';
 
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
+const WIDTH = Dimensions.get('window').width
+const HEIGHT = Dimensions.get('window').height
 
 export default function OriginalTrayInfoModal(props){
 	const {confirm,showModal,tray,blurAction,tutorial} = props
@@ -54,49 +54,150 @@ export default function OriginalTrayInfoModal(props){
 	}
 
 	return (
-		<Modal animationType='slide' transparent={true} visible={showModal}>
+		<View style={styles.mainView} >
 		{tutorial && <TutorialBox type='modalOriginal' reduxFunction ={()=>onConfirm()}  />}
-			<View style={styles.modalView}>
-				<View>
-					<MyText myStyle={styles.center}>
+			<View style={styles.contentView}>
+				<View style={styles.contentTextView}>
+					<MyText myStyle={[styles.center,styles.underlineText]}>
 						La ricetta originale usa questa teglia:
 					</MyText>
 					<MyText myStyle={[styles.center,styles.warning]}>
 						(Si consiglia di controllare sempre!)
 					</MyText>
 				</View>
-				<View style={styles.selectedTray}>
-					<View style={styles.pickerContainer}>
-						<Picker style={styles.picker} mode='dropdown'
-								selectedValue={size} 
-								onValueChange={(value)=>setSize(value)}>
-							{PickerItemsSize}
-						</Picker>
-						<MyText myStyle={styles.cm}>cm</MyText>
+				<View style={styles.rowContainer}>
+					<View style={styles.row}>
+							<Picker style={styles.picker} mode='dropdown'
+									selectedValue={size} 
+									onValueChange={(value)=>setSize(value)}>
+								{PickerItemsSize}
+							</Picker>
+							<MyText myStyle={styles.cm}>cm</MyText>
 					</View>
-					<View style={styles.pickerContainer}>
-						<Picker style={styles.picker} mode='dropdown'
-								selectedValue={servs} 
-								onValueChange={(value)=>setServs(value)}>
-							{PickerItemsPortions}
-						</Picker>						
+					<View style={styles.row}>
+							<Picker style={styles.picker} mode='dropdown'
+									selectedValue={servs} 
+									onValueChange={(value)=>setServs(value)}>
+								{PickerItemsPortions}
+							</Picker>
+						<View style={styles.rowRightClm}>						
 							<Icon name='md-person' style={[styles.ico,styles.cm]} />
+						</View>	
 					</View>
 				</View>
-				<TouchableOpacity style={styles.closeButton} onPress={()=>onConfirm()}>
-					<MyText myStyle={styles.closeBtnText}>CONTINUA</MyText>
-				</TouchableOpacity>
+				<View style={styles.btnRow}>
+					<TouchableOpacity style={styles.closeButton} onPress={()=>onConfirm()}>
+						<MyText myStyle={styles.closeBtnText}>CONTINUA</MyText>
+					</TouchableOpacity>
+				</View>
 			</View>
-		</Modal>
+		</View>
 		);
 }
+	const styles= StyleSheet.create({
+		mainView:{
+			position:'absolute',
+			top:'10%',
+			left:0,
+			justifyContent:'center',
+			alignItems:'center',
+			height:HEIGHT * 0.86,
+			width:WIDTH,
+			minHeight:550,
+			backgroundColor:'transparent',
+			zIndex:6,
+		},
+		contentView:{
+			maxWidth:600,
+			flex:0.5,
+			alignItems:'center',
+			marginRight: 20,
+			marginLeft:20,
+	    	backgroundColor: "#fef1d8",			//SURFACE
+		    borderRadius: 20,
+		    padding: 20,
+		    shadowColor: "#000",
+		    shadowOffset: {
+		      width: 0,
+		      height: 2
+		    },
+		    shadowOpacity: 0.25,
+		    shadowRadius: 3.84,
+		    elevation: 5,
+		    borderRightWidth:3,
+		    borderBottomWidth:3,
+		    borderColor:'#feaa52'
+		},
+		contentTextView:{
+			flex:1,
+		},
+		underlineText:{
+			borderBottomWidth:1,
+		},
+		rowContainer:{
+			flex:1,
+		},
+		row:{
+			flexDirection:'row',
+			alignItems:'center',
+		},
+		picker:{
+			width:90,
+			transform:[
+				{scale:1.2}
+			]
+		},
+		btnRow:{
+			marginTop:10,
+			flex:0.6,
+			alignSelf:'flex-end',
+			justifyContent:'flex-end',
+		},
+		closeButton:{
+			maxHeight:45,
+			backgroundColor:'#feea52', //BUTTON BACKGROUND
+			borderWidth:2,
+			borderColor:'#E8871E', 		//BUTTON BORDER
+			borderRadius:20,
+			padding:5,
+			elevation:5,
+		},
+		closeBtnText:{
+			textAlign:'center',
+			fontSize:22,
+			color:'#e8871e'       //BUTTON TEXT COLOR
+		},
+		cm:{
+			justifyContent:'center',
+		},
+		ico:{
+		  	fontSize:18,
+		},
+		center:{
+			textAlign:'center'
+		},
+		warning:{
+			paddingTop:5,
+			color:'red',
+			fontSize:16,
+		}
+	})
 
-	const styles = StyleSheet.create({
-	modalView:{
+/*	const styles = StyleSheet.create({
+	mainView:{
 		position:'absolute',
-		top:windowHeight/3,
-		height:windowHeight/3.5,
-		width:windowWidth-40,
+		top:'20%',
+		left:0,
+		justifyContent:'center',
+		height:HEIGHT * 0.76,
+		width:WIDTH,
+		backgroundColor:'transparent',
+		zIndex:6,
+		borderColor:'pink',
+		borderWidth:3,
+	},	
+	contentView:{
+		flex:0.5,
 		margin: 20,
     	backgroundColor: "#fef1d8",			//SURFACE
 	    borderRadius: 20,
@@ -109,6 +210,8 @@ export default function OriginalTrayInfoModal(props){
 	    shadowOpacity: 0.25,
 	    shadowRadius: 3.84,
 	    elevation: 5,
+	    borderWidth:3,
+	    borderColor:'blue'
 	  },
 	closeButton:{
 	  	position:'absolute',
@@ -128,21 +231,26 @@ export default function OriginalTrayInfoModal(props){
 	},
 	selectedTray:{
 	  	flex:1,
+	  	justifyContent:'center',
 	  	alignItems:'center',
-	  	marginBottom:70,
+	  	//marginBottom:70,
 	  	marginTop:10,
+	  	borderWidth:1,
+	  	borderColor:'green'
 	},
 	pickerContainer:{
 		width:'30%',
 		height:'50%',
+		borderWidth:1,
+		borderColor:'red'
 	},
 	picker:{
 		backgroundColor:'transparent',
-		position:'relative',
 		left:'28%',
+		borderWidth:1,
+		borderColor:'pink'
 	},
 	cm:{
-		position:'relative',
 		bottom:35,
 		left:'75%',
 		fontSize:18,
@@ -159,4 +267,4 @@ export default function OriginalTrayInfoModal(props){
 		color:'red',
 		fontSize:16,
 	}
-})
+})*/

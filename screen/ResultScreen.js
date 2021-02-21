@@ -1,5 +1,5 @@
 import React,{useState,useEffect,useRef} from 'react';
-import {View,StyleSheet,Image,TouchableOpacity,InteractionManager,Animated,ActivityIndicator} from 'react-native';
+import {View,StyleSheet,Image,TouchableOpacity,InteractionManager,Animated,ActivityIndicator,Modal} from 'react-native';
 import {connect} from 'react-redux';
 import MyText from '../presentational/MyText';
 import ResultList from '../presentational/ResultList';
@@ -153,19 +153,23 @@ function ResultScreen(props){
 	 		          blurAmount={1}
 	 		        />}
 	 		        {(tutorial && !modalOriginalTray && !showModal) && <TutorialBox type='result' next='HistoryScreen' navigation={navigation} />}
-	 		        <OriginalTrayInfoModal 
-	 		        				blurAction={toggleBlurAction}
-	 		        				confirm={(area)=>onContinueOriginalTray(area)}
-	 		        				showModal={modalOriginalTray}
-	 		        				tray={result.recipe.trayRad}
-	 		        				tutorial={tutorial}
-	 		        />
-					<ModalInfoTray 	close={()=>changeTray()}
-									confirm={(area)=>onConfirmTray(area)}
-									showModal={showModal}
-									selectedTray={selectedTray}
-									tutorial={tutorial}
-					/>
+		 		    <Modal animationType='slide' transparent={true} visible={modalOriginalTray}>    
+		 		        <OriginalTrayInfoModal 
+		 		        				blurAction={toggleBlurAction}
+		 		        				confirm={(area)=>onContinueOriginalTray(area)}
+		 		        				showModal={modalOriginalTray}
+		 		        				tray={result.recipe.trayRad}
+		 		        				tutorial={tutorial}
+		 		        />
+		 		    </Modal>
+		 		    <Modal animationType='slide' transparent={true} visible={showModal}>
+						<ModalInfoTray 	close={()=>changeTray()}
+										confirm={(area)=>onConfirmTray(area)}
+										showModal={showModal}
+										selectedTray={selectedTray}
+										tutorial={tutorial}
+						/>
+					</Modal>
 					<View style={styles.titleContainer}>
 						<View style={styles.titleView}>
 							<MyText myStyle={styles.title}>{result.recipe.title}</MyText>

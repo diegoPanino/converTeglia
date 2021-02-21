@@ -15,25 +15,25 @@ export default function TutorialBox(props){
 		search:[
 			{
 			message:'Trova la ricetta che più ti piace su internet, copia e incolla l\'indirizzo della pagina in questa barra',
-			positioning:{marginTop:'60%'},
+			positioning:{justifyContent:'center',marginTop:'10%'},
 			},
 			{
 			message:'Puoi anche condividere direttamente la pagina internet dal tuo browser (Chrome,Safari,...) con la app ConverTeglia',
-			positioning:{marginTop:'60%'},
+			positioning:{justifyContent:'center',marginTop:'10%'},
 			},
 			{
 			message:'Oppure scrivi o incolla una lista di ingredienti e \n CREA LA TUA RICETTA personale, nella prossima schermata!',
-			positioning:{marginTop:'95%'},
+			positioning:{justifyContent:'flex-end'},
 			},
 		],
 		newRecipe:[
 			{
 			message:'Qui potrai modificare gli ingredienti inseriti manualmente, e dare un nome alla tua ricetta personale, che verrá salvata',
-			positioning:{marginTop:'100%'},
+			positioning:{justifyContent:'flex-end'},
 			},
 			{
 			message:'Una volta finito con gli ingredienti... CONVERTI!',
-			positioning:{marginTop:'120%'},
+			positioning:{justifyContent:'flex-start'},
 			exampleData:[	{amounts:'100',units:'g',names:'albumi',id:'firstExample'},
 							{amounts:'200',units:'g',names:'zucchero',id:'secondExample'}
 						]
@@ -41,89 +41,89 @@ export default function TutorialBox(props){
 		],
 		modalOriginal:[
 			{
-			message:'In questa schermata toccando sui numeri potrai cambiare le dimensioni o le porzioni della ricetta di partenza.\nProvaci!',
-			positioning:{marginTop:'130%'}
+			message:'In questa schermata toccando sui numeri potrai cambiare le dimensioni o le porzioni della ricetta di partenza.',
+			positioning:{marginTop:'15%',justifyContent:'flex-end',elevation:6}
 			},
 			{
 			message:'ConverTeglia è in grado di leggere le dimensioni dalle ricette online, non è però infallibile!\nControlla sempre per evitare risultati inaspettati!',
-			positioning:{marginTop:'130%'}
+			positioning:{marginTop:'15%',justifyContent:'flex-end',elevation:6}
 			},
 		],
 		selectedTray:[
 			{
 			message:'Qui potrai cambiare o confermare la tua teglia, quella per la quale vuoi convertire la ricetta',
-			positioning:{marginTop:'130%'}
+			positioning:{justifyContent:'flex-end',elevation:6}
 			},
 			{
 			message:'Ti mostrerò dopo come gestire le tue teglie personali, ora è tempo di matematica da cucina!',
-			positioning:{marginTop:'130%'}
+			positioning:{justifyContent:'flex-end',elevation:6}
 			},
 		],
 		result:[
 			{
 			message:'Eccoci qua! Le quantitá degli ingredienti vengono convertite considerando le aree delle due teglie.',
-			positioning:{marginTop:'50%'}
+			positioning:{justifyContent:'center'}
 			},
 			{
 			message:'Hai notato troppo tardi che sei a corto di uno degli ingredienti?\nNessun problema, tocca il lucchetto e cambia la quantitá di quell\'ingrediente!',
-			positioning:{marginTop:'50%'}
+			positioning:{justifyContent:'center'}
 			},
 			{
 			message:'Hai solo 100g di burro, ma la ricetta ne vuole 250?\nChiudi il lucchetto con un tocco e inserisci 100 nella linea dell\'ingrediente del quale sei a corto e ConverTeglia ricalcolerá per te tutti gli ingredienti, senza cambiare le proporzioni',
-			positioning:{marginTop:'50%'}
+			positioning:{justifyContent:'center'}
 			},
 			{
 			message:'Questa icona nell\'angolo a destra,con l\'immagine della teglia, ti aiuterá a tenere a mente la tua teglia selezionata (quella che metti in forno!)',
-			positioning:{marginTop:0}
+			positioning:{justifyContent:'flex-start'}
 			},
 			{
 			message:'L\'icona accanto è invece il tuo ricettario! Tutte le ricette convertite, prese da internet o create da te, verranno salvate qui dentro!\nComodo no?',
-			positioning:{marginTop:0}
+			positioning:{justifyContent:'flex-start'}
 			},
 		],
 		history:[
 			{
 			message:'Il Ricettario viene diviso secondo la data, le ricette piú vecchie, secondo le tue preferenze, verranno eliminate automaticamente',
-			positioning:{marginTop:'30%'},
+			positioning:{justifyContent:'center'},
 			},
 			{
 			message:'Toccando il cuore, eviterai che la ricetta sia eliminata automaticamente, così da averla sempre a tua disposizione, anche offline',
-			positioning:{marginTop:'30%'}
+			positioning:{justifyContent:'center'}
 			},
 			{
 			message:'Toccando invece il pianeta avrai la possibilitá di copiare il link della pagina web della ricetta, così da poter ritrovare velocemente le tue ricette di piú esito!',
-			positioning:{marginTop:'30%'},
+			positioning:{justifyContent:'center'},
 			},
 			{
 			message:'Puoi anche eliminarle manualmente, toccando il cestino, ricordati di separare i rifiuti!\nAdesso parliamo di teglie...Ricordi l\'icona con l\'immagine della teglia?',
-			positioning:{marginTop:0},
+			positioning:{justifyContent:'flex-start'},
 			},
 		],	
 		myTray:[
 			{
 			message:'Fai scorrere verso destra o verso sinistra le immagini delle teglie, per cambiare la forma della tua teglia',
-			positioning:{marginTop:'45%'}
+			positioning:{justifyContent:'center'}
 			},
 			{
 			message:'Per il momento ci sono solo le teglie di misure standard, ma basta pochissimo per creare la tua teglia personale, toccando CREA LA TUA TEGLIA',
-			positioning:{marginTop:0}
+			positioning:{justifyContent:'flex-start'}
 			},
 			{
 			message:'Tocca la teglia che vuoi utilizzare, e vedrai l\'icona cambiare a seconda della forma selezionata',
-			positioning:{marginTop:0},
+			positioning:{justifyContent:'flex-start'},
 			key:'0.0'
 			},
 			{
 			message:'Toccando Impostazioni Avanzate, potrai scegliere dopo quanti giorni ConverTeglia deve eliminare le vecchie ricette, salvate nel ricettario ',
-			positioning:{marginTop:'30%'}
+			positioning:{justifyContent:'center'}
 			},
 			{
 			message:'...E avrai anche la possibilitá di rivedere questo emozionante tutorial!\n',
-			positioning:{marginTop:'30%'}
+			positioning:{justifyContent:'center'}
 			},
 			{
 			message:'E con questo è tutto, spero che ConverTeglia ti sia d\'aiuto nello sfornare leccornie!\nSe è così, o anche no, qualsiasi commento o domanda vorrai lasciare nelle recensioni dell\'app, saranno molto apprezati!\nOra ai fornelli!',
-			positioning:{marginTop:'20%'}
+			positioning:{justifyContent:'flex-start'}
 			},
 		],		
 	}
@@ -215,9 +215,9 @@ export default function TutorialBox(props){
 	}
 
 	return(
-		<View style={styles.mainView}>
+		<View style={[styles.mainView,screen[type][index].positioning]}>
 			<Animated.View style={{transform:[{scale}]}} >
-				<View style={[styles.contentView,screen[type][index].positioning]}>
+				<View style={styles.contentView}>
 					<View style={styles.headerContent}>
 						<View style={styles.icoView}>
 							{(index !== 0) && <TouchableOpacity onPress={()=>onPrevPress()}>
@@ -246,14 +246,13 @@ export default function TutorialBox(props){
 const styles= StyleSheet.create({
 	mainView:{
 		flex:1,
-		justifyContent:'flex-start',
 		position:'absolute',
 		left:0,
 		top:0,
 		zIndex:10,
 		elevation:3,
 		backgroundColor:'transparent',
-		height:HEIGHT,
+		height:HEIGHT * 0.76,
 		width:WIDTH,
 	},
 	contentView:{
@@ -264,7 +263,6 @@ const styles= StyleSheet.create({
 		padding:20,
 		marginRight:'1%',
 		marginLeft:'1%',
-		marginTop:'45%',
 	},
 	headerContent:{
 		flexDirection:'row'

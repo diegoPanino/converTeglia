@@ -12,6 +12,7 @@ import {searchLinkAction} from './redux/actions';
 import {Provider} from 'react-redux';
 import {PersistGate} from 'redux-persist/integration/react';
 import SplashScreen from 'react-native-splash-screen';
+import Test from './screen/test.js';
 
 
 
@@ -50,6 +51,7 @@ export default function App(){
             <Stack.Screen name='ResultScreen' component={ResultScreen} />
             <Stack.Screen name='MyTrayScreen' component={MyTrayScreen} />
             <Stack.Screen name='HistoryScreen' component={HistoryScreen} />
+            <Stack.Screen name='test' component={Test} />
           </Stack.Navigator>
         </NavigationContainer>
       </PersistGate>

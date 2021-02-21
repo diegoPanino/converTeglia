@@ -66,7 +66,7 @@ function Header({scene,previous,navigation,settings,system,toggleChangedIcoActio
 	return (
 		<View style={styles.header}>
 			<View style={styles.logoContainer}>
-				<Image blurRadius={blur} source = {logo} style = {styles.logo} />
+				<Image source = {logo} style = {styles.logo} />
 			</View>
 			{fastConv 
 			? 	<ConvertButton blurRadius={blur} navigation={navigation} />

@@ -2,6 +2,7 @@ import React,{useState,useEffect,useRef} from 'react';
 import {View,TextInput,StyleSheet,Animated,Dimensions} from 'react-native';
 import Icon from 'react-native-vector-icons/dist/Ionicons';
 import {Picker} from '@react-native-picker/picker';
+import MyPicker from './MyPicker.js';
 
 const SCREEN_WIDTH = Dimensions.get('window').width
 
@@ -52,6 +53,7 @@ export default function NewIngredientRow({form=false,...props}){
 	const onSubmitHandler=()=>{							//when units change or onSubmitEnding create the new ingredient
 		if(names&&amounts){
 			const fail = newIngredient({amounts,units,names,id})
+			console.log(fail)
 			if(fail || form){
 				setName()
 				setAmount()
@@ -88,14 +90,8 @@ export default function NewIngredientRow({form=false,...props}){
 					/>
 				</View>
 				<View style={styles.units}>
-					<Picker style={styles.picker}
-							mode='dropdown'
-							selectedValue={units}
-							onValueChange={(val)=>setUnit(val)}
-							>
-						{pickerUnit}	
-					</Picker>
-
+					<MyPicker values={unitss} onValueChange={(val)=>setUnit(val)} icon={false} selectValue={units}
+							 iconStyle={styles.pickerFontSize} textStyle={styles.pickerFontSize} xOffset={form?0:100}/>
 				</View>
 				<View style={styles.names}>
 					<TextInput
@@ -134,17 +130,19 @@ const styles = StyleSheet.create({
 		borderColor:'#feaa52'			//BUTTON BACKGROUND
 	},
 	units:{
-		flex:0.5,
+		flex:0.7,
 		borderWidth:2,
+		alignItems:'center',
+		justifyContent:'center',
 		borderRadius:10,
 		marginLeft:10,
 		marginRight:10,	
 		borderColor:'#feaa52'			//BUTTON BACKGROUND
 	},
 	picker:{
-		backgroundColor:'transparent',
-		width:78,
-		color:'black'				//TEXT INPUT
+		alignSelf:'center',	
+		color:'black',				//TEXT INPUT
+		minWidth:80,
 	},
 	names:{
 		flex:3,
@@ -167,5 +165,22 @@ const styles = StyleSheet.create({
 	},
 	color:{
 		color:'black' 				//ICO COLOR
+	},
+	pickerFontSize:{
+		fontSize:18
 	}
 })
+
+
+
+/*
+<View style={styles.units}>
+					<Picker style={styles.picker}
+							mode='dropdown'
+							selectedValue={units}
+							onValueChange={(val)=>setUnit(val)}
+							>
+						{pickerUnit}	
+					</Picker>
+				</View>
+*/

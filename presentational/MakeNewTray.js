@@ -2,9 +2,8 @@ import React,{useState,useEffect} from 'react';
 import {View,StyleSheet, Image, TouchableOpacity,TextInput, TouchableWithoutFeedback, Keyboard} from 'react-native';
 import {connect} from 'react-redux';
 import {toggleBlurAction,addTrayAction} from '../redux/actions';
-import {Picker} from '@react-native-picker/picker';
-import MyPicker from './MyPicker';
 import MyText from './MyText';
+import MyPicker from './MyPicker.js';
 
 const squareIco = require ('../img/quadrata.png');
 const rectIco = require('../img/rettangolare.png');
@@ -37,9 +36,6 @@ function NewTrayModal(props){
 	for(let i = 1;i<=44;i++){
 		nums.push(i)																			//create a list of numbers for the picker
 	}
-	const pickers = nums.map(i=>{
-		return <Picker.Item style={styles.pickerItem} label={`${i}`} value={i} key={i}/>
-	})
 
 	const checkName=()=>{							//if name is not set, use standard name
 		if(!name)
@@ -161,30 +157,21 @@ function NewTrayModal(props){
 					? 	<View>
 							<MyText myStyle={styles.label}>Misure</MyText>
 							<View style={styles.dimInput}>
-							    <Picker style={styles.picker}
-							    		selectedValue={a} mode='dropdown'
-							    		onValueChange={(value)=>setA(value)}>
-							    			{pickers}
-							    </Picker>
+							   	<MyPicker values={nums} textStyle={{fontSize:18}}
+							    			selectValue={a} onValueChange={(value)=>setA(value)} />
 							    <MyText myStyle={styles.pickerText}>X</MyText>
-							    <Picker style={styles.picker}
-							    		selectedValue={b} mode='dropdown'
-							    		onValueChange={(value)=>setB(value)}>
-							    			{pickers}
-							    </Picker>
+							   	<MyPicker values={nums} textStyle={{fontSize:18}}
+							    			selectValue={b} onValueChange={(value)=>setB(value)} />
 							    <MyText myStyle={styles.pickerText}>cm</MyText>
 							</View>
 						</View>
 					: 	
 					 	<View>
 					 		<MyText myStyle={styles.label}>Misura:</MyText>
-							<View style={styles.sideView}>
+							<View style={styles.dimInput}>
 								<MyText myStyle={styles.sideText}>Diametro/Lato:</MyText>
-								<Picker style={styles.sidePicker}
-							    		selectedValue={dim} mode='dropdown'
-							    		onValueChange={(value)=>setDim(value)}>
-							    			{pickers}
-							    </Picker>
+								<View style={styles.flex1}><MyPicker values={nums} textStyle={{fontSize:18}} xOffset={30}
+								   		selectValue={dim} onValueChange={(value)=>setDim(value)} /></View>
 							</View>
 						</View>
 				}
@@ -290,39 +277,26 @@ const styles = StyleSheet.create({
 	dimInput:{
 		flexDirection:'row',
 		alignItems:'center',
-		textAlign:'center',
+		justifyContent:'center'
 	},
-	pickerItem:{ //not in use in android
-		
+	flex1:{
+		flex:1,
 	},
-	picker:{
-		width:85,
-		backgroundColor:'transparent',
-		transform: [
-      		{ scaleX: 1.1 }, 
-      		{ scaleY: 1.3 },
-  		],
-  		position:'relative',
-  		left:'200%',
+	flex1a:{
+		flex:1,
+		alignItems:'flex-end'
 	},
 	pickerText:{
-		width:'15%',
-		position:'relative',
-  		left:'90%',
-  		marginRight:'-18%',
+		fontSize:18,
+		marginRight:5,
+		marginLeft:5,
 		textAlign:'center',
 	},
-	sidePicker:{
-		flex:1,
-		backgroundColor:'transparent',
-		transform: [
-      		{ scaleX: 1.1 }, 
-      		{ scaleY: 1.3 },
-  		],
-	},
-	sideView:{
-		flexDirection:'row',
-		alignItems:'center'
+	pickerTextCM:{
+		flex:0.5,
+		textAlign:'center',
+		alignItems:'center',
+		borderWidth:1,
 	},
 	sideText:{
 		flex:3,

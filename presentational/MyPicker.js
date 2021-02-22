@@ -11,30 +11,22 @@ export default function MyPicker(props){
 	const [y,setY] = useState()
 	const [height,setHeight] = useState()
 	const pickerBar = useRef(null)
-	let MyPickerItems;
 
+	useEffect(()=>{
+		setSelectedItem(selectValue)
+	},[selectValue])
 	useEffect(()=>{
 		onValueChange(selectedItem)
 	},[selectedItem])
 
-	if(label){
-		MyPickerItems = values.map((el,i)=>{
-			return (
-				<TouchableOpacity style={[styles.pickerItem,pickeItemStyle]} key={i} onPress={()=>selectItem(el)}>
-					<Text style={textStyle}>{label[i]}</Text>						
-				</TouchableOpacity>
-			)
-		})
-	}
-	else{
-		MyPickerItems = values.map((el,i)=>{
-			return (
-				<TouchableOpacity style={[styles.pickerItem,pickeItemStyle]} key={i} onPress={()=>selectItem(el)}>
-					<Text style={textStyle}>{el}</Text>						
-				</TouchableOpacity>
-			)
-		})
-	}
+	const MyPickerItems = values.map((el,i)=>{
+		return (
+			<TouchableOpacity style={[styles.pickerItem,pickeItemStyle]} key={i} onPress={()=>selectItem(el)}>
+				<Text style={textStyle}>{el}</Text>						
+			</TouchableOpacity>
+		)
+	})
+
 	const selectItem=el=>{
 		setSelectedItem(el)
 		setDropMenu(false)
@@ -48,7 +40,7 @@ export default function MyPicker(props){
 			setX(px)
 			setY(py)
 			setHeight(height)
-		}),500)
+		}),0)
 	}
 
 	return (
@@ -59,7 +51,7 @@ export default function MyPicker(props){
 			</TouchableOpacity>
 			<Modal animationType="slide" transparent={true} visible={dropMenu} >
 				<TouchableOpacity style={styles.mainContentModal} onPress={toggleDropMenu} />
-					<View style={[styles.dropMenuContainer,menuStyle,{height:dropMenuHeight,left:x-xOffset,top:y-(dropMenuHeight/2) }]} >
+					<View style={[styles.dropMenuContainer,menuStyle,{height:dropMenuHeight,left:x-xOffset,top:y-(dropMenuHeight/2)-yOffset }]} >
 						<ScrollView>
 							{MyPickerItems}
 						</ScrollView>

@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from 'react';
-import {View,StyleSheet, Image, TouchableOpacity,TextInput, TouchableWithoutFeedback, Keyboard} from 'react-native';
+import {View,StyleSheet, Image, TouchableOpacity,TextInput, TouchableWithoutFeedback, Keyboard,KeyboardAvoidingView} from 'react-native';
 import {connect} from 'react-redux';
 import {toggleBlurAction,addTrayAction} from '../redux/actions';
 import MyText from './MyText';
@@ -117,79 +117,80 @@ function NewTrayModal(props){
 	}
 
 	return (
-		<TouchableWithoutFeedback onPress={()=>Keyboard.dismiss()} >
-		<View style={styles.mainView} >
-			<View style={styles.contentView}>
-				<View style={styles.nameInput}>
-					<MyText myStyle={styles.label}>Nome</MyText>
-             		 <TextInput style={styles.textInput}
-             		 		placeholder='Dai un nome alla tua teglia!'
-             		 		autoFocus={true} clearButtonMode='while-editing'
-             		 		maxLength={32} returnKeyType='done' textAlign='center'
-             		 		onEndEditing={()=>checkName()}
-             		 		onChangeText={text=>setName(text)} value = {name} />
-            	</View>
-				<View style = {styles.type}>
-					<MyText myStyle={styles.label}>Forma</MyText>
-					<View style={styles.btnRow}>
-						<TouchableOpacity
-							style={type === 'rect'? [styles.select,styles.touch] : styles.touch}
-							onPress={()=>{Keyboard.dismiss();setType('rect')}}>
-							<MyText myStyle={styles.imgText}>Rettangolare</MyText>
-							<Image source={rectIco} style={styles.img} />
-						</TouchableOpacity>
-						<TouchableOpacity
-							style={type === 'circle'? styles.select : styles.touch}
-							onPress={()=>{Keyboard.dismiss();setType('circle')}}>
-							<MyText myStyle={styles.imgText}>Rotonda</MyText>
-							<Image source={circleIco} style={styles.img} />
-						</TouchableOpacity>
-						<TouchableOpacity
-						style={type === 'square'? styles.select : styles.touch}
-						onPress={()=>{Keyboard.dismiss();setType('square')}}>
-							<MyText myStyle={styles.imgText}>Quadrata</MyText>
-							<Image source={squareIco} style={styles.img} />
-						</TouchableOpacity>
-					</View>
-				</View>
-				<View style = {styles.measurement}>
-				{type === 'rect' 
-					? 	<View>
-							<MyText myStyle={styles.label}>Misure</MyText>
-							<View style={styles.dimInput}>
-							   	<MyPicker values={nums} textStyle={{fontSize:18}}
-							    			selectValue={a} onValueChange={(value)=>setA(value)} />
-							    <MyText myStyle={styles.pickerText}>X</MyText>
-							   	<MyPicker values={nums} textStyle={{fontSize:18}}
-							    			selectValue={b} onValueChange={(value)=>setB(value)} />
-							    <MyText myStyle={styles.pickerText}>cm</MyText>
+			<TouchableWithoutFeedback onPress={()=>Keyboard.dismiss()} >
+				<View style={styles.mainView} >
+					<View style={styles.contentView}>
+						<View style={styles.nameInput}>
+							<MyText myStyle={styles.label}>Nome</MyText>
+		             		 <TextInput style={styles.textInput}
+		             		 		placeholder='Dai un nome alla tua teglia!'
+		             		 		autoFocus={true} clearButtonMode='while-editing'
+		             		 		maxLength={32} returnKeyType='done' textAlign='center'
+		             		 		onEndEditing={()=>checkName()}
+		             		 		onChangeText={text=>setName(text)} value = {name} />
+		            	</View>
+						<View style = {styles.type}>
+							<MyText myStyle={styles.label}>Forma</MyText>
+							<View style={styles.shapeSelectionRow}>
+								<TouchableOpacity
+									style={type === 'rect'? [styles.select,styles.touch] : styles.touch}
+									onPress={()=>{Keyboard.dismiss();setType('rect')}}>
+									<MyText myStyle={styles.imgText}>Rettangolare</MyText>
+									<Image source={rectIco} style={styles.img} />
+								</TouchableOpacity>
+								<TouchableOpacity
+									style={type === 'circle'? styles.select : styles.touch}
+									onPress={()=>{Keyboard.dismiss();setType('circle')}}>
+									<MyText myStyle={styles.imgText}>Rotonda</MyText>
+									<Image source={circleIco} style={styles.img} />
+								</TouchableOpacity>
+								<TouchableOpacity
+								style={type === 'square'? styles.select : styles.touch}
+								onPress={()=>{Keyboard.dismiss();setType('square')}}>
+									<MyText myStyle={styles.imgText}>Quadrata</MyText>
+									<Image source={squareIco} style={styles.img} />
+								</TouchableOpacity>
 							</View>
 						</View>
-					: 	
-					 	<View>
-					 		<MyText myStyle={styles.label}>Misura:</MyText>
-							<View style={styles.dimInput}>
-								<MyText myStyle={styles.sideText}>Diametro/Lato:</MyText>
-								<View style={styles.flex1}><MyPicker values={nums} textStyle={{fontSize:18}} xOffset={30}
-								   		selectValue={dim} onValueChange={(value)=>setDim(value)} /></View>
+						<View style = {styles.measurement}>
+						{type === 'rect' 
+							? 	<View>
+									<MyText myStyle={styles.label}>Misure</MyText>
+									<View style={styles.dimInput}>
+									   	<MyPicker values={nums} textStyle={{fontSize:18}}
+									    			selectValue={a} onValueChange={(value)=>setA(value)} />
+									    <MyText myStyle={styles.pickerText}>X</MyText>
+									   	<MyPicker values={nums} textStyle={{fontSize:18}}
+									    			selectValue={b} onValueChange={(value)=>setB(value)} />
+									    <MyText myStyle={styles.pickerText}>cm</MyText>
+									</View>
+								</View>
+							: 	
+							 	<View>
+							 		<MyText myStyle={styles.label}>Misura:</MyText>
+									<View style={styles.dimInput}>
+										<MyText myStyle={styles.sideText}>Diametro/Lato:</MyText>
+										<View style={styles.flex1}>
+											<MyPicker values={nums} textStyle={{fontSize:18}} xOffset={30} yOffset={50}
+										   			selectValue={dim} onValueChange={(value)=>setDim(value)} /></View>
+									</View>
+								</View>
+						}
+							<View style={styles.servs}>
+								<MyText myStyle={{fontSize:18}}>Porzioni: <MyText myStyle={styles.servsText}>{servs}</MyText></MyText>		
 							</View>
 						</View>
-				}
-					<View style={styles.servs}>
-						<MyText myStyle={{fontSize:18}}>Porzioni: <MyText myStyle={styles.servsText}>{servs}</MyText></MyText>		
+						<View style={styles.btnRow}>
+							<TouchableOpacity style={styles.btn}  large transparent onPress={()=>onCancel()}>
+								<MyText myStyle={styles.btnText}>INDIETRO</MyText>
+							</TouchableOpacity>
+							<TouchableOpacity style={styles.btn} disabled={invalidForm} large transparent onPress={()=>onSave()}>
+								<MyText myStyle={styles.btnText}>SALVA TEGLIA</MyText>
+							</TouchableOpacity>
+						</View>
 					</View>
 				</View>
-				<View style={styles.btnRow}>
-					<TouchableOpacity style={styles.btn}  large transparent onPress={()=>onCancel()}>
-						<MyText myStyle={styles.btnText}>INDIETRO</MyText>
-					</TouchableOpacity>
-					<TouchableOpacity style={styles.btn} disabled={invalidForm} large transparent onPress={()=>onSave()}>
-						<MyText myStyle={styles.btnText}>SALVA TEGLIA</MyText>
-					</TouchableOpacity>
-				</View>
-			</View>
-		</View>
-		</TouchableWithoutFeedback>
+			</TouchableWithoutFeedback>
 		);
 }
 export default connect(null,{toggleBlurAction,addTrayAction})(NewTrayModal)
@@ -197,15 +198,14 @@ export default connect(null,{toggleBlurAction,addTrayAction})(NewTrayModal)
 const styles = StyleSheet.create({
 	mainView:{
 		position:'absolute',
-		top:'-25%',
-		height:'120%',
+		//top:'-25%',
+		height:'100%',
 		width:'100%',
 		backgroundColor:'transparent',
 		zIndex:6,
+		borderWidth:5,
 	},
 	contentView:{
-		position:'relative',
-		top:'25%',
 		backgroundColor: '#fef1d8',   //SURFACE
 		padding:10,
 		paddingBottom:15,
@@ -226,6 +226,10 @@ const styles = StyleSheet.create({
 	textInput:{
 		fontSize:18
 	},
+	shapeSelectionRow:{
+		flexDirection:'row',
+		justifyContent:'space-around',
+	},
 	btnRow:{
 		flexDirection:'row',
 		justifyContent:'space-around',
@@ -235,7 +239,6 @@ const styles = StyleSheet.create({
 		alignItems:'center',
 		borderTopWidth:1,
 		borderTopColor:'#feaa52',
-		marginBottom:20,
 	},
 	
 	type:{

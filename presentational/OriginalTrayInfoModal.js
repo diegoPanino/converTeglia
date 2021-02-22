@@ -1,10 +1,10 @@
 import React,{useState,useEffect} from 'react';
 import {View,Modal,StyleSheet,Dimensions,TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/dist/Ionicons';
-import {Picker} from '@react-native-picker/picker';
 import MyText from './MyText';
 import * as KitchenMath from '../api/kitchenMath';
 import TutorialBox from './tutorial/TutorialBox.js';
+import MyPicker from './MyPicker.js';
 
 const WIDTH = Dimensions.get('window').width
 const HEIGHT = Dimensions.get('window').height
@@ -18,16 +18,10 @@ export default function OriginalTrayInfoModal(props){
 	for(let i = 1;i<=44;i++){
 		pickerSize.push(i)																		//create a picker items with numbers
 	}
-	const PickerItemsSize = pickerSize.map(i=>{
-		return <Picker.Item style={styles.pickerItem} label={`${i}`} value={i} key={i}/>
-	})
 	let pickerPortions=[];
 	for(let i = 1;i<=30;i++){
 		pickerPortions.push(i)
 	}
-	const PickerItemsPortions = pickerPortions.map(i=>{										//create a picker items with numbers for portions
-		return <Picker.Item style={styles.pickerItem} label={`${i}`} value={i} key={i}/>
-	})
 
 	useEffect(()=>{
 		blurAction()							//on mount blur the header
@@ -67,20 +61,22 @@ export default function OriginalTrayInfoModal(props){
 				</View>
 				<View style={styles.rowContainer}>
 					<View style={styles.row}>
-							<Picker style={styles.picker} mode='dropdown'
-									selectedValue={size} 
-									onValueChange={(value)=>setSize(value)}>
-								{PickerItemsSize}
-							</Picker>
+						<View style={styles.pickerContainer}>	
+							<MyPicker values={pickerSize} textStyle={{fontSize:20}}
+									selectValue={size} 
+									onValueChange={(value)=>setSize(value)} />
+						</View>
+						<View style={styles.pickerTextContainer}>
 							<MyText myStyle={styles.cm}>cm</MyText>
+						</View>
 					</View>
 					<View style={styles.row}>
-							<Picker style={styles.picker} mode='dropdown'
-									selectedValue={servs} 
-									onValueChange={(value)=>setServs(value)}>
-								{PickerItemsPortions}
-							</Picker>
-						<View style={styles.rowRightClm}>						
+						<View style={styles.pickerContainer}>	
+							<MyPicker values={pickerPortions} textStyle={{fontSize:20}}
+									selectValue={servs} 
+									onValueChange={(value)=>setServs(value)} />
+						</View>
+						<View style={styles.pickerTextContainer}>						
 							<Icon name='md-person' style={[styles.ico,styles.cm]} />
 						</View>	
 					</View>
@@ -97,7 +93,7 @@ export default function OriginalTrayInfoModal(props){
 	const styles= StyleSheet.create({
 		mainView:{
 			position:'absolute',
-			top:'10%',
+			top:'-10%',
 			left:0,
 			justifyContent:'center',
 			alignItems:'center',
@@ -136,16 +132,20 @@ export default function OriginalTrayInfoModal(props){
 		},
 		rowContainer:{
 			flex:1,
+			justifyContent:'center'
 		},
 		row:{
+			width:'50%',
 			flexDirection:'row',
 			alignItems:'center',
 		},
-		picker:{
-			width:90,
-			transform:[
-				{scale:1.2}
-			]
+		pickerContainer:{
+			flex:1,
+			alignItems:'flex-end'
+		},
+		pickerTextContainer:{
+			flex:1,
+			alignItems:'flex-start',
 		},
 		btnRow:{
 			marginTop:10,

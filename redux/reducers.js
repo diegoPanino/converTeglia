@@ -18,7 +18,10 @@ import {CLEAN_STORE,
 		PLUS_FAV,plusFavAction,
 		SUB_FAV,subFavAction,
 		INCREASE_LIMIT_FAV_RECIPE,increaseLimitFavRecipeAction,
-		RESET_CHANGED_TRAY,resetChangedTrayAction
+		RESET_CHANGED_TRAY,resetChangedTrayAction,
+		FETCH_SENT,fetchUrlSentAction,
+		FETCH_SUCCESS,fetchUrlSuccessAction,
+		FETCH_FAIL,fetchUrlFailedAction,
 } from './actions'; 
 import {stdTrays} from '../api/standardTrays';
 
@@ -36,7 +39,7 @@ export const systemReducer = (state = {...state,blur:false,fastConv:false,conver
 	}
 }
 
-export const linkReducer = (state = {recipe:{},convertedRecipe:{}} ,action) =>{
+export const linkReducer = (state = {recipe:{},convertedRecipe:{},fetching:false} ,action) =>{
 	switch(action.type){
 		case SEARCH_LINK: return {...state,...action.payload}
 		case CONVERT_BY_K: {
@@ -53,6 +56,9 @@ export const linkReducer = (state = {recipe:{},convertedRecipe:{}} ,action) =>{
 			})
 			return {...state,convertedRecipe:converted};
 		}
+		case FETCH_SENT: return {...state,fetching:true}
+		case FETCH_SUCCESS: return {...state,fetching:false}
+		case FETCH_FAIL: return {...state,fetching:false}
 		default: return state;
 	}
 }

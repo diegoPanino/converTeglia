@@ -5,20 +5,42 @@ import Icon from 'react-native-vector-icons/dist/Ionicons';
 import { v4 as idGen} from 'uuid';
 import {connect} from 'react-redux';
 import MyText from '../presentational/MyText';
-import {searchLinkAction,saveSearchedLinkAction} from '../redux/actions';
+import {searchLinkAction,saveSearchedLinkAction,fetchIngredient} from '../redux/actions';
 import {getIngredients} from '../api/fetch';
 import MakeNewRecipe from '../presentational/NewRecipe';
 import TutorialWelcome from '../presentational/tutorial/TutorialWelcome.js';
 import MySplashScreen from './SplashScreen.js';
 
 
-function SearchScreen({navigation,searchLinkAction,saveSearchedLinkAction,tutorial}){
+function SearchScreen({navigation,searchLinkAction,saveSearchedLinkAction,tutorial,fetchIngredient,result}){
 	const [inputBox, setInputBox] = useState('')
 	const [newRecipe,setNewRecipe] = useState(false)
 	const [copiedRecipe,setCopiedRecipe] = useState('')
 	const [isLoaded,setIsLoaded] = useState(false)
+	const [searching,setSearching] = useState(false)
 	const searchBtn = useRef(new Animated.Value(1)).current
 
+	useEffect(()=>{
+		console.log('effect')
+		if(!result.fetching && searching){
+			console.log('fetching: ',result.fetching,' searching: ',searching)
+			if(result.recipe.hasOwnProperty('personal')){
+				console.log('personal')
+				const recipe = result.recipe.ingredients.map(ingr=>{
+					return {amounts:ingr.amounts.toString(),
+							units:ingr.units,
+							names:ingr.names,
+							id:idGen()
+							}
+					})
+				setCopiedRecipe(recipe)
+				setNewRecipe(true)
+				return;
+			}
+			else if(result.length > 0)
+				navigation.navigate('ResultScreen')
+		}
+	},[result])
 
 	const shareTextHandler = useCallback((sharedItem)=>{			//if detect a share item, check if is text/plain, clean the string removing
 	if(!sharedItem) return											//everything that is not url, get that value, update the input box 
@@ -61,29 +83,10 @@ function SearchScreen({navigation,searchLinkAction,saveSearchedLinkAction,tutori
 
 		if(inputBox === undefined || inputBox === null ||inputBox.length <= 0)
 			return ;
+		setSearching(true)
 		setCopiedRecipe([])
 		Keyboard.dismiss();
-		getIngredients(inputBox)
-			.then(result=>{
-				if(!result.hasOwnProperty('err')){
-					if(result.hasOwnProperty('personal')){
-					const recipe = result.ingredients.map(ingr=>{
-						return {amounts:ingr.amounts.toString(),
-								units:ingr.units,
-								names:ingr.names,
-								id:idGen()
-								}
-					})
-					setCopiedRecipe(recipe)
-					setNewRecipe(true)
-					return 
-					}else
-						saveSearchedLinkAction(result)				//if there are no errors, save into the cronology the recipe in redux
-				}
-				searchLinkAction(result);
-				navigation.navigate('ResultScreen');			//activate the search link action that store the result into redux and navigate to 
-			})													//resut
-			.catch(err=>console.log(err))//neeed to implementaion
+		fetchIngredient(inputBox)
 	}
 
 	if(!isLoaded)
@@ -119,10 +122,11 @@ function SearchScreen({navigation,searchLinkAction,saveSearchedLinkAction,tutori
 		);}
 }	
 const mapStateToProps=state=>({
-	tutorial:state.settings.tutorial
+	tutorial:state.settings.tutorial,
+	result:state.result,
 })
 
-export default connect(mapStateToProps,{searchLinkAction,saveSearchedLinkAction})(SearchScreen)
+export default connect(mapStateToProps,{searchLinkAction,saveSearchedLinkAction,fetchIngredient})(SearchScreen)
 
 const styles=StyleSheet.create({
 	mainView:{

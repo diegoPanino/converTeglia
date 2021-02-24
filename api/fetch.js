@@ -208,7 +208,7 @@ function getAmount(ings,title,url,portions=22,src='image not found'){
 				RegExp(/l\b|litro\b|litri\b|decilitro\b|decilitri\b|ml\b|cl\b|kg\b|chilo\b|chili\b|g\b|gr\b|mg\b|grammi|grammo|cucchiaio|cucchiaino|cucchiaini|cucchiai|tazza|tazze/i);
 			const unitsRaw = selectUnits.exec(strNoNums)
 			if(unitsRaw !== null){
-				const units = normalizeUnit(unitsRaw[0])
+				const units = (normalizeUnit(unitsRaw[0]) || ' ')
 				const namesRaw = unitsRaw.input.replace(selectUnits,'')
 				const names = normalizeNames(namesRaw)
 				recipe.ingredients.push({
@@ -327,8 +327,7 @@ if(!(/http/gi).test(url)){
 					else if(!getPortions)
 						portions = normalizePortions()
 				})
-				console.log('out: ',portions)
-
+				
 			$(gialloZafferano).each((i,el)=>{
 				ingredients[i] = $(el).children().text().replace(space," ")
 			})

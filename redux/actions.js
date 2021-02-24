@@ -1,3 +1,5 @@
+import {getIngredients} from '../api/fetch';
+
 //ACTION TYPE
 export const SEARCH_LINK = 'SEARCH_LINK'; //SENDING A LINK TO BE FETCHED
 export const CLEAN_STORE = 'CLEAN_STORE';
@@ -108,3 +110,20 @@ export const fetchUrlSuccessAction = () =>({
 export const fetchUrlFailedAction = () =>({
 	type:FETCH_FAIL
 })
+export const fetchIngredient=url=>{
+	return function(dispatch){
+		dispatch(fetchUrlSentAction())
+		getIngredients(url).then(result => {
+			if(!result.hasOwnProperty('err')){
+				dispatch(fetchUrlSuccessAction())
+				dispatch(saveSearchedLinkAction(result))
+				dispatch(searchLinkAction(result))
+			}
+			else{
+				dispatch(fetchUrlFailedAction())
+				dispatch(searchLinkAction(result))
+			}
+			
+		})
+	}
+}

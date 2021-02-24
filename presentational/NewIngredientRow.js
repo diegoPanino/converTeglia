@@ -7,7 +7,7 @@ const SCREEN_WIDTH = Dimensions.get('window').width
 
 export default function NewIngredientRow({form=false,...props}){
 	const [amounts,setAmount] = useState(props.amounts)
-	const [units,setUnit] = useState(props.units || 'g')
+	const [units,setUnit] = useState(props.units || ' ')
 	const [names,setName] = useState(props.names)
 	const [id,setId] = useState(props.id)
 	const [showDeleteIco,setShowDeleteIco] = useState(false)

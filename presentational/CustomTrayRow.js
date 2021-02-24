@@ -19,7 +19,7 @@ export default function CustomTrayRow({tray,onErase,onSelect}){
 		<View>
 		<TouchableOpacity style={styles.rowContainer} onPress={()=>onSelect(key)}>
 			<View style={styles.name}><MyText myStyle={styles.text}>{name}</MyText></View>
-			<View style={styles.dim}><MyText myStyle={styles.text}>{dim}cm</MyText></View>
+			<View style={styles.dim}><MyText myStyle={styles.text}>{dim}</MyText></View>
 			<View style={styles.servs}>
 				<MyText myStyle={styles.text}>{servs}</MyText>
 				<Icon style={styles.text} name='md-person' />
@@ -28,7 +28,7 @@ export default function CustomTrayRow({tray,onErase,onSelect}){
 				{(	selected && 
 					<Icon style={[styles.icoSize,styles.selectIco]} name='restaurant-outline'/>)
 				}
-				<TouchableOpacity onPress={()=>setShowDelModal(true)}>
+				<TouchableOpacity style={styles.trashContainer} onPress={()=>setShowDelModal(true)}>
 					<Icon style={styles.icoSize} name='trash-outline' />
 				</TouchableOpacity>
 			</View>
@@ -44,7 +44,7 @@ export default function CustomTrayRow({tray,onErase,onSelect}){
 const styles = StyleSheet.create({
 	rowContainer:{
 		flexDirection:'row',
-		height:35,
+		flex:1,
 		borderBottomWidth:0.8,
 		borderColor:'#FFDCBA',
 		borderTopLeftRadius:20,
@@ -52,6 +52,8 @@ const styles = StyleSheet.create({
 	},
 	name:{
 		flex:3,
+		flexShrink:1,
+		flexWrap:'nowrap',
 		justifyContent:'center',
 		marginLeft:5
 	},
@@ -76,6 +78,9 @@ const styles = StyleSheet.create({
 	},
 	text:{
 		fontSize:18
+	},
+	trashContainer:{
+		justifyContent:'center'
 	},
 	icoSize:{
 		fontSize:28,

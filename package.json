@@ -15,7 +15,6 @@
     "@react-native-community/cli": "^4.13.0",
     "@react-native-community/cli-platform-android": "^4.13.0",
     "@react-native-community/masked-view": "^0.1.10",
-    "@react-native-picker/picker": "^1.9.2",
     "@react-navigation/native": "^5.8.2",
     "@react-navigation/stack": "^5.11.1",
     "core-js": "^3.7.0",

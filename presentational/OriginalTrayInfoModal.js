@@ -93,7 +93,7 @@ export default function OriginalTrayInfoModal(props){
 	const styles= StyleSheet.create({
 		mainView:{
 			position:'absolute',
-			top:'-10%',
+			top:'10%',
 			left:0,
 			justifyContent:'center',
 			alignItems:'center',

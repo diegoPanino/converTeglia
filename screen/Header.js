@@ -26,7 +26,7 @@ function Header({scene,previous,navigation,settings,system,toggleChangedIcoActio
 	const {fastConv} = system
 	const BadgedImage = withBadge(<Text style={styles.color}>{select.servs}<Icon name='md-person' style={styles.servsIco}/></Text>,
 		{top:22,right:5,badgeStyle:styles.badgeStyleServs})(Image)
-	const BadgedImg = withBadge(<Text style={styles.color}>{select.dim}cm</Text>,
+	const BadgedImg = withBadge(<Text style={styles.color}>{select.dim}</Text>,
 		{right:5,badgeStyle:styles.badgeStyle})(BadgedImage)
 	const scale = useRef(new Animated.Value(1)).current
 

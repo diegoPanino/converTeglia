@@ -1,7 +1,6 @@
 import React,{useState,useEffect} from 'react';
 import {Modal,View,StyleSheet,TouchableOpacity,Switch} from 'react-native';
 import Icon from 'react-native-vector-icons/dist/Ionicons';
-import {Picker} from '@react-native-picker/picker';
 import {connect} from 'react-redux';
 import {setNumDaysAction,showTutorialAction} from '../redux/actions';
 import MyText from './MyText';
@@ -125,10 +124,4 @@ const styles = StyleSheet.create({
 		width:'25%',
 		marginLeft:'5%',
 	},
-	picker:{
-		transform: [
-      		{ scaleX: 1 }, 
-      		{ scaleY: 1 },
-  		],
-	},	
 })

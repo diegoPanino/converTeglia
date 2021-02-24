@@ -1,7 +1,6 @@
 import React,{useState,useEffect,useRef} from 'react';
 import {View,TextInput,StyleSheet,Animated,Dimensions} from 'react-native';
 import Icon from 'react-native-vector-icons/dist/Ionicons';
-import {Picker} from '@react-native-picker/picker';
 import MyPicker from './MyPicker.js';
 
 const SCREEN_WIDTH = Dimensions.get('window').width
@@ -16,9 +15,6 @@ export default function NewIngredientRow({form=false,...props}){
 	const animationScale = useRef(new Animated.Value(0)).current
 
 	const unitss = [' ','g','kg','ml','dl','l','CT','ct','tz']
-	const pickerUnit = unitss.map(el=>{														//create a picker element for each available units
-		return <Picker.Item style={styles.pickerItem} label={`${el}`} value={el} key={el}/>
-	})
 
 	useEffect(()=>{								//animation delayed showing new line of ingredients
 		Animated.timing(animationScale,{
@@ -138,11 +134,6 @@ const styles = StyleSheet.create({
 		marginLeft:10,
 		marginRight:10,	
 		borderColor:'#feaa52'			//BUTTON BACKGROUND
-	},
-	picker:{
-		alignSelf:'center',	
-		color:'black',				//TEXT INPUT
-		minWidth:80,
 	},
 	names:{
 		flex:3,

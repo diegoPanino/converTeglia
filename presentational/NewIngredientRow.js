@@ -1,5 +1,5 @@
 import React,{useState,useEffect,useRef} from 'react';
-import {View,TextInput,StyleSheet,Animated,Dimensions} from 'react-native';
+import {View,TextInput,StyleSheet,Animated,Dimensions, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/dist/Ionicons';
 import MyPicker from './MyPicker.js';
 
@@ -13,6 +13,7 @@ export default function NewIngredientRow({form=false,...props}){
 	const [showDeleteIco,setShowDeleteIco] = useState(false)
 	const {newIngredient,deleteIngredient,delay} = props
 	const animationScale = useRef(new Animated.Value(0)).current
+	const [firstClickPicker,setFirstClickPicker] = useState(false)
 
 	const unitss = [' ','g','kg','ml','dl','l','CT','ct','tz']
 
@@ -49,7 +50,6 @@ export default function NewIngredientRow({form=false,...props}){
 	const onSubmitHandler=()=>{							//when units change or onSubmitEnding create the new ingredient
 		if(names&&amounts){
 			const fail = newIngredient({amounts,units,names,id})
-			console.log(fail)
 			if(fail || form){
 				setName()
 				setAmount()
@@ -83,11 +83,12 @@ export default function NewIngredientRow({form=false,...props}){
 						onChangeText={text=>onAmountChageHandler(text)}
 						onSubmitEditing={()=>onSubmitHandler()}
 						onEndEditing={()=>onSubmitHandler()}
+						maxLength={4}
 					/>
 				</View>
 				<View style={styles.units}>
 					<MyPicker values={unitss} onValueChange={(val)=>setUnit(val)} icon={false} selectValue={units}
-							 iconStyle={styles.pickerFontSize} textStyle={styles.pickerFontSize} xOffset={form?0:100}/>
+							 iconStyle={styles.pickerFontSize} textStyle={styles.pickerFontSize} xOffset={form?0:100}/>	
 				</View>
 				<View style={styles.names}>
 					<TextInput
@@ -100,6 +101,8 @@ export default function NewIngredientRow({form=false,...props}){
 						onSubmitEditing={()=>onSubmitHandler()}
 						onEndEditing={()=>onSubmitHandler()}
 						returnKeyType='done'
+						autoCapitalize='none'
+						maxLength={32}
 					/>
 				</View>
 				<View style={styles.icoContainer}>

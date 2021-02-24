@@ -19,8 +19,6 @@ function MakeNewRecipe(props){
 	const {hide,navigation,tutorial} = props
 	const {toggleBlurAction,searchLinkAction,saveSearchedLinkAction} = props
 
-	console.log('ingredient:',ingredientRow)
-
 	useEffect(()=>{
 		toggleBlurAction()
 		return ()=>{
@@ -121,6 +119,7 @@ function MakeNewRecipe(props){
 						placeholderTextColor='black'
 						textAlign='center'
 						autoFocus={false}
+						maxLength={32}
 						onChangeText={(text)=>setTitle(text)}
 					/>
 				</View>

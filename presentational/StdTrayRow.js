@@ -13,7 +13,7 @@ export default function StdTrayRow({tray,onSelect}){
 		<TouchableOpacity style={styles.rowContainer} onPress={()=>onSelect(key)}
 			delayPressIn={5} delayPressOut={5} delayLongPress={5}>
 			<View style={styles.name}><MyText myStyle={styles.text}></MyText></View>
-			<View style={styles.dim}><MyText myStyle={styles.text}>{dim}</MyText></View>
+			<View style={styles.dim}><MyText myStyle={styles.text}>{dim}{Math.trunc(key) === 1 ? '':'cm'}</MyText></View>
 			<View style={styles.servs}>
 				<MyText myStyle={styles.text}>{servs}</MyText>
 				<Icon style={styles.servIco} name='md-person' />

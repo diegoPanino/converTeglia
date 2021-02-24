@@ -57,7 +57,7 @@ export default function ModalMessage(props){
 const styles = StyleSheet.create({
 	mainView:{
 		position:'absolute',
-		top:'20%',
+		top:'10%',
 		left:0,
 		justifyContent:'center',
 		alignItems:'center',
@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
 		marginLeft:20,
     	backgroundColor: "#fef1d8",			//SURFACE
 	    borderRadius: 20,
-	    padding: 20,
+	    padding: 15,
 	    shadowColor: "#000",
 	    shadowOffset: {
 	      width: 0,
@@ -94,10 +94,19 @@ const styles = StyleSheet.create({
 	rowContainer:{
 		flex:0.6,
 		flexDirection:'row',
-		minWidth:300,
+		alignItems:'flex-end'
 	},
+	changeButton:{
+		flex:1,
+		alignItems:'flex-start'
+	},
+	convertButton:{
+		flex:1,
+		alignItems:'flex-end'
+ 	},
 	center:{
 	  	textAlign:'center',
+	  	alignItems:'flex-start'
 	},
 	h4:{
 	  	fontSize:18
@@ -116,16 +125,6 @@ const styles = StyleSheet.create({
 	ico:{
 	  	fontSize:18,
 	},
-	changeButton:{
-		alignSelf:'flex-end',
-		position:'absolute',
-		left:0,
-	},
-	convertButton:{
-		alignSelf:'flex-end',
-		position:'absolute',
-		right:0,
- 	},
 	btn:{
 		maxHeight:45,
 		backgroundColor:'#feea52', //BUTTON BACKGROUND

@@ -35,7 +35,6 @@ export default function MyPicker(props){
 		setDropMenu(prevState=>!prevState)
 	}
 	const measureEl=event=>{
-		const layout = event.nativeEvent.layout
 		setTimeout(()=>pickerBar.current.measure((fx,fy,width,height,px,py) => {
 			setX(px)
 			setY(py)

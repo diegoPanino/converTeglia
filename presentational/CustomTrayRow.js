@@ -19,7 +19,7 @@ export default function CustomTrayRow({tray,onErase,onSelect}){
 		<View>
 		<TouchableOpacity style={styles.rowContainer} onPress={()=>onSelect(key)}>
 			<View style={styles.name}><MyText myStyle={styles.text}>{name}</MyText></View>
-			<View style={styles.dim}><MyText myStyle={styles.text}>{dim}</MyText></View>
+			<View style={styles.dim}><MyText myStyle={styles.text}>{dim}{Math.trunc(key) === 1 ? '':'cm'}</MyText></View>
 			<View style={styles.servs}>
 				<MyText myStyle={styles.text}>{servs}</MyText>
 				<Icon style={styles.text} name='md-person' />

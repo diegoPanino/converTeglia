@@ -99,7 +99,6 @@ export default function OriginalTrayInfoModal(props){
 			alignItems:'center',
 			height:HEIGHT * 0.86,
 			width:WIDTH,
-			minHeight:550,
 			backgroundColor:'transparent',
 			zIndex:6,
 		},
@@ -111,7 +110,7 @@ export default function OriginalTrayInfoModal(props){
 			marginLeft:20,
 	    	backgroundColor: "#fef1d8",			//SURFACE
 		    borderRadius: 20,
-		    padding: 20,
+		    padding: 10,
 		    shadowColor: "#000",
 		    shadowOffset: {
 		      width: 0,
@@ -125,14 +124,17 @@ export default function OriginalTrayInfoModal(props){
 		    borderColor:'#feaa52'
 		},
 		contentTextView:{
-			flex:1,
+			flex:2,
+			flexGrow:1,
 		},
 		underlineText:{
 			borderBottomWidth:1,
 		},
 		rowContainer:{
 			flex:1,
-			justifyContent:'center'
+			flexGrow:2,
+			justifyContent:'center',
+			alignSelf:'center'
 		},
 		row:{
 			width:'50%',
@@ -151,7 +153,7 @@ export default function OriginalTrayInfoModal(props){
 			marginTop:10,
 			flex:0.6,
 			alignSelf:'flex-end',
-			justifyContent:'flex-end',
+			justifyContent:'flex-start',
 		},
 		closeButton:{
 			maxHeight:45,
@@ -174,7 +176,7 @@ export default function OriginalTrayInfoModal(props){
 		  	fontSize:18,
 		},
 		center:{
-			textAlign:'center'
+			textAlign:'center',
 		},
 		warning:{
 			paddingTop:5,

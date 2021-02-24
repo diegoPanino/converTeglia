@@ -11,18 +11,24 @@ export default function ModalMessage(props){
 	return(
 		<Modal animationType='slide' transparent={true} visible={showModal}>
 			<View style = {styles.modalView}>
-				<View>
+				<View style={styles.textContaier}>
 					<MyText myStyle={styles.text}>{message}</MyText>
 				</View>
-				<View>
+				<View style={styles.extraDataContaier}>
 					<MyText myStyle={[styles.text,styles.extraData]}>{extraData}</MyText>
 				</View>
-				<TouchableOpacity style={[styles.deleteButton,styles.btn]}  onPress={close}>
-					<MyText myStyle={styles.btnText}>CHIUDI</MyText>
-				</TouchableOpacity>
-				<TouchableOpacity style={[styles.closeButton,styles.btn]}  onPress={confirm}>
-					<MyText myStyle={styles.btnText}>ELIMINA</MyText>
-				</TouchableOpacity>
+				<View style={styles.btnContainer}>
+					<View style={styles.closeButton}>	
+						<TouchableOpacity style={styles.btn}  onPress={close}>
+							<MyText myStyle={styles.btnText}>CHIUDI</MyText>
+						</TouchableOpacity>
+					</View>
+					<View style={styles.deleteButton}>
+						<TouchableOpacity style={styles.btn}  onPress={confirm}>
+							<MyText myStyle={styles.btnText}>ELIMINA</MyText>
+						</TouchableOpacity>
+					</View>
+				</View>
 			</View>
 		</Modal>
 		);
@@ -31,8 +37,10 @@ const styles = StyleSheet.create({
 	modalView:{
 		position:'absolute',
 		top:windowHeight/3,
-		height:windowHeight/4.3,
+		flex:1,
+		alignSelf:'center',
 		width:windowWidth-40,
+		maxWidth:600,
 		margin: 20,
 		backgroundColor:'#feebc4', 	//background
 	    borderRadius: 20,
@@ -46,29 +54,39 @@ const styles = StyleSheet.create({
 	    shadowRadius: 3.84,
 	    elevation: 5
 	  },
-	  extraData:{
-	  	fontWeight:'bold',
+	textContaier:{
+		flex:1,
+	},
+	extraDataContaier:{
+		flex:3,
+	},
+	btnContainer:{
+		flex:1,
+		flexDirection:'row',
+		alignItems:'center',
+	},
+	extraData:{
+		fontWeight:'bold',
 	 	textAlign:'center',
 	 	marginTop:10,
-	  },
-	  closeButton:{
-	  	position:'absolute',
-	  	right:20,
-	  	bottom:5,
-	  },
-	  deleteButton:{
-	  	position:'absolute',
-	  	left:20,
-	  	bottom:5,
-	  },
-	  text:{
+	},
+	closeButton:{
+		flex:1,
+		alignItems:'flex-start'
+	},
+	deleteButton:{
+		flex:1,
+		alignItems:'flex-end'
+	},
+	text:{
 	  	fontSize:18,
-	  },
-	  btnText:{
+	  	textAlign:'center',
+	},
+	btnText:{
 	  	fontSize:22,
 	  	color:'#e8871e'
-	  },
-	  btn:{
+	},
+	btn:{
 	  	backgroundColor:'#feea52', //BUTTON BACKGROUND
 		borderWidth:2,
 		borderColor:'#E8871E', 		//BUTTON BORDER
@@ -76,5 +94,5 @@ const styles = StyleSheet.create({
 		padding:5,
 		elevation:5,
 		margin:10,
-	  }
+	}
 })

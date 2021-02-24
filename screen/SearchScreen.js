@@ -22,6 +22,7 @@ function SearchScreen({navigation,searchLinkAction,saveSearchedLinkAction,tutori
 
 	useEffect(()=>{
 		console.log('effect')
+		if(result)
 		if(!result.fetching && searching){
 			console.log('fetching: ',result.fetching,' searching: ',searching)
 			if(result.recipe.hasOwnProperty('personal')){
@@ -35,10 +36,13 @@ function SearchScreen({navigation,searchLinkAction,saveSearchedLinkAction,tutori
 					})
 				setCopiedRecipe(recipe)
 				setNewRecipe(true)
+				setSearching(false)
 				return;
 			}
-			else if(result.length > 0)
+			else if(result.recipe.hasOwnProperty('err') || result.recipe.hasOwnProperty('url')){
+				setSearching(false)
 				navigation.navigate('ResultScreen')
+			}
 		}
 	},[result])
 

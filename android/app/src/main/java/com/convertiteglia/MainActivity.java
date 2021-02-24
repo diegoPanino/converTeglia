@@ -6,7 +6,6 @@ import android.os.Bundle;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
-import com.google.android.gms.ads.InterstitialAd;
 
 public class MainActivity extends ReactActivity {
 

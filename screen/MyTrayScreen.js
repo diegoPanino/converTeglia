@@ -73,7 +73,7 @@ function MyTrayScreen({navigation,toggleBlurAction,setMyTrayAction,tutorial,show
 /*------------------------------------------------------------------------------------*/
 	useEffect(()=>{
 		AdMobInterstitial.setTestDevices([AdMobInterstitial.simulatorId]);
-    	AdMobInterstitial.setAdUnitID(/*'ca-app-pub-7517699325717425/9027259851'*/ 
+    	AdMobInterstitial.setAdUnitID(/*'ca-app-pub-7517699325717425/9027259851' */
     									'ca-app-pub-3940256099942544/1033173712');  //test id
 
     	AdMobInterstitial.addEventListener('adLoaded', () =>{

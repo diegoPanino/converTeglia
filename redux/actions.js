@@ -20,6 +20,9 @@ export const PLUS_FAV = 'PLUS_FAV'; //ADD 1 TO THE FAVOURITE COUNTER FOR AD
 export const SUB_FAV = 'SUB_FAV'; // SUBTRACT 1 TO THE FAV COUNTER FOR AD
 export const INCREASE_LIMIT_FAV_RECIPE = 'INCREASE_LIMIT_FAV_RECIPE'; // INRCEASE BY 1 THE LIMIT OF THE TOTAL NUMBERS OF FAVOURITE RECIPES
 export const RESET_CHANGED_TRAY = 'RESET_CHANGED_TRAY' // MOVE BACK THE COUNTER FOR THE TRAY CHANGING TO ZERO
+export const FETCH_SENT = 'FETCH_SENT' //ASYNC ACTION SENDED FETCH REQUEST
+export const FETCH_SUCCESS = 'FETCH_SUCCESS' //ASYNC ACTION FETCH SUCCESS
+export const FETCH_FAIL = 'FETCH_FAIL' //ASYNC ACTION FETCH FAILED
 //ACTION MAKER
 
 export const searchLinkAction= recipe =>({
@@ -95,4 +98,13 @@ export const increaseLimitFavRecipeAction = () =>({
 })
 export const resetChangedTrayAction = () =>({
 	type:RESET_CHANGED_TRAY
+})
+export const fetchUrlSentAction = () => ({
+	type:FETCH_SENT
+})
+export const fetchUrlSuccessAction = () =>({
+	type:FETCH_SUCCESS
+})
+export const fetchUrlFailedAction = () =>({
+	type:FETCH_FAIL
 })

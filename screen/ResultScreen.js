@@ -133,7 +133,7 @@ function ResultScreen(props){
 									<MyText myStyle={styles.errMsg}>Riprova</MyText>
 								</TouchableOpacity>
 							 </View>
-							 : <View style={styles.activityIndicator}><ActivityIndicator size='large' color='black' /></View>}
+							 : <View style={styles.activityIndicator}><ActivityIndicator size='large' color='#feaa52' /></View>}
 							<Animated.View style={[styles.adView,{transform:[{scale}]}]}>
 								<AdMobBanner adSize="mediumRectangle"
 			  								adUnitID="ca-app-pub-3940256099942544/6300978111"//<-TEST | MINE->"ca-app-pub-7517699325717425/8128210768"

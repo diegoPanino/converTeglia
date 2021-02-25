@@ -1,5 +1,5 @@
 import React,{useState,useEffect,useRef} from 'react';
-import {Dimensions, View, Text, StyleSheet, Image, TouchableOpacity,Animated} from 'react-native';
+import {useWindowDimensions, View, Text, StyleSheet, Image, TouchableOpacity,Animated} from 'react-native';
 import {withBadge} from 'react-native-elements';
 import Icon from 'react-native-vector-icons/dist/Ionicons';
 import {connect} from 'react-redux';
@@ -14,7 +14,6 @@ const squareTray = require ('../img/quadrata.png');
 const rectTray = require('../img/rettangolare.png');
 const circleTray = require('../img/rotonda.png');
 const trays = [circleTray,rectTray,squareTray];
-const {height,width} = Dimensions.get('screen');
 
 function Header({scene,previous,navigation,settings,system,toggleChangedIcoAction}){
 	const select = settings.selection
@@ -24,6 +23,8 @@ function Header({scene,previous,navigation,settings,system,toggleChangedIcoActio
 	const blur = system.blur ? 3 : 0
 	const {changedIco} = system
 	const {fastConv} = system
+	const {height,width} = useWindowDimensions();
+
 	const BadgedImage = withBadge(<Text style={styles.color}>{select.servs}<Icon name='md-person' style={styles.servsIco}/></Text>,
 		{top:22,right:5,badgeStyle:styles.badgeStyleServs})(Image)
 	const BadgedImg = withBadge(<Text style={styles.color}>{select.dim}{trayIndex === 1 ? '':'cm'}</Text>,
@@ -64,9 +65,9 @@ function Header({scene,previous,navigation,settings,system,toggleChangedIcoActio
 	},[changedIco])
 
 	return (
-		<View style={styles.header}>
+		<View style={[styles.header,{height:height*0.18,width:width}]}>
 			<View style={styles.logoContainer}>
-				<Image source = {logo} style = {styles.logo} />
+				<Image source = {logo} style = {{height: height*0.13,width: width,}} />
 			</View>
 			{fastConv 
 			? 	<ConvertButton blurRadius={blur} navigation={navigation} />
@@ -97,8 +98,6 @@ export default connect(mapStateToProps,{toggleChangedIcoAction})(Header);
 
 const styles = StyleSheet.create({
 	header:{
-		height: height *0.18,
-		width: width,
 		elevation: 6,
 		backgroundColor:'#FFDCBA', //background
 	},
@@ -106,10 +105,7 @@ const styles = StyleSheet.create({
 		marginTop:0,
 		height:'55%',
 	},
-	logo:{
-		height: height*0.13,
-		width: width,	
-	},
+
 	rightMenu:{
 		flexDirection:'row',
 		position:'absolute',

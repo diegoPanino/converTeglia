@@ -1,5 +1,5 @@
 import React,{useEffect,useState,useCallback,useRef} from 'react';
-import {View,StyleSheet, TextInput,Keyboard, Modal, TouchableOpacity, Animated, InteractionManager} from 'react-native';
+import {View,StyleSheet, TextInput,Keyboard, Modal, TouchableOpacity,Animated, ActivityIndicator, InteractionManager} from 'react-native';
 import ShareMenu, { ShareMenuReactView } from "react-native-share-menu";
 import Icon from 'react-native-vector-icons/dist/Ionicons';
 import { v4 as idGen} from 'uuid';
@@ -18,15 +18,13 @@ function SearchScreen({navigation,searchLinkAction,saveSearchedLinkAction,tutori
 	const [copiedRecipe,setCopiedRecipe] = useState('')
 	const [isLoaded,setIsLoaded] = useState(false)
 	const [searching,setSearching] = useState(false)
-	const searchBtn = useRef(new Animated.Value(1)).current
+	const fade = useRef(new Animated.Value(0)).current
 
 	useEffect(()=>{
-		console.log('effect')
 		if(result)
 		if(!result.fetching && searching){
 			console.log('fetching: ',result.fetching,' searching: ',searching)
 			if(result.recipe.hasOwnProperty('personal')){
-				console.log('personal')
 				const recipe = result.recipe.ingredients.map(ingr=>{
 					return {amounts:ingr.amounts.toString(),
 							units:ingr.units,
@@ -93,11 +91,35 @@ function SearchScreen({navigation,searchLinkAction,saveSearchedLinkAction,tutori
 		fetchIngredient(inputBox)
 	}
 
+	const loadingRecipeTimeout=()=>{
+		fade.setValue(0)
+		Animated.timing(fade,{
+			toValue:1,
+			delay:8000,
+			duration:2000,
+			useNativeDriver:true
+		}).start()
+	}
+	const stopFetch=()=>{
+		setSearching(false)
+	}
+
 	if(!isLoaded)
 		return <MySplashScreen />
 	else{
 	return (
 		<View style={styles.mainView}>
+		{(result.fetching && searching) && 
+				<View style={styles.loadingRecipe} onLayout={loadingRecipeTimeout}>
+					<MyText myStyle={styles.center}>Sto leggendo la ricetta!</MyText>
+					<ActivityIndicator size='large' color='#feaa52'/>
+					<Animated.View style={{opacity:fade}}>
+						<TouchableOpacity onPress={stopFetch}>
+							<MyText myStyle={[styles.center,{fontSize:16}]}>Continuo a provare, ma la connessione è molto lenta! Se vuoi clicca qui per annullare</MyText>
+						</TouchableOpacity>
+					</Animated.View>
+				</View>
+		}
 		{tutorial && <TutorialWelcome showModal={()=>setNewRecipe(true)} />}
 			<Modal animationType='slide' transparent={true} visible={newRecipe}>
 				<MakeNewRecipe hide={()=>setNewRecipe(false)} navigation={navigation} recipe={copiedRecipe} tutorial={tutorial}/>		
@@ -109,18 +131,19 @@ function SearchScreen({navigation,searchLinkAction,saveSearchedLinkAction,tutori
 						placeholderTextColor='black'
 						value={inputBox}
 						onChangeText = {inputHandler}
-					  	onSubmitEditing={confirmInput}/>
+					  	onSubmitEditing={confirmInput}
+					  	editable={!(result.fetching && searching)}/>
 					<Icon style={[styles.icon,styles.color]} name='close' onPress={resetInputBox}/>
 				</View>	
-				<TouchableOpacity style={styles.btn} onPress={()=>confirmInput()} >
+				<TouchableOpacity style={styles.btn} onPress={()=>confirmInput()} disabled={(result.fetching && searching)} >
 					<MyText myStyle={styles.btnText}>LEGGI RICETTA</MyText>
 				</TouchableOpacity>
-				<TouchableOpacity style={styles.btn} onPress={()=>{setNewRecipe(true);setCopiedRecipe([])}}>
+				<TouchableOpacity style={styles.btn} onPress={()=>{setNewRecipe(true);setCopiedRecipe([])}} disabled={(result.fetching && searching)}>
 					<MyText myStyle={styles.btnText}>CREA LA TUA RICETTA</MyText>
 				</TouchableOpacity>
-				<TouchableOpacity style={styles.btn} onPress={()=>navigation.navigate('test')}>
+				{/*<TouchableOpacity style={styles.btn} onPress={()=>navigation.navigate('test')}>
 					<MyText myStyle={styles.btnText}>TEST</MyText>
-				</TouchableOpacity>
+				</TouchableOpacity>*/}
 			</View>
 		</View>
 		);}
@@ -146,6 +169,22 @@ const styles=StyleSheet.create({
 		alignItems:'center',
 		zIndex:1,
 		marginTop:'-10%',
+	},
+	loadingRecipe:{
+		marginRight:'2%',
+		marginLeft:'2%',
+		maxWidth:600,
+		position:'absolute',
+		alignSelf:'center',
+		justifyContent:'center',
+		backgroundColor: '#FFDCBA',//'#fef1d8',   //SURFACE
+		padding:10,
+		paddingBottom:15,
+		borderRadius:25,
+		borderRightWidth:4,
+		borderBottomWidth:4,
+		borderColor:'#feaa52',
+		zIndex:5,
 	},
 	textInput:{
 		flex:1,
@@ -173,6 +212,9 @@ const styles=StyleSheet.create({
 	},
 	color:{
 		color:'black'
+	},
+	center:{
+		textAlign:'center'
 	},
 	inputStyle:{
 		width:'100%',

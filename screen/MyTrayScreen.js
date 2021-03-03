@@ -1,5 +1,5 @@
 import React,{useState,useEffect,useRef} from 'react';
-import {View,StyleSheet,Dimensions,Modal,TouchableOpacity,InteractionManager,ActivityIndicator,Animated} from 'react-native';
+import {View,StyleSheet,useWindowDimensions,Modal,TouchableOpacity,InteractionManager,ActivityIndicator,Animated} from 'react-native';
 import Icon from 'react-native-vector-icons/dist/Ionicons';
 import {connect} from 'react-redux';
 import Carousel from 'react-native-snap-carousel';
@@ -15,11 +15,8 @@ import Loader from './Loader.js';
 import ModalMessageAd from '../presentational/ModalMessageAd.js'
 import {AdMobInterstitial,AdMobRewarded} from 'react-native-admob';
 
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
-
 function MyTrayScreen({navigation,toggleBlurAction,setMyTrayAction,tutorial,showTutorialAction,ad}){ // carousel render all the cards, should be removed
-																									// and manually implemented
+	const {width} = useWindowDimensions()																								// and manually implemented
 	const [tray,setTray] = useState('circle');
 	const {createdTray} = ad
 	const [advSett,setAdvSett] = useState(false)
@@ -157,7 +154,7 @@ function MyTrayScreen({navigation,toggleBlurAction,setMyTrayAction,tutorial,show
 				data={data}
 				renderItem = {({item,index})=>{return <CardTray type={index} />}}
 				itemWidth = {200}
-				sliderWidth={windowWidth}
+				sliderWidth={width}
 				inactiveSlideScale={0.5}
 				activeSlideAlignment='center'
 				onSnapToItem = {(index)=>onSnapToItemHandler(index)}
@@ -168,8 +165,8 @@ function MyTrayScreen({navigation,toggleBlurAction,setMyTrayAction,tutorial,show
 				containerCustomStyle={styles.carouselTrays}
 				data={data}
 				renderItem = {({item,index})=>{return <CardTrayList type={index} />}}
-				itemWidth={windowWidth}
-				sliderWidth={windowWidth}
+				itemWidth={width}
+				sliderWidth={width}
 				scrollEnabled={false}
 				firstItem = {1}
 				inactiveSlideScale={0.2}

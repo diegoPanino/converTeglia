@@ -1,60 +1,14 @@
 import React,{useState,useEffect} from 'react';
-import {View,Modal,StyleSheet,Dimensions,TouchableOpacity,ActivityIndicator} from 'react-native';
+import {View,Modal,StyleSheet,useWindowDimensions,TouchableOpacity,ActivityIndicator} from 'react-native';
 import MyText from './MyText';
 
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
-
 export default function ModalMessageAd(props){
+	const {height} = useWindowDimensions()
 	const {showModal,message,extraData,close,confirm,ready,error} = props	
-/*	useEffect(()=>{
-		console.log('mount')
-		ad.addEventListener('adFailedToLoad', error =>{
-			console.log('FailLoad',error)
-			setAttempt(prevState => prevState + 1)
-		})
-		ad.isReady(ready=>{
-			if(ready){
-				setAdLoaded(true)
-				setAdError(false)
-			}
-		})
-		ad.addEventListener('adLoaded', () =>{
-			console.log('loaded')
-			setAdLoaded(true)
-			setAdError(false)
-		})
-		ad.addEventListener('adClosed',()=>{
-			 console.log('closed')
-			 setAdLoaded(false)
-		})
-		return ()=> ad.removeAllListeners();
-	},[])
-	useEffect(()=>{
-		return ()=> console.log('unmount')
-	},[])
-
-	/*useEffect(()=>{
-		if(attempt <= 5){
-			setTimeout(()=>{
-				ad.requestAd().catch(err=>{console.log('attemptEffect ERR',err)}) 
-			},5000)
-		}
-		else{
-			setAdLoaded(false)
-			setAdError(true)
-		}
-	},[attempt])
-
-	useEffect(()=>{
-		console.log('adLoadedEffect')
-		if(!adLoaded && !adError)
-			ad.requestAd().catch(err => console.log('adLoadedEffectERR',err) )
-	},[adLoaded])*/
 
 	return(
 		<Modal animationType='slide' transparent={true} visible={showModal}>
-			<View style = {styles.modalView}>
+			<View style = {[styles.modalView,{top:height/3}]}>
 				<View style={styles.textContaier}>
 					<MyText myStyle={styles.text}>{message}</MyText>
 				</View>
@@ -84,7 +38,6 @@ export default function ModalMessageAd(props){
 const styles = StyleSheet.create({
 	modalView:{
 		position:'absolute',
-		top:windowHeight/3,
 		maxWidth:600,
 		alignSelf:'center',
 		flex:1,
@@ -149,3 +102,49 @@ const styles = StyleSheet.create({
 		margin:10,
 	  }
 })
+
+
+/*	useEffect(()=>{
+		console.log('mount')
+		ad.addEventListener('adFailedToLoad', error =>{
+			console.log('FailLoad',error)
+			setAttempt(prevState => prevState + 1)
+		})
+		ad.isReady(ready=>{
+			if(ready){
+				setAdLoaded(true)
+				setAdError(false)
+			}
+		})
+		ad.addEventListener('adLoaded', () =>{
+			console.log('loaded')
+			setAdLoaded(true)
+			setAdError(false)
+		})
+		ad.addEventListener('adClosed',()=>{
+			 console.log('closed')
+			 setAdLoaded(false)
+		})
+		return ()=> ad.removeAllListeners();
+	},[])
+	useEffect(()=>{
+		return ()=> console.log('unmount')
+	},[])
+
+	/*useEffect(()=>{
+		if(attempt <= 5){
+			setTimeout(()=>{
+				ad.requestAd().catch(err=>{console.log('attemptEffect ERR',err)}) 
+			},5000)
+		}
+		else{
+			setAdLoaded(false)
+			setAdError(true)
+		}
+	},[attempt])
+
+	useEffect(()=>{
+		console.log('adLoadedEffect')
+		if(!adLoaded && !adError)
+			ad.requestAd().catch(err => console.log('adLoadedEffectERR',err) )
+	},[adLoaded])*/

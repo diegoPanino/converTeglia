@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from 'react';
-import {View,StyleSheet, Image, TouchableOpacity,TextInput, TouchableWithoutFeedback, Keyboard,KeyboardAvoidingView,Dimensions} from 'react-native';
+import {View,StyleSheet, Image, TouchableOpacity,TextInput, TouchableWithoutFeedback, Keyboard,useWindowDimensions} from 'react-native';
 import {connect} from 'react-redux';
 import {toggleBlurAction,addTrayAction} from '../redux/actions';
 import MyText from './MyText';
@@ -8,9 +8,9 @@ import MyPicker from './MyPicker.js';
 const squareIco = require ('../img/quadrata.png');
 const rectIco = require('../img/rettangolare.png');
 const circleIco = require('../img/rotonda.png');
-const HEIGHT = Dimensions.get('window').height
 
 function NewTrayModal(props){
+	const {height} = useWindowDimensions()
 	const {hide,toggleBlurAction,addTrayAction,select} = props
 	const [type,setType] = useState(select)
   	const [dim, setDim] = useState(22)
@@ -121,7 +121,7 @@ function NewTrayModal(props){
 
 	return (
 			<TouchableWithoutFeedback onPress={()=>Keyboard.dismiss()} >
-				<View style={styles.mainView} >
+				<View style={[styles.mainView,{height:height*0.76}]} >
 					<View style={styles.contentView}>
 						<View style={styles.nameInput}>
 							<MyText myStyle={styles.label}>Nome</MyText>
@@ -201,7 +201,6 @@ export default connect(null,{toggleBlurAction,addTrayAction})(NewTrayModal)
 const styles = StyleSheet.create({
 	mainView:{
 		position:'absolute',
-		height:HEIGHT * 0.76,
 		width:'98%',
 		backgroundColor:'transparent',
 		zIndex:6,

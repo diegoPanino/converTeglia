@@ -1,5 +1,5 @@
 import React,{useState,useEffect,useRef} from 'react';
-import {View,TextInput,StyleSheet,ScrollView,TouchableOpacity,Alert,Dimensions} from 'react-native';
+import {View,TextInput,StyleSheet,ScrollView,TouchableOpacity,Alert,useWindowDimensions} from 'react-native';
 import {connect} from 'react-redux';
 import { v4 as idGen} from 'uuid';
 import NewIngredientRow from './NewIngredientRow';
@@ -7,10 +7,8 @@ import {toggleBlurAction,searchLinkAction,saveSearchedLinkAction} from '../redux
 import TutorialBox from './tutorial/TutorialBox.js'
 import MyText from './MyText';
 
-const WIDTH = Dimensions.get('window').width
-const HEIGHT = Dimensions.get('window').height
-
 function MakeNewRecipe(props){
+	const {height,width} = useWindowDimensions()
 	const [title,setTitle] = useState()
 	const [invalidForm,setInvalidForm] = useState(false)
 	const [ingredientRow,setIngredientRow]=useState(props.recipe||[])
@@ -106,7 +104,7 @@ function MakeNewRecipe(props){
 //inside the scrollview always rendere an ingredient row, empty that is gonna be used to add new ingredient. 
 //map on ingredientRow (array of ingredients), and for each one render a ingredientRow, passing delay for animation based on the index and unique id
 	return(			
-		<View style={styles.mainView}>
+		<View style={[styles.mainView,{height:height*0.76,width:width}]}>
 		{tutorial && <TutorialBox  type='newRecipe' 
 					navigation={navigation} next='ResultScreen' 
 					exampleFunction={(ingr)=>setIngredientRow(ingr)}
@@ -160,8 +158,6 @@ const styles = StyleSheet.create({
 		top:'20%',
 		left:0,
 		justifyContent:'center',
-		height:HEIGHT * 0.76,
-		width:WIDTH,
 		backgroundColor:'transparent',
 		zIndex:6,
 	},

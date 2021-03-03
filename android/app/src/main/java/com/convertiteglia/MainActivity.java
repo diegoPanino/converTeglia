@@ -6,6 +6,7 @@ import android.os.Bundle;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+import android.content.pm.ActivityInfo;
 
 public class MainActivity extends ReactActivity {
 
@@ -21,6 +22,9 @@ public class MainActivity extends ReactActivity {
   @Override
     protected void onCreate(Bundle savedInstanceState) {
         SplashScreen.show(this);
+        if(getResources().getBoolean(R.bool.portrait_only)){
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+    }
         super.onCreate(savedInstanceState);
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
             @Override

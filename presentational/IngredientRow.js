@@ -25,12 +25,12 @@ export default function IngredientRow(props){
 		}).start()
 	}
 	useEffect(()=>{
-			Animated.timing(scale,{
-				toValue:1,
-				duration:600,
-				delay:index ? index * 200 : 0,
-				useNativeDriver:true
-			}).start()
+		Animated.timing(scale,{
+			toValue:1,
+			duration:600,
+			delay:index ? index * 200 : 0,
+			useNativeDriver:true
+		}).start()
 	})
 	useEffect(()=>{								//when the props amount change set the input box to the new value with animation
 		Animated.sequence([

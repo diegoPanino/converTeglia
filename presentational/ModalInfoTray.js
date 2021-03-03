@@ -1,14 +1,12 @@
 import React from 'react';
-import {View,StyleSheet,Dimensions,TouchableOpacity} from 'react-native';
+import {View,StyleSheet,TouchableOpacity,useWindowDimensions} from 'react-native';
 import Icon from 'react-native-vector-icons/dist/Ionicons';
 import MyText from './MyText';
 import * as KitchenMath from '../api/kitchenMath';
 import TutorialBox from './tutorial/TutorialBox.js';
 
-const WIDTH = Dimensions.get('window').width
-const HEIGHT = Dimensions.get('window').height
-
 export default function ModalMessage(props){
+	const {height,width} = useWindowDimensions()
 	const {close,confirm,showModal,selectedTray,tutorial} = props;
 	const {dim,key,servs} = selectedTray
 	const {area,type} = KitchenMath.getAreaByType(dim,key)
@@ -19,7 +17,7 @@ export default function ModalMessage(props){
 	}
 
 	return (
-		<View style={styles.mainView}>
+		<View style={[styles.mainView,{height:height*0.76,width:width}]}>
 		{tutorial && <TutorialBox type='selectedTray' reduxFunction={()=>onConfirmTray()} />}
 			<View style={styles.contentView}>
 				<View style={styles.contentTextView}>
@@ -61,8 +59,6 @@ const styles = StyleSheet.create({
 		left:0,
 		justifyContent:'center',
 		alignItems:'center',
-		height:HEIGHT * 0.76,
-		width:WIDTH,
 		backgroundColor:'transparent',
 		zIndex:6,
 	},

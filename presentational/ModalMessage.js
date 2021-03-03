@@ -1,16 +1,14 @@
 import React from 'react';
-import {View,Modal,StyleSheet,Dimensions,TouchableOpacity} from 'react-native';
+import {View,Modal,StyleSheet,useWindowDimensions,TouchableOpacity} from 'react-native';
 import MyText from './MyText';
 
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
-
 export default function ModalMessage(props){
+	const {height,width} = useWindowDimensions()
 	const {showModal,message,extraData,close,confirm} = props	
 
 	return(
 		<Modal animationType='slide' transparent={true} visible={showModal}>
-			<View style = {styles.modalView}>
+			<View style = {[styles.modalView,{top:height/3,width:width-40}]}>
 				<View style={styles.textContaier}>
 					<MyText myStyle={styles.text}>{message}</MyText>
 				</View>
@@ -36,10 +34,8 @@ export default function ModalMessage(props){
 const styles = StyleSheet.create({
 	modalView:{
 		position:'absolute',
-		top:windowHeight/3,
 		flex:1,
 		alignSelf:'center',
-		width:windowWidth-40,
 		maxWidth:600,
 		margin: 20,
 		backgroundColor:'#feebc4', 	//background

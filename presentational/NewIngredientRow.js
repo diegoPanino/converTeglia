@@ -1,9 +1,7 @@
 import React,{useState,useEffect,useRef} from 'react';
-import {View,TextInput,StyleSheet,Animated,Dimensions, TouchableOpacity} from 'react-native';
+import {View,TextInput,StyleSheet,Animated,TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/dist/Ionicons';
 import MyPicker from './MyPicker.js';
-
-const SCREEN_WIDTH = Dimensions.get('window').width
 
 export default function NewIngredientRow({form=false,...props}){
 	const [amounts,setAmount] = useState(props.amounts)

@@ -1,15 +1,13 @@
 import React,{useState,useEffect} from 'react';
-import {View,Modal,StyleSheet,Dimensions,TouchableOpacity} from 'react-native';
+import {View,Modal,StyleSheet,TouchableOpacity,useWindowDimensions} from 'react-native';
 import Icon from 'react-native-vector-icons/dist/Ionicons';
 import MyText from './MyText';
 import * as KitchenMath from '../api/kitchenMath';
 import TutorialBox from './tutorial/TutorialBox.js';
 import MyPicker from './MyPicker.js';
 
-const WIDTH = Dimensions.get('window').width
-const HEIGHT = Dimensions.get('window').height
-
 export default function OriginalTrayInfoModal(props){
+	const {height,width} = useWindowDimensions()
 	const {confirm,showModal,tray,blurAction,tutorial} = props
 	const [size,setSize] = useState(tray)
 	const [servs,setServs] = useState(KitchenMath.getServsFromRad(tray))
@@ -48,7 +46,7 @@ export default function OriginalTrayInfoModal(props){
 	}
 
 	return (
-		<View style={styles.mainView} >
+		<View style={[styles.mainView,{height:height*0.76,width:width}]} >
 		{tutorial && <TutorialBox type='modalOriginal' reduxFunction ={()=>onConfirm()}  />}
 			<View style={styles.contentView}>
 				<View style={styles.contentTextView}>
@@ -97,8 +95,6 @@ export default function OriginalTrayInfoModal(props){
 			left:0,
 			justifyContent:'center',
 			alignItems:'center',
-			height:HEIGHT * 0.86,
-			width:WIDTH,
 			backgroundColor:'transparent',
 			zIndex:6,
 		},

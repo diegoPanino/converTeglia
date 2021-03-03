@@ -1,8 +1,6 @@
 import React from 'react';
-import {View,Image,StyleSheet,Dimensions} from 'react-native';
+import {View,Image,StyleSheet} from 'react-native';
 import MyText from './MyText.js';
-
-const width= Dimensions.get('window').width
 
 export default function Tips({style,img=false}){
 	const tips=['Cliccando sul lucchetto, di un ingredienti, puoi bloccare il suo valore e mantenere le proporzioni',

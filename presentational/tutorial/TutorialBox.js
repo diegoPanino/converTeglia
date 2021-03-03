@@ -1,13 +1,11 @@
 import React,{useState,useEffect,useRef} from 'react'
-import {View,StyleSheet,TouchableOpacity,Animated,Dimensions} from 'react-native';
+import {View,StyleSheet,TouchableOpacity,Animated,useWindowDimensions} from 'react-native';
 import Icon from 'react-native-vector-icons/dist/Ionicons';
 import {connect} from 'react-redux';
 import MyText from '../MyText.js';
 
-const WIDTH = Dimensions.get('window').width
-const HEIGHT = Dimensions.get('window').height
-
 export default function TutorialBox(props){
+	const {height,width} = useWindowDimensions();
 	const {type,next,navigation=null,hide=()=>{},exampleFunction,reduxFunction,titleFunction} = props
 	const [index,setIndex] = useState(0)
 	const scale = useRef( new Animated.Value(0)).current
@@ -215,7 +213,7 @@ export default function TutorialBox(props){
 	}
 
 	return(
-		<View style={[styles.mainView,screen[type][index].positioning]}>
+		<View style={[styles.mainView,{height:height*0.76,width:width},screen[type][index].positioning]}>
 			<Animated.View style={{transform:[{scale}]}} >
 				<View style={styles.contentView}>
 					<View style={styles.headerContent}>
@@ -252,8 +250,6 @@ const styles= StyleSheet.create({
 		zIndex:10,
 		elevation:3,
 		backgroundColor:'transparent',
-		height:HEIGHT * 0.76,
-		width:WIDTH,
 	},
 	contentView:{
 		backgroundColor:'#fef1d8',

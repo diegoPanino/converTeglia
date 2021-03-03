@@ -1,5 +1,5 @@
 import React,{useState,useEffect,useRef} from 'react';
-import {View,StyleSheet,InteractionManager,Dimensions,Animated} from 'react-native';
+import {View,StyleSheet,InteractionManager,useWindowDimensions,Animated} from 'react-native';
 import {connect} from 'react-redux';
 import HistoryList from '../presentational/HistoryList';
 import MyText from '../presentational/MyText';
@@ -8,9 +8,8 @@ import Loader from './Loader.js';
 import {AdMobBanner} from 'react-native-admob';
 import Tips from '../presentational/Tips.js';
 
-const height = Dimensions.get('window').height
-
 function HistoryScreen({history,navigation,tutorial,adCounter,adLimit}){
+	const {height} = useWindowDimensions()
 	const [isLoaded,setIsLoaded] = useState(false)
 	const [adError,setAdError] = useState(false)
 	const scale = useRef(new Animated.Value(0)).current
@@ -50,7 +49,7 @@ function HistoryScreen({history,navigation,tutorial,adCounter,adLimit}){
 	else{
 	return (
 		<View style={styles.mainView}>
-			<View style={styles.contentView}>
+			<View style={{height:height*0.6}}>
 				{(history.length > 0) 
 					? <HistoryList list = {history} navigation = {navigation} adCounter={adCounter} adLimit={adLimit}/>
 					: <MyText myStyle={styles.errMsg}>Nessuna ricetta salvata!</MyText>
@@ -82,9 +81,6 @@ const styles=StyleSheet.create({
 	mainView:{
 		flex:1,
 		backgroundColor:'#feebc4',
-	},
-	contentView:{
-		height:height*0.6,
 	},
 	adView:{
 		flex:1,

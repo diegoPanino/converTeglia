@@ -1,10 +1,11 @@
 import React from 'react';
-import {View,StyleSheet,Image,Dimensions} from 'react-native';
+import {View,StyleSheet,Image,useWindowDimensions} from 'react-native';
 
 export default function MySplashScreen(props){
+	const {height,width} = useWindowDimensions()
 	return (
 		<View style={styles.mainView}>
-			<Image style={styles.image} source={require('../img/splash_icon.png')} />
+			<Image style={[styles.image,{width:width,height:height/2}]} source={require('../img/splash_icon.png')} />
 		</View>
 		)
 }
@@ -17,7 +18,5 @@ const styles = StyleSheet.create({
 	},
 	image:{
 		marginBottom:'30%',
-		width:Dimensions.get('window').width,
-		height:Dimensions.get('window').height / 2
 	}
 })

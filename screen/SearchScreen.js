@@ -1,5 +1,6 @@
 import React,{useEffect,useState,useCallback,useRef} from 'react';
-import {View,StyleSheet, TextInput,Keyboard, Modal, TouchableOpacity,Animated, ActivityIndicator, InteractionManager} from 'react-native';
+import {View,StyleSheet, TextInput,Keyboard,Modal,TouchableOpacity,Animated,ActivityIndicator,InteractionManager} from 'react-native';
+import { useDimensions , useDeviceOrientation } from '@react-native-community/hooks';
 import ShareMenu, { ShareMenuReactView } from "react-native-share-menu";
 import Icon from 'react-native-vector-icons/dist/Ionicons';
 import { v4 as idGen} from 'uuid';
@@ -23,7 +24,6 @@ function SearchScreen({navigation,searchLinkAction,saveSearchedLinkAction,tutori
 	useEffect(()=>{
 		if(result)
 		if(!result.fetching && searching){
-			console.log('fetching: ',result.fetching,' searching: ',searching)
 			if(result.recipe.hasOwnProperty('personal')){
 				const recipe = result.recipe.ingredients.map(ingr=>{
 					return {amounts:ingr.amounts.toString(),
@@ -141,9 +141,6 @@ function SearchScreen({navigation,searchLinkAction,saveSearchedLinkAction,tutori
 				<TouchableOpacity style={styles.btn} onPress={()=>{setNewRecipe(true);setCopiedRecipe([])}} disabled={(result.fetching && searching)}>
 					<MyText myStyle={styles.btnText}>CREA LA TUA RICETTA</MyText>
 				</TouchableOpacity>
-				{/*<TouchableOpacity style={styles.btn} onPress={()=>navigation.navigate('test')}>
-					<MyText myStyle={styles.btnText}>TEST</MyText>
-				</TouchableOpacity>*/}
 			</View>
 		</View>
 		);}

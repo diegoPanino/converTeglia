@@ -6,6 +6,7 @@ import SearchScreen from './screen/SearchScreen';
 import ResultScreen from './screen/ResultScreen';
 import MyTrayScreen from './screen/MyTrayScreen';
 import HistoryScreen from './screen/HistoryScreen';
+import OrientationScreen from './screen/OrientationScreen';
 import Header from './screen/Header';
 import {store,persistor} from './redux/store';
 import {searchLinkAction} from './redux/actions';
@@ -51,6 +52,7 @@ export default function App(){
             <Stack.Screen name='ResultScreen' component={ResultScreen} />
             <Stack.Screen name='MyTrayScreen' component={MyTrayScreen} />
             <Stack.Screen name='HistoryScreen' component={HistoryScreen} />
+            <Stack.Screen name='OrientationScreen' component={OrientationScreen} />
             <Stack.Screen name='test' component={Test} />
           </Stack.Navigator>
         </NavigationContainer>

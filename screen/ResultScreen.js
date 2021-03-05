@@ -12,6 +12,12 @@ import TutorialBox from '../presentational/tutorial/TutorialBox.js';
 import Loader from './Loader.js';
 import {AdMobBanner,AdMobInterstitial} from 'react-native-admob';
 
+const def1 = require('../img/1.jpg')
+const def2 = require('../img/2.jpg')
+const def3 = require('../img/3.jpg')
+const def4 = require('../img/4.jpg')
+const defaultImg = [def1,def2,def3,def4]
+
 function ResultScreen(props){
 
 	const {toggleBlurAction,fastConvertionAction} = props
@@ -28,6 +34,7 @@ function ResultScreen(props){
 	const [adError,setAdError] = useState(false)
 	const [adLoaded,setAdLoaded] = useState(false)
 	const [isLoaded,setIsLoaded] = useState(false)
+	const [defaultImgIndex,setDefaultImgIndex] = useState(0)
 	const prevAreaTarget = usePrevState(areaTarget)
 	const prevTray = usePrevState(selectedTray.dim)
 	const scale = useRef(new Animated.Value(0)).current
@@ -41,6 +48,11 @@ function ResultScreen(props){
 	}
 
 	useEffect(()=>{
+		if(result.recipe.src === 'immagine personale')
+			setDefaultImgIndex(Math.trunc(Math.random() * (5 - 1) + 1))
+	},[])
+
+	useEffect(()=>{
 		AdMobInterstitial.setTestDevices([AdMobInterstitial.simulatorId])
 		AdMobInterstitial.setAdUnitID('ca-app-pub-3940256099942544/1033173712')//<--TEST | MINE -->'ca-app-pub-7517699325717425/2883816461')
 		
@@ -49,14 +61,14 @@ function ResultScreen(props){
 		})
 		AdMobInterstitial.isReady(ready =>{
 			if(!ready)
-				AdMobInterstitial.requestAd().catch(err=>console.warn(err))
+				AdMobInterstitial.requestAd().catch(err=>{})
 		})
 
 		return () => AdMobInterstitial.removeAllListeners()
 	},[])
 	useEffect(()=>{
 		if((searchedRecipe % 3 === 0) && (searchedRecipe !== 0))
-			AdMobInterstitial.showAd().catch(err=>console.warn(err))
+			AdMobInterstitial.showAd().catch(err=>{})
 	},[searchedRecipe])
 
 	useEffect(()=>{
@@ -176,9 +188,14 @@ function ResultScreen(props){
 						</View>
 					</View>
 					<View style={loaded ? styles.imgContainer : {display:'none'}}>
-						<Image 	onLoad={()=>setLoaded(true)}
-								source={{uri:result.recipe.src}}
-								style={styles.img} />
+						{defaultImgIndex 
+							?	<Image onLoad={()=>setLoaded(true)}
+									source={defaultImg[defaultImgIndex-1]}
+									style={styles.img} />
+							: 	<Image onLoad={()=>setLoaded(true)}
+									source={{uri:result.recipe.src}}
+									style={styles.img} />
+						}
 					</View>
 					<View style={styles.recipe}>
 						<ResultList list={result} k = {k}/>
@@ -247,23 +264,27 @@ const styles=StyleSheet.create({
 	titleBox:{
 		flex:1,
 		alignItems:'center',
+		justifyContent:'center',
 	},
 	titleView:{
+		justifyContent:'center',
 		flex:1,
-		marginLeft:20,
 		flexGrow:2
 	},
 	title:{
 		textAlign:'center',
-		fontSize:22
+		fontSize:22,
+		borderBottomWidth:1,
+		borderColor:'#feaa52',
 	},
 	imgContainer:{
 		flex:3,
+		justifyContent:'center',
 		paddingBottom:5,
-		marginTop:30
+		marginTop:30,
 	},
 	img:{
-		flex:3,
+		width:'100%'
 	},
 	recipe:{
 		flex:8,

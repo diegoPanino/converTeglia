@@ -29,13 +29,11 @@ function ConvertButton(props){
 export default connect(null,{fastConvertionAction,convertAction})(ConvertButton);
 const styles = StyleSheet.create({
 	btnView:{
-		flex:1,
 		flexDirection:'row',
-		marginTop:'5%',
-		marginLeft:10,
+		justifyContent:'center',
+		alignItems:'flex-start',
 	},
 	btn:{
-		flex:0.8,
 		justifyContent:'center',
 		backgroundColor:'#feea52', //BUTTON BACKGROUND
 		borderWidth:2,
@@ -49,7 +47,6 @@ const styles = StyleSheet.create({
 		color:'#e8871e',
 	},
 	icoContainer:{
-		flex:0.5,
 	},
 	ico:{
 		fontSize:20,

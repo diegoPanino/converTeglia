@@ -3,15 +3,15 @@ import {Text,TouchableOpacity,Image,StyleSheet} from 'react-native';
 
 const bckBtn = require('../img/backButtonBAD.png');
 const styles = StyleSheet.create({
-backButton:{
-		position:'absolute',
-		bottom:0,
-		left:0,
-		height:'55%',
-		width:'55%',
+	backButton:{
+		flex:1,	
+		justifyContent:'flex-end',
+		alignItems:'flex-start',
 	},
-	ico:{
-		fontSize:50
+	backButtonImg:{
+		resizeMode:'cover',
+		height:50,
+		width:150,
 	}
 })
 export default function BackButton({navigation,blurRadius,disabled}){
@@ -20,8 +20,8 @@ export default function BackButton({navigation,blurRadius,disabled}){
 	}
 	else{
 		return(
-			<TouchableOpacity disabled={disabled} style={styles.backButton} onPress={()=>navigation.goBack()}>
-				<Image blurRadius={blurRadius} source={bckBtn} style = {styles.backButton} />				
+			<TouchableOpacity style = {styles.backButton} disabled={disabled} onPress={()=>navigation.goBack()}>
+				<Image blurRadius={blurRadius} source={bckBtn} style = {styles.backButtonImg} />				
 			</TouchableOpacity>	
 		);
 	}

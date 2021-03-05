@@ -79,9 +79,6 @@ const styles = StyleSheet.create({
 	    shadowOpacity: 0.25,
 	    shadowRadius: 3.84,
 	    elevation: 5,
-	    borderRightWidth:3,
-	    borderBottomWidth:3,
-	    borderColor:'#feaa52'
 	},
 	contentTextView:{
 		flex:0.5,

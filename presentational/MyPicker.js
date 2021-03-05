@@ -82,17 +82,19 @@ const styles=StyleSheet.create({
 	},
 	dropMenuContainer:{
 		position:'absolute',
-		backgroundColor:'white',
+		backgroundColor: "#fef1d8",
 		marginLeft:'2.5%',
 		marginRight:'2.5%',
 		borderWidth:1,
 		borderRadius:10,
+		borderColor:'#feaa52',
 		padding:5,
 		zIndex:5,
 		elevation:5
 	},
 	pickerItem:{
 		borderBottomWidth:1,
+		borderColor:'#feaa52',
 		padding:5,
 		justifyContent:'center',
 		alignItems:'center',

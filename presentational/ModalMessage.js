@@ -39,6 +39,8 @@ const styles = StyleSheet.create({
 		maxWidth:600,
 		margin: 20,
 		backgroundColor:'#feebc4', 	//background
+	    borderColor:'#feaa52',
+	    borderWidth:1,
 	    borderRadius: 20,
 	    padding: 10,
 	    shadowColor: "#000",

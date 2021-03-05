@@ -44,6 +44,8 @@ const styles = StyleSheet.create({
 		margin: 20,
 		backgroundColor:'#feebc4', 	//background
 	    borderRadius: 20,
+	    borderColor:'#feaa52',
+	    borderWidth:4,
 	    padding: 10,
 	    shadowColor: "#000",
 	    shadowOffset: {
@@ -102,49 +104,3 @@ const styles = StyleSheet.create({
 		margin:10,
 	  }
 })
-
-
-/*	useEffect(()=>{
-		console.log('mount')
-		ad.addEventListener('adFailedToLoad', error =>{
-			console.log('FailLoad',error)
-			setAttempt(prevState => prevState + 1)
-		})
-		ad.isReady(ready=>{
-			if(ready){
-				setAdLoaded(true)
-				setAdError(false)
-			}
-		})
-		ad.addEventListener('adLoaded', () =>{
-			console.log('loaded')
-			setAdLoaded(true)
-			setAdError(false)
-		})
-		ad.addEventListener('adClosed',()=>{
-			 console.log('closed')
-			 setAdLoaded(false)
-		})
-		return ()=> ad.removeAllListeners();
-	},[])
-	useEffect(()=>{
-		return ()=> console.log('unmount')
-	},[])
-
-	/*useEffect(()=>{
-		if(attempt <= 5){
-			setTimeout(()=>{
-				ad.requestAd().catch(err=>{console.log('attemptEffect ERR',err)}) 
-			},5000)
-		}
-		else{
-			setAdLoaded(false)
-			setAdError(true)
-		}
-	},[attempt])
-
-	useEffect(()=>{
-		console.log('adLoadedEffect')
-		if(!adLoaded && !adError)
-			ad.requestAd().catch(err => console.log('adLoadedEffectERR',err) )
-	},[adLoaded])*/

@@ -167,8 +167,6 @@ const styles = StyleSheet.create({
 		padding:10,
 		paddingBottom:15,
 		borderRadius:25,
-		borderRightWidth:4,
-		borderBottomWidth:4,
 		borderColor:'#feaa52'   //surface border     //BUTTON BORDER
 	},
 	titleContainer:{

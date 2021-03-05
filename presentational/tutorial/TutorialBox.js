@@ -294,6 +294,7 @@ const styles= StyleSheet.create({
 		borderRadius:20,
 		padding:5,
 		elevation:5,
+		zIndex:10,
 	},
 	buttonText:{
 		fontSize:22,

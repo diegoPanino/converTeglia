@@ -1,6 +1,5 @@
 import React,{useEffect,useState,useCallback,useRef} from 'react';
 import {View,StyleSheet, TextInput,Keyboard,Modal,TouchableOpacity,Animated,ActivityIndicator,InteractionManager} from 'react-native';
-import { useDimensions , useDeviceOrientation } from '@react-native-community/hooks';
 import ShareMenu, { ShareMenuReactView } from "react-native-share-menu";
 import Icon from 'react-native-vector-icons/dist/Ionicons';
 import { v4 as idGen} from 'uuid';

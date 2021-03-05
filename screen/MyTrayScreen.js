@@ -57,12 +57,12 @@ function MyTrayScreen({navigation,toggleBlurAction,setMyTrayAction,tutorial,show
 		return ()=>AdMobRewarded.removeAllListeners()							//useEffect managin rewarded ad after 3 tray creation
 	},[])
 	useEffect(()=>{
-		if(adRewardAttempt <= 5 && setAdRewardAttempt !== 0){
+		if(adRewardAttempt <= 3 && setAdRewardAttempt !== 0){
 			setTimeout(()=>{
 				AdMobRewarded.requestAd().catch(err=>{}) 
-			},5000)
+			},3500)
 		}
-		else if(adRewardAttempt === 6 ){
+		else if(adRewardAttempt === 4 ){
 			setAdRewardError(true)
 		}
 	},[adRewardAttempt])
@@ -84,7 +84,7 @@ function MyTrayScreen({navigation,toggleBlurAction,setMyTrayAction,tutorial,show
 	    AdMobInterstitial.isReady(ready=>{
     		setAdReady(ready)
     		if(!ready){
-    			AdMobInterstitial.requestAd().catch(error => console.warn('requestAd: ',error));
+    			AdMobInterstitial.requestAd().catch(error => {});
     		}
     	})
 	    return ()=>  AdMobInterstitial.removeAllListeners();
@@ -115,13 +115,13 @@ function MyTrayScreen({navigation,toggleBlurAction,setMyTrayAction,tutorial,show
 			setShowAdModal(true)
 		}	
 		else {													
-			AdMobInterstitial.showAd().catch(error => console.warn(error));			
+			AdMobInterstitial.showAd().catch(error =>{});			
 			setShowNTM(true);
 		}
 		
 	}
 	function showAd(){
-		AdMobRewarded.showAd().catch(err=>console.warn(err))
+		AdMobRewarded.showAd().catch(err=>{})
 	}
 	function onConfirmAdShow(){
 		showAd()

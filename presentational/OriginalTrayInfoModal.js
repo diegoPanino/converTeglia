@@ -47,7 +47,6 @@ export default function OriginalTrayInfoModal(props){
 
 	return (
 		<View style={[styles.mainView,{height:height*0.76,width:width}]} >
-		{tutorial && <TutorialBox type='modalOriginal' reduxFunction ={()=>onConfirm()}  />}
 			<View style={styles.contentView}>
 				<View style={styles.contentTextView}>
 					<MyText myStyle={[styles.center,styles.underlineText]}>
@@ -85,6 +84,7 @@ export default function OriginalTrayInfoModal(props){
 					</TouchableOpacity>
 				</View>
 			</View>
+			{tutorial && <TutorialBox type='modalOriginal' reduxFunction ={()=>onConfirm()}  />}
 		</View>
 		);
 }
@@ -100,7 +100,7 @@ export default function OriginalTrayInfoModal(props){
 		},
 		contentView:{
 			maxWidth:600,
-			flex:0.5,
+			flex:0.6,
 			alignItems:'center',
 			marginRight: 20,
 			marginLeft:20,
@@ -115,9 +115,6 @@ export default function OriginalTrayInfoModal(props){
 		    shadowOpacity: 0.25,
 		    shadowRadius: 3.84,
 		    elevation: 5,
-		    borderRightWidth:3,
-		    borderBottomWidth:3,
-		    borderColor:'#feaa52'
 		},
 		contentTextView:{
 			flex:2,
@@ -180,89 +177,3 @@ export default function OriginalTrayInfoModal(props){
 			fontSize:16,
 		}
 	})
-
-/*	const styles = StyleSheet.create({
-	mainView:{
-		position:'absolute',
-		top:'20%',
-		left:0,
-		justifyContent:'center',
-		height:HEIGHT * 0.76,
-		width:WIDTH,
-		backgroundColor:'transparent',
-		zIndex:6,
-		borderColor:'pink',
-		borderWidth:3,
-	},	
-	contentView:{
-		flex:0.5,
-		margin: 20,
-    	backgroundColor: "#fef1d8",			//SURFACE
-	    borderRadius: 20,
-	    padding: 10,
-	    shadowColor: "#000",
-	    shadowOffset: {
-	      width: 0,
-	      height: 2
-	    },
-	    shadowOpacity: 0.25,
-	    shadowRadius: 3.84,
-	    elevation: 5,
-	    borderWidth:3,
-	    borderColor:'blue'
-	  },
-	closeButton:{
-	  	position:'absolute',
-	  	right:5,
-	  	bottom:0,
-	  	backgroundColor:'#feea52', //BUTTON BACKGROUND
-		borderWidth:2,
-		borderColor:'#E8871E', 		//BUTTON BORDER
-		borderRadius:20,
-		padding:5,
-		elevation:5,
-		margin:10,
-	},
-	closeBtnText:{
-		fontSize:22,
-		color:'#e8871e'       //BUTTON TEXT COLOR
-	},
-	selectedTray:{
-	  	flex:1,
-	  	justifyContent:'center',
-	  	alignItems:'center',
-	  	//marginBottom:70,
-	  	marginTop:10,
-	  	borderWidth:1,
-	  	borderColor:'green'
-	},
-	pickerContainer:{
-		width:'30%',
-		height:'50%',
-		borderWidth:1,
-		borderColor:'red'
-	},
-	picker:{
-		backgroundColor:'transparent',
-		left:'28%',
-		borderWidth:1,
-		borderColor:'pink'
-	},
-	cm:{
-		bottom:35,
-		left:'75%',
-		fontSize:18,
-	},
-	ico:{
-	  	fontSize:15,
-	  	paddingLeft:5,
-	},
-	center:{
-	  	textAlign:'center',
-	  	fontSize:18,
-	},
-	warning:{
-		color:'red',
-		fontSize:16,
-	}
-})*/

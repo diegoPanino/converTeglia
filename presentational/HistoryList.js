@@ -20,8 +20,7 @@ function HistoryList(props){
 	const [showAdModal,setShowAdModal] = useState(false)
 
 	useEffect(()=>{
-    AdMobRewarded.setTestDevices([AdMobRewarded.simulatorId]);
-	AdMobRewarded.setAdUnitID('ca-app-pub-3940256099942544/5224354917')//<-TEST | MINE->'ca-app-pub-7517699325717425/8556915163');
+	AdMobRewarded.setAdUnitID('ca-app-pub-7517699325717425/8556915163')//ca-app-pub-3940256099942544/5224354917<-TEST
 	
    	AdMobRewarded.isReady(ready=>{
 		setAdRewardLoaded(ready)

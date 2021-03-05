@@ -47,14 +47,13 @@ function ResultScreen(props){
 		return ref.current
 	}
 
-	useEffect(()=>{
+	useEffect(()=>{																	//if there is not img from web site, get a random index  > 0, flaggin def img
 		if(result.recipe.src === 'immagine personale')
 			setDefaultImgIndex(Math.trunc(Math.random() * (5 - 1) + 1))
 	},[])
 
 	useEffect(()=>{
-		AdMobInterstitial.setTestDevices([AdMobInterstitial.simulatorId])
-		AdMobInterstitial.setAdUnitID('ca-app-pub-3940256099942544/1033173712')//<--TEST | MINE -->'ca-app-pub-7517699325717425/2883816461')
+		AdMobInterstitial.setAdUnitID('ca-app-pub-7517699325717425/2883816461')//ca-app-pub-3940256099942544/1033173712<--TEST 
 		
 		AdMobInterstitial.addEventListener('adClosed',()=>{
 			AdMobInterstitial.requestAd().catch(err=>{})
@@ -147,9 +146,8 @@ function ResultScreen(props){
 							 </View>
 							 : <View style={styles.activityIndicator}><ActivityIndicator size='large' color='#feaa52' /></View>}
 							<Animated.View style={[styles.adView,{transform:[{scale}]}]}>
-								<AdMobBanner adSize="mediumRectangle"
-			  								adUnitID="ca-app-pub-3940256099942544/6300978111"//<-TEST | MINE->"ca-app-pub-7517699325717425/8128210768"
-			  								testDevices={[AdMobBanner.simulatorId]} 
+								<AdMobBanner adSize="largeBanner"
+			  								adUnitID='ca-app-pub-7517699325717425/8128210768'//"ca-app-pub-3940256099942544/6300978111"//<-TEST 
 			  								onAdLoaded = {showAd}
 			  								onAdFailedToLoad={onAdFailed}/>
 			  				</Animated.View>
@@ -255,7 +253,7 @@ const styles=StyleSheet.create({
 		flex:1,
 		marginBottom:10,
 		justifyContent:'flex-end',
-		alignSelf:'center'
+		alignSelf:'center',
 	},
 	titleContainer:{
 		flex:1,

@@ -59,8 +59,7 @@ function HistoryScreen({history,navigation,tutorial,adCounter,adLimit}){
 			<Animated.View style={[styles.adView,{transform:[{scale}]}]}>
 					{ !adError 
 						? <AdMobBanner adSize="largeBanner"
-			  					adUnitID="ca-app-pub-3940256099942544/6300978111"//<-TEST | MINE->"ca-app-pub-7517699325717425/4806970901"
-			  					testDevices={[AdMobBanner.simulatorId]}
+			  					adUnitID="ca-app-pub-7517699325717425/4806970901"//ca-app-pub-3940256099942544/6300978111<-TEST
 			  					onAdLoaded = {showAd}
 			  					onAdFailedToLoad={onAdFailed}/>
 			  			: <Tips style={styles.tipsStyle} />

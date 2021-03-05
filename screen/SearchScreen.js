@@ -51,8 +51,6 @@ function SearchScreen({navigation,searchLinkAction,saveSearchedLinkAction,tutori
     	  const cleanedString = data.split('http')
     	  setInputBox('http'+cleanedString[1]);
 	    }
-  	  	else
-  		    console.log('share type no good')
   	},[])
 
   	useEffect(()=>{

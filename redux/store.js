@@ -4,7 +4,7 @@ import {persistStore,persistReducer} from 'redux-persist';
 import AsyncStorage from '@react-native-community/async-storage';
 import {linkReducer,historyReducer,settingsReducer,systemReducer,adReducer} from './reducers.js';
 import {CLEAN_STORE} from './actions.js';
-import {composeWithDevTools} from 'redux-devtools-extension';
+//import {composeWithDevTools} from 'redux-devtools-extension';
 import filterHistory from '../api/oldHistorySelection';
 
 const persistConfig ={
@@ -42,7 +42,7 @@ const onEndRehydrationHandler=()=>{
 	else return;
 }
 const persistedReducer = persistReducer(persistConfig,rootReducer);
-export const store = createStore(persistedReducer,composeWithDevTools(applyMiddleware(thunk)));
+export const store = createStore(persistedReducer,applyMiddleware(thunk));
 export const persistor = persistStore(store,{},onEndRehydrationHandler);
 
 

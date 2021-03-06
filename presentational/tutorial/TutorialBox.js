@@ -40,11 +40,11 @@ export default function TutorialBox(props){
 		modalOriginal:[
 			{
 			message:'In questa schermata toccando sui numeri potrai cambiare le dimensioni o le porzioni della ricetta di partenza.',
-			positioning:{marginTop:'15%',justifyContent:'flex-end',elevation:6}
+			positioning:{marginTop:'5%',justifyContent:'flex-end',elevation:5}
 			},
 			{
 			message:'ConverTeglia è in grado di leggere le dimensioni dalle ricette online, non è però infallibile!\nControlla sempre per evitare risultati inaspettati!',
-			positioning:{marginTop:'15%',justifyContent:'flex-end',elevation:6}
+			positioning:{marginTop:'5%',justifyContent:'flex-end',elevation:5}
 			},
 		],
 		selectedTray:[
@@ -64,7 +64,7 @@ export default function TutorialBox(props){
 			},
 			{
 			message:'Hai notato troppo tardi che sei a corto di uno degli ingredienti?\nNessun problema, tocca il lucchetto e cambia la quantitá di quell\'ingrediente!',
-			positioning:{justifyContent:'center'}
+			positioning:{justifyContent:'flex-end'}
 			},
 			{
 			message:'Hai solo 100g di burro, ma la ricetta ne vuole 250?\nChiudi il lucchetto con un tocco e inserisci 100 nella linea dell\'ingrediente del quale sei a corto e ConverTeglia ricalcolerá per te tutti gli ingredienti, senza cambiare le proporzioni',
@@ -286,6 +286,7 @@ const styles= StyleSheet.create({
 	buttonView:{
 		justifyContent:'flex-end',
 		marginTop:10,
+		elevation:5,
 	},
 	buttonContainer:{
 		backgroundColor:'#feea52', //BUTTON BACKGROUND
@@ -294,9 +295,9 @@ const styles= StyleSheet.create({
 		borderRadius:20,
 		padding:5,
 		elevation:5,
-		zIndex:10,
 	},
 	buttonText:{
+		elevation:5,
 		fontSize:22,
 		textAlign:'center',
 		color:'#e8871e',		

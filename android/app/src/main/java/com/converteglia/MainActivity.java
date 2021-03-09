@@ -1,4 +1,4 @@
-package com.convertiteglia;
+package com.converteglia;
 
 import com.facebook.react.ReactActivity;
 import org.devio.rn.splashscreen.SplashScreen;

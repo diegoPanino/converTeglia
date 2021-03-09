@@ -1,5 +1,5 @@
 import React,{useState,useEffect,useRef} from 'react';
-import {View,TextInput,StyleSheet,ScrollView,TouchableOpacity,Alert,useWindowDimensions} from 'react-native';
+import {View,TextInput,StyleSheet,ScrollView,TouchableOpacity,Alert,useWindowDimensions,KeyboardAvoidingView} from 'react-native';
 import {connect} from 'react-redux';
 import { v4 as idGen} from 'uuid';
 import NewIngredientRow from './NewIngredientRow';
@@ -110,6 +110,7 @@ function MakeNewRecipe(props){
 					exampleFunction={(ingr)=>setIngredientRow(ingr)}
 					titleFunction={(text)=>setTitle(text)}
 					reduxFunction={()=>onConvertPress()} />}
+			<KeyboardAvoidingView behavior='padding'>
 			<View style={styles.contentView}>
 				<View style={styles.titleContainer}>
 					<TextInput style={styles.titleInput}
@@ -121,6 +122,7 @@ function MakeNewRecipe(props){
 						onChangeText={(text)=>setTitle(text)}
 					/>
 				</View>
+				
 				<ScrollView style={styles.scrollView}>	
 					{ingredientRow.map((el,i)=>{
 						return (
@@ -138,6 +140,7 @@ function MakeNewRecipe(props){
 									form={true}
 									/>
 				</ScrollView>
+				
 				<View style={styles.btnRow}>
 					<TouchableOpacity style={styles.btn} onPress={()=>hide()}>
 						<MyText myStyle={styles.btnText}>INDIETRO</MyText>
@@ -147,6 +150,7 @@ function MakeNewRecipe(props){
 					</TouchableOpacity>
 				</View>
 			</View>
+			</KeyboardAvoidingView>
 		</View>
 		);
 }

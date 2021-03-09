@@ -1,4 +1,4 @@
-package com.convertiteglia; // Change this to your package name.
+package com.converteglia; // Change this to your package name.
 
 import android.content.Intent;
 import android.os.Bundle;

@@ -192,7 +192,7 @@ function ResultScreen(props){
 									style={styles.img} />
 							: 	<Image onLoad={()=>setLoaded(true)}
 									source={{uri:result.recipe.src}}
-									style={styles.img} />
+									style={styles.uriImg} />
 						}
 					</View>
 					<View style={styles.recipe}>
@@ -283,6 +283,9 @@ const styles=StyleSheet.create({
 	},
 	img:{
 		width:'100%'
+	},
+	uriImg:{
+		flex:3
 	},
 	recipe:{
 		flex:8,

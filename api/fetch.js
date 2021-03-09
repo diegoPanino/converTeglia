@@ -350,7 +350,7 @@ if(!(/http/gi).test(url)){
 			const htmlTitle = 'h1.main_title'
 			const title = getHtmlTitle($,htmlTitle)
 
-			const src = $('div.img_featured').find('img').attr('src')
+			const src = $('div.img_featured').find('img').attr('data-src')
 
 			const htmlPortionsTag = 'ul.info_ricetta'
 			const htmlPortionsValue = $(htmlPortionsTag).find('li.dosi_per').text()

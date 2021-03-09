@@ -133,7 +133,7 @@ android {
         javaMaxHeapSize "3g"
     }
     defaultConfig {
-        applicationId "com.convertiteglia"
+        applicationId "com.converteglia"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
@@ -173,10 +173,8 @@ android {
             signingConfig signingConfigs.release
             // Caution! In production, you need to generate your own keystore file.
             // see https://reactnative.dev/docs/signed-apk-android.
-            signingConfig signingConfigs.debug
             minifyEnabled enableProguardInReleaseBuilds
             minifyEnabled true
-           
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
     }

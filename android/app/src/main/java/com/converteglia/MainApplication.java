@@ -1,4 +1,4 @@
-package com.convertiteglia;
+package com.converteglia;
 
 import android.app.Application;
 import android.content.Context;

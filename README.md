@@ -15,6 +15,7 @@ My personal first app wrote in React Native.
 ![makeRecipeSmall](https://user-images.githubusercontent.com/66016281/111286765-d2f27280-8642-11eb-9b9d-265665745d57.jpg)
 
 ## Download
-[![Available on PlayStore](https://user-images.githubusercontent.com/66016281/111291042-0cc57800-8647-11eb-8a4d-fb7779623122.png)](https://play.google.com/store/apps/details?id=com.converteglia)
+[![AvailableOnPlayStore](https://user-images.githubusercontent.com/66016281/111294897-17820c00-864b-11eb-8598-fd5b9d712f61.png)
+](https://play.google.com/store/apps/details?id=com.converteglia)
 ## License
 Attribution-ShareAlike 4.0 International

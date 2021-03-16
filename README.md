@@ -1,9 +1,9 @@
-#ConverTeglia
+# ConverTeglia
 My personal first app wrote in React Native.
-*-Allow to do a html scrap of the main Italian web site for recipes, and make the simple math to convert the ingredients for different trays or number of person.
-*-Is possible to add manually a recipe
-*-Simple saved recipes system
-*-Allow to create a favourite trays
+* Allow to do a html scrap of the main Italian web site for recipes, and make the simple math to convert the ingredients for different trays or number of person.
+* Is possible to add manually a recipe
+* Simple saved recipes system
+* Allow to create a favourite trays
 
 
 
@@ -14,3 +14,7 @@ My personal first app wrote in React Native.
 ![historySmall](https://user-images.githubusercontent.com/66016281/111286762-d2f27280-8642-11eb-82fa-0696845c24ab.jpg)
 ![makeRecipeSmall](https://user-images.githubusercontent.com/66016281/111286765-d2f27280-8642-11eb-9b9d-265665745d57.jpg)
 
+## Download
+[![Available on PlayStore](https://user-images.githubusercontent.com/66016281/111291042-0cc57800-8647-11eb-8a4d-fb7779623122.png)](https://play.google.com/store/apps/details?id=com.converteglia)
+## License
+Attribution-ShareAlike 4.0 International

@@ -1,9 +1,9 @@
-ConverTeglia
+#ConverTeglia
 My personal first app wrote in React Native.
--Allow to do a html scrap of the main Italian web site for recipes, and make the simple math to convert the ingredients for different trays or number of person.
--Is possible to add manually a recipe
--Simple saved recipes system
--Allow to create a favourite trays
+*-Allow to do a html scrap of the main Italian web site for recipes, and make the simple math to convert the ingredients for different trays or number of person.
+*-Is possible to add manually a recipe
+*-Simple saved recipes system
+*-Allow to create a favourite trays
 
 
 

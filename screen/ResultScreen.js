@@ -147,7 +147,7 @@ function ResultScreen(props){
 							 : <View style={styles.activityIndicator}><ActivityIndicator size='large' color='#feaa52' /></View>}
 							<Animated.View style={[styles.adView,{transform:[{scale}]}]}>
 								<AdMobBanner adSize="largeBanner"
-			  								adUnitID='ca-app-pub-7517699325717425/8128210768'//"ca-app-pub-3940256099942544/6300978111"//<-TEST 
+			  								adUnitID='ca-app-pub-3940256099942544/6300978111' 
 			  								onAdLoaded = {showAd}
 			  								onAdFailedToLoad={onAdFailed}/>
 			  				</Animated.View>

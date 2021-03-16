@@ -53,7 +53,7 @@ function ResultScreen(props){
 	},[])
 
 	useEffect(()=>{
-		AdMobInterstitial.setAdUnitID('ca-app-pub-7517699325717425/2883816461')//ca-app-pub-3940256099942544/1033173712<--TEST 
+		AdMobInterstitial.setAdUnitID('ca-app-pub-3940256099942544/1033173712') 
 		
 		AdMobInterstitial.addEventListener('adClosed',()=>{
 			AdMobInterstitial.requestAd().catch(err=>{})

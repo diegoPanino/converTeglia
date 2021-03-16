@@ -34,7 +34,7 @@ function MyTrayScreen({navigation,toggleBlurAction,setMyTrayAction,tutorial,show
 	const scale = useRef(new Animated.Value(0)).current
 
 	useEffect(()=>{
-		AdMobRewarded.setAdUnitID('ca-app-pub-7517699325717425/8278811044')//ca-app-pub-3940256099942544/5224354917<--TEST
+		AdMobRewarded.setAdUnitID('ca-app-pub-3940256099942544/5224354917')
 
 		AdMobRewarded.isReady(ready=>{
 				setAdRewardLoaded(ready)
@@ -68,8 +68,8 @@ function MyTrayScreen({navigation,toggleBlurAction,setMyTrayAction,tutorial,show
 
 /*------------------------------------------------------------------------------------*/
 	useEffect(()=>{
-    	AdMobInterstitial.setAdUnitID('ca-app-pub-7517699325717425/9027259851');
-    									/*'ca-app-pub-3940256099942544/1033173712'*/  //test id
+    	AdMobInterstitial.setAdUnitID('ca-app-pub-3940256099942544/1033173712');
+    									
 
     	AdMobInterstitial.addEventListener('adLoaded', () =>{
       		setAdReady(true)															//effect managing interstitial ad

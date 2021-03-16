@@ -1,21 +1,16 @@
-# converTeglia
+ConverTeglia
+My personal first app wrote in React Native.
+-Allow to do a html scrap of the main Italian web site for recipes, and make the simple math to convert the ingredients for different trays or number of person.
+-Is possible to add manually a recipe
+-Simple saved recipes system
+-Allow to create a favourite trays
 
--can read from web sites, recipe (split in ingredients, amount and measurment unit, portions and img
 
--can split a text with a ingredient list
 
--can create your own recipe and tray
-
--convert the recipe from the original tray declared on the web site, to the one of your choice
-
--manage the research history
-
--only in italian
-
--totally personal project, here as long as is not publish on the PlayStore, so to make it run need some change in few not pushed into the repo![search](https://user-images.githubusercontent.com/66016281/111285945-f7018400-8641-11eb-954e-c085c0159721.jpg)
-![history](https://user-images.githubusercontent.com/66016281/111285952-f79a1a80-8641-11eb-8b8c-0c3027f1af4c.jpg)
-![makeRecipe](https://user-images.githubusercontent.com/66016281/111285954-f832b100-8641-11eb-86ba-5aa84d8e4849.jpg)
-![makeTray](https://user-images.githubusercontent.com/66016281/111285956-f832b100-8641-11eb-94cb-07c7fa5f1b75.jpg)
-![manageTrays](https://user-images.githubusercontent.com/66016281/111285958-f8cb4780-8641-11eb-8e39-8dbd17cb3c73.jpg)
-![result](https://user-images.githubusercontent.com/66016281/111285960-f8cb4780-8641-11eb-863d-58e771421e69.jpg)
+![searchSmall](https://user-images.githubusercontent.com/66016281/111286387-6ecfae80-8642-11eb-9d77-a4266ca431dd.jpg)
+![makeTraySmall](https://user-images.githubusercontent.com/66016281/111286755-d1c14580-8642-11eb-96ca-721ad6e3d8d9.jpg)
+![manageTraysSmall](https://user-images.githubusercontent.com/66016281/111286758-d259dc00-8642-11eb-863c-467c4d65fc4f.jpg)
+![resultSmall](https://user-images.githubusercontent.com/66016281/111286760-d2f27280-8642-11eb-9eef-c6589d1bdf8c.jpg)
+![historySmall](https://user-images.githubusercontent.com/66016281/111286762-d2f27280-8642-11eb-82fa-0696845c24ab.jpg)
+![makeRecipeSmall](https://user-images.githubusercontent.com/66016281/111286765-d2f27280-8642-11eb-9b9d-265665745d57.jpg)
 
